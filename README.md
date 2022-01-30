@@ -6,9 +6,9 @@
 - [Patika](https://app.patika.dev/cyclones)
 
 
-#### Kullandığım Özellikler
+#### 
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Context API](https://tr.reactjs.org/docs/context.html)
+- [React Context](https://tr.reactjs.org/docs/context.html)
 
 # Todo App 
 
