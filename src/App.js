@@ -1,7 +1,7 @@
 import { TodoProvider } from "./context/TodoContext";
 import Container from './components/Container.js';
 import Footer from "./components/Footer";
-import TodoFilter from "./components/TodoFilter";
+
 
 function App() {
 
