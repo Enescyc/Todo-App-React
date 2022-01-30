@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="w-full min-h-screen h-auto m-0 p-0 font-mono relative bg-orange-100 ">
-      <div className="m-auto h-auto min-h-screen pt-24">
+      <div className="m-auto h-auto min-h-screen pt-24 w-full">
         <TodoProvider >
           <Container></Container>
         </TodoProvider>
