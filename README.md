@@ -7,8 +7,8 @@
 
 
 #### Kullandığım Özelliker
-- Tailwind CSS
-- Context API
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Context API](https://tr.reactjs.org/docs/context.html)
 
 # Todo App 
 
