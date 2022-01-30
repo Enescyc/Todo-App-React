@@ -6,7 +6,7 @@
 
 
 #### Kullandığım Özelliker
-- Tailwind Css
+- Tailwind CSS
 - Context API
 
 # Todo App 
