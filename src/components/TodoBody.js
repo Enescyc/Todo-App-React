@@ -29,7 +29,7 @@ function TodoBody() {
     filterItems(context.todo);
 
 
-  }, [context.filter])
+  })
 
   const filteredItem = filterItems(context.todo)
 
