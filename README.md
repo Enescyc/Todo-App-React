@@ -5,6 +5,10 @@
 - [Patika] (https://app.patika.dev/cyclones)
 
 
+#### Kullandığım Özelliker
+- Tailwind Css
+- Context API
+
 # Todo App 
 
 ### Features
