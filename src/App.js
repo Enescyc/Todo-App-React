@@ -7,13 +7,16 @@ function App() {
 
 
   return (
-    <div className="w-full min-h-screen h-auto m-0 p-0 font-mono relative bg-orange-100 ">
-      <div className="m-auto h-auto min-h-screen pt-24 w-full">
+    <div className="w-full h-screen m-0 p-0 font-mono relative bg-orange-100 flex flex-col justify-center items-center ">
+      <div className="m-auto h-5/6 pt-24 w-full">
         <TodoProvider >
           <Container></Container>
         </TodoProvider>
       </div>
+      <div className="self-center justify-self-end">
       <Footer></Footer>
+      </div>
+     
       
     </div>
 

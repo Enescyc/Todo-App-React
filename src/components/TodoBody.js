@@ -44,7 +44,7 @@ function TodoBody() {
 
         todos != null && context.visible ?
           <li key={index}>
-            <div className='flex h-auto xl:h-14 justify-between items-center border-b-2 border-b-black'>
+            <div className='flex h-full justify-between items-center border-b-2 border-b-black'>
               <input onChange={(e) => onCheckedChange(e, index)}
                 type={"checkbox"}
                 datatype='boolean'
@@ -73,7 +73,7 @@ function TodoBody() {
 
 
   return <div className=''>
-    <ul className='max-h-80 w-full overflow-x-hidden '>
+    <ul className='w-full overflow-x-hidden '>
       {todoList(filteredItem)}
     </ul>
   </div>;

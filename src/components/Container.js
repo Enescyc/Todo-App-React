@@ -12,7 +12,7 @@ function Container() {
     <div className='relative h-full w-full'>
       <div className='flex flex-col flex-wrap justify-center content-center 
           w-5/6 h-full  m-auto shadow-xl shadow-slate-800 border-2 bg-orange-100 p-5'>
-        <div className='w-full overflow-y-auto relative'>
+        <div className='w-full h-full overflow-y-auto relative'>
           <TodoForm />
           <TodoBody />
           <TodoFilter></TodoFilter>
