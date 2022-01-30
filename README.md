@@ -6,7 +6,7 @@
 - [Patika](https://app.patika.dev/cyclones)
 
 
-#### Kullandığım Özelliker
+#### Kullandığım Özellikler
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Context API](https://tr.reactjs.org/docs/context.html)
 
