@@ -1,4 +1,6 @@
-# Osmanlı Serisi – Sezon Planı (taslak, tartışmaya açık)
+# Osmanlı Serisi – Sezon Planı (özet)
+
+> Bölüm bölüm bütün olay örgüsü, seriyi bağlayan iplikler ve yayın politikası için: **[TUM-OLAY-ORGUSU.md](TUM-OLAY-ORGUSU.md)**
 
 **İlke:** 624 yıllık tarih tek bir uzun seri değil; **her biri kendi içinde tamamlanan, bir dönüm noktası ya da felaketle biten sezonlar.**
 Her sezon 8–10 bölüm, her bölüm 60–90 sn. Bir bölüm tek bir anı derinlemesine anlatır ve kendi başına anlaşılır; ama her bölüm bir sonrakine merak bırakarak biter.
