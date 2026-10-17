@@ -518,7 +518,8 @@ def ney_cumle(notalar, vurus, rng, guc=1.0):
     sondaki = amp[np.searchsorted(t, bitis - 0.02)]
     amp = np.where(t >= bitis, sondaki, amp)
     k = int(0.035 * SR); amp = np.convolve(amp, np.ones(k) / k, "same")
-    amp *= np.clip((t + 0.02) / 0.11, 0, 1) ** 2 * np.cos(0.5 * np.pi * np.clip((t - bitis) / REL, 0, 1)) ** 2
+    gir = notalar[0][3].get("giris", 0.11)                   # cümle girişi (nefesin açılma süresi)
+    amp *= np.clip((t + 0.02) / gir, 0, 1) ** 2 * np.cos(0.5 * np.pi * np.clip((t - bitis) / REL, 0, 1)) ** 2
     # giriş kayması (scoop) −30 sent
     r = np.clip(t / 0.13, 0, 1); lf += (1 - r * r * (3 - 2 * r)) * (-30 / 1200)
     # yavaş sapma (±4 sent)
@@ -577,7 +578,7 @@ TELLI = [
     (4.62, "Eb3", .52, {"carpma": "F#3"}), (5.40, "D3", .62, {"trem": 1.0}), (6.55, "D3", .40, {"cin": 1}), (6.58, "A2", .30, {"cin": 1}),
     (8.00, "D3", .42, {}), (8.28, "Eb3", .44, {}), (8.56, "F#3", .48, {}), (8.86, "G3", .52, {}), (9.25, "A3", .66, {"trem": 1.2}),
     (10.62, "Bb3", .55, {"carpma": "C4"}), (11.25, "A3", .58, {"kay": "Bb3"}), (12.10, "G3", .48, {}), (12.48, "F#3", .48, {}),
-    (12.90, "G3", .50, {}), (13.50, "A3", .62, {"cin": 1}), (13.53, "D3", .34, {"cin": 1}),
+    (12.90, "G3", .50, {}), (13.50, "A3", .62, {"cin": 1}), (13.53, "D3", .34, {"cin": 1}), (15.25, "D3", .30, {}), (15.55, "Eb3", .28, {"cin": 1}),
     # 5–7: ney motifi altında dem
     (16.00, "D3", .34, {"cin": 1}), (16.03, "A3", .24, {"cin": 1}), (20.00, "D3", .30, {"cin": 1}), (20.03, "A3", .22, {"cin": 1}),
     (24.00, "D2", .36, {"cin": 1}), (24.03, "D3", .28, {"cin": 1}), (24.06, "A3", .22, {"cin": 1}),
@@ -605,7 +606,7 @@ TELLI = [
 # --- ney cümleleri (vuruş, süre, nota, ops)
 NEY = [
     # 5–7: LEITMOTIF – tam ve açık
-    [(16, 1, "A4", {"v": .8}), (17, 1, "Bb4", {"v": .92}), (18, 2, "A4", {"dil": 1, "vib": 12}), (20, 1, "G4", {}), (21, 1, "F#4", {"dil": 1}),
+    [(16, 1, "A4", {"v": .8, "giris": 0.45}), (17, 1, "Bb4", {"v": .92}), (18, 2, "A4", {"dil": 1, "vib": 12}), (20, 1, "G4", {}), (21, 1, "F#4", {"dil": 1}),
      (22, 1, "G4", {}), (23, 1, "Eb4", {}), (24, 2.7, "D4", {"vib": 14, "dim": 1})],
     # 9–11: ikinci veriliş, süslü, A'da açık biter
     [(32, 1, "A4", {}), (33, 1, "Bb4", {}), (34, 2, "A4", {"dil": 1, "vib": 14}), (36, 1, "G4", {"carpma": "A4"}), (37, 1, "F#4", {}),
@@ -674,7 +675,6 @@ def dron_kaynaklari():
 
 def main():
     global IR
-    t_bas = time.time()
     getir(GEREKLI)
     IR = oda_ir()
     rng = np.random.default_rng(TOHUM)
@@ -788,20 +788,32 @@ def main():
         "sure": round(T / SR, 3),
         "dongu": [round(bas_s, 6), round(son_s, 6)],
         "dongu_ornek": [bas, son],
-        "katmanlar": [{"ad": "zemin", "dosya": f"out/{ID}__zemin.flac", "icerik": "kontrbas D2 + çello D3/A3 dem'i, bozkır rüzgârı"},
+        "katmanlar": [{"ad": "zemin", "dosya": f"out/{ID}__zemin.flac", "icerik": "kontrbas D2 + çello D3/A3 + viola D4 dem'i (faz hizalı döngü), bozkır rüzgârı"},
                       {"ad": "ritim", "dosya": f"out/{ID}__ritim.flac", "icerik": "bendir/def, sofyan (5–18. ölçüler), çok hafif"},
                       {"ad": "melodi", "dosya": f"out/{ID}__melodi.flac", "icerik": "ney benzeri nefesli (leitmotif tam) + ud/kopuz benzeri telli (taksim, heterofoni)"}],
         "vurgu": {"dosya": f"out/{ID}__vurgu.flac", "sure": round(len(vur) / SR, 3), "olcumler": ov},
         "yogunluk": "dusuk",
-        "leitmotif": "tam ve açık: ney, 5–7. ölçüler (gövde 7.27–18.18 sn → tam miksde 12.73–23.64 sn); 9–11. ölçülerde süslü ikinci veriliş (A'da açık biter); 17–18. ölçülerde telli+ney parçalı",
+        "leitmotif": (f"tam ve açık: ney, 5–7. ölçüler (tam miksde {16 * VUR + bas_s:.2f}–{27 * VUR + bas_s:.2f} sn); 9–11. ölçülerde süslü ikinci "
+                      f"veriliş (A'da açık biter, {32 * VUR + bas_s:.2f} sn); 17–18. ölçülerde telli (ilk yarı) + ney (son yarı) parçalı"),
+        "yapi_olcu": {"giris (son 6 vuruş)": "sisin içinden: dem kabarır, telli D'ye kayarak açılır", "1-4": "telli taksim (serbest, Hicaz alt dörtlüsü, A'da durur)",
+                      "5-7": "LEITMOTIF ney ile tam; telli dem; bendir sofyan girer", "8": "telli cevabı (motif sonu yankısı)",
+                      "9-11": "ney ikinci veriliş (süslü), telli heterofoni", "12": "telli: Uşşak renkli köprü (E segah, F)",
+                      "13-16": "ney gelişme: Uşşak'tan Hicaz'a, D5'e umutlu yükseliş", "17-18": "motif telli (ilk yarı) + ney (son yarı)",
+                      "19-20": "sakinleşme; son 6 vuruş = giriş malzemesi → döngü başı"},
         "olcumler": o,
         "kaynaklar": [
             {"dosya": "VCSL " + VCSL_DEF + "HDrum{L,S}_Hit/HitMuted_*", "lisans": "CC0 1.0", "repo": REPO["VCSL"], "not": "bendir/def (= shared/sfx ritim/def_*)"},
             {"dosya": "VSCO-2-CE " + VSCO_CELLO + "susvib_{D2,A2}_v1_1.wav", "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]},
+            {"dosya": "VSCO-2-CE " + VSCO_VLA + "ViolaEns_susvib_D3_v1_1.wav", "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]},
             {"dosya": "VSCO-2-CE " + VSCO_KB + "BKCtbss_SusNV_D1_v1_rr1.wav", "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]},
             {"dosya": "sentez", "lisans": "kendi üretimimiz", "not": "ney (additive + perdeli nefes), ud/kopuz (Karplus-Strong), rüzgâr, oda yankısı"}],
-        "uretim_sn": round(time.time() - t_bas, 1),
     }
+    with open(os.path.join(HERE, "KAYNAKLAR.tsv"), "w", encoding="utf-8") as fh:
+        fh.write("dosya\tdepo\tyol\tlisans\n")
+        for p in sorted(_ONB):                                   # yalnız gerçekten yüklenen örnekler
+            if p.startswith(KLON + "/"):
+                repo, yol = os.path.relpath(p, KLON).split("/", 1)
+                fh.write(f"{os.path.basename(yol)}\t{REPO[repo]}\t{yol}\tCC0 1.0 (kamu malı)\n")
     with open(os.path.join(HERE, "meta.json"), "w", encoding="utf-8") as fh:
         json.dump(meta, fh, ensure_ascii=False, indent=1)
     print(json.dumps({"sure": meta["sure"], "dongu": meta["dongu"], "olcumler": o, "vurgu": ov}, ensure_ascii=False, indent=1))

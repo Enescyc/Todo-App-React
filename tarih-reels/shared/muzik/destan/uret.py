@@ -433,7 +433,7 @@ def sinirla(stems, tavan_db=-1.2, ileri=0.02, tut=0.08):
 V = "VSCO-2-CE"
 BOLUM = {
     #  ad      : (yol şablonu, VSCO nota adları, dinamik katmanları)
-    "kb":     ("Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_{ad}_v{k}_rr1.wav", ["C1", "D1", "E1"], [1, 3]),
+    "kb":     ("Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_{ad}_v{k}_rr1.wav", ["C1", "D1"], [1, 3]),   # E1 örneğinin temel frekansı zayıf
     "vc":     ("Strings/Cello Section/susvib/susvib_{ad}_v{k}_1.wav", ["G1", "B1", "D2", "F2", "A2", "C3"], [1, 3]),
     "vla":    ("Strings/Viola Section/susvib/ViolaEns_susvib_{ad}_v{k}_1.wav", ["C2", "E2", "G2", "B2", "D3", "F3", "A3", "C4"], [1, 2]),
     "vln":    ("Strings/Violin Section/susVib/VlnEns_susVib_{ad}_v{k}.wav", ["G2", "B2", "D3", "F#3", "A3", "C4", "E4"], [1, 2]),
@@ -581,7 +581,7 @@ VC_KOK = [  # çellolar: motif armonisinin kökleri (1. veriliş), Hicaz dörtl�
     (40, 4, "D3", .58), (44, 1, "D3", .6), (45, 1, "Eb3", .65), (46, 1, "F#3", .7), (47, 1, "G3", .75),
     (48, 1, "D3", .8), (49, 1, "G2", .8), (50, 2, "D3", .8), (52, 1, "C3", .8), (53, 1, "D3", .82), (54, 1, "G2", .82), (55, 1, "Eb3", .85),
     (56, 4, "D3", .85), (60, 4, "D3", .85), (64, 4, "Eb3", .7, .5)]
-VLA_PAD = [  # violalar (divisi): D5 → Gm → C°7 gerilimi (korno F♯ ile)
+VLA_PAD = [  # violalar (divisi): D (boş beşli) → Gm → C°7 gerilimi (korno F♯ ile)
     [(16, 8, "A3", .22, .36, {"a": 3.0}), (24, 4, "Bb3", .38), (28, 4, "C4", .42, .5)],
     [(16, 8, "D4", .22, .36, {"a": 3.4}), (24, 4, "D4", .38), (28, 4, "Eb4", .42, .5)],
     [(72, 8, "D4", .2, .08)],                                           # geri çekilme: pp dem
@@ -597,7 +597,7 @@ def motif(b0, okt, din, son_sure=4):
     return [(b0 + bb, (s if n != "D" else son_sure), f"{n}{okt}", din) for n, bb, s in MOTIF]
 
 KORNO = (
-    [(16, 1, "A3", .28, .3, {"a": 0.25}), (17, 1, "Bb3", .34), (18, 2, "A3", .34)] +   # parça (ima)
+    [(16, 1, "A3", .26, .3, {"a": 0.7}), (17, 1, "Bb3", .34), (18, 2, "A3", .34)] +    # parça (ima)
     [(24, 1, "A3", .42), (25, 1, "Bb3", .46), (26, 1.5, "A3", .45), (27.5, .5, "G3", .45), (28, 3.6, "F#3", .48, .62)] +
     motif(32, 3, .6, 3.6) +                                                              # 1. veriliş: TAM (korno + viola)
     [(44, 4, "A3", .5, .72)] +                                                           # Hicaz dörtlüsü üstünde çağrı
@@ -617,7 +617,7 @@ TIMP_OLAY = (
     [(o * 4 + x, n, v) for o in (12, 13, 14, 15) for x, n, v in ((0, "D2", .86), (.5, "A2", .45), (1.5, "A2", .52), (2, "D2", .74), (3, "A2", .55))] +
     [(68, "D2", .45)]
 )
-TIMP_RULO_OLAY = [(28, 4, .3, .68), (44, 4, .45, .85), (64, 4, .7, .35), (82, 6.05, .08, .44)]
+TIMP_RULO_OLAY = [(28, 4, .3, .68), (44, 4, .45, .85), (64, 4, .7, .35), (82, 6.05, .08, .5)]
 DAVUL_OLAY = [(8, .26), (24, .4), (32, .58), (36, .6), (40, .62), (44, .6), (46, .66),
               (48, .85), (50, .62), (52, .84), (54, .62), (56, .86), (58, .64), (60, .86), (62, .66), (64, .7), (68, .5)]
 
@@ -636,7 +636,7 @@ def ostinato(kat, rng):
             if 12 <= o <= 15:
                 kat.ekle(b * VUR + 0.004, kisa(sab, adlar, ks, hz(nota, False) * 2, v * 0.55, 3 - rr, 0.45), 1.0, 0.2)
             rr = 3 - rr
-        if 4 <= o <= 16:                                   # kontrbas pizz düm'lerde
+        if 5 <= o <= 16:                                   # kontrbas pizz düm'lerde
             for x in (0, 2):
                 pn = "Eb2" if o == 16 else "D2"
                 kat.ekle((o * 4 + x) * VUR, kisa(PIZZ[0], PIZZ[1], [1], hz(pn, False), 0.8 * v0, 1 + x // 2, 1.2), 0.9, 0.4)
@@ -644,7 +644,6 @@ def ostinato(kat, rng):
 
 def main():
     global IR
-    t_bas = time.time()
     getir(gerekli())
     IR = oda_ir()
     rng = np.random.default_rng(TOHUM)
@@ -757,8 +756,13 @@ def main():
         "olcumler": o,
         "kaynaklar": [{"dosya": "VSCO-2-CE " + y, "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]} for y in sorted({p.rsplit("/", 1)[0] + "/" for _, p in gerekli()})] +
                      [{"dosya": "sentez", "lisans": "kendi üretimimiz", "not": "oda yankısı (RT60 ≈ 1.8 sn), düzenleme, miks"}],
-        "uretim_sn": round(time.time() - t_bas, 1),
     }
+    with open(os.path.join(HERE, "KAYNAKLAR.tsv"), "w", encoding="utf-8") as fh:
+        fh.write("dosya\tdepo\tyol\tlisans\n")
+        for p in sorted(_ONB):                                   # yalnız gerçekten yüklenen örnekler
+            if p.startswith(KLON + "/"):
+                repo, yol = os.path.relpath(p, KLON).split("/", 1)
+                fh.write(f"{os.path.basename(yol)}\t{REPO[repo]}\t{yol}\tCC0 1.0 (kamu malı)\n")
     with open(os.path.join(HERE, "meta.json"), "w", encoding="utf-8") as fh:
         json.dump(meta, fh, ensure_ascii=False, indent=1)
     print(json.dumps({"sure": meta["sure"], "dongu": meta["dongu"], "olcumler": o, "vurgu": ov}, ensure_ascii=False, indent=1))

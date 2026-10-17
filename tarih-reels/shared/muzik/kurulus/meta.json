@@ -30,7 +30,7 @@
   {
    "ad": "zemin",
    "dosya": "out/kurulus__zemin.flac",
-   "icerik": "kontrbas D2 + çello D3/A3 dem'i, bozkır rüzgârı"
+   "icerik": "kontrbas D2 + çello D3/A3 + viola D4 dem'i (faz hizalı döngü), bozkır rüzgârı"
   },
   {
    "ad": "ritim",
@@ -48,54 +48,67 @@
   "sure": 5.2,
   "olcumler": {
    "rms_dbfs": -19.0,
-   "tepe_dbfs": -7.12,
+   "tepe_dbfs": -6.31,
    "kirpilma_ornek": 0,
    "enerji_4k_ustu_oran": 0.0001,
-   "enerji_1k5_4k_oran": 0.0019,
-   "merkez_250ms_hz_ortanca": 327.5,
-   "merkez_sicrama_max_oktav": 0.197,
-   "merkez_sicrama_p95_oktav": 0.142,
+   "enerji_1k5_4k_oran": 0.002,
+   "merkez_250ms_hz_ortanca": 324.9,
+   "merkez_sicrama_max_oktav": 0.337,
+   "merkez_sicrama_p95_oktav": 0.251,
    "merkez_sicrama_1oktav_ustu_sayi": 0,
-   "rms_1sn_max_artis_db": 3.2,
-   "rms_1sn_max_azalis_db": 13.79,
+   "rms_1sn_max_artis_db": 1.99,
+   "rms_1sn_max_azalis_db": 13.86,
    "rms_1sn_aralik_db": [
-    -31.4,
-    -14.9
+    -31.0,
+    -15.5
    ]
   }
  },
  "yogunluk": "dusuk",
- "leitmotif": "tam ve açık: ney, 5–7. ölçüler (gövde 7.27–18.18 sn → tam miksde 12.73–23.64 sn); 9–11. ölçülerde süslü ikinci veriliş (A'da açık biter); 17–18. ölçülerde telli+ney parçalı",
+ "leitmotif": "tam ve açık: ney, 5–7. ölçüler (tam miksde 20.00–30.00 sn); 9–11. ölçülerde süslü ikinci veriliş (A'da açık biter, 34.55 sn); 17–18. ölçülerde telli (ilk yarı) + ney (son yarı) parçalı",
+ "yapi_olcu": {
+  "giris (son 6 vuruş)": "sisin içinden: dem kabarır, telli D'ye kayarak açılır",
+  "1-4": "telli taksim (serbest, Hicaz alt dörtlüsü, A'da durur)",
+  "5-7": "LEITMOTIF ney ile tam; telli dem; bendir sofyan girer",
+  "8": "telli cevabı (motif sonu yankısı)",
+  "9-11": "ney ikinci veriliş (süslü), telli heterofoni",
+  "12": "telli: Uşşak renkli köprü (E segah, F)",
+  "13-16": "ney gelişme: Uşşak'tan Hicaz'a, D5'e umutlu yükseliş",
+  "17-18": "motif telli (ilk yarı) + ney (son yarı)",
+  "19-20": "sakinleşme; son 6 vuruş = giriş malzemesi → döngü başı"
+ },
  "olcumler": {
   "rms_dbfs": -20.0,
-  "tepe_dbfs": -4.77,
+  "tepe_dbfs": -4.53,
   "kirpilma_ornek": 0,
   "enerji_4k_ustu_oran": 0.0001,
-  "enerji_1k5_4k_oran": 0.0092,
-  "merkez_250ms_hz_ortanca": 385.0,
-  "merkez_sicrama_max_oktav": 0.766,
-  "merkez_sicrama_p95_oktav": 0.554,
+  "enerji_1k5_4k_oran": 0.0095,
+  "merkez_250ms_hz_ortanca": 383.6,
+  "merkez_sicrama_max_oktav": 0.891,
+  "merkez_sicrama_p95_oktav": 0.506,
   "merkez_sicrama_1oktav_ustu_sayi": 0,
-  "rms_1sn_max_artis_db": 5.13,
-  "rms_1sn_max_azalis_db": 11.09,
+  "rms_1sn_max_artis_db": 3.69,
+  "rms_1sn_max_azalis_db": 10.74,
+  "govde_rms_1sn_max_artis_db": 3.55,
+  "govde_rms_1sn_max_azalis_db": 6.49,
   "rms_1sn_aralik_db": [
-   -42.3,
-   -16.1
+   -42.2,
+   -17.2
   ],
   "dongu": {
    "bas_ornek": 240545,
    "son_ornek": 3447818,
-   "gecis_ornek_adimi": 0.005442,
-   "yerel_max_ornek_adimi": 0.017952,
+   "gecis_ornek_adimi": 0.005461,
+   "yerel_max_ornek_adimi": 0.018011,
    "adim_orani": 0.303,
-   "rms_farki_db_250ms": -0.47,
-   "merkez_sicramasi_oktav": 0.075
+   "rms_farki_db_250ms": -0.51,
+   "merkez_sicramasi_oktav": 0.086
   },
   "sinirlayici_max_kazanc_azaltma_db": 0.0,
   "katman_rms_dbfs": {
-   "zemin": -24.59,
-   "ritim": -37.96,
-   "melodi": -22.01
+   "zemin": -24.52,
+   "ritim": -37.56,
+   "melodi": -22.03
   }
  },
  "kaynaklar": [
@@ -111,6 +124,11 @@
    "repo": "https://github.com/sgossner/VSCO-2-CE"
   },
   {
+   "dosya": "VSCO-2-CE Strings/Viola Section/susvib/ViolaEns_susvib_D3_v1_1.wav",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
    "dosya": "VSCO-2-CE Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav",
    "lisans": "CC0 1.0",
    "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -120,6 +138,5 @@
    "lisans": "kendi üretimimiz",
    "not": "ney (additive + perdeli nefes), ud/kopuz (Karplus-Strong), rüzgâr, oda yankısı"
   }
- ],
- "uretim_sn": 46.5
+ ]
 }

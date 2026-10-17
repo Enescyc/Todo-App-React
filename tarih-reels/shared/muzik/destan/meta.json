@@ -54,20 +54,20 @@
   "dosya": "out/destan__vurgu.flac",
   "sure": 5.3,
   "olcumler": {
-   "rms_dbfs": -19.24,
-   "tepe_dbfs": -1.2,
+   "rms_dbfs": -18.0,
+   "tepe_dbfs": -1.56,
    "kirpilma_ornek": 0,
    "enerji_4k_ustu_oran": 0.0,
-   "enerji_1k5_4k_oran": 0.005,
-   "merkez_250ms_hz_ortanca": 423.2,
-   "merkez_sicrama_max_oktav": 0.357,
-   "merkez_sicrama_p95_oktav": 0.254,
+   "enerji_1k5_4k_oran": 0.0052,
+   "merkez_250ms_hz_ortanca": 422.3,
+   "merkez_sicrama_max_oktav": 0.234,
+   "merkez_sicrama_p95_oktav": 0.173,
    "merkez_sicrama_1oktav_ustu_sayi": 0,
    "rms_1sn_max_artis_db": -1.93,
    "rms_1sn_max_azalis_db": 13.15,
    "rms_1sn_aralik_db": [
-    -39.1,
-    -14.3
+    -37.7,
+    -13.2
    ]
   }
  },
@@ -88,55 +88,57 @@
   "tepe_dbfs": -1.2,
   "kirpilma_ornek": 0,
   "enerji_4k_ustu_oran": 0.0001,
-  "enerji_1k5_4k_oran": 0.0131,
-  "merkez_250ms_hz_ortanca": 314.1,
-  "merkez_sicrama_max_oktav": 1.551,
-  "merkez_sicrama_p95_oktav": 0.604,
-  "merkez_sicrama_1oktav_ustu_sayi": 1,
-  "rms_1sn_max_artis_db": 7.17,
-  "rms_1sn_max_azalis_db": 8.37,
+  "enerji_1k5_4k_oran": 0.013,
+  "merkez_250ms_hz_ortanca": 309.0,
+  "merkez_sicrama_max_oktav": 0.988,
+  "merkez_sicrama_p95_oktav": 0.599,
+  "merkez_sicrama_1oktav_ustu_sayi": 0,
+  "rms_1sn_max_artis_db": 7.32,
+  "rms_1sn_max_azalis_db": 8.36,
+  "govde_rms_1sn_max_artis_db": 3.89,
+  "govde_rms_1sn_max_azalis_db": 3.76,
   "rms_1sn_aralik_db": [
-   -43.5,
+   -43.3,
    -13.5
   ],
   "dongu": {
    "bas_ornek": 208895,
    "son_ornek": 3272684,
-   "gecis_ornek_adimi": 0.004536,
-   "yerel_max_ornek_adimi": 0.005963,
-   "adim_orani": 0.761,
-   "rms_farki_db_250ms": 2.99,
-   "merkez_sicramasi_oktav": 0.087
+   "gecis_ornek_adimi": 0.004915,
+   "yerel_max_ornek_adimi": 0.006152,
+   "adim_orani": 0.799,
+   "rms_farki_db_250ms": 2.78,
+   "merkez_sicramasi_oktav": 0.083
   },
-  "sinirlayici_max_kazanc_azaltma_db": -1.03,
+  "sinirlayici_max_kazanc_azaltma_db": -1.02,
   "katman_rms_dbfs": {
-   "zemin": -23.48,
-   "ritim": -26.08,
-   "melodi": -25.19
+   "zemin": -23.51,
+   "ritim": -26.02,
+   "melodi": -25.22
   },
   "olcu_rms_dbfs": [
-   -30.3,
-   -29.2,
-   -27.8,
-   -27.1,
-   -23.7,
-   -23.2,
-   -21.6,
-   -21.3,
-   -19.7,
+   -30.2,
+   -29.0,
+   -27.7,
+   -27.0,
+   -24.5,
+   -23.3,
+   -21.8,
+   -21.2,
+   -19.5,
    -19.4,
-   -19.2,
+   -19.1,
    -17.9,
+   -14.3,
    -14.5,
-   -14.6,
    -14.1,
-   -14.6,
-   -17.6,
-   -23.0,
-   -25.4,
-   -26.6,
-   -29.8,
-   -28.8
+   -14.5,
+   -18.7,
+   -22.6,
+   -25.3,
+   -26.5,
+   -29.7,
+   -28.5
   ]
  },
  "kaynaklar": [
@@ -195,6 +197,5 @@
    "lisans": "kendi üretimimiz",
    "not": "oda yankısı (RT60 ≈ 1.8 sn), düzenleme, miks"
   }
- ],
- "uretim_sn": 84.8
+ ]
 }
