@@ -1,0 +1,100 @@
+{
+ "id": "bizans",
+ "ad": "Bizans ilahisi / Konstantinopolis",
+ "tarz": "Bizans kilise müziği (psaltiki) yorumu: sürekli ison (Re) üzerinde serbest ritimli tek sesli psaltis melodisi, uzak kilise çanı, taş kubbe yankısı",
+ "kullanim": [
+  "Bizans sarayı ve imparator",
+  "Konstantinopolis / Ayasofya şehir görüntüleri",
+  "Bizanslı tarihçiler (Pakhymeres, Gregoras, Kantakuzenos) alıntıları",
+  "törensel anlar (Theodora'nın 1346 düğünü, taç giyme, antlaşma)",
+  "Bizans tarafının bakış açısı / karşı taraf tanıtımı"
+ ],
+ "donem": [
+  1,
+  2
+ ],
+ "ton_makam": "Re (Pa) üzerinde ison; Bizans 1. echos'una (Echos protos, diyatonik, Chrysanthine aralıklarına yaklaşık) yaklaşım; 37–49. sn'de (döngü içi) kısa Hicaz başı = leitmotif iması (Mi♭ +15, Fa♯ −15 sent)",
+ "bpm": "serbest (psaltiki; hece birimi ≈ 0.5–0.9 sn, ♩≈60–66 hissi)",
+ "usul_olcu": "serbest ritim (ölçüsüz)",
+ "sure": 81.5,
+ "dongu": [
+  5.0,
+  75.0
+ ],
+ "katmanlar": [
+  {
+   "ad": "zemin",
+   "dosya": "out/bizans__zemin.flac",
+   "icerik": "ison korosu (Re2+Re3, formant sentezi) + çok hafif çello/kontrbas Re"
+  },
+  {
+   "ad": "ritim",
+   "dosya": "out/bizans__ritim.flac",
+   "icerik": "vuruş YOK; seyrek uzak kilise çanları (döngüde 3 vuruş + kapanışta 1)"
+  },
+  {
+   "ad": "melodi",
+   "dosya": "out/bizans__melodi.flac",
+   "icerik": "tek sesli psaltis (sentez bariton), 1. echos + leitmotif iması"
+  },
+  {
+   "ad": "vurgu",
+   "dosya": "out/bizans__vurgu.flac",
+   "icerik": "5.5 sn kapanış: koro 'a-o-u' şişip söner + uzak Re çanı"
+  }
+ ],
+ "yogunluk": "dusuk",
+ "olcumler": {
+  "tam": {
+   "rms_dbfs": -20.0,
+   "tepe_dbfs": -5.2,
+   "kirpilma_ornek": 0,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0008,
+   "spektral_merkez_ort_hz": 454.0,
+   "merkez_sicrama_maks_oktav": 0.704,
+   "merkez_sicrama_zamani_sn": 71.25,
+   "yogunluk_artisi_maks_db_0_5sn": 5.19,
+   "dongu": {
+    "dalga_sicramasi": 0.006745,
+    "govde_ornek_farki_p99_9": 0.032141,
+    "rms_fark_db_50ms": 2.37,
+    "merkez_fark_oktav": 0.048,
+    "ek_yeri_merkez_sicrama_oktav": 0.442
+   }
+  },
+  "zemin": {
+   "rms_dbfs": -22.26,
+   "tepe_dbfs": -7.76,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0001
+  },
+  "ritim": {
+   "rms_dbfs": -44.06,
+   "tepe_dbfs": -23.98,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0004
+  },
+  "melodi": {
+   "rms_dbfs": -24.09,
+   "tepe_dbfs": -8.0,
+   "tiz_4k_ustu_oran": 0.0001,
+   "konusma_1k5_4k_oran": 0.0019
+  },
+  "vurgu": {
+   "rms_dbfs": -18.62,
+   "tepe_dbfs": -4.37,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0003,
+   "merkez_sicrama_maks_oktav": 0.422
+  },
+  "katman_toplami_fark_db": -220.0
+ },
+ "kaynaklar": [
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_D2_v1_1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav",
+  "shared/sfx: can/kilise_cani_C3.flac",
+  "shared/sfx: can/kilise_cani_D3.flac",
+  "sentez: numpy toplamsal formant sesi (koro ve psaltis), oda yankısı"
+ ]
+}

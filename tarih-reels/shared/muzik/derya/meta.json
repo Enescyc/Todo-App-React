@@ -1,0 +1,106 @@
+{
+ "id": "derya",
+ "ad": "Derya – Deniz ve keşif",
+ "tarz": "Geniş, ferah sinematik yaylı + korno; 6/8 dalga salınımı, Re merkezli açık beşliler, Hicaz'a göz kırpan E♭/D geçişleri, çok alçak deniz dokusu",
+ "kullanim": [
+  "deniz geçişleri (Gelibolu'ya geçiş 1354)",
+  "Boğaz sahneleri (Rumeli Hisarı, İstanbul Boğazı)",
+  "donanma ve deniz savaşları öncesi/sonrası (Barbaros, Preveze 1538)",
+  "liman ve kıyı şehirleri",
+  "keşif ve genişleme haritaları",
+  "Akdeniz hâkimiyeti anlatıları"
+ ],
+ "donem": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "ton_makam": "Re (D) merkezli; açık beşli D–A, D majör/Miksolidyen umut renkleri (G/D, C/D) ve Hicaz'a göz kırpan E♭/D, Gm/D; leitmotif Re Hicaz (12-TET + koma: E♭ +15 sent, F♯ −15 sent)",
+ "bpm": 72,
+ "usul_olcu": "6/8 (♪ = 144, ♩. = 48; bir ölçü 2.5 sn, iki büyük vuruşlu salınım)",
+ "sure": 82.0,
+ "dongu": [
+  5.0,
+  75.0
+ ],
+ "katmanlar": [
+  "zemin",
+  "ritim",
+  "melodi"
+ ],
+ "katman_aciklama": {
+  "zemin": "kontrbas D pedalı, çello/viyola/keman akorları (dalga dinamiği), deniz dokusu",
+  "ritim": "def ile yumuşak 6/8 sallanması (ölçü 9–24), timpani rulosu kabarmaları (Re ve La)",
+  "melodi": "viyola karşı ezgisi, kornoda leitmotif, kemanlarda açık deniz çizgisi ve leitmotif II (korno ile oktav)"
+ },
+ "vurgu": "out/derya__vurgu.flac (4.6 sn: timpani kabarması + E♭/D → D majör, kornolar D3+A3)",
+ "yogunluk": "orta",
+ "olcumler": {
+  "rms_dbfs": -20.0,
+  "tepe_dbfs": -3.54,
+  "kirpilma_ornek": 0,
+  "tiz_4k_ustu_oran": 0.0005,
+  "konusma_1k5_4k_oran": 0.0273,
+  "merkez_hz_ortanca": 418.0,
+  "merkez_sicrama_max_oktav": 0.702,
+  "merkez_sicrama_p99_oktav": 0.627,
+  "dongu": {
+   "dalga_sicrama": 0.009123,
+   "dalga_sicrama_tipik": 0.008556,
+   "dalga_sicrama_p99_9": 0.043449,
+   "rms_fark_db": 0.49,
+   "govde_250ms_rms_ardisik_max_fark_db": 2.78
+  },
+  "katmanlar_rms_dbfs": {
+   "zemin": -22.46,
+   "ritim": -33.09,
+   "melodi": -24.66
+  },
+  "katman_toplam_hata_max": 2.220446049250313e-16,
+  "grup_seviye_db_govdeye_gore": {
+   "melodi/keman": -9.9,
+   "melodi/korno": -5.1,
+   "melodi/viyola": -12.8,
+   "ritim/def": -12.9,
+   "ritim/timpani": -20.8,
+   "zemin/bas": -6.1,
+   "zemin/deniz": -11.5,
+   "zemin/yay": -3.7
+  },
+  "vurgu": {
+   "rms_dbfs": -18.63,
+   "tepe_dbfs": -4.41,
+   "kirpilma_ornek": 0,
+   "tiz_4k_ustu_oran": 0.0003,
+   "konusma_1k5_4k_oran": 0.0211,
+   "merkez_hz_ortanca": 376.5,
+   "merkez_sicrama_max_oktav": 0.327,
+   "merkez_sicrama_p99_oktav": 0.311
+  }
+ },
+ "kaynaklar": [
+  "VSCO-2-CE: Brass/F Horn/sus/MOHorn_sus_A#1_v2_1.wav",
+  "VSCO-2-CE: Brass/F Horn/sus/MOHorn_sus_C3_v2_1.wav",
+  "VSCO-2-CE: Brass/F Horn/sus/MOHorn_sus_F2_v2_1.wav",
+  "VSCO-2-CE: Percussion/Timpani/Rolls/Timpani3_Roll_v3_rr1_Sum.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_A2_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_B1_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_C3_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_D2_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_F2_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_G1_v1_1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_A1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_D1_v3_rr1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_A3_v1_1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_B2_v1_1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_D3_v1_1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_F3_v1_1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_G2_v1_1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_A3_v1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_C4_v1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_D3_v1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_F#3_v1.wav",
+  "shared/sfx: muzik/korno_D2, muzik/korno_A2, doga/deniz_1, doga/deniz_2, ritim/def_buyuk, ritim/def_boguk, ritim/def_kucuk"
+ ]
+}

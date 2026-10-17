@@ -1,0 +1,116 @@
+{
+ "id": "agit",
+ "ad": "Ağıt / Çöküş",
+ "tarz": "ağıt; yavaş, seyrek, derin (solo çello hattı, kontrbas–çello zemini, uzak kalp atışı, ney benzeri tek hat)",
+ "kullanim": [
+  "Ankara 1402 – Bayezid'in esir düşüşü",
+  "Kosova 1389 – Murad'ın ölümü",
+  "Süleyman Paşa'nın ölümü (1357)",
+  "Zigetvar 1566 – Kanuni'nin ölümü",
+  "Viyana 1683 bozgunu",
+  "1922 – saltanatın sonu (seri finali)",
+  "sezon finalleri, kayıp/yenilgi/ölüm sahneleri, 'bir dönemin sonu' anlatımı"
+ ],
+ "donem": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  8
+ ],
+ "ton_makam": "Re (D) merkezli Kürdi/minör renk (D E♭ F G A B♭ C); ney cümlesinde Hicaz'a yaklaşım (F♯ −15 sent, E♭ +15 sent), çello/zemin 12-TET",
+ "bpm": 52,
+ "usul_olcu": "4/4, serbest rubato; usul yok (kalp atışı ölçü başlarında, seyrek)",
+ "sure": 85.062,
+ "dongu": [
+  4.615374,
+  78.461519
+ ],
+ "dongu_ornek": [
+  203538,
+  3460153
+ ],
+ "katmanlar": [
+  {
+   "ad": "zemin",
+   "dosya": "out/agit__zemin.flac",
+   "icerik": "kontrbas pedalı ve ağıt basında inen dörtlü (D–C–B♭–A), yumuşak çello akorları"
+  },
+  {
+   "ad": "ritim",
+   "dosya": "out/agit__ritim.flac",
+   "icerik": "uzak kalp atışı (büyük davul, D2'ye akortlu, 'lub-dub'), 3 yumuşak timpani (D2)"
+  },
+  {
+   "ad": "melodi",
+   "dosya": "out/agit__melodi.flac",
+   "icerik": "çello: iç çekiş, yarım kalan leitmotif, cevap cümlesi; sonda ney benzeri tek hat (Hicaz rengi)"
+  },
+  {
+   "ad": "vurgu",
+   "dosya": "out/agit__vurgu.flac",
+   "icerik": "5.4 sn kapanış: timpani + kalp atışı + Re pedalı, çello B♭3 → A3 (çözülmez)"
+  }
+ ],
+ "yogunluk": "dusuk",
+ "leitmotif": "yavaşlatılmış (değerler ×2), minörleşmiş (F♯→F) ve yarım kalan: A3 B♭3 A3 G3 | F3 G3 E♭3 (Re'ye inmez); ney'de ikinci yarı Hicaz rengiyle tekrar, yine E♭'te asılı; kapanışta A3 B♭3 A3 kırığı",
+ "olcumler": {
+  "rms_dbfs": -20.0,
+  "rms_govde_dbfs": -19.59,
+  "tepe_dbfs": -4.91,
+  "kirpilma_ornek": 0,
+  "tiz_4k_ustu_oran": 0.0,
+  "konusma_1k5_4k_oran": 0.0095,
+  "ortalama_spektral_merkez_hz": 313.5,
+  "merkez_sicrama_maks_oktav": 1.012,
+  "merkez_sicrama_p99_oktav": 0.721,
+  "merkez_aralik_hz": [
+   155,
+   628
+  ],
+  "dongu_rms_son250ms_dbfs": -23.91,
+  "dongu_rms_bas250ms_dbfs": -24.15,
+  "dongu_eklem_sicrama": 0.015051,
+  "dongu_tipik_ornek_farki_p99": 0.022301,
+  "dongu_eklem_merkez_sicrama_oktav": 0.371,
+  "lufs_entegre": -17.9,
+  "gercek_tepe_dbtp": -4.9,
+  "katman_toplami_hata_maks": 1.1102230246251565e-16,
+  "katman_rms_dbfs": {
+   "zemin": -23.05,
+   "ritim": -34.2,
+   "melodi": -23.49
+  },
+  "vurgu": {
+   "sure_sn": 5.4,
+   "rms_dbfs": -20.38,
+   "tepe_dbfs": -6.0,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0105
+  }
+ },
+ "kaynaklar": [
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_G1_v3_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_B1_v3_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_D2_v3_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_F2_v3_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_A2_v3_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_C3_v3_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_G1_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_B1_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_D2_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_F2_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_A2_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "shared/sfx · tarih-reels/shared/sfx/muzik/kontrbas_D1.flac · CC0 1.0 (bkz. shared/sfx/katalog.json)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v1_rr1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v1_rr1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_E3_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_A3_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_C4_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_pp1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_pp2.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Membranophones/Struck Membranophones/Timpani 2/Hit/Timpani1B_hit_v3_rr1_main.wav · CC0 1.0 Universal (depodaki LICENSE)"
+ ]
+}
