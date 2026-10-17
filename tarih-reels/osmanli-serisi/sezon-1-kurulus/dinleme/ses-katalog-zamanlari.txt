@@ -1,0 +1,48 @@
+0:00.0  vurus/timpani_alcak          Alçak timpani vuruşu (sahne vurgusu)
+0:05.4  vurus/timpani_rulo           Timpani rulosu (gerilim, giriş)
+0:12.2  vurus/timpani_rulo_2         Timpani rulosu, ikinci perde
+0:19.0  vurus/buyuk_davul_ff         Büyük davul, güçlü (kös yerine)
+0:25.8  vurus/buyuk_davul_mf         Büyük davul, orta
+0:32.6  vurus/buyuk_davul_kresendo   Büyük davul kresendosu (deprem gürlemesi, yükselen gerilim)
+0:39.4  vurus/gong_fff               Gong, çok güçlü (büyük dönüm noktası)
+0:46.2  vurus/gong_mf                Gong, orta
+0:53.0  vurus/zil_timpani            Zil ve timpani birleşik sinematik vuruş
+0:54.5  vurus/zil_gong               Zil ve gong birleşik vuruş
+1:01.3  vurus/zil_crash              Çarpma zili
+1:08.1  gecis/zil_kresendo_2s        Yükselen zil, 2 sn (kısa geçiş)
+1:14.9  gecis/zil_kresendo_4s        Yükselen zil, 4 sn
+1:21.7  gecis/zil_kresendo_7s        Yükselen zil, 7.5 sn (büyük doruk öncesi)
+1:28.5  gecis/zil_yay                Yayla çalınan zil (ürkütücü, gizem)
+1:35.3  gecis/gong_suruntu           Gong sürtme (karanlık geçiş)
+1:42.1  metal/zincir_surtunme        Zincir sürtünmesi
+1:43.9  metal/zincir_dongu           Zincir hareketi (döngü)
+1:47.0  metal/ors_1                  Örs vuruşu (kılıç ve demir)
+1:49.0  metal/ors_2                  Örs vuruşu, hafif
+1:50.9  metal/metal_vurus_1          Metal vuruş
+1:53.1  metal/metal_vurus_5          Metal vuruş 2
+1:54.9  metal/tas_surtunme           Taş sürtünmesi (sur, kale)
+1:56.8  can/kilise_cani_D3           Tüp çan, D3 (Bizans kilisesi, alarm)
+2:03.6  can/kilise_cani_C3           Tüp çan, C3
+2:10.4  ritim/darbuka_dum            Darbuka 1
+2:12.4  ritim/darbuka_2              Darbuka 2
+2:13.6  ritim/darbuka_3              Darbuka 3
+2:14.8  ritim/darbuka_4              Darbuka 4
+2:16.3  ritim/def_buyuk              Büyük def vuruşu (Anadolu rengi)
+2:18.8  ritim/def_kucuk              Küçük def vuruşu
+2:21.0  ritim/def_boguk              Def, boğuk
+2:22.4  ritim/def_rulo               Çerçeve davul rulosu
+2:29.2  ritim/trampet_askeri         Askerî trampet ve tenor davul
+2:30.7  doga/deniz_1                 Dalga sesi (ocean drum)
+2:37.5  doga/deniz_2                 Dalga sesi 2
+2:44.3  doga/ortam_1                 Ortam kaydı (incelenecek)
+2:51.1  doku/fx_uzun_1               Nepal çanları, uzun tını
+2:57.9  doku/fx_uzun_2               Nepal çanları, uzun tını 2
+3:04.7  doku/kadeh_D#4               Kadeh tınısı (rivayet, rüya anları)
+3:11.5  muzik/cello_D2               Çello grubu, D2 (karanlık zemin)
+3:18.3  muzik/cello_A2               Çello grubu, A2
+3:25.1  muzik/kontrbas_D1            Kontrbas, D1 (çok alçak zemin)
+3:31.9  muzik/keman_D5               Keman grubu, D5 (gerilim, yüksek)
+3:38.7  muzik/keman_A3               Keman grubu, A3
+3:45.5  muzik/cello_tremolo_D2       Çello tremolo, D2 (tehdit yaklaşıyor)
+3:52.3  muzik/korno_D2               Korno, D2 (destan, zafer)
+3:59.1  muzik/korno_A2               Korno, A2
