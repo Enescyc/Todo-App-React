@@ -36,3 +36,19 @@ Bir bölüm = `timeline.js` (paragraflar + sahne/vuruş/müzik çapaları) + `sc
 python3 shared/make_audio.py bolum-03-birinci-dunya-savasi
 NODE_PATH=$(npm root -g) node shared/render.js bolum-03-birinci-dunya-savasi
 ```
+
+## Osmanlı serisi (Sezon 1'den itibaren) – `osmanli-serisi/`
+| Dosya | Görev |
+|---|---|
+| `shared/data/anadolu_balkan.js` | Anadolu–Balkan–Orta Doğu birimleri (Türkiye/Bulgaristan il, Yunanistan bölge, Sırbistan okrug, diğerleri ülke); komşu sınırları, kıyı, nehirler, doğal göller. `shared/tools/build_anadolu_balkan.py` üretir |
+| `osmanli-serisi/ortak/sahiplik.js` | **Zaman haritası:** her birimin yıla göre sahibi (1243–1402, yaklaşık), Osmanlı'ya/Moğollara tabiiyet taraması, tartışmalı tarihler için uzun geçiş |
+| `osmanli-serisi/ortak/gorsel.js` | Seri imzası ve bölüm sayacı, güven rozetleri (BELGE/TARTIŞMALI/RİVAYET), başlık ve "sıradaki" kartları, yıl sayacı, harita iğnesi, sikke, parşömen, el yazısı, mürekkep, rüya ağacı, çadır/sancak/tuğ/atlı/Bizanslı tarihçi siluetleri, çatlak ve geri sarma efektleri |
+| `shared/engine.js` → `drawTimeMap(t, cam, yıl, {focus, dim})`, `ownerLabels`, `ownCity` | Yıl değiştikçe topraklar yumuşakça el değiştirir; yeni katılan birim parlar |
+| `shared/sesler.py` | CC0 kütüphane (`shared/sfx`) ile `lib:*` müzik stilleri (dawn, tension, collapse, dark, rewind, theme, march, dream, byz, sea, battle), leitmotif, ortak oda yankısı + tiz raf. `trk:<tarz>` ile `shared/muzik/<tarz>` parçaları |
+| `shared/muzik/` | Seri boyunca kullanılacak müzik tarzları (her biri `uret.py` ile yeniden üretilir; git'e yalnız `onizleme.mp3` girer) |
+
+Bölüm klasörü: `osmanli-serisi/sezon-1-kurulus/bNN-ad/` (`timeline.js` + `scenes.js` + `index.html`). `timeline.js`'te ayrıca `series`, `badges`, `cards`, `risers` alanları; efektler kütüphane kimliğiyle (`'vurus/timpani_alcak'`).
+```bash
+python3 shared/make_audio.py osmanli-serisi/sezon-1-kurulus/b01-kimsenin-yazmadigi-baslangic   # vo/full.mp3 varsa hizalar
+NODE_PATH=$(npm root -g) node shared/render.js osmanli-serisi/sezon-1-kurulus/b01-kimsenin-yazmadigi-baslangic
+```

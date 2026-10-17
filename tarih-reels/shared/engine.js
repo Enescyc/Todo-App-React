@@ -188,13 +188,20 @@ function brand() {
   setFont(22, F.mont, 800); ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.fillText('· ' + (EP.badge || ''), 296, 127); ctx.restore();
 }
 
-/* ================= harita modülü (EUROPE1914, birim km) ================= */
-const GEO = window.EUROPE1914;
+/* ================= harita modülü (EUROPE1914 ya da AB_MAP, birim km) ================= */
+const GEO = window.EUROPE1914 || window.AB_MAP;
 const PATHS = (() => {
   if (!GEO) return null;
   const mk = polys => { const p = new Path2D(); for (const poly of polys) for (const r of poly) { for (let i = 0; i < r.length; i += 2) i ? p.lineTo(r[i], r[i + 1]) : p.moveTo(r[i], r[i + 1]); p.closePath(); } return p; };
-  const st = {}; for (const k in GEO.states) st[k] = mk(GEO.states[k].polys);
-  return { st, other: mk(GEO.other) };
+  const ln = ls => { const p = new Path2D(); for (const r of ls) for (let i = 0; i < r.length; i += 2) i ? p.lineTo(r[i], r[i + 1]) : p.moveTo(r[i], r[i + 1]); return p; };
+  const src = GEO.states ? Object.fromEntries(Object.entries(GEO.states).map(([k, v]) => [k, v.polys])) : GEO.units;
+  const st = {}; for (const k in src) st[k] = mk(src[k]);
+  return {
+    st, other: mk(GEO.other || []),
+    edges: (GEO.edges || []).map(([a, b, ls]) => ({ a, b, p: ln(ls) })),
+    coast: GEO.coast ? ln(GEO.coast) : null, lakes: GEO.lakes ? mk(GEO.lakes) : null,
+    rivers: Object.fromEntries(Object.entries(GEO.rivers || {}).map(([k, v]) => [k, ln(v)])),
+  };
 })();
 const W2S = (cam, x, y) => [W / 2 + (x - cam[0]) * cam[2], H / 2 + (y - cam[1]) * cam[2]];
 function inWorld(cam, fn) { ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(cam[2], cam[2]); ctx.translate(-cam[0], -cam[1]); fn(); ctx.restore(); }
@@ -250,6 +257,104 @@ function arrow(cam, pts, k, w, col, o = {}) {
   ctx.strokeStyle = o.edge || '#1a0a05'; ctx.lineWidth = 3; ctx.stroke();
 }
 
+/* ================= zaman haritası: AB_MAP + sahiplik tablosu (window.OWNERS) =================
+ * OWNERS = { pal: {KOD: {c: renk, n: 'AD' | [[yıl,'AD'],...]}}, units: {birim: [[yıl, 'KOD' | 'KOD/v' | null, geçiş_yılı], ...]}, cities: {şehir: [...]} }
+ * 'KOD/v' = Osmanlı'ya tabi (kırmızı tarama), 'KOD/m' = Moğollara tabi (koyu tarama). Geçiş yılı (varsayılan 1) boyunca renk yumuşakça değişir;
+ * belirsiz tarihler (ör. Edirne 1361–1369) uzun geçişle "adım adım" gösterilir. */
+const OWN = window.OWNERS || null;
+const ownParse = c => c ? c.split('/') : [null, null];
+function ownState(list, Y) {
+  let i = -1; for (let j = 0; j < list.length; j++) if (list[j][0] <= Y) i = j;
+  const e = list[Math.max(0, i)], [o, v] = ownParse(e[1]), [po, pv] = i > 0 ? ownParse(list[i - 1][1]) : [o, v];
+  return { o, v: v || null, po, pv: pv || null, k: i > 0 ? clamp((Y - e[0]) / (e[2] ?? 1)) : 1, y: e[0] };
+}
+const NEUTRAL = { o: null, v: null, po: null, pv: null, k: 1, y: 0 };
+const unitState = (k, Y) => OWN && OWN.units[k] ? ownState(OWN.units[k], Y) : NEUTRAL;
+function cityState(name, Y) {
+  if (OWN && OWN.cities && OWN.cities[name]) return ownState(OWN.cities[name], Y);
+  const u = GEO.cityUnit && GEO.cityUnit[name]; return u ? unitState(u, Y) : NEUTRAL;
+}
+const ownCol = (c, land) => c && OWN.pal[c] ? OWN.pal[c].c : land;
+function ownName(c, Y) { const n = OWN.pal[c] && OWN.pal[c].n; if (!n || typeof n === 'string') return n; let s = n[0][1]; for (const [y, v] of n) if (y <= Y) s = v; return s; }
+const HATCH = (() => { const c = mkCanvas(22, 22), g = c.getContext('2d'); g.strokeStyle = '#fff'; g.lineWidth = 5; for (const d of [-22, 0, 22]) { g.beginPath(); g.moveTo(d, 22); g.lineTo(d + 22, 0); g.stroke(); } return c; })();
+const HATCH_T = {};
+function hatchPattern(col) {
+  if (!HATCH_T[col]) { const c = mkCanvas(22, 22), g = c.getContext('2d'); g.drawImage(HATCH, 0, 0); g.globalCompositeOperation = 'source-in'; g.fillStyle = col; g.fillRect(0, 0, 22, 22); HATCH_T[col] = c; }
+  return ctx.createPattern(HATCH_T[col], 'repeat');
+}
+// o: {land, sea, focus:'OSM', dim:0..1 (odak dışı soluklaştırma), rivers:true, riverA, borderA, after(z), glowCol}
+function drawTimeMap(t, cam, Y, o = {}) {
+  const land = o.land || '#e3d3ac', z = cam[2];
+  ctx.fillStyle = o.sea || '#7f9fa6'; ctx.fillRect(0, 0, W, H);
+  ctx.save(); ctx.globalAlpha = .12; ctx.strokeStyle = '#1d3540'; ctx.lineWidth = 1.2;
+  for (let y = -40; y < H + 40; y += 18) { ctx.beginPath(); for (let x = 0; x <= W; x += 30) ctx.lineTo(x, y + Math.sin(x * .01 + y * .3 + t * .4) * 3); ctx.stroke(); }
+  ctx.restore();
+  const S = {}; for (const k in PATHS.st) S[k] = unitState(k, Y);
+  inWorld(cam, () => {
+    ctx.lineJoin = 'round';
+    if (PATHS.coast) { ctx.strokeStyle = 'rgba(235,240,225,.35)'; ctx.lineWidth = 14 / z; ctx.stroke(PATHS.coast); }
+    // kâğıt altlık: kaynak verilerin birleşim yerlerindeki ince boşlukları kapatır
+    ctx.fillStyle = land; ctx.strokeStyle = land; ctx.lineWidth = 3.5;
+    ctx.fill(PATHS.other, 'evenodd'); for (const k in PATHS.st) { ctx.fill(PATHS.st[k], 'evenodd'); ctx.stroke(PATHS.st[k]); }
+    for (const k in PATHS.st) {
+      const s = S[k]; if (!s.o && !s.po) continue;
+      let col = mix(ownCol(s.po, land), ownCol(s.o, land), eIO(s.k));
+      if (o.focus && o.dim) { const f = (s.o === o.focus ? eIO(s.k) : 0) + (s.po === o.focus ? 1 - eIO(s.k) : 0); col = mix(col, land, o.dim * (1 - f)); }
+      ctx.fillStyle = col; ctx.strokeStyle = col; ctx.lineWidth = 1.5 / z; ctx.fill(PATHS.st[k], 'evenodd'); ctx.stroke(PATHS.st[k]);
+    }
+    // tabiiyet taraması
+    for (const k in PATHS.st) {
+      const s = S[k], a = (s.v ? (s.v === s.pv ? 1 : eIO(s.k)) : 0) + (s.pv && s.pv !== s.v ? 1 - eIO(s.k) : 0), v = s.v || s.pv; if (!v || a <= .01) continue;
+      const pat = hatchPattern(v === 'm' ? '#3a342c' : '#a8322a'); pat.setTransform(new DOMMatrix().scale(1 / z));
+      ctx.save(); ctx.globalAlpha = .5 * a * (o.hatchA ?? 1); ctx.fillStyle = pat; ctx.fill(PATHS.st[k], 'evenodd'); ctx.restore();
+    }
+    // yeni katılan birimlerde parıltı (geçiş süresince)
+    if (o.focus) for (const k in PATHS.st) {
+      const s = S[k]; if (s.o !== o.focus || s.po === o.focus || s.k >= 1) continue;
+      ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = .55 * Math.sin(Math.PI * s.k); ctx.fillStyle = o.glowCol || '#ffd27a'; ctx.fill(PATHS.st[k], 'evenodd'); ctx.restore();
+    }
+    if (PATHS.lakes) { ctx.fillStyle = o.sea || '#7f9fa6'; ctx.fill(PATHS.lakes, 'evenodd'); ctx.strokeStyle = 'rgba(40,28,14,.55)'; ctx.lineWidth = 1 / z; ctx.stroke(PATHS.lakes); }
+    if (o.rivers !== false) { ctx.strokeStyle = rgba('#4f7480', o.riverA ?? .75); ctx.lineCap = 'round'; ctx.lineWidth = 1.7 / z; for (const k in PATHS.rivers) ctx.stroke(PATHS.rivers[k]); }
+    if (o.after) o.after(z, S);
+    // sahip sınırları: iki yanın sahibi farklıysa (geçişte yumuşak)
+    const bA = o.borderA ?? 1;
+    for (const e of PATHS.edges) {
+      let str;
+      if (e.b === 'other') str = S[e.a].o || S[e.a].po ? 1 : .35;
+      else {
+        const a = S[e.a], b = S[e.b], dc = a.o !== b.o || a.v !== b.v, dp = a.po !== b.po || a.pv !== b.pv;
+        str = lerp(+dp, +dc, eIO(Math.min(a.k, b.k)));
+      }
+      if (str <= .02) continue;
+      ctx.strokeStyle = `rgba(30,18,8,${.22 * str * bA})`; ctx.lineWidth = 5 / z; ctx.stroke(e.p);
+      ctx.strokeStyle = `rgba(30,18,8,${.85 * str * bA})`; ctx.lineWidth = 1.8 / z; ctx.stroke(e.p);
+    }
+    if (PATHS.coast) { ctx.strokeStyle = 'rgba(40,26,12,.85)'; ctx.lineWidth = 1.6 / z; ctx.stroke(PATHS.coast); }
+  });
+  ctx.save(); ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha = .18; ctx.fillStyle = ctx.createPattern(GRAIN, 'repeat'); ctx.fillRect(0, 0, W, H); ctx.restore();
+  return S;
+}
+// sahip adları: her sahibin en büyük bitişik toprağının ağırlık merkezine. o: {only:[kodlar], a, minArea, size:[min,max], col}
+const ADJ = (() => { const m = {}; if (GEO && GEO.edges) for (const [a, b] of GEO.edges) if (b !== 'other') { (m[a] = m[a] || []).push(b); (m[b] = m[b] || []).push(a); } return m; })();
+function ownerLabels(cam, Y, o = {}) {
+  if (!OWN) return; const S = {}, by = {};
+  for (const k in PATHS.st) { const s = unitState(k, Y); S[k] = s; if (s.o) (by[s.o] = by[s.o] || []).push(k); }
+  for (const c in by) {
+    if (o.only && !o.only.includes(c)) continue; const name = ownName(c, Y); if (!name) continue;
+    const seen = new Set(), comps = [];
+    for (const k of by[c]) { if (seen.has(k)) continue; const q = [k], comp = []; seen.add(k); while (q.length) { const u = q.pop(); comp.push(u); for (const v of ADJ[u] || []) if (!seen.has(v) && S[v].o === c) { seen.add(v); q.push(v); } } comps.push(comp); }
+    const best = comps.map(cm => { let A = 0, x = 0, y = 0; for (const u of cm) { const w = GEO.area[u] * eIO(S[u].k) + 1e-3; A += w; x += GEO.centroid[u][0] * w; y += GEO.centroid[u][1] * w; } return { A, x: x / A, y: y / A }; }).sort((p, q) => q.A - p.A)[0];
+    if (!best || best.A < (o.minArea ?? 6000)) continue;
+    const off = (o.offset && o.offset[c]) || [0, 0], sz = clamp(Math.sqrt(best.A) * cam[2] * .09, ...(o.size || [20, 54]));
+    mapLabel(cam, name, best.x + off[0], best.y + off[1], sz, { a: (o.a ?? 1) * clamp((best.A - (o.minArea ?? 6000)) / 4000), col: o.col || '#24170b', halo: o.halo });
+  }
+}
+// sahibinin renginde şehir noktası
+function ownCity(cam, name, Y, o = {}) {
+  const s = cityState(name, Y), col = mix(ownCol(s.po, '#6b5a40'), ownCol(s.o, '#6b5a40'), eIO(s.k));
+  return cityDot(cam, name, { ...o, col });
+}
+
 /* ================= bayraklar ve domino taşları ================= */
 const FLAGS = {
   DE: (w, h) => { [['#111', 0], ['#f4f4f0', 1], ['#c8102e', 2]].forEach(([c, i]) => { ctx.fillStyle = c; ctx.fillRect(0, i * h / 3, w, h / 3 + 1); }); },
@@ -290,7 +395,7 @@ function domino(x, y, s, code, fall = 0, dir = 1, o = {}) {
 }
 
 /* ================= kurgu: sahneler, geçişler, vuruşlar ================= */
-const SCN = EP.scenes.map((s, i) => ({ ...s, t0: cue(s.from), t1: i < EP.scenes.length - 1 ? cue(EP.scenes[i + 1].from) : DUR }));
+const SCN = EP.scenes.map((s, i) => ({ ...s, t0: i ? cue(s.from) : 0, t1: i < EP.scenes.length - 1 ? cue(EP.scenes[i + 1].from) : DUR }));
 const TRN = (EP.transitions || []).map(x => ({ ...x, t: cue(x.at), d: x.d || .25 }));
 const HITS_R = (EP.hits || []).map(h => ({ ...h, t: cue(h.at) }));
 const bufA = mkCanvas(W, H), bufB = mkCanvas(W, H);
@@ -320,7 +425,7 @@ function render(t) {
   ctx = out; ctx.setTransform(1, 0, 0, 1, 0, 0);
   const s = sceneAt(t);
   grain(t, .07); vignette(.55); if (s.film !== false && (EP.film ?? true)) oldFilm(t, s.film ?? .6);
-  brand(); captions(t);
+  (window.BRAND || brand)(t); if (window.POST) window.POST(t, s); captions(t, EP.capY || 1360);
 }
 // make_audio.py için çözülmüş zaman çizelgesi
 window.exportCues = () => ({
@@ -329,6 +434,7 @@ window.exportCues = () => ({
   scenes: SCN.map(s => ({ id: s.id, t0: s.t0, t1: s.t1 })),
   transitions: TRN.map(x => ({ t: x.t, type: x.type })),
   hits: HITS_R.map(h => ({ t: h.t, sfx: h.sfx, gain: h.gain ?? 1 })),
+  risers: (EP.risers || []).map(r => ({ ...r, t: cue(r.to) })),
   music: (EP.music || []).map(m => ({ ...m, t0: cue(m.from), t1: cue(m.to) })),
 });
 window.renderAt = render; window.DUR = DUR;

@@ -5,11 +5,15 @@ Kullanım:  python3 shared/make_audio.py <bölüm-klasörü>
   1) <bölüm>/vo/p1.mp3 … pN.mp3 varsa: konuşma bölgeleri bulunur, kelime zamanları hece oranıyla
      yalnızca konuşulan anlara dağıtılır → audio/vo_timing.js (window.VO). Hızlandırma YOK.
   2) index.html headless açılır, exportCues() ile sahne/vuruş/müzik zamanları alınır.
-  3) Müzik + efekt sentezlenir (numpy), seslendirme varsa müzik altında kısılır → audio/final.wav + .m4a
+  3) Müzik + efekt: "lib:*" stilleri ve "kategori/ad" efektleri shared/sfx CC0 kütüphanesinden (shared/sesler.py),
+     "trk:<tarz>" stilleri shared/muzik tarz parçalarından, eski stiller numpy sentezinden gelir. Ortak oda yankısı + tiz
+     yumuşatma uygulanır, seslendirme varsa müzik altında kısılır → audio/final.wav + .m4a
 Gerekli: numpy, ffmpeg, node + playwright.
 """
 import json, os, re, subprocess, sys, wave
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sesler
 
 EPD = os.path.abspath(sys.argv[1]); HERE = os.path.dirname(os.path.abspath(__file__))
 SR = 44100; rnd = np.random.default_rng(1914)
@@ -238,6 +242,12 @@ def oudn(f):
 for m in CUES["music"]:
     a, b, st = m["t0"], m["t1"], m["style"]; L = b - a
     if L <= .05: continue
+    if st.startswith("trk:"):
+        ok = sesler.track(music, st[4:], a, b, m.get("gain", .8), tuple(m.get("layers", ["tam"])), m.get("offset"))
+        if ok: continue
+        st = m.get("fallback", "lib:theme"); print(f"uyarı: {m['style']} parçası yok → {st}")
+    if st in sesler.STYLES:
+        sesler.STYLES[st](music, a, b); continue
     if st == "dread":
         add(music, a, pad(DM, L + .8, 450), .55)
         for x in np.arange(a + .6, b, 1.3): add(music, x, kos() * .25, .5, pan=rnd.uniform(-.6, .6))
@@ -277,8 +287,13 @@ for m in CUES["music"]:
 SFX = {"boom": (kos, .55), "explosion": (explosion, .75), "page": (page, .5), "brake": (brake, .5), "shot": (shot, .9), "chain": (chain, .8),
        "timpani": (lambda: timpani(65, 1.0), .8), "quill": (quill, .6), "coins": (coins, .55), "stamp": (stamp, .7), "horn": (horn, .6), "cannon": (cannon, .8)}
 for h in CUES["hits"]:
+    if "/" in h["sfx"]: sesler.put(sfx, h["t"] - .01, sesler.fade(sesler.lib(h["sfx"]), .003, 1.0), .9 * h.get("gain", 1)); continue
     fn, g = SFX[h["sfx"]]; add(sfx, h["t"] - .01, fn(), g * h.get("gain", 1))
-for tr in CUES["transitions"]: add(sfx, tr["t"] - .3, whoosh(.6), .28, pan=.3 if tr["type"] == "whip" else 0)
+for r in CUES.get("risers", []):   # yükselen ses: sonu çapaya oturur
+    x = sesler.lib(r["sfx"]); n = int(r.get("len", 2.2) * SR); x = x[:n] if len(x) > n else x
+    sesler.put(sfx, r["t"] - len(x) / SR, sesler.fade(x, .8, .05), r.get("gain", .4))
+LIBMODE = any("/" in h["sfx"] for h in CUES["hits"]) or any(m["style"].startswith(("lib:", "trk:")) for m in CUES["music"])
+for tr in CUES["transitions"]: add(sfx, tr["t"] - .3, ff(whoosh(.6), hi=1800) if LIBMODE else whoosh(.6), .2 if LIBMODE else .28, pan=.3 if tr["type"] == "whip" else 0)
 # rüzgâr zemini
 wind = ff(np.cumsum(rnd.standard_normal(N)) * .002, 30, 600); wind /= np.abs(wind).max()
 amb[:, 0] += wind * .05; amb[:, 1] += np.roll(wind, 900) * .05
@@ -298,7 +313,10 @@ def reverb(x, wet):
     out = np.stack([np.fft.irfft(np.fft.rfft(x[:, c], n) * np.fft.rfft(ir[:, c], n), n)[: len(x)] for c in range(2)], 1)
     return x * (1 - wet) + out / (np.abs(out).max() + 1e-9) * np.abs(x).max() * wet
 
-mix = reverb(music, .25) * .85 + reverb(sfx, .2) + amb
+if LIBMODE:   # kütüphane modu: bütün sesler aynı odada, tiz raf ile yumuşatılmış
+    mix = sesler.soften(sesler.room(music * .85 + sfx, .18) + amb)
+else:
+    mix = reverb(music, .25) * .85 + reverb(sfx, .2) + amb
 if VO_CLIPS: mix += np.stack([vo, vo], 1) * 1.15
 e = int(DUR * SR); fade = np.ones(N); fade[e - int(1.5 * SR): e] = np.linspace(1, 0, int(1.5 * SR)); fade[e:] = 0
 mix = np.tanh(mix * fade[:, None] / np.abs(mix).max() * 2.0) * .89

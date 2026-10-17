@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uçtaki Beylik – Bölüm 1: Kimsenin Yazmadığı Başlangıç</title>
+<link rel="stylesheet" href="../../../shared/fonts.css">
+<style>
+  html,body{margin:0;height:100%;background:#05070f;color:#fff;font-family:Montserrat,system-ui,sans-serif}
+  body{display:flex;align-items:center;justify-content:center;gap:24px}
+  #stage{height:96vh;aspect-ratio:9/16}
+  canvas{width:100%;height:100%;border-radius:18px;box-shadow:0 0 50px #000a;display:block}
+  #ui{display:flex;flex-direction:column;gap:10px;max-width:240px}
+  button{background:#f2c75c;border:0;border-radius:8px;padding:12px 16px;font-weight:800;cursor:pointer}
+  @media(max-width:700px){#ui{position:fixed;bottom:8px;left:8px}}
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="c" width="1080" height="1920"></canvas></div>
+<div id="ui"><button id="play">▶ Oynat</button></div>
+<audio id="aud" src="audio/final.m4a" preload="auto"></audio>
+<script src="../../../shared/data/anadolu_balkan.js"></script>
+<script src="../../ortak/sahiplik.js"></script>
+<script src="timeline.js"></script>
+<script src="audio/vo_timing.js" onerror="window.VO=null"></script>
+<script src="../../../shared/engine.js"></script>
+<script src="../../ortak/gorsel.js"></script>
+<script src="scenes.js"></script>
+<script>
+  const aud = document.getElementById('aud'); let t0 = null, raf;
+  function loop(now) { const t = aud.readyState >= 2 && !aud.paused ? aud.currentTime : (now - t0) / 1000; renderAt(Math.min(t, DUR - 1e-3)); if (t < DUR) raf = requestAnimationFrame(loop); }
+  document.getElementById('play').onclick = () => { cancelAnimationFrame(raf); t0 = performance.now(); aud.currentTime = 0; aud.play().catch(() => {}); raf = requestAnimationFrame(loop); };
+  Promise.all(['400 40px Anton', '900 40px Cinzel', '700 40px Cinzel', '900 40px Montserrat', '800 40px Montserrat'].map(f => document.fonts.load(f, 'AİŞĞÇÖÜ')))
+    .then(() => { window.READY = true; if (!location.search.includes('capture')) renderAt(1); });
+</script>
+</body>
+</html>
