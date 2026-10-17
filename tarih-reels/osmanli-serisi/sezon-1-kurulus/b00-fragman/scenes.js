@@ -25,7 +25,7 @@ window.SCENE_FNS = {
   },
   /* "Balkanlar'dan Fırat'a uzanan topraklar, yenilmez sanılan bir ordu" – 1402'de zirve */
   empire(t, s) {
-    const k = seg(t, s.t0, s.t1), cam = [lerp(130, 110, k), lerp(20, 30, k), lerp(.58, .63, eIO(k))], Y = 1402.4;
+    const k = seg(t, s.t0, s.t1), cam = [lerp(190, 175, k), lerp(20, 30, k), lerp(.57, .61, eIO(k))], Y = 1402.4;
     drawTimeMap(t, cam, Y, { focus: 'OSM', dim: .45 });
     const tb = C("p1:Balkanlar'dan"), tf = C("p1:Fırat'a"), to = C('p1:yenilmez');
     riverGlow(cam, 'Tuna', seg(t, tb, tb + .4) * (1 - .5 * seg(t, tf, tf + .4)));
@@ -33,7 +33,7 @@ window.SCENE_FNS = {
     ownerLabels(cam, Y, { only: ['OSM', 'TIM', 'BIZ'], a: seg(t, s.t0, s.t0 + .6), offset: { OSM: [-60, -40] } });
     const [bx, by] = W2S(cam, ...LL(24.2, 43.9)), [fx, fy] = W2S(cam, ...LL(39.0, 37.6));
     kinetic('BALKANLAR', bx, by - 70, 50, t, tb, { mode: 'slam', fam: F.cinzel, w: 900, col: '#fff' });
-    kinetic('FIRAT', fx + 20, fy + 70, 50, t, tf, { mode: 'slam', fam: F.cinzel, w: 900, col: '#fff' });
+    kinetic('FIRAT', fx - 90, fy + 80, 50, t, tf, { mode: 'slam', fam: F.cinzel, w: 900, col: '#fff' });
     // ordu: Bursa'dan Ankara'ya
     arrow(cam, [A('Edirne'), A('Bursa', [0, 20]), LL(31.0, 40.2), A('Ankara', [-10, 0])], eIO(seg(t, to - .2, to + 1.1)), 26, '#a8322a', { col0: '#d0574a' });
     ownCity(cam, 'Ankara', Y, { r: 7, size: 26 });
@@ -45,7 +45,7 @@ window.SCENE_FNS = {
     smokeLayer(t, .7, '#1a1620', 8);
     if (fl > 0) { ctx.save(); ctx.strokeStyle = `rgba(230,240,255,${fl})`; ctx.lineWidth = 6; ctx.shadowColor = '#bcd'; ctx.shadowBlur = 30; const R = rng(4); let x = 700, y = 0; ctx.beginPath(); ctx.moveTo(x, y); while (y < 700) { x += (R() - .55) * 90; y += 60 + R() * 40; ctx.lineTo(x, y); } ctx.stroke(); ctx.restore(); }
     glow(W / 2, 520, 420, 'rgba(255,190,90,.25)');
-    tug(W / 2, 1420, 1.75, t, { fall: 0 });
+    tug(W / 2, 1500, 1.35, t, { fall: 0 });
     ctx.fillStyle = lg(0, 1250, 0, H, [[0, 'rgba(5,3,2,0)'], [.3, '#050302']]); ctx.fillRect(0, 1250, W, H - 1250);
     kinetic('I. BAYEZİD', W / 2, 360, 92, t, C('p1:Yıldırım') - .05, { mode: 'letters', fam: F.cinzel, w: 900, gold: true, spacing: 4 });
     kinetic('“YILDIRIM”', W / 2, 470, 54, t, C('p1:lakaplı'), { mode: 'fade', fam: F.mont, w: 900, col: '#e8e2ff', spacing: 10, stroke: false });
@@ -82,7 +82,7 @@ window.SCENE_FNS = {
     const cam = [lerp(300, 100, eIO(seg(t, ts - 1.2, ts + .4))), lerp(-40, 48, eIO(seg(t, ts - 1.2, ts + .4))), lerp(.42, 2.4, eIO(seg(t, ts - 1.4, ts + .6)))];
     drawTimeMap(t, cam, Y, { focus: 'OSM', dim: .5 });
     if (kr < .98) ownerLabels(cam, Y, { only: ['OSM'], a: .8 });
-    const lk = seg(t, ts + .2, ts + .8); if (lk > 0) { mapLabel(cam, 'BİZANS', ...LL(29.3, 40.35), 46, { a: lk }); mapLabel(cam, 'SELÇUKLU · MOĞOL TABİİYETİ', ...LL(31.6, 39.55), 30, { a: lk, sp: 3 }); }
+    const lk = seg(t, ts + .2, ts + .8); if (lk > 0) { mapLabel(cam, 'BİZANS', ...LL(29.75, 40.78), 46, { a: lk }); mapLabel(cam, 'SELÇUKLU', ...LL(31.25, 39.6), 40, { a: lk }); }
     const p = W2S(cam, ...CITY['Söğüt']), pa = seg(t, ts - .2, ts + .4);
     if (pa > 0) { glow(p[0], p[1], 220, `rgba(255,120,70,${.7 * pa})`); for (let i = 0; i < 3; i++) { const r = ((t - ts) * .9 + i / 3) % 1; ctx.strokeStyle = `rgba(255,214,140,${pa * (1 - r)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p[0], p[1], 20 + r * 160, 0, TAU); ctx.stroke(); } }
     mapPin(cam, ...CITY['Söğüt'], t, ts, 'SÖĞÜT', { date: '~1300' });
