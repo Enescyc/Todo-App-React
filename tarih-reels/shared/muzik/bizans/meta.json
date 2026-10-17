@@ -47,46 +47,47 @@
  "olcumler": {
   "tam": {
    "rms_dbfs": -20.0,
-   "tepe_dbfs": -5.2,
+   "tepe_dbfs": -4.71,
    "kirpilma_ornek": 0,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0008,
-   "spektral_merkez_ort_hz": 454.0,
-   "merkez_sicrama_maks_oktav": 0.704,
+   "konusma_1k5_4k_oran": 0.0031,
+   "spektral_merkez_ort_hz": 474.5,
+   "merkez_sicrama_maks_oktav": 0.631,
    "merkez_sicrama_zamani_sn": 71.25,
-   "yogunluk_artisi_maks_db_0_5sn": 5.19,
+   "yogunluk_artisi_maks_db_0_5sn": 5.96,
    "dongu": {
-    "dalga_sicramasi": 0.006745,
-    "govde_ornek_farki_p99_9": 0.032141,
-    "rms_fark_db_50ms": 2.37,
-    "merkez_fark_oktav": 0.048,
-    "ek_yeri_merkez_sicrama_oktav": 0.442
+    "govde_bitisik_50ms_rms_fark_p95_db": 2.322,
+    "dalga_sicramasi": 0.007153,
+    "govde_ornek_farki_p99_9": 0.035379,
+    "rms_fark_db_50ms": 2.343,
+    "merkez_fark_oktav": 0.08,
+    "ek_yeri_merkez_sicrama_oktav": 0.373
    }
   },
   "zemin": {
-   "rms_dbfs": -22.26,
-   "tepe_dbfs": -7.76,
+   "rms_dbfs": -22.27,
+   "tepe_dbfs": -7.86,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0001
+   "konusma_1k5_4k_oran": 0.0004
   },
   "ritim": {
-   "rms_dbfs": -44.06,
-   "tepe_dbfs": -23.98,
+   "rms_dbfs": -40.15,
+   "tepe_dbfs": -20.06,
    "tiz_4k_ustu_oran": 0.0,
    "konusma_1k5_4k_oran": 0.0004
   },
   "melodi": {
-   "rms_dbfs": -24.09,
-   "tepe_dbfs": -8.0,
+   "rms_dbfs": -24.18,
+   "tepe_dbfs": -7.28,
    "tiz_4k_ustu_oran": 0.0001,
-   "konusma_1k5_4k_oran": 0.0019
+   "konusma_1k5_4k_oran": 0.0077
   },
   "vurgu": {
-   "rms_dbfs": -18.62,
-   "tepe_dbfs": -4.37,
+   "rms_dbfs": -17.86,
+   "tepe_dbfs": -3.99,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0003,
-   "merkez_sicrama_maks_oktav": 0.422
+   "konusma_1k5_4k_oran": 0.0012,
+   "merkez_sicrama_maks_oktav": 0.602
   },
   "katman_toplami_fark_db": -220.0
  },

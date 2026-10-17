@@ -57,30 +57,30 @@
  "leitmotif": "yavaşlatılmış (değerler ×2), minörleşmiş (F♯→F) ve yarım kalan: A3 B♭3 A3 G3 | F3 G3 E♭3 (Re'ye inmez); ney'de ikinci yarı Hicaz rengiyle tekrar, yine E♭'te asılı; kapanışta A3 B♭3 A3 kırığı",
  "olcumler": {
   "rms_dbfs": -20.0,
-  "rms_govde_dbfs": -19.59,
-  "tepe_dbfs": -4.91,
+  "rms_govde_dbfs": -19.62,
+  "tepe_dbfs": -4.93,
   "kirpilma_ornek": 0,
   "tiz_4k_ustu_oran": 0.0,
-  "konusma_1k5_4k_oran": 0.0095,
-  "ortalama_spektral_merkez_hz": 313.5,
-  "merkez_sicrama_maks_oktav": 1.012,
-  "merkez_sicrama_p99_oktav": 0.721,
+  "konusma_1k5_4k_oran": 0.0094,
+  "ortalama_spektral_merkez_hz": 312.5,
+  "merkez_sicrama_maks_oktav": 0.792,
+  "merkez_sicrama_p99_oktav": 0.617,
   "merkez_aralik_hz": [
    155,
-   628
+   534
   ],
-  "dongu_rms_son250ms_dbfs": -23.91,
-  "dongu_rms_bas250ms_dbfs": -24.15,
-  "dongu_eklem_sicrama": 0.015051,
-  "dongu_tipik_ornek_farki_p99": 0.022301,
+  "dongu_rms_son250ms_dbfs": -23.94,
+  "dongu_rms_bas250ms_dbfs": -24.18,
+  "dongu_eklem_sicrama": 0.015004,
+  "dongu_tipik_ornek_farki_p99": 0.022231,
   "dongu_eklem_merkez_sicrama_oktav": 0.371,
   "lufs_entegre": -17.9,
   "gercek_tepe_dbtp": -4.9,
   "katman_toplami_hata_maks": 1.1102230246251565e-16,
   "katman_rms_dbfs": {
-   "zemin": -23.05,
-   "ritim": -34.2,
-   "melodi": -23.49
+   "zemin": -23.0,
+   "ritim": -34.23,
+   "melodi": -23.54
   },
   "vurgu": {
    "sure_sn": 5.4,

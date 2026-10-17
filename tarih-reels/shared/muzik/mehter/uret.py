@@ -157,16 +157,17 @@ def uzat(x, hedef_n, rng, a_sn=0.5, xf_sn=0.35):
 class Bolum:
     """Bir bölümün (giriş / gövde / kapanış / vurgu) kuru katman tamponları."""
 
-    def __init__(self, sure_sn, kuyruk_sn=4.0):
+    def __init__(self, sure_sn, kuyruk_sn=4.0, periyodik=False):
         self.L = int(round(sure_sn * SR))
         self.n = self.L + int(kuyruk_sn * SR)
+        self.periyodik = periyodik
         self.s = {k: np.zeros((self.n, 2)) for k in KATMANLAR}
 
     def ekle(self, katman, t, sig, kazanc=1.0, pan=0.0):
         i = int(round(t * SR))
         sig = yerles(sig, pan) * kazanc
-        if i < 0:
-            sig, i = sig[-i:], 0
+        if i < 0:   # bölüm başından önceye düşen (insanileştirme kayması) olay kesilmez, 0'a kaydırılır
+            i = 0
         m = min(len(sig), self.n - i)
         if m > 0:
             self.s[katman][i: i + m] += sig[:m]
@@ -303,8 +304,9 @@ def olc(x, b0=None, b1=None, olcu_n=None):
                 adim.append(float(np.abs(g[k] - g[k - 1]).max()))
                 rf.append(20 * np.log10(rms(g[k: k + q]) / rms(g[k - q: k])))
             o["olcu_basi_ornek_adim_max"] = round(max(adim), 5)
+            o["dongu_ici_ornek_adim_max"] = round(float(np.abs(np.diff(g, axis=0)).max()), 5)
             o["olcu_basi_rms_fark_db_aralik"] = [round(min(rf), 2), round(max(rf), 2)]
-            o["dongu_dikisi_olagan"] = bool(dikis <= max(adim) * 1.05 and min(rf) - 1 <= o["dongu_dikis_rms_fark_db"] <= max(rf) + 1)
+            o["dongu_dikisi_olagan"] = bool(dikis <= o["dongu_ici_ornek_adim_max"] and min(rf) - 1 <= o["dongu_dikis_rms_fark_db"] <= max(rf) + 1)
     return o
 
 
@@ -408,7 +410,7 @@ def davul_dum(vel, rr):
     b = np.pad(b, ((0, n - len(b)), (0, 0)))
     t = np.arange(n) / SR
     y = a / np.abs(a).max() + 0.3 * b / np.abs(b).max() * np.exp(-t * 2.6)[:, None]
-    y = filtre(y, lo=55, hi=900 + 1500 * vel, n_lo=2, n_hi=2, tepe=[(190, 0.9, 3.0)])
+    y = filtre(y, lo=60, hi=900 + 1500 * vel, n_lo=2, n_hi=2, tepe=[(190, 0.9, 3.0), (480, 0.8, 3.0)])
     return y * zarf(n, 0.004, 0.25)[:, None] * vel ** 1.4
 
 
@@ -508,7 +510,7 @@ def zurna_ekle(B, notalar, t0, kaz=1.0, sesler=("z1",), kaba=False):
                           vib=(0.0, 5.0)):
             B.ekle("melodi", t, y, pan=+0.22)
     if kaba:
-        for t, y in cizgi(KABA, notalar, t0, VURUS, kazanc=0.62 * kaz, okt=-1, gecik=0.008, detune=-5, vib=(6.0, 4.8)):
+        for t, y in cizgi(KABA, notalar, t0, VURUS, kazanc=0.62 * kaz * float(kaba), okt=-1, gecik=0.008, detune=-5, vib=(6.0, 4.8)):
             B.ekle("melodi", t, y, pan=0.0)
 
 
@@ -565,7 +567,7 @@ def zil_vur(B, t, vel=0.6, rr=0):
 
 
 def kos_vur(B, t, vel=0.8, rr=0):
-    B.ekle("ritim", t + RNG.normal(0, 0.004), kos(vel, rr), kazanc=0.55, pan=-0.12)
+    B.ekle("ritim", t + RNG.normal(0, 0.004), kos(vel, rr), kazanc=0.5, pan=-0.12)
 
 
 # ---------------- çalgı örnekleri (CC0) ----------------
@@ -585,7 +587,7 @@ BORU = Nefesli([("sfx", "muzik/korno_D2", 146.83), ("sfx", "muzik/korno_A2", 220
 
 
 def govde_yaz():
-    B = Bolum(GOVDE_OLCU * OLCU, kuyruk_sn=5.0)
+    B = Bolum(GOVDE_OLCU * OLCU, kuyruk_sn=5.0, periyodik=True)
     L = B.L
     # --- zemin: boru dronu (2 ölçüde bir nefes, üst üste binen) + çok alçak pedal
     for o in range(0, GOVDE_OLCU, 2):
@@ -629,7 +631,7 @@ def govde_yaz():
         if 16 <= o < 20:
             zil_vur(B, t + 2 * VURUS, 0.45, rr=(o + 1) % 3)
     # --- melodi: zemin (B), nakarat (C), miyan (D), dönüş/doruk (E), boru çağrısı (F)
-    zurna_ekle(B, MOTIF + kaydir_olcu(CEVAP_1, 3), 4 * OLCU, kaz=0.9, sesler=("z1",))
+    zurna_ekle(B, MOTIF + kaydir_olcu(CEVAP_1, 3), 4 * OLCU, kaz=0.9, sesler=("z1",), kaba=0.6)
     zurna_ekle(B, MOTIF + kaydir_olcu(CEVAP_2, 3), 8 * OLCU, kaz=0.95, sesler=("z1", "z2"), kaba=True)
     zurna_ekle(B, MIYAN[:7], 12 * OLCU, kaz=0.85, sesler=("z1", "z2"))
     zurna_ekle(B, kaydir_olcu(MIYAN[7:], -2), 14 * OLCU, kaz=0.9, sesler=("z1", "z2"), kaba=True)
@@ -696,11 +698,11 @@ def vurgu_yaz():
 # =====================================================================================
 # Miks, yazım, ölçüm
 # =====================================================================================
-KATMAN_KAZANC = {"zemin": 0.9, "ritim": 0.8, "melodi": 0.72}
+KATMAN_KAZANC = {"zemin": 0.78, "ritim": 0.9, "melodi": 0.74}
 TON = {  # katman başına son ton ayarı (yumuşak tiz, konuşma bölgesi hafif boş)
     "zemin": dict(lo=30, hi=1800, n_hi=2),
-    "ritim": dict(lo=28, hi=3200, n_hi=2, tepe=[(2600, 0.7, -3.0)]),
-    "melodi": dict(lo=90, hi=2700, n_hi=2, tepe=[(2600, 0.6, -3.0)]),
+    "ritim": dict(lo=30, hi=3200, n_hi=2, tepe=[(2600, 0.7, -3.0), (75, 1.0, -3.0)]),
+    "melodi": dict(lo=100, hi=2000, n_hi=2, tepe=[(420, 1.0, 2.5), (1500, 0.7, -2.0)]),
 }
 HEDEF_RMS_DB = -20.0
 
@@ -708,6 +710,13 @@ HEDEF_RMS_DB = -20.0
 def tonla(B):
     for k in KATMANLAR:
         B.s[k] = filtre(B.s[k], **TON[k]) * KATMAN_KAZANC[k]
+
+
+def yumusak_tavan(x, diz, tavan):
+    """Belleksiz yumuşak dizli tepe sınırlayıcı (yalnız ritim katmanına; vuruş tepelerini törpüler)."""
+    a = np.abs(x)
+    y = np.where(a <= diz, a, diz + (tavan - diz) * np.tanh((a - diz) / (tavan - diz)))
+    return np.sign(x) * y
 
 
 def main():
@@ -720,6 +729,11 @@ def main():
         tonla(B)
     b0 = giris.L
     son_n = kapanis.L
+    st = birlestir(giris, govde, kapanis, b0, L, son_n)
+    g = 10 ** (HEDEF_RMS_DB / 20) / rms(sum(st[k] for k in KATMANLAR))
+    # 2. geçiş: ritim tepeleri −6 dBFS'ten itibaren yumuşakça −3 dBFS tavanına bükülür (kuru sinyalde)
+    for B in (govde, giris, kapanis):
+        B.s["ritim"] = yumusak_tavan(B.s["ritim"], 10 ** (-6 / 20) / g, 10 ** (-3 / 20) / g)
     st = birlestir(giris, govde, kapanis, b0, L, son_n)
     tam = sum(st[k] for k in KATMANLAR)
     g = 10 ** (HEDEF_RMS_DB / 20) / rms(tam)

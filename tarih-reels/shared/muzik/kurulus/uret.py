@@ -116,48 +116,81 @@ def zarf(n, a=0.01, r=0.1):
     return e
 
 
-def uzat(x, n, rng, xf=1.0, bas=0.8, son=0.6):
-    """Sürekli bir sesi n örneğe uzatır: kararlı bölgeden rastgele taneler, eşit güçlü çapraz geçişler."""
+def _hiza(x, o_aday, ref, K=4096, ara=800, alt=0, ust=None):
+    """x[o : o+K] penceresinin x[ref : ref+K] ile en uyumlu (en yüksek ilintili) olduğu o (o_aday ± ara).
+    Aynı perdeli sürekli sesin taneleri birleşirken faz sönümlemesini (çukurları) önler."""
+    m = x.mean(1) if x.ndim == 2 else x
+    ust = len(m) - K - 1 if ust is None else ust
+    lo = max(alt, o_aday - ara); hi = min(ust, o_aday + ara)
+    if hi <= lo: return int(np.clip(o_aday, alt, ust))
+    r = m[ref:ref + K]; seg = m[lo:hi + K]
+    n = 1 << int(np.ceil(np.log2(len(seg) + K)))
+    c = np.fft.irfft(np.fft.rfft(seg, n) * np.conj(np.fft.rfft(r, n)), n)[:hi - lo + 1]
+    e = np.convolve(seg ** 2, np.ones(K), "valid")[:hi - lo + 1]
+    return lo + int(np.argmax(c / np.sqrt(np.maximum(e, 1e-12))))
+
+
+def _sk(k):   # genlik-tamamlayıcı geçiş (sin²) – hizalı (eş fazlı) taneler için
+    return (np.sin(0.5 * np.pi * np.linspace(0, 1, max(k, 1))) ** 2)[:, None]
+
+
+def uzat(x, n, rng, xf=0.45, bas=0.8, son=0.6, ara=800):
+    """Sürekli bir sesi n örneğe uzatır: kararlı bölgeden faz hizalı taneler, kısa çapraz geçişler."""
     if len(x) >= n:
         return x[:n].copy()
-    X = int(xf * SR); s0 = int(min(bas * SR, len(x) * 0.25)); s1 = len(x) - int(son * SR)
+    X = int(xf * SR); K = 4096; s0 = int(min(bas * SR, len(x) * 0.25)) + ara; s1 = len(x) - int(son * SR) - ara
     out = np.zeros((n + len(x), x.shape[1]))
-    out[:s1] = x[:s1]
-    pos = s1 - X
-    out[pos:s1] *= _yk(X)[::-1]
+    out[:s1] = x[:s1]; out[s1 - X:s1] *= _sk(X)[::-1]
+    pos, kaynak_son = s1 - X, s1
     while pos < n:
-        o = int(rng.integers(s0, max(s0 + 1, s1 - 2 * X - int(1.0 * SR))))
-        g = x[o:s1].copy(); g[:X] *= _yk(X); g[-X:] *= _yk(X)[::-1]
-        out[pos:pos + len(g)] += g
-        pos += len(g) - X
+        glen = int(rng.integers(min(2 * X + SR, s1 - s0 - 1), s1 - s0))
+        o = int(rng.integers(s0, s1 - glen + 1))
+        o = _hiza(x, o + X // 2 - K // 2, kaynak_son - X // 2 - K // 2, K, ara, s0 + X // 2 - K // 2, s1 - glen + X // 2 - K // 2) - X // 2 + K // 2
+        g = x[o:o + glen].copy(); g[:X] *= _sk(X); g[-X:] *= _sk(X)[::-1]
+        out[pos:pos + glen] += g
+        pos += glen - X; kaynak_son = o + glen
     return out[:n]
 
 
-def surekli_dongu(x, L, rng, xf=1.2, bas=1.0, son=0.6):
-    """Periyodik (uzunluk L) sürekli ses: kararlı bölgeden taneler, dairesel eşit güçlü geçişler (saldırı yok)."""
-    X = int(xf * SR); s0 = int(min(bas * SR, len(x) * 0.25)); s1 = len(x) - int(son * SR)
-    gmax = s1 - s0
-    out = np.zeros((L + X + 8, x.shape[1])); pos = 0
+def surekli_dongu(x, L, rng, xf=0.5, bas=1.0, son=0.6, ara=800):
+    """Periyodik (uzunluk L) sürekli ses: kararlı bölgeden faz hizalı taneler; sarma noktası da hizalanır
+    (son tane gerekirse ≤ %0.3 yeniden örneklenir). Saldırı yok, çukur yok."""
+    X = int(xf * SR); K = 4096
+    s0 = int(min(bas * SR, len(x) * 0.25)) + ara; s1 = len(x) - int(son * SR) - ara
+    gmax = s1 - s0 - 2 * ara
+    out = np.zeros((L + X + 8, x.shape[1])); pos = 0; o_ilk = None; kaynak_son = None
     while True:
         kalan = L + X - pos
         if kalan <= gmax: glen, bitti = kalan, True
         elif kalan < gmax + 2 * X: glen, bitti = (kalan + X) // 2, False
         else: glen, bitti = int(rng.integers(max(2 * X + SR, gmax // 2), gmax + 1)), False
         o = int(rng.integers(s0, s1 - glen + 1))
-        g = x[o:o + glen].copy(); g[:X] *= _yk(X); g[-X:] *= _yk(X)[::-1]
+        if kaynak_son is not None:
+            o = _hiza(x, o + X // 2 - K // 2, kaynak_son - X // 2 - K // 2, K, ara,
+                      s0 + X // 2 - K // 2, s1 - glen + X // 2 - K // 2) - X // 2 + K // 2
+        g = x[o:o + glen + 2]
+        if bitti and o_ilk is not None:      # sarma: son tanenin bitişi ilk tanenin başıyla eş fazlı olsun
+            e = o + glen - X // 2 - K // 2
+            e2 = _hiza(x, e, o_ilk + X // 2 - K // 2, K, ara, alt=e - ara, ust=min(e + ara, len(x) - K - X - 4))
+            g = kaydir(x[o:o + glen + (e2 - e) + 4], (glen + (e2 - e)) / glen, n=glen)
+        g = g[:glen].copy(); g[:X] *= _sk(X); g[-X:] *= _sk(X)[::-1]
         out[pos:pos + glen] += g
+        if o_ilk is None: o_ilk = o
         if bitti: break
-        pos += glen - X
+        pos += glen - X; kaynak_son = o + glen
     P = out[:L].copy(); P[:X + 8] += out[L:L + X + 8]
     return P
 
 
 def _fft_filtre(x, kazanc, dongusel):
-    n = len(x)
-    N = n if dongusel else 1 << int(np.ceil(np.log2(n + SR)))
+    """dongusel=True: x periyodik kabul edilir (iki uçtan 1.5 sn sarılarak süzülür → sonuç da periyodik)."""
+    n = len(x); pay = int(1.5 * SR) if dongusel else 0
+    if dongusel:
+        x = np.concatenate([x[n - pay:], x, x[:pay]])
+    N = 1 << int(np.ceil(np.log2(len(x) + SR)))
     X = np.fft.rfft(x, N, axis=0)
     g = kazanc(np.fft.rfftfreq(N, 1 / SR))
-    return np.fft.irfft(X * (g[:, None] if x.ndim == 2 else g), N, axis=0)[:n]
+    return np.fft.irfft(X * (g[:, None] if x.ndim == 2 else g), N, axis=0)[pay:pay + n]
 
 
 def suzgec(x, lp=None, hp=None, lp_d=2, hp_d=2, can=(), raf=None, dongusel=False):
@@ -206,10 +239,11 @@ IR = None
 
 def yanki(x, islak, dongusel=False):
     """Ortak odaya gönder: (1−ıslak)·kuru + ıslak·yankı. dongusel=True → dairesel evrişim (periyodik gövde)."""
-    n = len(x)
-    N = n if dongusel else 1 << int(np.ceil(np.log2(n + len(IR))))
+    n = len(x); pay = len(IR) if dongusel else 0
+    xe = np.concatenate([x[n - pay:], x]) if dongusel else x       # dairesel: sonun kuyruğu başa sarılır
+    N = 1 << int(np.ceil(np.log2(len(xe) + len(IR))))
     irp = np.zeros((N, 2)); irp[:len(IR)] = IR
-    w = np.fft.irfft(np.fft.rfft(x, N, axis=0) * np.fft.rfft(irp, N, axis=0), N, axis=0)[:n]
+    w = np.fft.irfft(np.fft.rfft(xe, N, axis=0) * np.fft.rfft(irp, N, axis=0), N, axis=0)[pay:pay + n]
     return x * (1 - islak) + w * islak
 
 
@@ -300,8 +334,9 @@ def olc(mix, bas=None, son=None):
     o["merkez_sicrama_1oktav_ustu_sayi"] = int(sum(x > 1.0 for x in j))
     W1 = SR; k1 = len(m) // W1
     r1 = db(np.sqrt((mix[:k1 * W1].reshape(k1, W1, 2) ** 2).mean((1, 2))))
-    v = [abs(r1[i + 1] - r1[i]) for i in range(k1 - 1) if r1[i] > -45 and r1[i + 1] > -45]
-    o["rms_1sn_max_adim_db"] = round(float(max(v)), 2)
+    v = [r1[i + 1] - r1[i] for i in range(k1 - 1) if r1[i] > -45 and r1[i + 1] > -45]
+    o["rms_1sn_max_artis_db"] = round(float(max(v)), 2)
+    o["rms_1sn_max_azalis_db"] = round(float(-min(v)), 2)
     o["rms_1sn_aralik_db"] = [round(float(r1[r1 > -45].min()), 1), round(float(r1.max()), 1)]
     if bas is not None:
         once, sonra = mix[son - W:son], mix[bas:bas + W]
@@ -328,10 +363,31 @@ def yaz_flac(yol, x):
                    input=np.clip(x, -1, 1).astype(np.float32).tobytes(), check=True)
 
 
-def spektrogram(flac, png):
+def spektrogram(x, png, baslik=""):
+    """Log-frekans spektrogram PNG'si (görsel kontrol için; /tmp altına). PIL yoksa ffmpeg showspectrumpic."""
     os.makedirs(os.path.dirname(png), exist_ok=True)
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", flac, "-lavfi",
-                    "showspectrumpic=s=1600x700:legend=1:fscale=log:scale=log:stop=12000:color=intensity", png], check=True)
+    try:
+        from PIL import Image, ImageDraw
+    except ImportError:
+        tmp = png + ".flac"; yaz_flac(tmp, x)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-lavfi", "showspectrumpic=s=1600x700:fscale=log:scale=log", png], check=True)
+        os.remove(tmp); return
+    m = x.mean(1); W, H, N, fmin, fmax = 1600, 600, 8192, 30.0, 12000.0
+    hop = max(64, (len(m) - N) // W); win = np.hanning(N)
+    S = np.array([np.abs(np.fft.rfft(np.pad(m[i * hop:i * hop + N], (0, max(0, N - len(m[i * hop:i * hop + N])))) * win)) ** 2
+                  for i in range(W)]).T
+    f = np.fft.rfftfreq(N, 1 / SR); fy = 2 ** np.linspace(np.log2(fmin), np.log2(fmax), H)
+    im = 10 * np.log10(S[np.clip(np.searchsorted(f, fy), 1, len(f) - 1)] / (win.sum() ** 2 / 4) + 1e-20)
+    v = np.clip((im + 100) / 100, 0, 1)[::-1]
+    rgb = np.stack([np.clip(v * 1.7, 0, 1), np.clip(v * 2.2 - 1.1, 0, 1), np.clip(np.sin(v * np.pi) * .55 + np.clip(v * 3 - 2.4, 0, 1), 0, 1)], -1)
+    c = Image.new("RGB", (W + 64, H + 34)); c.paste(Image.fromarray((rgb * 255).astype(np.uint8)), (60, 0)); d = ImageDraw.Draw(c)
+    for fl in [50, 73.4, 147, 294, 587, 1000, 1500, 2000, 3000, 4000, 6000, 8000]:
+        y = H - 1 - int(np.log2(fl / fmin) / np.log2(fmax / fmin) * (H - 1)); d.line([(54, y), (60, y)], fill="white"); d.text((2, y - 6), f"{fl:g}", fill="white")
+    dur = len(m) / SR
+    for t in range(0, int(dur) + 1, 5):
+        xx = 60 + int(t / dur * W); d.line([(xx, H), (xx, H + 5)], fill="white"); d.text((xx - 6, H + 8), str(t), fill="white")
+    d.text((W - 300, H + 20), baslik, fill="white")
+    c.save(png)
 
 
 def sinirla(stems, tavan_db=-1.2):
@@ -352,7 +408,7 @@ def sinirla(stems, tavan_db=-1.2):
 # ENSTRÜMANLAR
 # =====================================================================================
 
-def ks_tel(f_hz, sure, rng, hiz=0.6, t60=None, konum=0.17, kay=None, c=0.2):
+def ks_tel(f_hz, sure, rng, hiz=0.6, t60=None, konum=0.17, kay=None, c=0.24):
     """Karplus–Strong tek tel (bloklu vektörel). kay=(f_bas, sn): tel f_bas'tan f_hz'e perdesiz kayar."""
     n = int(sure * SR)
     if t60 is None:
@@ -363,8 +419,8 @@ def ks_tel(f_hz, sure, rng, hiz=0.6, t60=None, konum=0.17, kay=None, c=0.2):
         fk = 2 ** (np.log2(fb) + (np.log2(f_hz) - np.log2(fb)) * r)
     P0 = SR / fk[0]; m = int(P0)
     exc = rng.uniform(-1, 1, m)
-    w = 1 + int((1 - hiz) * 6)
-    exc = np.convolve(exc, np.ones(w) / w, "same")
+    fc = min(3000.0, fk[0] * (3.0 + 8.0 * hiz))             # mızrap parlaklığı: hızla artar, sıcak kalır
+    fe = np.fft.rfftfreq(m, 1 / SR); exc = np.fft.irfft(np.fft.rfft(exc) / np.sqrt(1 + (fe / fc) ** 4), m)
     d = max(1, int(konum * P0)); exc = exc - np.concatenate([np.zeros(d), exc[:-d]])
     exc -= exc.mean(); exc /= np.abs(exc).max() + 1e-9
     y = np.zeros(n + 8); y[:m] = exc
@@ -387,7 +443,7 @@ def ud_nota(f_hz, sure, rng, hiz=0.6, kay=None, birak=0.07):
     gk = int(rng.uniform(0.004, 0.009) * SR)
     b = np.concatenate([np.zeros(gk), b[:len(b) - gk]])
     s = np.stack([a * 0.6 + b * 0.4, a * 0.4 + b * 0.6], 1) * hiz
-    return s * zarf(len(s), 0.0015, birak)[:, None]
+    return s * zarf(len(s), 0.003, birak)[:, None]
 
 
 def ney_cumle(notalar, vurus, rng, guc=1.0):
@@ -454,6 +510,9 @@ def ney_cumle(notalar, vurus, rng, guc=1.0):
     y = amp * (ton + pnefes) + hava * (0.045 * amp + 0.10 * vurgu * (amp + 0.25) + 0.05 * on_nefes)
     y = suzgec(y, lp=3000, hp=160, lp_d=2, hp_d=2, can=[(900, -1.5, 0.8)])
     return t0 - ON, y * guc
+
+
+UD_GOVDE = [(110, 3.0, 0.5), (230, 2.5, 0.6), (600, 1.5, 0.7), (1500, -3.0, 0.6)]   # armudi gövde rezonansları (yaklaşık)
 
 
 def tremolo(bas, sure, hz_, v, adim=0.088):
@@ -596,15 +655,15 @@ def main():
     dron = Katman("dron", L, T)
     for x, f0, nota, sv, p, fz in dron_kaynaklari():
         y = kaydir(x, hz(nota, False) / f0)
-        P = surekli_dongu(y, L, rng, xf=1.4)
+        P = surekli_dongu(y, L, rng)
         tt = np.arange(L) / SR
         nefes = 1 + 0.18 * np.sin(2 * np.pi * 4 * tt / Ls + fz) + 0.08 * np.sin(2 * np.pi * 9 * tt / Ls + 2 * fz)
         dron.g[dron.O:dron.O + L] += pan(P, p, 0.8) * (10 ** (sv / 20)) * nefes[:, None]
     dron.katla().isle(lambda x, d: suzgec(x, lp=1400, hp=45, can=[(2600, -4, 0.7)], dongusel=d))
-    # kapanış: D2–D3–A3 dem'i uzun nota olarak sönsün
+    # kapanış: D2–D3–A3 dem'i uzun nota olarak sönsün (doğrusal olaylar döngü sonundan ÖNCE başlamaz)
     for x, f0, nota, sv, p, fz in dron_kaynaklari():
-        y = uzat(kaydir(x, hz(nota, False) / f0), int(7.5 * SR), rng)
-        dron.ekle_d(son_s - 1.0, y * zarf(len(y), 1.0, 5.5)[:, None], 10 ** (sv / 20), p)
+        y = uzat(kaydir(x, hz(nota, False) / f0), int(7.0 * SR), rng)[int(0.6 * SR):]
+        dron.ekle_d(son_s, y * zarf(len(y), 1.6, 4.6)[:, None], 10 ** (sv / 20), p)
     dron.d = suzgec(dron.d, lp=1400, hp=45)
 
     ruzgar = Katman("ruzgar", L, T)
@@ -624,8 +683,7 @@ def main():
     for t, s in ud_partisyon([(0.25, "D2", .42, {"cin": 1}), (0.28, "D3", .36, {"cin": 1}), (0.31, "A3", .28, {"cin": 1}),
                               (2.70, "Eb3", .22, {}), (2.95, "D3", .26, {"cin": 1})], VUR, rng):
         telli.ekle_d(son_s + t, s, 1.0, -0.18)
-    govde_eq = lambda x, d: suzgec(x, hp=70, lp=3400, lp_d=2, can=[(110, 3.0, 0.5), (230, 2.5, 0.6), (600, 1.5, 0.7), (1500, -3.0, 0.6)],
-                                   dongusel=d)
+    govde_eq = lambda x, d: suzgec(x, hp=70, lp=2800, lp_d=2, can=UD_GOVDE, raf=(2200, -4.0), dongusel=d)
     telli.katla().isle(govde_eq)
 
     ney = Katman("ney", L, T)
@@ -683,8 +741,10 @@ def main():
 
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", os.path.join(OUT, f"{ID}__tam.flac"), "-c:a", "libmp3lame", "-b:a", "128k",
                     os.path.join(HERE, "onizleme.mp3")], check=True)
-    spektrogram(os.path.join(OUT, f"{ID}__tam.flac"), os.path.join(TMP, "spektrogram_tam.png"))
-    spektrogram(os.path.join(OUT, f"{ID}__vurgu.flac"), os.path.join(TMP, "spektrogram_vurgu.png"))
+    spektrogram(mix, os.path.join(TMP, "spektrogram_tam.png"), f"{ID} tam")
+    for ad, st in zip(("zemin", "ritim", "melodi"), stems):
+        spektrogram(st, os.path.join(TMP, f"spektrogram_{ad}.png"), f"{ID} {ad}")
+    spektrogram(vur, os.path.join(TMP, "spektrogram_vurgu.png"), f"{ID} vurgu")
 
     meta = {
         "id": ID, "ad": "Uç / Kuruluş teması",
@@ -725,7 +785,7 @@ def vurgu(rng):
         v.ekle_d(0.0, suzgec(y, lp=1400, hp=45) * zarf(len(y), 0.25, 3.2)[:, None], 0.30 * 10 ** (sv / 20), p)
     for t, s in ud_partisyon([(0.0, "D2", .55, {"cin": 1}), (0.03, "D3", .45, {"cin": 1}), (0.06, "A3", .36, {"cin": 1}),
                               (1.10, "Eb3", .30, {"carpma": "F#3"}), (1.45, "D3", .34, {"cin": 1})], VUR, rng):
-        v.ekle_d(0.02 + t, suzgec(s, hp=70, lp=3400, can=[(110, 3.0, 0.5), (230, 2.5, 0.6), (600, 1.5, 0.7), (1500, -3.0, 0.6)]), 0.55, -0.18)
+        v.ekle_d(0.02 + t, suzgec(s, hp=70, lp=2800, can=UD_GOVDE, raf=(2200, -4.0)), 0.55, -0.18)
     t, s = ney_cumle([(0.0, 0.3, "Eb4", {"v": .85}), (0.3, 2.4, "D4", {"vib": 13, "dim": 1})], VUR, rng)
     v.ekle_d(0.45 + t, s, 0.30, 0.12)
     v.ekle_d(0.0, suzgec(def_ornek("dum", rng), hp=45, lp=2600), 0.35, -0.1)

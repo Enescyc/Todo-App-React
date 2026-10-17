@@ -167,10 +167,11 @@ def egri(n, noktalar):
     return np.interp(np.linspace(0, 1, n), t, v)
 
 
-def nota(o, f, sure, att=.06, rel=.5, bas=0.0, kayma=None, zarf=None):
+def nota(o, f, sure, att=.06, rel=.5, bas=0.0, kayma=None, zarf=None, esguc=False):
     """o: Ornek; f: Hz ya da örnek başına Hz dizisi; sure: tutuş (s); rel: bırakış (s);
     bas: örnek içinde başlangıç (s; legato için yay saldırısını atlar); kayma: (f_önceki, s) portamento;
-    zarf: tutuş boyunca [(oran, değer)] dinamik eğrisi."""
+    zarf: tutuş boyunca [(oran, değer)] dinamik eğrisi; esguc: giriş/bırakış eş-güç (sin/cos) rampaları
+    (döngüde kendi kuyruğuyla örtüşen uzun dronlarda ilintisiz örtüşme seviyeyi düşürmesin diye)."""
     n = int((sure + rel) * SR)
     fc = np.full(n, float(f)) if np.isscalar(f) else np.asarray(f, float)[:n]
     if kayma:
@@ -181,8 +182,11 @@ def nota(o, f, sure, att=.06, rel=.5, bas=0.0, kayma=None, zarf=None):
     pos = bas * SR + np.concatenate([[0.], np.cumsum(ratio[:-1])])
     y = interp(o.uzat(int(pos[-1]) + 8), pos)
     a = np.ones(n)
-    ka = max(1, int(att * SR)); a[:ka] = .5 - .5 * np.cos(np.pi * np.arange(ka) / ka)
-    kr = max(1, int(rel * SR)); a[n - kr:] *= .5 + .5 * np.cos(np.pi * np.arange(kr) / kr)
+    ka = max(1, int(att * SR)); kr = max(1, int(rel * SR))
+    if esguc:
+        a[:ka] = np.sin(np.pi / 2 * np.arange(ka) / ka); a[n - kr:] *= np.cos(np.pi / 2 * np.arange(kr) / kr)
+    else:
+        a[:ka] = .5 - .5 * np.cos(np.pi * np.arange(ka) / ka); a[n - kr:] *= .5 + .5 * np.cos(np.pi * np.arange(kr) / kr)
     if zarf:
         ns = int(sure * SR); z = np.ones(n); z[:ns] = egri(ns, zarf); z[ns:] = zarf[-1][1]; a *= z
     return y * a[:, None]
@@ -409,7 +413,7 @@ def main():
                 (("G1", "G2"), ("B1", "B2"), ("D2", "D3"), ("F2", "F3"), ("A2", "A3"))]
     kb_D = Ornek(yol_sfx("muzik/kontrbas_D1"), f_nom=hz("D2"))
     kb = [Ornek(yol_cc0(V2, f"Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_{k}_v1_rr1.wav"), f_nom=hz(a)) for k, a in
-          (("A#0", "Bb1"), ("C1", "C2"), ("D1", "D2"))]
+          (("A#0", "Bb1"), ("C1", "C2"))]
     flut = [Ornek(yol_cc0(V2, f"Woodwinds/Flute/susNV/LDFlute_susNV_{k}_v1_1.wav"), f_nom=hz(a)) for k, a in
             (("E3", "E4"), ("A3", "A4"), ("C4", "C5"))]
     davul = [Ornek(yol_cc0(VC, f"Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_{k}.wav"), f0=42.1, norm="tepe", esik=-50)
@@ -472,10 +476,10 @@ def main():
             rel = .16 if sonra_leg else (.5 if z == "f" else 1.0)
             if leg:
                 y = nota(o, f, V(d), att=.12, rel=rel, bas=.45, kayma=(hz(onc[1]), .14), zarf=ZARF[z])
-                iz.ekle(t_of(v) - .06 + jit, lp(tiz_raf(hp(y, 70), 1800, -4), 3200), dyn * kaz, pan)
+                iz.ekle(t_of(v) - .06 + jit, lp(tiz_raf(hp(y, 70), 2000, -3), 3800), dyn * kaz, pan)
             else:
                 y = nota(o, f, V(d), att=.07, rel=rel, bas=.02, zarf=ZARF[z])
-                iz.ekle(t_of(v) + jit, lp(tiz_raf(hp(y, 70), 1800, -4), 3200), dyn * kaz, pan)
+                iz.ekle(t_of(v) + jit, lp(tiz_raf(hp(y, 70), 2000, -3), 3800), dyn * kaz, pan)
 
     cello_hatti(mel, CELLO, V)
 
@@ -519,12 +523,12 @@ def main():
     # ---------------- giriş / kapanış ----------------
     g_in_z = yumusak(A_n, 0, A_n); g_in_r = yumusak(A_n, int(1.2 * SR), A_n) * .6 + yumusak(A_n, 0, A_n) * .4
     g_in_m = yumusak(A_n, A_n - int(.4 * SR), A_n)
-    g_out_z = yumusak(C_n, 0, C_n - int(.3 * SR), yukari=False)
+    g_out_z = yumusak(C_n, int(1.5 * SR), C_n, yukari=False) ** .7
     g_out_r = yumusak(C_n, int(1.5 * SR), int(3.6 * SR), yukari=False)
     g_out_m = yumusak(C_n, 0, int(1.4 * SR), yukari=False)
     # kapanış olayı: çellonun kırık son sözü A3 – B♭3 – A3 … (çözülmez)
     ek_m = Iz(T_n); B0 = (A_n + L) / SR
-    SON = [(0.0, "A3", 1.0, .6, "d"), (1.0, "Bb3", 1.0, .62, "d"), (2.0, "A3", 3.2, .6, "f")]
+    SON = [(0.0, "A3", 1.0, .6, "d"), (1.0, "Bb3", 1.0, .62, "d"), (2.0, "A3", 2.4, .6, "f")]
     cello_hatti(ek_m, SON, lambda v: B0 + .25 + V(v), pan=-.12)
     ek_m = oda(ek_m.b, ir, .18)
     zem_t = birlestir(zem_w, A_n, C_n, g_in_z, g_out_z, 0)

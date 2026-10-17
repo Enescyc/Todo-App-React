@@ -188,17 +188,24 @@ VOKAL = {  # erkek (bariton) formantları F1..F5 ve bant genişlikleri (Hz); koy
 }
 
 
-def formant_yolu(olaylar, C, gecis_s, dairesel, olcek=1.0):
-    """olaylar: [(t_sn, vokal)] → kontrol hızında (5,C) F ve B; geçişler gecis_s boyunca yumuşar."""
-    t = np.arange(C) * H / SR
-    F = np.tile(np.array(VOKAL[olaylar[-1 if dairesel else 0][1]][0], float)[:, None], (1, C))
-    B = np.tile(np.array(VOKAL[olaylar[-1 if dairesel else 0][1]][1], float)[:, None], (1, C))
+def vokal_kazanci(v, f0=170.0, egim=1.2):
+    """Vokalin toplam enerjisini eşitleyen kazanç (vokal değişince ses yüksekliği sıçramasın)."""
+    k = np.arange(1, int(3800 / f0) + 1); fk = k * f0; g = np.ones(len(k))
+    for Fi, Bi in zip(*VOKAL[v]): g = g * Fi ** 2 / np.sqrt((Fi ** 2 - fk ** 2) ** 2 + (fk * Bi) ** 2)
+    return 1 / np.sqrt(np.sum((g * k ** -egim) ** 2))
+
+
+def formant_yolu(olaylar, C, gecis_s, dairesel, olcek=1.0, ref_f0=170.0):
+    """olaylar: [(t_sn, vokal)] → kontrol hızında (5,C) F ve B ve (C,) vokal eşitleme kazancı; geçişler gecis_s boyunca yumuşar."""
+    t = np.arange(C) * H / SR; v0 = olaylar[-1 if dairesel else 0][1]
+    F = np.tile(np.array(VOKAL[v0][0], float)[:, None], (1, C))
+    B = np.tile(np.array(VOKAL[v0][1], float)[:, None], (1, C)); G = np.full(C, vokal_kazanci(v0, ref_f0))
     for i, (t0, v) in enumerate(olaylar):
         t1 = olaylar[i + 1][0] if i + 1 < len(olaylar) else 1e9
         m = (t >= t0) & (t < t1)
-        F[:, m] = np.array(VOKAL[v][0], float)[:, None]; B[:, m] = np.array(VOKAL[v][1], float)[:, None]
+        F[:, m] = np.array(VOKAL[v][0], float)[:, None]; B[:, m] = np.array(VOKAL[v][1], float)[:, None]; G[m] = vokal_kazanci(v, ref_f0)
     k = gecis_s * SR / H
-    return yumusat(F, k, dairesel) * olcek, yumusat(B, k, dairesel)
+    return yumusat(F, k, dairesel) * olcek, yumusat(B, k, dairesel), yumusat(G / G.mean(), k, dairesel)[0]
 
 
 def ses_sentezi(f0, genlik, F, B, egim, rg, fmax=3800.0, dairesel=False, parlaklik=1.5):
@@ -236,17 +243,19 @@ def ison_korosu(rg):
     n = ND; C = -(-n // H); t = np.arange(C) * H / SR; hiz = SR / H
     vokal = [(0, "o"), (11, "ɔ"), (22, "o"), (31, "a"), (40, "o"), (52, "u"), (60, "o")]
     sesler = [(RE3 / 2, .72, rg.uniform(-.35, .35)) for _ in range(4)] + [(RE3, 1.0, p) for p in np.linspace(-.55, .55, 8)]
+    # nefesler sırayla: her tur her ses bir kez, olaylar eşit aralıklı → aynı anda en çok ~1 ses nefes alır
+    tur = 5; ara = DONGU / (len(sesler) * tur)
+    sira = np.concatenate([rg.permutation(len(sesler)) for _ in range(tur)])
+    nefes = {j: [i * ara + rg.uniform(-.15, .15) * ara for i in np.where(sira == j)[0]] for j in range(len(sesler))}
     out = np.zeros((n, 2))
-    for temel, kaz, pan in sesler:
+    for js, (temel, kaz, pan) in enumerate(sesler):
         sent = (rg.normal(0, 4) + periyodik_gurultu(C, .08, hiz, rg) * 5 + periyodik_gurultu(C, 9, hiz, rg) * 1.2
                 + (6 + 3 * np.tanh(periyodik_gurultu(C, .1, hiz, rg))) * np.sin(2 * np.pi * round(rg.uniform(4.6, 5.6) * DONGU) / DONGU * t + rg.uniform(0, 6.3)))
         f0 = temel * 2 ** (ornek_hizina(sent, n, True) / 1200)
         dev = f0.sum() / SR; f0 *= round(dev) / dev           # tam sayıda periyot → döngü noktasında faz sürekli
         g = kaz * (1 + .1 * periyodik_gurultu(C, .25, hiz, rg))
-        tn = rg.uniform(0, 12)
-        while tn < DONGU - 1:
-            g *= 1 - .97 * nefes_cukuru(t, tn, DONGU); tn += rg.uniform(8, 15)
-        F, B = formant_yolu(vokal, C, 1.8, True, olcek=rg.uniform(.96, 1.04))
+        for tn in nefes[js]: g *= 1 - .97 * nefes_cukuru(t, tn, DONGU)
+        F, B, G = formant_yolu(vokal, C, 1.8, True, olcek=rg.uniform(.96, 1.04), ref_f0=temel); g *= G
         y = ses_sentezi(f0, ornek_hizina(g, n, True), F, B, 1.2, rg, fmax=3600, dairesel=True, parlaklik=1.2)
         out += panla(y, pan)
     return out
@@ -286,8 +295,8 @@ def psaltis(cumleler, n, rg, gecikme=0.0, olcek=1.0, sapma=0.0):
     for t0, dyn, notalar in cumleler:
         x = t0; t_end = t0 + sum(d for _, d, _, _ in notalar)
         m = (t >= t0 - .02) & (t < t_end + .5)
-        # cümle zarfı: 0.15 sn giriş, 0.35 sn çıkış
-        e = np.clip((t - t0) / .15, 0, 1) ** 2 * np.clip((t_end + .12 - t) / .35, 0, 1)
+        # cümle zarfı: 0.25 sn yumuşak giriş, 0.35 sn çıkış
+        e = np.clip((t - t0) / .25, 0, 1) * np.clip((t_end + .12 - t) / .35, 0, 1)
         amp = np.maximum(amp, np.where(m, np.sin(.5 * np.pi * e) ** 2 * dyn, 0))
         for j, (p, d, v, s) in enumerate(notalar):
             mm = (t >= x) & (t < x + d) if j < len(notalar) - 1 else (t >= x) & (t < t_end + .5)
@@ -319,7 +328,7 @@ def psaltis(cumleler, n, rg, gecikme=0.0, olcek=1.0, sapma=0.0):
     amp = amp * np.clip(1 + kaz, 0, 1.5)
     amp = yumusat(amp, .02 * hiz, False)[0]
     vok.sort()
-    F, B = formant_yolu([(v_t + gecikme, v) for v_t, v in vok], C, .09, False, olcek=olcek)
+    F, B, G = formant_yolu([(v_t + gecikme, v) for v_t, v in vok], C, .09, False, olcek=olcek, ref_f0=200.0); amp = amp * G
     egim = 1.2 - .2 * np.clip(amp / (amp.max() + 1e-9), 0, 1)    # gür yerde biraz daha parlak
     f0 = RE3 * 2 ** (ornek_hizina(sent, n, False) / 1200)
     a_s = ornek_hizina(amp, n, False)
@@ -342,11 +351,11 @@ def psaltis_korosu(cumleler, n, rg):
 # ───────────────────────── çanlar, yaylı yatak ─────────────────────────
 def can_hazirla(yol, oran):
     """Kilise çanı: pes (oran), yumuşak saldırı (18 ms), tiz raf; uzak duyulsun diye koyu."""
-    x = yukle(yol); x = yeniden_ornekle(x, oran)[: int(16 * SR)]
+    x = yukle(yol); x = yeniden_ornekle(x, oran)[: int(14 * SR)]
+    f = int(4 * SR); x[-f:] *= np.cos(.5 * np.pi * np.arange(f) / f)[:, None] ** 2     # kuyruk 4 sn'de yumuşak biter
     x = np.concatenate([x, np.zeros((SR, 2))])
     x = tiz_raf(suz(x, lo=60, hi=1700, n=2), 700, -7)
     a = int(.018 * SR); x[:a] *= (np.sin(.5 * np.pi * np.arange(a) / a) ** 2)[:, None]
-    f = int(1.5 * SR); x[-f:] *= np.cos(.5 * np.pi * np.arange(f) / f)[:, None] ** 2
     return x / np.abs(x).max()
 
 
@@ -385,8 +394,8 @@ def olc(x, dongu=None, esik_db=-45.0, govde=None):
     if dongu:
         s, e = int(dongu[0] * SR), int(dongu[1] * SR); d = np.abs(np.diff(x[s:e], axis=0)).max(1)
         sicrama = float(np.abs(x[s] - x[e - 1]).max())
-        n50 = int(.05 * SR)
-        o["dongu"] = {"dalga_sicramasi": round(sicrama, 6), "govde_ornek_farki_p99_9": round(float(np.percentile(d, 99.9)), 6),
+        n50 = int(.05 * SR); r50 = np.array([rms_db(x[i: i + n50]) for i in range(s, e - n50 + 1, n50)])
+        o["dongu"] = {"govde_bitisik_50ms_rms_fark_p95_db": round(float(np.percentile(np.abs(np.diff(r50)), 95)), 3),"dalga_sicramasi": round(sicrama, 6), "govde_ornek_farki_p99_9": round(float(np.percentile(d, 99.9)), 6),
                       "rms_fark_db_50ms": round(abs(rms_db(x[e - n50: e]) - rms_db(x[s: s + n50])), 3),
                       "merkez_fark_oktav": round(float(abs(np.log2(mer[int(dongu[1] / .25) - 1] / mer[int(dongu[0] / .25)]))), 3)}
     return o
@@ -554,12 +563,18 @@ def sting(ir, can_re):
     for temel, kaz, pan in [(RE3 / 2, .75, p) for p in (-.3, 0, .3)] + [(RE3, 1.0, p) for p in np.linspace(-.5, .5, 5)]:
         sent = r.normal(0, 4) + periyodik_gurultu(C, .3, hiz, r) * 4 + 7 * np.sin(2 * np.pi * r.uniform(4.8, 5.5) * t + r.uniform(0, 6.3)) * np.clip(t / 1.2, 0, 1)
         f0 = temel * 2 ** (ornek_hizina(sent, n, False) / 1200)
-        F, B = formant_yolu([(0, "a"), (2.0, "o"), (3.3, "u")], C, .6, False, olcek=r.uniform(.96, 1.04))
-        e = zarf * (1 + .08 * periyodik_gurultu(C, .5, hiz, r)) * kaz
+        F, B, G = formant_yolu([(0, "a"), (2.0, "o"), (3.3, "u")], C, .6, False, olcek=r.uniform(.96, 1.04), ref_f0=temel)
+        e = zarf * (1 + .08 * periyodik_gurultu(C, .5, hiz, r)) * kaz * G
         out += panla(ses_sentezi(f0, ornek_hizina(e, n, False), F, B, 1.2, r, fmax=3600), pan)
     out *= 10 ** ((-21 - rms_db(out[: int(3 * SR)])) / 20)
-    c = np.zeros((n, 2)); ekle(c, .05, can_re, 1.0); c *= 10 ** ((-24 - 20 * np.log10(np.abs(c).max())) / 20)
-    y = yankila(out, ir, .26)[:n] + yankila(c, ir, .6)[:n]
+    # gövde: çello (Re3) + kontrbas (Re2) uzun notasının başı, şişip söner
+    yay = np.zeros((n, 2))
+    for yol, g_ in (("Strings/Cello Section/susvib/susvib_D2_v1_1.wav", .7), ("Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav", 1.0)):
+        a = yukle(ornek("VSCO-2-CE", yol))[:n]; yay[: len(a)] += a * g_
+    tz = np.arange(n) / SR; yay *= (np.where(tz < 2.8, 1, np.cos(.5 * np.pi * np.clip((tz - 2.8) / 2.0, 0, 1)) ** 2))[:, None]
+    yay = suz(yay, hi=1400, n=2); yay *= 10 ** ((-29 - rms_db(yay[: int(3 * SR)])) / 20)
+    c = np.zeros((n, 2)); ekle(c, .05, can_re, 1.0); c *= 10 ** ((-21 - 20 * np.log10(np.abs(c).max())) / 20)
+    y = yankila(out + yay, ir, .26)[:n] + yankila(c, ir, .6)[:n]
     fz = int(.5 * SR); y[-fz:] *= (np.cos(.5 * np.pi * np.arange(fz) / fz) ** 2)[:, None]
     y *= 10 ** ((-1.5 - 20 * np.log10(np.abs(y).max())) / 20) if 20 * np.log10(np.abs(y).max()) > -1.5 else 1
     return y

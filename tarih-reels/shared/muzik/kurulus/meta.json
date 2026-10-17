@@ -1,0 +1,123 @@
+{
+ "id": "kurulus",
+ "ad": "Uç / Kuruluş teması",
+ "tarz": "Anadolu bozkırı, göçebe Türkmen uç beyliği; ney benzeri nefesli + ud/kopuz benzeri telli taksim + yaylı dem + çok hafif bendir",
+ "kullanim": [
+  "harita açılışı",
+  "Söğüt / uç beyliği",
+  "belirsiz başlangıç",
+  "kuruluş anlatısı",
+  "sabah / yolculuk / bozkır manzarası",
+  "sezon açılışı"
+ ],
+ "donem": [
+  1,
+  2
+ ],
+ "ton_makam": "D Hicaz (Hicaz'a yaklaşım; perdesiz sazlarda E♭ +15, F♯ −15 sent koma), 12. ölçüde Uşşak rengi (E −40 sent, F natürel); dem D–A",
+ "bpm": 66,
+ "usul_olcu": "4/4 – sofyan (Düm . Te Ke)",
+ "sure": 85.182,
+ "dongu": [
+  5.454535,
+  78.181814
+ ],
+ "dongu_ornek": [
+  240545,
+  3447818
+ ],
+ "katmanlar": [
+  {
+   "ad": "zemin",
+   "dosya": "out/kurulus__zemin.flac",
+   "icerik": "kontrbas D2 + çello D3/A3 dem'i, bozkır rüzgârı"
+  },
+  {
+   "ad": "ritim",
+   "dosya": "out/kurulus__ritim.flac",
+   "icerik": "bendir/def, sofyan (5–18. ölçüler), çok hafif"
+  },
+  {
+   "ad": "melodi",
+   "dosya": "out/kurulus__melodi.flac",
+   "icerik": "ney benzeri nefesli (leitmotif tam) + ud/kopuz benzeri telli (taksim, heterofoni)"
+  }
+ ],
+ "vurgu": {
+  "dosya": "out/kurulus__vurgu.flac",
+  "sure": 5.2,
+  "olcumler": {
+   "rms_dbfs": -19.0,
+   "tepe_dbfs": -6.92,
+   "kirpilma_ornek": 0,
+   "enerji_4k_ustu_oran": 0.0002,
+   "enerji_1k5_4k_oran": 0.0022,
+   "merkez_250ms_hz_ortanca": 316.9,
+   "merkez_sicrama_max_oktav": 0.681,
+   "merkez_sicrama_p95_oktav": 0.373,
+   "merkez_sicrama_1oktav_ustu_sayi": 0,
+   "rms_1sn_max_adim_db": 15.27,
+   "rms_1sn_aralik_db": [
+    -32.2,
+    -15.0
+   ]
+  }
+ },
+ "yogunluk": "dusuk",
+ "leitmotif": "tam ve açık: ney, 5–7. ölçüler (gövde 7.27–18.18 sn → tam miksde 12.73–23.64 sn); 9–11. ölçülerde süslü ikinci veriliş (A'da açık biter); 17–18. ölçülerde telli+ney parçalı",
+ "olcumler": {
+  "rms_dbfs": -20.0,
+  "tepe_dbfs": -4.57,
+  "kirpilma_ornek": 0,
+  "enerji_4k_ustu_oran": 0.0037,
+  "enerji_1k5_4k_oran": 0.0456,
+  "merkez_250ms_hz_ortanca": 428.2,
+  "merkez_sicrama_max_oktav": 2.296,
+  "merkez_sicrama_p95_oktav": 1.199,
+  "merkez_sicrama_1oktav_ustu_sayi": 38,
+  "rms_1sn_max_adim_db": 11.67,
+  "rms_1sn_aralik_db": [
+   -41.9,
+   -16.0
+  ],
+  "dongu": {
+   "bas_ornek": 240545,
+   "son_ornek": 3447818,
+   "gecis_ornek_adimi": 0.003639,
+   "yerel_max_ornek_adimi": 0.014859,
+   "adim_orani": 0.245,
+   "rms_farki_db_250ms": -2.7,
+   "merkez_sicramasi_oktav": 0.604
+  },
+  "sinirlayici_max_kazanc_azaltma_db": 0.0,
+  "katman_rms_dbfs": {
+   "zemin": -24.5,
+   "ritim": -38.11,
+   "melodi": -22.01
+  }
+ },
+ "kaynaklar": [
+  {
+   "dosya": "VCSL Membranophones/Struck Membranophones/Frame Drum/HDrum{L,S}_Hit/HitMuted_*",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VCSL",
+   "not": "bendir/def (= shared/sfx ritim/def_*)"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Cello Section/susvib/susvib_{D2,A2}_v1_1.wav",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_D1_v1_rr1.wav",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "sentez",
+   "lisans": "kendi üretimimiz",
+   "not": "ney (additive + perdeli nefes), ud/kopuz (Karplus-Strong), rüzgâr, oda yankısı"
+  }
+ ],
+ "uretim_sn": 50.1
+}
