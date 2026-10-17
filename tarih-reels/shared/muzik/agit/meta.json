@@ -58,29 +58,29 @@
  "olcumler": {
   "rms_dbfs": -20.0,
   "rms_govde_dbfs": -19.62,
-  "tepe_dbfs": -4.25,
+  "tepe_dbfs": -4.05,
   "kirpilma_ornek": 0,
   "tiz_4k_ustu_oran": 0.0,
-  "konusma_1k5_4k_oran": 0.01,
-  "ortalama_spektral_merkez_hz": 320.8,
-  "merkez_sicrama_maks_oktav": 0.836,
-  "merkez_sicrama_p99_oktav": 0.622,
+  "konusma_1k5_4k_oran": 0.0106,
+  "ortalama_spektral_merkez_hz": 335.3,
+  "merkez_sicrama_maks_oktav": 0.773,
+  "merkez_sicrama_p99_oktav": 0.633,
   "merkez_aralik_hz": [
-   135,
-   516
+   150,
+   521
   ],
-  "dongu_rms_son250ms_dbfs": -23.42,
-  "dongu_rms_bas250ms_dbfs": -23.9,
-  "dongu_eklem_sicrama": 0.015005,
-  "dongu_tipik_ornek_farki_p99": 0.023663,
-  "dongu_eklem_merkez_sicrama_oktav": 0.514,
-  "lufs_entegre": -17.8,
-  "gercek_tepe_dbtp": -4.2,
+  "dongu_rms_son250ms_dbfs": -23.8,
+  "dongu_rms_bas250ms_dbfs": -24.15,
+  "dongu_eklem_sicrama": 0.013564,
+  "dongu_tipik_ornek_farki_p99": 0.024301,
+  "dongu_eklem_merkez_sicrama_oktav": 0.464,
+  "lufs_entegre": -17.7,
+  "gercek_tepe_dbtp": -4.0,
   "katman_toplami_hata_maks": 1.1102230246251565e-16,
   "katman_rms_dbfs": {
-   "zemin": -23.46,
-   "ritim": -32.93,
-   "melodi": -22.85
+   "zemin": -23.81,
+   "ritim": -32.69,
+   "melodi": -22.6
   },
   "vurgu": {
    "sure_sn": 5.4,

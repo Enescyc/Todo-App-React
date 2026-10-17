@@ -755,8 +755,9 @@ def vurgu_yaz():
     T = 3.6
     B = Bolum(T, kuyruk_sn=2.0)
     for k, v in ((0, 0.7), (1, 0.82)):
-        B.ekle("ritim", k * E, timpani("D2", v, k), kazanc=0.4)
-        B.ekle("ritim", k * E, darbuka("T", v, k), kazanc=0.3, pan=0.22)
+        if k:
+            B.ekle("ritim", k * E, timpani("D2", v, k), kazanc=0.3)
+        B.ekle("ritim", k * E, darbuka("T" if k else "K", v, k), kazanc=0.35, pan=0.22)
         B.ekle("zemin", k * E, CELLO.nota(hz("D3"), v, E * 0.9), kazanc=0.5, pan=-0.18)
     t1 = 2 * E
     B.ekle("ritim", t1, timpani("D2", 1.0, 0), kazanc=0.6)

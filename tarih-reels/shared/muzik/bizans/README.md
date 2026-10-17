@@ -17,7 +17,7 @@ Taş kubbenin altında, mum ışığında söylenen bir Bizans ilahisi hissi: s�
 Zemin + ritim + melodi = tam miks (örnek düzeyinde). Yeniden üretim: `python3 tarih-reels/shared/muzik/bizans/uret.py` (deterministik, ~1.5 dk).
 
 ## Yapı (tam miks zaman çizelgesi)
-**Döngü: 5.0 → 75.0 sn** (70 sn). Döngü dairesel üretildi: ison seslerinin perde eğrileri döngüde tam sayıda periyot yapar, yankı kuyrukları başa sarılır. Motor 75.0'dan 5.0'a atladığında dalga, yankı ve tını kesintisizdir. Giriş, döngünün son 5 saniyesinin açılışıdır (bu yüzden girişten döngüye geçiş de kesintisizdir).
+**Döngü: 5.0 → 75.0 sn** (70 sn; örnek olarak 220500 → 3307500, `meta.json` → `dongu_ornek`). Döngü dairesel üretildi: ison seslerinin perde eğrileri döngüde tam sayıda periyot yapar, yankı kuyrukları başa sarılır. Motor 75.0'dan 5.0'a atladığında dalga, yankı ve tını kesintisizdir. Giriş, döngünün son 5 saniyesinin açılışıdır (bu yüzden girişten döngüye geçiş de kesintisizdir).
 
 | Zaman (sn) | Olay |
 |---|---|

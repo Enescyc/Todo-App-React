@@ -78,11 +78,11 @@
    }
   },
   "vurgu": {
-   "rms_dbfs": -21.61,
-   "tepe_dbfs": -3.6,
+   "rms_dbfs": -21.59,
+   "tepe_dbfs": -3.61,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0063,
-   "merkez_sicrama_max_oktav": 1.058
+   "konusma_1k5_4k_oran": 0.0059,
+   "merkez_sicrama_max_oktav": 1.068
   },
   "oda_yankisi": {
    "rt60_sn": "2.0 (bas) / 1.8 (orta) / 1.3–0.4 (tiz)",

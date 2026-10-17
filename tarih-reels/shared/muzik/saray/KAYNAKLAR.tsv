@@ -1,0 +1,12 @@
+dosya	depo	yol	lisans
+trem_E1_v1_1.wav (çello grubu tremolo, gerçek Mi2 → Re2; zemin + vurgu)	https://github.com/sgossner/VSCO-2-CE	Strings/Cello Section/trem/trem_E1_v1_1.wav	CC0 1.0 (kamu malı)
+trem_D2_v1_1.wav (çello grubu tremolo Re3; zemin + vurgu, Mi♭3 kümesi)	https://github.com/sgossner/VSCO-2-CE	Strings/Cello Section/trem/trem_D2_v1_1.wav	CC0 1.0 (kamu malı)
+shared/sfx muzik/cello_tremolo_D2.flac (çello tremolo Re3; zemin)	https://github.com/sgossner/VSCO-2-CE	Strings/Cello Section/trem/trem_D2_v2_1.wav	CC0 1.0 (kamu malı)
+BKCtbss_Trem_E1_v1_rr1.wav (kontrbas tremolo Mi2 → Re2; zemin)	https://github.com/sgossner/VSCO-2-CE	Strings/Solo Contrabass/Trem/BKCtbss_Trem_E1_v1_rr1.wav	CC0 1.0 (kamu malı)
+BKCtbss_SusNV_{D1,E1,F#1,G#1,A1}_v1_rr1.wav (kontrbas uzun notalar Re2…La2; zemin + leitmotif)	https://github.com/sgossner/VSCO-2-CE	Strings/Solo Contrabass/SusNV/	CC0 1.0 (kamu malı)
+susvib_{E1,G1,B1}_v1_1.wav (çello grubu Mi2/Sol2/Si2 → leitmotif perdeleri)	https://github.com/sgossner/VSCO-2-CE	Strings/Cello Section/susvib/	CC0 1.0 (kamu malı)
+ViolaEns_susvib_{D3,B2,A3}_v1_1.wav (viyola grubu Re4, Si3→La3, La4→Sol4)	https://github.com/sgossner/VSCO-2-CE	Strings/Viola Section/susvib/	CC0 1.0 (kamu malı)
+VlnEns_susVib_{D3,B2,F#3}_v1.wav (keman grubu Re4→Mi♭4, Si3→Si♭3, Fa♯4)	https://github.com/sgossner/VSCO-2-CE	Strings/Violin Section/susVib/	CC0 1.0 (kamu malı)
+BKCtbss_Pizz_D1_v1_rr{1,2}.wav (kontrbas pizzicato Re2, Mi♭2; ritim + vurgu)	https://github.com/sgossner/VSCO-2-CE	Strings/Solo Contrabass/Pizz/	CC0 1.0 (kamu malı)
+Timpani1_Hit_v1_rr{1,2}_Sum.wav, Timpani1_Hit_v3_rr1_Sum.wav (yumuşak timpani, ~90 Hz → Re2; ritim + vurgu)	https://github.com/sgossner/VSCO-2-CE	Percussion/Timpani/	CC0 1.0 (kamu malı)
+LogDrumHi_MedM_v{1,2}_rr1_Sum.wav, LogDrumLo_MedM_v{1,2}_rr1_Sum.wav (ahşap tik-tak; ritim)	https://github.com/sgossner/VCSL	Idiophones/Struck Idiophones/Slit Drum/	CC0 1.0 (kamu malı)

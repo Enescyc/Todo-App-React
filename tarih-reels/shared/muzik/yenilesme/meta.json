@@ -38,46 +38,46 @@
  "yogunluk": "orta",
  "olcumler": {
   "rms_dbfs": -20.0,
-  "tepe_dbfs": -1.75,
+  "tepe_dbfs": -1.76,
   "kirpilma_ornek": 0,
-  "tiz_4k_ustu_oran": 0.0024,
-  "konusma_1k5_4k_oran": 0.045,
-  "merkez_hz_ortanca": 468.1,
-  "merkez_sicrama_max_oktav": 0.869,
-  "merkez_sicrama_p99_oktav": 0.825,
+  "tiz_4k_ustu_oran": 0.0022,
+  "konusma_1k5_4k_oran": 0.0402,
+  "merkez_hz_ortanca": 442.6,
+  "merkez_sicrama_max_oktav": 0.899,
+  "merkez_sicrama_p99_oktav": 0.796,
   "dongu": {
-   "dalga_sicrama": 0.008719,
-   "dalga_sicrama_tipik": 0.009251,
-   "dalga_sicrama_p99_9": 0.060262,
+   "dalga_sicrama": 0.008711,
+   "dalga_sicrama_tipik": 0.00892,
+   "dalga_sicrama_p99_9": 0.05897,
    "rms_fark_db": -4.11,
    "rms_fark_1sn_db": -1.13,
-   "govde_250ms_rms_ardisik_max_fark_db": 4.64
+   "govde_250ms_rms_ardisik_max_fark_db": 5.7
   },
   "katmanlar_rms_dbfs": {
-   "zemin": -22.18,
+   "zemin": -22.19,
    "ritim": -32.93,
-   "melodi": -24.46
+   "melodi": -24.51
   },
   "katman_toplam_hata_max": 2.220446049250313e-16,
   "grup_seviye_db_govdeye_gore": {
    "melodi/cello": -9.7,
    "melodi/kanun": -9.4,
    "melodi/keman": -7.7,
-   "melodi/ud": -12.0,
+   "melodi/ud": -12.1,
    "ritim/def": -19.0,
-   "ritim/trampet": -13.0,
+   "ritim/trampet": -13.1,
    "zemin/bas": -9.8,
    "zemin/klavsen": -5.6,
    "zemin/ostinato": -16.4,
-   "zemin/yay": -4.1
+   "zemin/yay": -4.2
   },
   "vurgu": {
-   "rms_dbfs": -19.31,
+   "rms_dbfs": -19.72,
    "tepe_dbfs": -1.2,
    "kirpilma_ornek": 0,
-   "tiz_4k_ustu_oran": 0.0018,
-   "konusma_1k5_4k_oran": 0.0272,
-   "merkez_hz_ortanca": 468.1,
+   "tiz_4k_ustu_oran": 0.0017,
+   "konusma_1k5_4k_oran": 0.0251,
+   "merkez_hz_ortanca": 467.7,
    "merkez_sicrama_max_oktav": 0.386,
    "merkez_sicrama_p99_oktav": 0.386
   }

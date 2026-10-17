@@ -50,6 +50,7 @@
    "dalga_sicrama_tipik": 0.007843,
    "dalga_sicrama_p99_9": 0.043252,
    "rms_fark_db": 0.06,
+   "rms_fark_1sn_db": 2.28,
    "govde_250ms_rms_ardisik_max_fark_db": 2.79
   },
   "katmanlar_rms_dbfs": {
