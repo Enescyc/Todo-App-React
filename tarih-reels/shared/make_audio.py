@@ -45,14 +45,27 @@ def split_full(path, n, texts):
             if i > 0 and j < len(sil): gaps.append((j - i, i, j))
             i = j
         else: i += 1
-    cuts = sorted(sorted(gaps, reverse=True)[: n - 1], key=lambda g: g[1])
-    assert len(cuts) == n - 1, f"yalnızca {len(cuts)} duraklama bulundu, {n - 1} gerekli"
+    # adaylar: belirgin duraklamalar. Seçim: paragrafların okunma hızı (konuşma süresi / hece) en tutarlı olan
+    # kesim kombinasyonu; uzun duraklama küçük bir bonus alır.
+    from itertools import combinations
+    want = np.array([sum(syll(w) for w in t.split()) for t in texts], float)
+    cand = sorted([g for g in gaps if g[0] >= 35], key=lambda g: g[1])
+    if len(cand) > 30: cand = sorted(sorted(cand, reverse=True)[:30], key=lambda g: g[1])
+    voiced_cum = np.concatenate([[0], np.cumsum(~sil)])
+    best = None
+    for combo in combinations(range(len(cand)), n - 1):
+        b = [0] + [(cand[c][1] + cand[c][2]) // 2 for c in combo] + [len(sil)]
+        sp = np.array([voiced_cum[b[k + 1]] - voiced_cum[b[k]] for k in range(n)], float)
+        if (sp <= 0).any(): continue
+        rate = np.log(sp / want); score = rate.std() - .004 * sum(cand[c][0] for c in combo)
+        if best is None or score < best[0]: best = (score, combo, rate)
+    assert best, f"yeterli duraklama yok ({len(cand)} aday, {n - 1} gerekli)"
+    cuts = [cand[c] for c in best[1]]
     bounds = [0] + [(a + b) // 2 for _, a, b in cuts] + [len(sil)]
     parts = [v[bounds[k] * hop: bounds[k + 1] * hop] for k in range(n)]
-    want = np.array([sum(syll(w) for w in t.split()) for t in texts], float); got = np.array([len(p) for p in parts], float)
-    ratio = (got / got.sum()) / (want / want.sum())
-    print("paragraf bölme – süre/hece oranı:", " ".join(f"p{k + 1}:{r:.2f}" for k, r in enumerate(ratio)), "| en kısa kesim duraklaması:", min(g[0] for g in cuts) / 100, "sn")
-    if (np.abs(np.log(ratio)) > .45).any(): print("UYARI: bir paragraf sınırı yanlış olabilir – kontrol edin")
+    ratio = np.exp(best[2] - best[2].mean())
+    print("paragraf kesimleri (sn):", " ".join(f"{b / 100:.2f}" for b in bounds[1:-1]), "| hız oranı:", " ".join(f"p{k + 1}:{r:.2f}" for k, r in enumerate(ratio)))
+    if (np.abs(np.log(ratio)) > .3).any(): print("UYARI: bir paragraf sınırı yanlış olabilir – kontrol edin")
     tmp = []
     for k, p in enumerate(parts):
         f = os.path.join(EPD, "audio", f"_p{k + 1}.wav")
@@ -75,13 +88,35 @@ if all(os.path.exists(f) for f in vo_files):
     for P, f in zip(EP["paras"], vo_files):
         v = load_audio(f); hop = int(.01 * SR)
         db = 20 * np.log10(np.sqrt(np.convolve(v ** 2, np.ones(hop) / hop, "same")[::hop]) + 1e-9)
-        voiced = db > max(-45, db.max() - 38)
+        voiced = db > max(-40, db.max() - 32)
         idx = np.where(voiced)[0]; a, b = idx[0], idx[-1] + 1          # baştaki/sondaki sessizliği kırp
         v = v[max(0, (a - 3) * hop): (b + 5) * hop]; voiced = voiced[max(0, a - 3): b + 5]
         cum = np.concatenate([[0], np.cumsum(voiced)]) / max(1, voiced.sum())  # konuşulan zamanın birikimli oranı
         words = P["text"].split(); w = np.array([syll(x) for x in words], float); edges = np.concatenate([[0], np.cumsum(w)]) / w.sum()
-        frame_of = lambda q: int(np.searchsorted(cum, q, side="left"))
-        wt = [[round(t + frame_of(edges[i]) / 100, 3), round(t + max(frame_of(edges[i + 1]) - 1, frame_of(edges[i]) + 1) / 100, 3)] for i in range(len(words))]
+        # kelime başı: sessizlikten SONRAKİ ilk konuşma karesi; kelime sonu: son konuşma karesi
+        start_of = lambda q: max(0, int(np.searchsorted(cum, q, side="right")) - 1)
+        end_of = lambda q: int(np.searchsorted(cum, q, side="left"))
+        wt = [[round(t + start_of(edges[i]) / 100, 3), round(t + max(end_of(edges[i + 1]), start_of(edges[i]) + 2) / 100, 3)] for i in range(len(words))]
+        # noktalamalı kelimelerin sonunu yakındaki gerçek duraklamaya yasla (anlatıcı orada nefes alır)
+        pauses, i = [], 0
+        while i < len(voiced):
+            if not voiced[i]:
+                j = i
+                while j < len(voiced) and not voiced[j]: j += 1
+                if j - i >= 12 and i > 0 and j < len(voiced): pauses.append((t + i / 100, t + j / 100))
+                i = j
+            else: i += 1
+        used = set()
+        for k, w_ in enumerate(words[:-1]):
+            if not re.search(r"[.,;:!?…]$", w_): continue
+            near = [(abs(a - wt[k][1]), a, b) for a, b in pauses if abs(a - wt[k][1]) < .7 and a not in used]
+            if not near: continue
+            _, a, b = min(near); used.add(a)
+            # bu kelimeye kadar olanları [önceki çapa, a], sonrasını [b, sonraki çapa] aralığına orantılı sıkıştır
+            wt[k][1] = a; wt[k + 1][0] = b
+        for k in range(1, len(wt)):  # sıralamayı koru
+            if wt[k][0] < wt[k - 1][0] + .05: wt[k][0] = wt[k - 1][0] + .05
+            wt[k - 1][1] = min(wt[k - 1][1], wt[k][0]) if wt[k - 1][1] > wt[k][0] else wt[k - 1][1]
         VO_CLIPS.append((t, v)); paras.append({"t0": wt[0][0], "t1": t + len(v) / SR, "words": wt})
         t += len(v) / SR + gap
     dur = round(t - gap + EP.get("tail", 3.0), 2)
