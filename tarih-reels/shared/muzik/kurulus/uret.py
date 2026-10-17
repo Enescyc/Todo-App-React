@@ -351,8 +351,13 @@ def olc(mix, bas=None, son=None):
     W1 = SR; k1 = len(m) // W1
     r1 = db(np.sqrt((mix[:k1 * W1].reshape(k1, W1, 2) ** 2).mean((1, 2))))
     v = [r1[i + 1] - r1[i] for i in range(k1 - 1) if r1[i] > -45 and r1[i + 1] > -45]
-    o["rms_1sn_max_artis_db"] = round(float(max(v)), 2)
-    o["rms_1sn_max_azalis_db"] = round(float(-min(v)), 2)
+    o["rms_1sn_max_artis_db"] = round(float(max(v)), 2)          # tüm dosya (girişin sessizlikten açılışı dahil)
+    o["rms_1sn_max_azalis_db"] = round(float(-min(v)), 2)        # tüm dosya (kapanışın sönüşü dahil)
+    if bas is not None:                                          # yalnız döngü gövdesi (tekrar tekrar duyulan bölüm)
+        i0, i1 = -(-bas // W1), son // W1
+        vg = [r1[i + 1] - r1[i] for i in range(i0, i1 - 1)]
+        o["govde_rms_1sn_max_artis_db"] = round(float(max(vg)), 2)
+        o["govde_rms_1sn_max_azalis_db"] = round(float(-min(vg)), 2)
     o["rms_1sn_aralik_db"] = [round(float(r1[r1 > -45].min()), 1), round(float(r1.max()), 1)]
     if bas is not None:
         once, sonra = mix[son - W:son], mix[bas:bas + W]
@@ -406,17 +411,21 @@ def spektrogram(x, png, baslik=""):
     c.save(png)
 
 
-def sinirla(stems, tavan_db=-1.2):
-    """Gerekirse yumuşak tepe sınırlayıcı: kazanç eğrisi miksten hesaplanıp tüm katmanlara aynen uygulanır
-    (katmanların toplamı tam miksi vermeye devam eder)."""
+def sinirla(stems, tavan_db=-1.2, ileri=0.02, tut=0.08):
+    """Gerekirse yumuşak tepe sınırlayıcı (20 ms ileri bakış, 80 ms tutma, 20 ms yumuşak geçiş). Kazanç eğrisi miksten
+    hesaplanıp tüm katmanlara AYNEN uygulanır (katmanların toplamı tam miksi vermeye devam eder)."""
     mix = sum(stems); tavan = 10 ** (tavan_db / 20)
     a = np.abs(mix).max(1)
     if a.max() <= tavan: return stems, 0.0
     g = np.minimum(1.0, tavan / np.maximum(a, 1e-9))
-    W = int(0.004 * SR)                       # 4 ms ileri bakış: minimumu yay, sonra yumuşat
-    gm = np.minimum.reduce([np.roll(g, -k) for k in range(0, W, max(1, W // 16))])
-    ker = np.hanning(2 * W + 1); ker /= ker.sum()
-    gs = np.minimum(np.convolve(gm, ker, "same"), g)
+    B = 32; nb = -(-len(g) // B)
+    gb = np.pad(g, (0, nb * B - len(g)), constant_values=1.0).reshape(nb, B).min(1)
+    on, arka = int(ileri * SR / B) + 1, int(tut * SR / B) + 1
+    gp = np.pad(gb, (arka, on), constant_values=1.0)
+    gm = np.minimum.reduce([gp[k:k + nb] for k in range(on + arka + 1)])      # [−tut, +ileri] penceresinde en küçük
+    ker = np.hanning(2 * on + 1); ker /= ker.sum()
+    gs = np.repeat(np.convolve(np.pad(gm, (on, on), mode="edge"), ker, "valid"), B)[:len(g)]
+    gs = np.minimum(gs, g)
     return [s * gs[:, None] for s in stems], round(float(db(gs.min())), 2)
 
 

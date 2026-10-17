@@ -349,8 +349,13 @@ def olc(mix, bas=None, son=None):
     W1 = SR; k1 = len(m) // W1
     r1 = db(np.sqrt((mix[:k1 * W1].reshape(k1, W1, 2) ** 2).mean((1, 2))))
     v = [r1[i + 1] - r1[i] for i in range(k1 - 1) if r1[i] > -45 and r1[i + 1] > -45]
-    o["rms_1sn_max_artis_db"] = round(float(max(v)), 2)
-    o["rms_1sn_max_azalis_db"] = round(float(-min(v)), 2)
+    o["rms_1sn_max_artis_db"] = round(float(max(v)), 2)          # tüm dosya (girişin sessizlikten açılışı dahil)
+    o["rms_1sn_max_azalis_db"] = round(float(-min(v)), 2)        # tüm dosya (kapanışın sönüşü dahil)
+    if bas is not None:                                          # yalnız döngü gövdesi (tekrar tekrar duyulan bölüm)
+        i0, i1 = -(-bas // W1), son // W1
+        vg = [r1[i + 1] - r1[i] for i in range(i0, i1 - 1)]
+        o["govde_rms_1sn_max_artis_db"] = round(float(max(vg)), 2)
+        o["govde_rms_1sn_max_azalis_db"] = round(float(-min(vg)), 2)
     o["rms_1sn_aralik_db"] = [round(float(r1[r1 > -45].min()), 1), round(float(r1.max()), 1)]
     if bas is not None:
         once, sonra = mix[son - W:son], mix[bas:bas + W]
@@ -404,17 +409,21 @@ def spektrogram(x, png, baslik=""):
     c.save(png)
 
 
-def sinirla(stems, tavan_db=-1.2):
-    """Gerekirse yumuşak tepe sınırlayıcı: kazanç eğrisi miksten hesaplanıp tüm katmanlara aynen uygulanır
-    (katmanların toplamı tam miksi vermeye devam eder)."""
+def sinirla(stems, tavan_db=-1.2, ileri=0.02, tut=0.08):
+    """Gerekirse yumuşak tepe sınırlayıcı (20 ms ileri bakış, 80 ms tutma, 20 ms yumuşak geçiş). Kazanç eğrisi miksten
+    hesaplanıp tüm katmanlara AYNEN uygulanır (katmanların toplamı tam miksi vermeye devam eder)."""
     mix = sum(stems); tavan = 10 ** (tavan_db / 20)
     a = np.abs(mix).max(1)
     if a.max() <= tavan: return stems, 0.0
     g = np.minimum(1.0, tavan / np.maximum(a, 1e-9))
-    W = int(0.004 * SR)                       # 4 ms ileri bakış: minimumu yay, sonra yumuşat
-    gm = np.minimum.reduce([np.roll(g, -k) for k in range(0, W, max(1, W // 16))])
-    ker = np.hanning(2 * W + 1); ker /= ker.sum()
-    gs = np.minimum(np.convolve(gm, ker, "same"), g)
+    B = 32; nb = -(-len(g) // B)
+    gb = np.pad(g, (0, nb * B - len(g)), constant_values=1.0).reshape(nb, B).min(1)
+    on, arka = int(ileri * SR / B) + 1, int(tut * SR / B) + 1
+    gp = np.pad(gb, (arka, on), constant_values=1.0)
+    gm = np.minimum.reduce([gp[k:k + nb] for k in range(on + arka + 1)])      # [−tut, +ileri] penceresinde en küçük
+    ker = np.hanning(2 * on + 1); ker /= ker.sum()
+    gs = np.repeat(np.convolve(np.pad(gm, (on, on), mode="edge"), ker, "valid"), B)[:len(g)]
+    gs = np.minimum(gs, g)
     return [s * gs[:, None] for s in stems], round(float(db(gs.min())), 2)
 
 
@@ -494,12 +503,12 @@ def sus_nota(bolum, f, sure, din, rng, legato=False, a=None, r=0.35, din2=None):
 def cizgi(kat, bolum, notalar, rng, p=0.0, r_son=0.6, xf=0.14, sapma=0.008):
     """Legato çizgi: notalar [(bas_vurus, sure_vurus, nota, din[, din2])]; bitişik ve farklı perdeli notalar bağlanır."""
     for i, nt in enumerate(notalar):
-        bv, sv, nota, din = nt[:4]; din2 = nt[4] if len(nt) > 4 else None
+        bv, sv, nota, din = nt[:4]; din2 = nt[4] if len(nt) > 4 else None; op = nt[5] if len(nt) > 5 else {}
         once = notalar[i - 1] if i else None
         sonra = notalar[i + 1] if i + 1 < len(notalar) else None
         legato = once is not None and abs(once[0] + once[1] - bv) < 0.05 and once[2] != nota
         bagli = sonra is not None and abs(bv + sv - sonra[0]) < 0.05 and sonra[2] != nota
-        s = sus_nota(bolum, hz(nota, False), sv * VUR, din, rng, legato=legato, r=xf if bagli else r_son, din2=din2)
+        s = sus_nota(bolum, hz(nota, False), sv * VUR, din, rng, legato=legato, a=op.get("a"), r=xf if bagli else r_son, din2=din2)
         kat.ekle(bv * VUR + (rng.normal(0, sapma) if not legato else 0.0), s, 1.0, p)
 
 
@@ -573,8 +582,8 @@ VC_KOK = [  # çellolar: motif armonisinin kökleri (1. veriliş), Hicaz dörtl�
     (48, 1, "D3", .8), (49, 1, "G2", .8), (50, 2, "D3", .8), (52, 1, "C3", .8), (53, 1, "D3", .82), (54, 1, "G2", .82), (55, 1, "Eb3", .85),
     (56, 4, "D3", .85), (60, 4, "D3", .85), (64, 4, "Eb3", .7, .5)]
 VLA_PAD = [  # violalar (divisi): D5 → Gm → C°7 gerilimi (korno F♯ ile)
-    [(16, 8, "A3", .28, .36), (24, 4, "Bb3", .38), (28, 4, "C4", .42, .5)],
-    [(16, 8, "D4", .28, .36), (24, 4, "D4", .38), (28, 4, "Eb4", .42, .5)],
+    [(16, 8, "A3", .22, .36, {"a": 3.0}), (24, 4, "Bb3", .38), (28, 4, "C4", .42, .5)],
+    [(16, 8, "D4", .22, .36, {"a": 3.4}), (24, 4, "D4", .38), (28, 4, "Eb4", .42, .5)],
     [(72, 8, "D4", .2, .08)],                                           # geri çekilme: pp dem
 ]
 AKOR = [  # doruk sonu: D – E♭ – D (♭II–I), keman divisi + viola
@@ -588,7 +597,7 @@ def motif(b0, okt, din, son_sure=4):
     return [(b0 + bb, (s if n != "D" else son_sure), f"{n}{okt}", din) for n, bb, s in MOTIF]
 
 KORNO = (
-    [(16, 1, "A3", .34), (17, 1, "Bb3", .4), (18, 2, "A3", .38)] +                     # parça (ima)
+    [(16, 1, "A3", .28, .3, {"a": 0.25}), (17, 1, "Bb3", .34), (18, 2, "A3", .34)] +   # parça (ima)
     [(24, 1, "A3", .42), (25, 1, "Bb3", .46), (26, 1.5, "A3", .45), (27.5, .5, "G3", .45), (28, 3.6, "F#3", .48, .62)] +
     motif(32, 3, .6, 3.6) +                                                              # 1. veriliş: TAM (korno + viola)
     [(44, 4, "A3", .5, .72)] +                                                           # Hicaz dörtlüsü üstünde çağrı
@@ -600,16 +609,16 @@ VLN_MEL = motif(48, 4, .74)
 
 # ---- RİTİM
 DUYEK = [1.0, .78, .5, .82, .95, .5, .8, .55]           # Düm Tek . Tek Düm . Tek . (sekizlik vurguları)
-OST_OLCU = [.30, .34, .38, .42, .48, .52, .56, .62, .68, .70, .72, (.78, .9), .92, .92, .94, .94, (.8, .62), (.5, .32)]
+OST_OLCU = [.32, .36, .41, .46, .50, .53, .57, .62, .68, .70, .72, (.78, .9), .92, .92, .94, .94, (.8, .62), (.5, .32)]
 TIMP_OLAY = (
-    [(0, "D2", .35), (8, "D2", .38)] +
-    [(b, "D2", .42 + .02 * i) for i, b in enumerate([16, 18, 20, 22, 24, 26])] +
+    [(0, "D2", .26), (8, "D2", .34), (12, "D2", .36)] +
+    [(b, "D2", .31 + .03 * i) for i, b in enumerate([16, 18, 20, 22, 24, 26])] +
     [(o * 4 + x, n, v) for o in (8, 9, 10) for x, n, v in ((0, "D2", .65), (2, "A2", .5))] +
     [(o * 4 + x, n, v) for o in (12, 13, 14, 15) for x, n, v in ((0, "D2", .86), (.5, "A2", .45), (1.5, "A2", .52), (2, "D2", .74), (3, "A2", .55))] +
     [(68, "D2", .45)]
 )
-TIMP_RULO_OLAY = [(28, 4, .3, .68), (44, 4, .45, .85), (64, 4, .7, .35), (82, 6.05, .08, .38)]
-DAVUL_OLAY = [(0, .3), (16, .42), (24, .48), (32, .58), (36, .6), (40, .62), (44, .6), (46, .66),
+TIMP_RULO_OLAY = [(28, 4, .3, .68), (44, 4, .45, .85), (64, 4, .7, .35), (82, 6.05, .08, .44)]
+DAVUL_OLAY = [(8, .26), (24, .4), (32, .58), (36, .6), (40, .62), (44, .6), (46, .66),
               (48, .85), (50, .62), (52, .84), (54, .62), (56, .86), (58, .64), (60, .86), (62, .66), (64, .7), (68, .5)]
 
 
@@ -653,25 +662,24 @@ def main():
     for ses in VLA_PAD: cizgi(vla, "vla", ses, rng, 0.2)
     for bol, ses in AKOR: cizgi(akor, bol, ses, rng, -0.3 if bol == "vln" else 0.2)
     # kapanış (son'dan itibaren): D–A–D dem akoru, uzun bırakma
-    for kat, bol, nota, d, p in ((kb, "kb", "D2", .5, .35), (vc, "vc", "D3", .5, .3), (vla, "vla", "A3", .38, .2), (vla, "vla", "D4", .34, .2)):
-        s = sus_nota(bol, hz(nota, False), 2.2, d, rng, r=4.4, din2=d * 0.6)
+    for kat, bol, nota, d, p in ((kb, "kb", "D2", .3, .35), (vc, "vc", "D3", .3, .3), (vla, "vla", "A3", .22, .2), (vla, "vla", "D4", .2, .2)):
+        s = sus_nota(bol, hz(nota, False), 2.2, d, rng, a=0.6, r=4.4, din2=d * 0.6)
         kat.ekle_d(son_s, s, 1.0, p)
     # ---------------- MELODİ ----------------
     korno, vla_m, vln_m = K("korno"), K("vla_mel"), K("vln_mel")
     cizgi(korno, "korno", KORNO, rng, -0.15)
     cizgi(vla_m, "vla", VLA_MEL, rng, 0.2)
     cizgi(vln_m, "vln", VLN_MEL, rng, -0.35)
-    s1 = sus_nota("korno", hz("Eb3", False), 0.55, .55, rng, r=0.14)
-    s2 = sus_nota("korno", hz("D3", False), 1.6, .55, rng, legato=True, r=3.0, din2=.25)
-    korno.ekle_d(son_s + 0.02, s1, 1.0, -0.15); korno.ekle_d(son_s + 0.02 + 0.55, s2, 1.0, -0.15)
+    s1 = sus_nota("korno", hz("Eb3", False), 0.7, .3, rng, a=0.2, r=0.14)
+    s2 = sus_nota("korno", hz("D3", False), 1.8, .32, rng, legato=True, r=3.2, din2=.12)
+    korno.ekle_d(son_s + 0.25, s1, 1.0, -0.15); korno.ekle_d(son_s + 0.25 + 0.7, s2, 1.0, -0.15)
     # ---------------- RİTİM ----------------
     ost, timp, dav = K("ostinato"), K("timpani"), K("davul")
     ostinato(ost, rng)
     for b, nota, v in TIMP_OLAY: timp.ekle(b * VUR + rng.normal(0, 0.004), timpani(nota, v, rng), 1.0, 0.0)
     for b, sr_, d0, d1 in TIMP_RULO_OLAY: timp.ekle(b * VUR, timpani_rulo(sr_ * VUR + 0.3, d0, d1), 1.0, 0.0)
     for b, v in DAVUL_OLAY: dav.ekle(b * VUR + rng.normal(0, 0.004), davul(v, rng), 1.0, -0.05)
-    timp.ekle_d(son_s + 0.01, timpani("D2", .72, rng), 1.0, 0.0)
-    dav.ekle_d(son_s + 0.01, davul(.7, rng), 1.0, -0.05)
+    timp.ekle_d(son_s + 0.01, timpani("D2", .36, rng), 1.0, 0.0)
 
     # ---------------- süzgeç, seviye, oda ----------------
     eq = {"kb": dict(hp=32, lp=2500), "vc": dict(hp=55, lp=3800, raf=(2500, -3)), "vla_pad": dict(hp=110, lp=3800, raf=(2500, -3)),
@@ -679,7 +687,7 @@ def main():
           "vla_mel": dict(hp=110, lp=3800, raf=(2500, -3)), "vln_mel": dict(hp=150, lp=3800, raf=(2400, -4.5)),
           "ostinato": dict(hp=65, lp=3600, raf=(2500, -3)), "timpani": dict(hp=30, lp=3000), "davul": dict(hp=28, lp=2500)}
     hedef = {"kb": -22.5, "vc": -22.0, "vla_pad": -26.0, "akor": -23.0, "korno": -19.5, "vla_mel": -24.0, "vln_mel": -23.0,
-             "ostinato": -22.0, "timpani": -22.0, "davul": -24.5}
+             "ostinato": -22.0, "timpani": -23.0, "davul": -27.0}
     islak = {"kb": .18, "vc": .2, "vla_pad": .22, "akor": .22, "korno": .24, "vla_mel": .22, "vln_mel": .24,
              "ostinato": .18, "timpani": .2, "davul": .18}
     katlar = [kb, vc, vla, akor, korno, vla_m, vln_m, ost, timp, dav]

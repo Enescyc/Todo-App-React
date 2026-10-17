@@ -54,20 +54,20 @@
   "dosya": "out/destan__vurgu.flac",
   "sure": 5.3,
   "olcumler": {
-   "rms_dbfs": -18.0,
-   "tepe_dbfs": -1.5,
+   "rms_dbfs": -19.24,
+   "tepe_dbfs": -1.2,
    "kirpilma_ornek": 0,
    "enerji_4k_ustu_oran": 0.0,
-   "enerji_1k5_4k_oran": 0.0052,
-   "merkez_250ms_hz_ortanca": 424.2,
-   "merkez_sicrama_max_oktav": 0.305,
-   "merkez_sicrama_p95_oktav": 0.221,
+   "enerji_1k5_4k_oran": 0.005,
+   "merkez_250ms_hz_ortanca": 423.2,
+   "merkez_sicrama_max_oktav": 0.357,
+   "merkez_sicrama_p95_oktav": 0.254,
    "merkez_sicrama_1oktav_ustu_sayi": 0,
-   "rms_1sn_max_artis_db": -1.88,
-   "rms_1sn_max_azalis_db": 13.19,
+   "rms_1sn_max_artis_db": -1.93,
+   "rms_1sn_max_azalis_db": 13.15,
    "rms_1sn_aralik_db": [
-    -37.7,
-    -13.2
+    -39.1,
+    -14.3
    ]
   }
  },
@@ -84,59 +84,59 @@
   "21-22": "dem + timpani rulosu (giriş malzemesi) → döngü başı"
  },
  "olcumler": {
-  "rms_dbfs": -20.0,
+  "rms_dbfs": -20.01,
   "tepe_dbfs": -1.2,
   "kirpilma_ornek": 0,
   "enerji_4k_ustu_oran": 0.0001,
-  "enerji_1k5_4k_oran": 0.0125,
-  "merkez_250ms_hz_ortanca": 309.3,
-  "merkez_sicrama_max_oktav": 1.411,
-  "merkez_sicrama_p95_oktav": 0.672,
-  "merkez_sicrama_1oktav_ustu_sayi": 2,
-  "rms_1sn_max_artis_db": 9.56,
-  "rms_1sn_max_azalis_db": 9.5,
+  "enerji_1k5_4k_oran": 0.0131,
+  "merkez_250ms_hz_ortanca": 314.1,
+  "merkez_sicrama_max_oktav": 1.551,
+  "merkez_sicrama_p95_oktav": 0.604,
+  "merkez_sicrama_1oktav_ustu_sayi": 1,
+  "rms_1sn_max_artis_db": 7.17,
+  "rms_1sn_max_azalis_db": 8.37,
   "rms_1sn_aralik_db": [
-   -43.4,
-   -13.4
+   -43.5,
+   -13.5
   ],
   "dongu": {
    "bas_ornek": 208895,
    "son_ornek": 3272684,
-   "gecis_ornek_adimi": 0.004589,
-   "yerel_max_ornek_adimi": 0.005719,
-   "adim_orani": 0.803,
-   "rms_farki_db_250ms": 5.17,
-   "merkez_sicramasi_oktav": 0.496
+   "gecis_ornek_adimi": 0.004536,
+   "yerel_max_ornek_adimi": 0.005963,
+   "adim_orani": 0.761,
+   "rms_farki_db_250ms": 2.99,
+   "merkez_sicramasi_oktav": 0.087
   },
-  "sinirlayici_max_kazanc_azaltma_db": -5.97,
+  "sinirlayici_max_kazanc_azaltma_db": -1.03,
   "katman_rms_dbfs": {
-   "zemin": -23.65,
-   "ritim": -25.69,
-   "melodi": -25.39
+   "zemin": -23.48,
+   "ritim": -26.08,
+   "melodi": -25.19
   },
   "olcu_rms_dbfs": [
-   -29.9,
-   -29.4,
-   -28.1,
-   -28.3,
-   -23.0,
-   -23.6,
-   -21.5,
+   -30.3,
+   -29.2,
+   -27.8,
+   -27.1,
+   -23.7,
+   -23.2,
    -21.6,
-   -19.6,
+   -21.3,
    -19.7,
-   -19.0,
-   -18.1,
+   -19.4,
+   -19.2,
+   -17.9,
    -14.5,
-   -14.7,
-   -14.3,
-   -14.5,
-   -17.8,
+   -14.6,
+   -14.1,
+   -14.6,
+   -17.6,
    -23.0,
-   -25.7,
-   -26.9,
-   -30.0,
-   -29.1
+   -25.4,
+   -26.6,
+   -29.8,
+   -28.8
   ]
  },
  "kaynaklar": [
@@ -196,5 +196,5 @@
    "not": "oda yankısı (RT60 ≈ 1.8 sn), düzenleme, miks"
   }
  ],
- "uretim_sn": 94.2
+ "uretim_sn": 84.8
 }
