@@ -1,0 +1,200 @@
+{
+ "id": "destan",
+ "ad": "Destansı yükseliş",
+ "tarz": "sinematik orkestral yükseliş: yaylılar (kontrbas pedalı, çello spiccato ostinatosu, viola/keman), korno, timpani, büyük davul; seri leitmotifinin büyük hali",
+ "kullanim": [
+  "fetih / dönüm noktası",
+  "Bursa'nın teslimi",
+  "Gelibolu'ya geçiş",
+  "Kosova",
+  "İstanbul'un fethi",
+  "sezon finali öncesi doruk",
+  "zafer sonrası geniş plan"
+ ],
+ "donem": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "ton_makam": "D Hicaz (orkestrada 12-TET; Hicaz'a yaklaşım), kontrbas D pedalı; armoni D – Gm – Cm – E♭ (♭II–I Hicaz kadansı)",
+ "bpm": 76,
+ "usul_olcu": "4/4 – ostinato sekizlik vurguları düyek kalıbında (Düm Tek . Tek Düm . Tek .); timpani dorukta düyek",
+ "sure": 81.211,
+ "dongu": [
+  4.736848,
+  74.210522
+ ],
+ "dongu_ornek": [
+  208895,
+  3272684
+ ],
+ "katmanlar": [
+  {
+   "ad": "zemin",
+   "dosya": "out/destan__zemin.flac",
+   "icerik": "kontrbas D pedalı, çello dem'i ve kök çizgisi, viola dolgusu, doruk sonu akorları"
+  },
+  {
+   "ad": "ritim",
+   "dosya": "out/destan__ritim.flac",
+   "icerik": "çello spiccato ostinatosu (düyek vurgulu) + kontrbas pizz, timpani (D2/A2, rulolar), büyük davul"
+  },
+  {
+   "ad": "melodi",
+   "dosya": "out/destan__melodi.flac",
+   "icerik": "korno (leitmotif, parçalar, yankı), viola unison, dorukta keman oktavı"
+  }
+ ],
+ "vurgu": {
+  "dosya": "out/destan__vurgu.flac",
+  "sure": 5.3,
+  "olcumler": {
+   "rms_dbfs": -18.0,
+   "tepe_dbfs": -1.5,
+   "kirpilma_ornek": 0,
+   "enerji_4k_ustu_oran": 0.0,
+   "enerji_1k5_4k_oran": 0.0052,
+   "merkez_250ms_hz_ortanca": 424.2,
+   "merkez_sicrama_max_oktav": 0.305,
+   "merkez_sicrama_p95_oktav": 0.221,
+   "merkez_sicrama_1oktav_ustu_sayi": 0,
+   "rms_1sn_max_artis_db": -1.88,
+   "rms_1sn_max_azalis_db": 13.19,
+   "rms_1sn_aralik_db": [
+    -37.7,
+    -13.2
+   ]
+  }
+ },
+ "yogunluk": "yuksek",
+ "leitmotif": "5–8. ölçüler parça (ima), 9–11. ölçüler TAM (korno + viola; tam miksde 30.00 sn), 13–15. ölçüler doruk (korno + viola + keman oktavı), 19–20. ölçüler motif sonu yankısı",
+ "yapi_olcu": {
+  "1-4": "ostinato başlar (pp→p), D pedalı",
+  "5-8": "violalar, korno parçaları, kresendo, 8. ölçüde C°7 gerilimi + timpani rulosu",
+  "9-11": "leitmotif tam (korno + viola), çellolar armoni kökleri",
+  "12": "Hicaz dörtlüsü yükselişi, rulo kresendo",
+  "13-16": "DORUK: motif keman/viola/korno oktavında, timpani düyek, büyük davul",
+  "17-18": "E♭ → D (♭II–I) kadansı, dekresendo",
+  "19-20": "geri çekilme: korno yankısı (F♯ G E♭ D)",
+  "21-22": "dem + timpani rulosu (giriş malzemesi) → döngü başı"
+ },
+ "olcumler": {
+  "rms_dbfs": -20.0,
+  "tepe_dbfs": -1.2,
+  "kirpilma_ornek": 0,
+  "enerji_4k_ustu_oran": 0.0001,
+  "enerji_1k5_4k_oran": 0.0125,
+  "merkez_250ms_hz_ortanca": 309.3,
+  "merkez_sicrama_max_oktav": 1.411,
+  "merkez_sicrama_p95_oktav": 0.672,
+  "merkez_sicrama_1oktav_ustu_sayi": 2,
+  "rms_1sn_max_artis_db": 9.56,
+  "rms_1sn_max_azalis_db": 9.5,
+  "rms_1sn_aralik_db": [
+   -43.4,
+   -13.4
+  ],
+  "dongu": {
+   "bas_ornek": 208895,
+   "son_ornek": 3272684,
+   "gecis_ornek_adimi": 0.004589,
+   "yerel_max_ornek_adimi": 0.005719,
+   "adim_orani": 0.803,
+   "rms_farki_db_250ms": 5.17,
+   "merkez_sicramasi_oktav": 0.496
+  },
+  "sinirlayici_max_kazanc_azaltma_db": -5.97,
+  "katman_rms_dbfs": {
+   "zemin": -23.65,
+   "ritim": -25.69,
+   "melodi": -25.39
+  },
+  "olcu_rms_dbfs": [
+   -29.9,
+   -29.4,
+   -28.1,
+   -28.3,
+   -23.0,
+   -23.6,
+   -21.5,
+   -21.6,
+   -19.6,
+   -19.7,
+   -19.0,
+   -18.1,
+   -14.5,
+   -14.7,
+   -14.3,
+   -14.5,
+   -17.8,
+   -23.0,
+   -25.7,
+   -26.9,
+   -30.0,
+   -29.1
+  ]
+ },
+ "kaynaklar": [
+  {
+   "dosya": "VSCO-2-CE Brass/F Horn/sus/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Percussion/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Percussion/Timpani/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Percussion/Timpani/Rolls/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Cello Section/spic/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Cello Section/susvib/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Solo Contrabass/Pizz/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Solo Contrabass/SusNV/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Viola Section/susvib/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "VSCO-2-CE Strings/Violin Section/susVib/",
+   "lisans": "CC0 1.0",
+   "repo": "https://github.com/sgossner/VSCO-2-CE"
+  },
+  {
+   "dosya": "sentez",
+   "lisans": "kendi üretimimiz",
+   "not": "oda yankısı (RT60 ≈ 1.8 sn), düzenleme, miks"
+  }
+ ],
+ "uretim_sn": 94.2
+}
