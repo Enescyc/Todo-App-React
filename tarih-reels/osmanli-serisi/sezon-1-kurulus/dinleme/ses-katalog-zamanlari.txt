@@ -17,32 +17,32 @@
 1:42.1  metal/zincir_surtunme        Zincir sürtünmesi
 1:43.9  metal/zincir_dongu           Zincir hareketi (döngü)
 1:47.0  metal/ors_1                  Örs vuruşu (kılıç ve demir)
-1:49.0  metal/ors_2                  Örs vuruşu, hafif
-1:50.9  metal/metal_vurus_1          Metal vuruş
-1:53.1  metal/metal_vurus_5          Metal vuruş 2
-1:54.9  metal/tas_surtunme           Taş sürtünmesi (sur, kale)
-1:56.8  can/kilise_cani_D3           Tüp çan, D3 (Bizans kilisesi, alarm)
-2:03.6  can/kilise_cani_C3           Tüp çan, C3
-2:10.4  ritim/darbuka_dum            Darbuka 1
-2:12.4  ritim/darbuka_2              Darbuka 2
-2:13.6  ritim/darbuka_3              Darbuka 3
-2:14.8  ritim/darbuka_4              Darbuka 4
-2:16.3  ritim/def_buyuk              Büyük def vuruşu (Anadolu rengi)
-2:18.8  ritim/def_kucuk              Küçük def vuruşu
-2:21.0  ritim/def_boguk              Def, boğuk
-2:22.4  ritim/def_rulo               Çerçeve davul rulosu
-2:29.2  ritim/trampet_askeri         Askerî trampet ve tenor davul
-2:30.7  doga/deniz_1                 Dalga sesi (ocean drum)
-2:37.5  doga/deniz_2                 Dalga sesi 2
-2:44.3  doga/ortam_1                 Ortam kaydı (incelenecek)
-2:51.1  doku/fx_uzun_1               Nepal çanları, uzun tını
-2:57.9  doku/fx_uzun_2               Nepal çanları, uzun tını 2
-3:04.7  doku/kadeh_D#4               Kadeh tınısı (rivayet, rüya anları)
-3:11.5  muzik/cello_D2               Çello grubu, D2 (karanlık zemin)
-3:18.3  muzik/cello_A2               Çello grubu, A2
-3:25.1  muzik/kontrbas_D1            Kontrbas, D1 (çok alçak zemin)
-3:31.9  muzik/keman_D5               Keman grubu, D5 (gerilim, yüksek)
-3:38.7  muzik/keman_A3               Keman grubu, A3
-3:45.5  muzik/cello_tremolo_D2       Çello tremolo, D2 (tehdit yaklaşıyor)
-3:52.3  muzik/korno_D2               Korno, D2 (destan, zafer)
-3:59.1  muzik/korno_A2               Korno, A2
+1:50.2  metal/ors_2                  Örs vuruşu, hafif
+1:53.2  metal/metal_vurus_1          Metal vuruş
+1:55.4  metal/metal_vurus_5          Metal vuruş 2
+1:57.2  metal/tas_surtunme           Taş sürtünmesi (sur, kale)
+1:59.1  can/kilise_cani_D3           Tüp çan, D3 (Bizans kilisesi, alarm)
+2:05.9  can/kilise_cani_C3           Tüp çan, C3
+2:12.7  ritim/darbuka_dum            Darbuka 1
+2:14.7  ritim/darbuka_2              Darbuka 2
+2:15.9  ritim/darbuka_3              Darbuka 3
+2:17.1  ritim/darbuka_4              Darbuka 4
+2:18.6  ritim/def_buyuk              Büyük def vuruşu (Anadolu rengi)
+2:21.1  ritim/def_kucuk              Küçük def vuruşu
+2:23.3  ritim/def_boguk              Def, boğuk
+2:24.7  ritim/def_rulo               Çerçeve davul rulosu
+2:31.5  ritim/trampet_askeri         Askerî trampet ve tenor davul
+2:33.1  doga/deniz_1                 Dalga sesi (ocean drum)
+2:39.9  doga/deniz_2                 Dalga sesi 2
+2:46.7  doga/ortam_1                 Ortam kaydı (incelenecek)
+2:53.5  doku/fx_uzun_1               Nepal çanları, uzun tını
+3:00.3  doku/fx_uzun_2               Nepal çanları, uzun tını 2
+3:07.1  doku/kadeh_D#4               Kadeh tınısı (rivayet, rüya anları)
+3:13.9  muzik/cello_D2               Çello grubu, D2 (karanlık zemin)
+3:20.7  muzik/cello_A2               Çello grubu, A2
+3:27.5  muzik/kontrbas_D1            Kontrbas, D1 (çok alçak zemin)
+3:34.3  muzik/keman_D5               Keman grubu, D5 (gerilim, yüksek)
+3:41.1  muzik/keman_A3               Keman grubu, A3
+3:47.9  muzik/cello_tremolo_D2       Çello tremolo, D2 (tehdit yaklaşıyor)
+3:54.7  muzik/korno_D2               Korno, D2 (destan, zafer)
+4:01.5  muzik/korno_A2               Korno, A2

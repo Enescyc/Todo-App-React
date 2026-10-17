@@ -6,6 +6,8 @@
   "kanal": 2,
   "rms_db": -29.7,
   "aciklama": "Alçak timpani vuruşu (sahne vurgusu)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Timpani 2/Hit/Timpani1A_hit_v5_rr1_main.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -17,6 +19,8 @@
   "kanal": 2,
   "rms_db": -16.7,
   "aciklama": "Timpani rulosu (gerilim, giriş)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Percussion/Timpani/Rolls/Timpani1_Roll_v5_rr1_Sum.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -28,6 +32,8 @@
   "kanal": 2,
   "rms_db": -19.8,
   "aciklama": "Timpani rulosu, ikinci perde",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Percussion/Timpani/Rolls/Timpani3_Roll_v5_rr1_Sum.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -39,6 +45,8 @@
   "kanal": 2,
   "rms_db": -25.4,
   "aciklama": "Büyük davul, güçlü (kös yerine)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -50,6 +58,8 @@
   "kanal": 2,
   "rms_db": -23.5,
   "aciklama": "Büyük davul, orta",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_mf1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -61,6 +71,8 @@
   "kanal": 2,
   "rms_db": -18.8,
   "aciklama": "Büyük davul kresendosu (deprem gürlemesi, yükselen gerilim)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_cresc_med.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -72,6 +84,8 @@
   "kanal": 2,
   "rms_db": -24.0,
   "aciklama": "Gong, çok güçlü (büyük dönüm noktası)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Gong 1/gong_fff.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -83,6 +97,8 @@
   "kanal": 2,
   "rms_db": -18.1,
   "aciklama": "Gong, orta",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Gong 1/gong_mf.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -92,8 +108,10 @@
   "dosya": "vurus/zil_timpani.flac",
   "sure": 0.79,
   "kanal": 2,
-  "rms_db": -21.3,
+  "rms_db": -21.6,
   "aciklama": "Zil ve timpani birleşik sinematik vuruş",
+  "tiz_kisma_db": -16.5,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/cymb_timp.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -105,6 +123,8 @@
   "kanal": 2,
   "rms_db": -21.9,
   "aciklama": "Zil ve gong birleşik vuruş",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/cymb_gong.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -114,8 +134,10 @@
   "dosya": "vurus/zil_crash.flac",
   "sure": 13.23,
   "kanal": 2,
-  "rms_db": -32.2,
+  "rms_db": -29.6,
   "aciklama": "Çarpma zili",
+  "tiz_kisma_db": -13.5,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Clash Cymbals 1/cymbal_crash1_ff2.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -125,8 +147,10 @@
   "dosya": "gecis/zil_kresendo_2s.flac",
   "sure": 9.79,
   "kanal": 2,
-  "rms_db": -23.0,
+  "rms_db": -21.6,
   "aciklama": "Yükselen zil, 2 sn (kısa geçiş)",
+  "tiz_kisma_db": -13.5,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_2s.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -136,8 +160,10 @@
   "dosya": "gecis/zil_kresendo_4s.flac",
   "sure": 11.23,
   "kanal": 2,
-  "rms_db": -23.2,
+  "rms_db": -22.8,
   "aciklama": "Yükselen zil, 4 sn",
+  "tiz_kisma_db": -9.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_4s.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -149,6 +175,8 @@
   "kanal": 2,
   "rms_db": -22.7,
   "aciklama": "Yükselen zil, 7.5 sn (büyük doruk öncesi)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_7.5s.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -158,8 +186,10 @@
   "dosya": "gecis/zil_yay.flac",
   "sure": 8.24,
   "kanal": 2,
-  "rms_db": -19.2,
+  "rms_db": -19.1,
   "aciklama": "Yayla çalınan zil (ürkütücü, gizem)",
+  "tiz_kisma_db": -4.5,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_bow_13.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -169,8 +199,10 @@
   "dosya": "gecis/gong_suruntu.flac",
   "sure": 9.57,
   "kanal": 2,
-  "rms_db": -25.6,
+  "rms_db": -24.0,
   "aciklama": "Gong sürtme (karanlık geçiş)",
+  "tiz_kisma_db": -4.5,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Gong 1/gong_scrape_mf.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -180,8 +212,10 @@
   "dosya": "metal/zincir_surtunme.flac",
   "sure": 0.99,
   "kanal": 2,
-  "rms_db": -18.2,
+  "rms_db": -19.3,
   "aciklama": "Zincir sürtünmesi",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/chain_grind.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -191,8 +225,10 @@
   "dosya": "metal/zincir_dongu.flac",
   "sure": 2.26,
   "kanal": 2,
-  "rms_db": -20.4,
+  "rms_db": -18.2,
   "aciklama": "Zincir hareketi (döngü)",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/chain_loop.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -200,10 +236,12 @@
  {
   "id": "metal/ors_1",
   "dosya": "metal/ors_1.flac",
-  "sure": 1.18,
+  "sure": 2.37,
   "kanal": 2,
-  "rms_db": -22.0,
+  "rms_db": -24.6,
   "aciklama": "Örs vuruşu (kılıç ve demir)",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 1,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Anvil/Anvil_Hit1_v3_rr1_Mid.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -211,10 +249,12 @@
  {
   "id": "metal/ors_2",
   "dosya": "metal/ors_2.flac",
-  "sure": 1.14,
+  "sure": 2.28,
   "kanal": 2,
-  "rms_db": -23.6,
+  "rms_db": -23.5,
   "aciklama": "Örs vuruşu, hafif",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 1,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Anvil/Anvil_Hit2_v2_rr1_Mid.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -224,8 +264,10 @@
   "dosya": "metal/metal_vurus_1.flac",
   "sure": 1.33,
   "kanal": 2,
-  "rms_db": -21.5,
+  "rms_db": -21.1,
   "aciklama": "Metal vuruş",
+  "tiz_kisma_db": -3.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/metal_hit1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -235,8 +277,10 @@
   "dosya": "metal/metal_vurus_5.flac",
   "sure": 1.01,
   "kanal": 2,
-  "rms_db": -23.5,
+  "rms_db": -23.4,
   "aciklama": "Metal vuruş 2",
+  "tiz_kisma_db": -4.5,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/metal_hit5.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -246,8 +290,10 @@
   "dosya": "metal/tas_surtunme.flac",
   "sure": 1.14,
   "kanal": 2,
-  "rms_db": -15.6,
+  "rms_db": -14.8,
   "aciklama": "Taş sürtünmesi (sur, kale)",
+  "tiz_kisma_db": -6.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/brick_scrape.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -259,6 +305,8 @@
   "kanal": 2,
   "rms_db": -29.2,
   "aciklama": "Tüp çan, D3 (Bizans kilisesi, alarm)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Tubular Bells 1/chimes_D3_ff_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -270,6 +318,8 @@
   "kanal": 2,
   "rms_db": -25.2,
   "aciklama": "Tüp çan, C3",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Struck Idiophones/Tubular Bells 1/chimes_C3_f_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -281,6 +331,8 @@
   "kanal": 2,
   "rms_db": -20.1,
   "aciklama": "Darbuka 1",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Darbuka/Darbuka_1_hit_vl2_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -292,6 +344,8 @@
   "kanal": 2,
   "rms_db": -23.3,
   "aciklama": "Darbuka 2",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Darbuka/Darbuka_2_hit_vl2_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -303,6 +357,8 @@
   "kanal": 2,
   "rms_db": -25.0,
   "aciklama": "Darbuka 3",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Darbuka/Darbuka_3_hit_vl2_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -314,6 +370,8 @@
   "kanal": 2,
   "rms_db": -25.2,
   "aciklama": "Darbuka 4",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Darbuka/Darbuka_4_hit_vl2_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -325,6 +383,8 @@
   "kanal": 2,
   "rms_db": -21.5,
   "aciklama": "Büyük def vuruşu (Anadolu rengi)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Frame Drum/HDrumL_Hit_v3_rr1_Sum.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -336,6 +396,8 @@
   "kanal": 2,
   "rms_db": -26.4,
   "aciklama": "Küçük def vuruşu",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Frame Drum/HDrumS_Hit_v3_rr1_Sum.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -347,6 +409,8 @@
   "kanal": 2,
   "rms_db": -26.2,
   "aciklama": "Def, boğuk",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Struck Membranophones/Frame Drum/HDrumL_HitMuted_v3_rr1_Sum.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -356,8 +420,10 @@
   "dosya": "ritim/def_rulo.flac",
   "sure": 13.15,
   "kanal": 2,
-  "rms_db": -25.0,
+  "rms_db": -21.9,
   "aciklama": "Çerçeve davul rulosu",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 2/rtomtomframe_roll.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -369,6 +435,8 @@
   "kanal": 2,
   "rms_db": -22.4,
   "aciklama": "Askerî trampet ve tenor davul",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/timpsnare_tenor_ff.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -378,8 +446,10 @@
   "dosya": "doga/deniz_1.flac",
   "sure": 14.0,
   "kanal": 2,
-  "rms_db": -16.6,
+  "rms_db": -16.5,
   "aciklama": "Dalga sesi (ocean drum)",
+  "tiz_kisma_db": -4.5,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Other Membranophones/Ocean Drum/OceanDrum_Sus_1_Mid.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -389,8 +459,10 @@
   "dosya": "doga/deniz_2.flac",
   "sure": 14.0,
   "kanal": 2,
-  "rms_db": -18.2,
+  "rms_db": -17.9,
   "aciklama": "Dalga sesi 2",
+  "tiz_kisma_db": -4.5,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Membranophones/Other Membranophones/Ocean Drum/OceanDrum_Sus_2_Mid.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -402,6 +474,8 @@
   "kanal": 2,
   "rms_db": -21.6,
   "aciklama": "Ortam kaydı (incelenecek)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 1/ambience1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -411,8 +485,10 @@
   "dosya": "doku/fx_uzun_1.flac",
   "sure": 14.0,
   "kanal": 2,
-  "rms_db": -24.2,
+  "rms_db": -21.8,
   "aciklama": "Nepal çanları, uzun tını",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 1,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 2/NepaleseBells/fx_long_1_main.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -422,8 +498,10 @@
   "dosya": "doku/fx_uzun_2.flac",
   "sure": 14.0,
   "kanal": 2,
-  "rms_db": -27.6,
+  "rms_db": -23.6,
   "aciklama": "Nepal çanları, uzun tını 2",
+  "tiz_kisma_db": -18.0,
+  "oktav_pes": 1,
   "kaynak": "VSCO-2-CE: Miscellania Raw/Misc 2/NepaleseBells/fx_long2_main.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -435,6 +513,8 @@
   "kanal": 2,
   "rms_db": -15.1,
   "aciklama": "Kadeh tınısı (rivayet, rüya anları)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VCSL: Idiophones/Friction Idiophones/Wine Glasses/Sustains/Slow/glass1_D#4_Slow_1_Main.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VCSL"
@@ -446,6 +526,8 @@
   "kanal": 2,
   "rms_db": -14.0,
   "aciklama": "Çello grubu, D2 (karanlık zemin)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Strings/Cello Section/susvib/susvib_D2_v3_1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -457,6 +539,8 @@
   "kanal": 2,
   "rms_db": -15.1,
   "aciklama": "Çello grubu, A2",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Strings/Cello Section/susvib/susvib_A2_v3_1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -468,6 +552,8 @@
   "kanal": 2,
   "rms_db": -11.0,
   "aciklama": "Kontrbas, D1 (çok alçak zemin)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_D1_v3_rr1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -479,6 +565,8 @@
   "kanal": 2,
   "rms_db": -15.8,
   "aciklama": "Keman grubu, D5 (gerilim, yüksek)",
+  "tiz_kisma_db": -1.5,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -490,6 +578,8 @@
   "kanal": 2,
   "rms_db": -14.4,
   "aciklama": "Keman grubu, A3",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -501,6 +591,8 @@
   "kanal": 2,
   "rms_db": -19.9,
   "aciklama": "Çello tremolo, D2 (tehdit yaklaşıyor)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Strings/Cello Section/trem/trem_D2_v2_1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -512,6 +604,8 @@
   "kanal": 2,
   "rms_db": -10.4,
   "aciklama": "Korno, D2 (destan, zafer)",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Brass/F Horn/sus/MOHorn_sus_D2_v2_1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"
@@ -523,6 +617,8 @@
   "kanal": 2,
   "rms_db": -9.2,
   "aciklama": "Korno, A2",
+  "tiz_kisma_db": 0.0,
+  "oktav_pes": 0,
   "kaynak": "VSCO-2-CE: Brass/F Horn/sus/MOHorn_sus_A2_v2_1.wav",
   "lisans": "CC0 1.0 (kamu malı)",
   "repo": "https://github.com/sgossner/VSCO-2-CE"

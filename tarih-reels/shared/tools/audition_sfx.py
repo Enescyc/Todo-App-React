@@ -38,12 +38,20 @@ put("gecis/zil_yay", 5, .25, 6, fin=1.5, fout=2)
 put("muzik/cello_tremolo_D2", 8, .3, 6, fin=1, fout=1.5)                           # tehdit yaklaşıyor
 for k, tt in enumerate(np.arange(9.5, 15.5, .6)):                                  # def ve darbuka: Osmanlı ritmi
     put("ritim/def_buyuk" if k % 4 == 0 else ("ritim/darbuka_dum" if k % 2 == 0 else "ritim/darbuka_3"), tt, 1.0 + .3 * (k % 4 == 0), 1.2)
-put("metal/zincir_surtunme", 12.4, .5)                                             # zincir
+put("metal/zincir_surtunme", 12.6, .4, fin=.06)                                             # zincir
 put("gecis/zil_kresendo_4s", 12.0, .7, fout=.05)                                   # yükselen zil → doruk
 put("vurus/zil_gong", 15.9, 1.3); put("vurus/buyuk_davul_ff", 15.9, 2.2, 6); put("vurus/timpani_alcak", 15.9, 1.8)
 put("muzik/korno_D2", 16.4, .2, 12, fin=1.2, fout=3); put("muzik/korno_A2", 17.4, .15, 11, fin=1.5, fout=3)   # destan teması
 put("muzik/cello_D2", 16, .2, 13, fin=.8, fout=3); put("muzik/keman_A3", 18, .15, 10, fin=1.5, fout=3)
 put("vurus/timpani_rulo", 21, .5, 6, fin=1, fout=.05); put("vurus/gong_mf", 27, 1.0, 3)
+# ortak oda: hafif yankı (tüm sesler aynı mekânda) + genel tiz yumuşatma (7 kHz üstü -4 dB)
+rng = np.random.default_rng(7); ir_t = np.arange(int(1.8 * SR)) / SR
+ir = rng.standard_normal((len(ir_t), 2)) * np.exp(-ir_t * 3.2)[:, None]; ir[0] = 0
+n = 1 << (len(mix) + len(ir)).bit_length()
+wet = np.stack([np.fft.irfft(np.fft.rfft(mix[:, c], n) * np.fft.rfft(ir[:, c], n), n)[: len(mix)] for c in range(2)], 1)
+mix = mix + wet / np.abs(wet).max() * np.abs(mix).max() * .18
+F = np.fft.rfftfreq(len(mix), 1 / SR); shelf = 10 ** (-4 * np.clip(np.log2(np.maximum(F, 1) / 7000), 0, 1) / 20)
+mix = np.fft.irfft(np.fft.rfft(mix, axis=0) * shelf[:, None], len(mix), axis=0)
 mix = np.tanh(mix / np.abs(mix).max() * 2.4) * .9
 f = int(2 * SR); mix[-f:] *= np.linspace(1, 0, f)[:, None]
 write(mix, "2-demo-miks.mp3"); print("hazır:", OUT)
