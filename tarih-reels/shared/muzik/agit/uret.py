@@ -454,10 +454,10 @@ def main():
         fb = hz(bas)
         if bas == "D2":
             y = nota(kb_D, fb, d, att=1.2, rel=1.6, bas=.4)
-            zem.ekle(t0, lp(hp(y, 40, 3), 900), .34)
+            zem.ekle(t0, lp(hp(y, 40, 3), 900), .29)
         else:
             y = nota(en_yakin(kb, fb), fb, d, att=1.0, rel=1.6, bas=.4)
-            zem.ekle(t0, lp(hp(y, 40, 3), 900), .40)
+            zem.ekle(t0, lp(hp(y, 40, 3), 900), .34)
         for k, s in enumerate(ust):
             f = hz(s); o = en_yakin(cello_v1, f)
             y = nota(o, f, d, att=1.3 + .25 * k, rel=1.8, bas=.3 + .2 * k)
