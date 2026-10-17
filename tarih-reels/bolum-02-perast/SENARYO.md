@@ -1,85 +1,91 @@
-# Bölüm 2 – "Osmanlı'nın Alamadığı Kasaba: Peraşt" (hedef 38–40 sn)
+# Bölüm 2 – "Osmanlı'nın Alamadığı Kasaba: Peraşt" (hedef ~70–75 sn)
 
 ## Geçen bölümden alınan dersler → bu bölümde düzeltmeler
 | Geçen sefer | Bu sefer |
 |---|---|
-| Ses 47.6 sn geldi, %15 hızlandırmak zorunda kaldık | **86 kelime** (≈2.2 kelime/sn ile ~39 sn). Her satır için hedef süre verildi |
-| Ses tek dosyaydı; satırlar sessizlik tahminiyle eşlendi | **Satır satır 12 dosya** (01–12.mp3) → kesin senkron, tahmin yok |
-| Anlatım olay listesi gibiydi ("70 gemi… zincir… plan…") | **Tek bir soru** hikâyeyi taşıyor: *"Neden alamadı?"* Karşı karşıya iki taraf (Peraştlılar ↔ Mehmed Ağa), bir dönüm noktası, bir sonuç ve açık bırakılan bir merak kancası |
+| Ses 47.6 sn geldi, %15 hızlandırmak zorunda kaldık | Süre baştan planlandı: **168 kelime ≈ 70–75 sn**, hızlandırma yok |
+| Ses tek dosyaydı; satırlar sessizlik tahminiyle eşlendi | **6 paragraf = 6 dosya** (p1–p6.mp3): paragraf içinde doğal akış, paragraflar arasında kesin senkron |
+| Anlatım olay listesi gibiydi; kısa, kopuk cümleler ve fazla "…" / etiket akışı bölüyordu | **Akan belgesel anlatımı**: cümleler bağlaçlarla birbirine bağlanıyor ("Çünkü…", "Ve…", "Ama…"), etiket yalnızca paragraf başında. **Tek bir soru** hikâyeyi taşıyor: *"Neden alamadı?"* Karşı karşıya iki taraf (Peraştlılar ↔ Mehmed Ağa), bir dönüm noktası, bir sonuç ve açık bırakılan bir merak kancası |
 | Doğrulanmamış ayrıntı riski | Çelişkili rakamlar temkinli söyleniyor ("altı bine yakın", "yüz kişiyi bile bulmayan"); doğrulanamayan "tek kurşun / müzedeki tüfek" çıkarıldı |
 | Portre (Fatih) "mantar" gibi göründü | Gerçekçi portre yok: **sembol** kullanılıyor (tuğlu sancak, Venedik aslanı, çan kulesi) |
 | Gece sahnesi kalabalık ve karanlıktı | **Her sahnede tek odak noktası**; telefonda okunur büyük formlar; ışık daha parlak |
-| Altyazı kelime gruplarında tuhaf bölünmeler ("ASKER,") | Altyazı grupları **senaryoda elle** belirlendi (aşağıda `/` ile) |
+| Altyazı kelime gruplarında tuhaf bölünmeler ("ASKER,") | Altyazı anlam bütünlüğüne göre gruplanır: önce virgül ve noktaya göre bölünür, grup başına en çok 4 kelime |
 | Altyazı Instagram arayüzüne yakındı | Altyazı **y≈1350**'de; alt %18'lik şerit ve sağdaki buton sütunu boş bırakıldı |
 
 ---
 
-## Anlatım metni (yalın sürüm + altyazı grupları)
-`/` = altyazı grubu sınırı · hedef süreler toplamı ≈ 38 sn
+## Anlatım metni (akan sürüm, 6 paragraf)
 
-| # | Hedef | Metin |
-|---|---|---|
-| 01 | 4.0 sn | Osmanlı, Karadağ'ı / yüzyıllarca yönetti. / Ama bu küçük kasabayı... / asla alamadı. |
-| 02 | 3.6 sn | Kotor Körfezi / ikiye bölünmüştü: / girişi Osmanlı'da... / içi Venedik'te. |
-| 03 | 2.8 sn | Ve tam ortada, / denizcilerin kasabası / Peraşt vardı. |
-| 04 | 3.0 sn | Peraştlılar, Osmanlı'yı / komşu Risan'dan / söküp attı. |
-| 05 | 2.8 sn | Cevap, / bin altı yüz elli dört / baharında geldi. |
-| 06 | 4.0 sn | Risan'ın sürgündeki dizdarı / Mehmed Ağa, / altı bine yakın askerle / yürüdü. |
-| 07 | 3.0 sn | Karşısında... / yüz kişiyi bile bulmayan / bir savunma. |
-| 08 | 2.6 sn | Evler yanıyordu. / Kasaba / düşmek üzereydi. |
-| 09 | 2.4 sn | Ve sonra... / Mehmed Ağa / vuruldu. |
-| 10 | 2.6 sn | Komutanını kaybeden ordu / geri çekildi. |
-| 11 | 4.6 sn | Peraşt düşmedi. / Otuz üç yıl sonra / Osmanlı, körfezden / tamamen çekildi. |
-| 12 | 2.6 sn | Peki dağlardaki Karadağlılar? / Sıradaki bölümde. |
+**1 · Kanca** (~9 sn)
+Osmanlı, Karadağ'ı dört asra yakın yönetti. Ama Kotor Körfezi'nin kıyısında, gözünün önünde duran küçücük bir kasaba, hiçbir zaman Osmanlı'nın olmadı. Adı Peraşt'tı.
+
+**2 · Bölünmüş körfez** (~13 sn)
+Çünkü körfez ikiye bölünmüştü: denize açılan girişini bin dört yüz seksen ikiden beri Osmanlı tutuyordu, dağların arasına sokulan iç sularıysa Venedik'in elindeydi. Peraşt, tam bu sınırın üzerinde, denizcileriyle ünlü bir Venedik kasabasıydı.
+
+**3 · Kıvılcım** (~9 sn)
+Ve Peraştlılar yalnızca savunmakla yetinmedi. Bin altı yüz kırk sekizde, komşu Risan'daki Osmanlı garnizonunu oradan söküp attılar. Bunun cevapsız kalmayacağını herkes biliyordu.
+
+**4 · Saldırı** (~16 sn)
+On beş Mayıs, bin altı yüz elli dört. Risan'dan sürülen dizdar Mehmed Ağa, altı bine yakın askerle Peraşt'a yürüdü. Karşısında yüz kişiyi bile bulmayan bir savunma vardı. Saldırganlar sokaklara girdi, evler alev aldı ve kasaba düşmenin eşiğine geldi.
+
+**5 · Dönüm noktası** (~11 sn)
+Ama savaşın en kızgın anında Mehmed Ağa vuruldu. Komutanını kaybeden ordu geri çekildi ve Peraşt ayakta kaldı. Otuz üç yıl sonra ise Osmanlı, Kotor Körfezi'nden tamamen çekilecekti.
+
+**6 · Kapanış + merak kancası** (~11 sn)
+Peraştlılar o günü bugün hâlâ her on beş Mayıs'ta kutluyor. Peki, Osmanlı'nın yönettiği ama hiçbir zaman tam olarak boyun eğdiremediği Karadağ dağları? Onların hikâyesi, bir sonraki bölümde.
+
+> Doğruluk notu: "1648" kaynaklarda "1648–49"; "yüz kişiyi bile bulmayan" en yüksek tahmin (~100) baz alınarak; "evler alev aldı" yerel anlatıma dayanır; "1687 körfezden çekiliş" = Venedik'in Herceg Novi'yi alması. Ayrıntılar: ARASTIRMA.md
 
 ---
 
-## ElevenLabs – Eleven v3 (önerilen)
-**Ayarlar:** önceki ses ("Deniz S. – Bass-Baritone"), Stability **Natural**, Speed **1.0**.
-**Önemli:** Her satırı **ayrı üretin** ve `01.mp3` … `12.mp3` olarak kaydedin. Bir satır hedef süreden 0.5 sn'den fazla uzun çıkarsa o satırı yeniden üretin ya da Speed'i 1.05 yapın.
+## ElevenLabs – Eleven v3
+**Ayarlar:** aynı ses ("Deniz S. – Bass-Baritone"), Stability **Natural**, Speed **1.0**.
+**Her paragrafı ayrı üretin:** `p1.mp3` … `p6.mp3`. Etiket yalnızca paragraf başında; cümle içinde "…" yok. Böylece okuma akıcı kalır.
 
 ```
-01  [calm, intriguing] Osmanlı, Karadağ'ı yüzyıllarca yönetti. [short pause] Ama bu küçük kasabayı... [emphasized] asla alamadı.
-02  [storytelling] Kotor Körfezi ikiye bölünmüştü: girişi Osmanlı'da... içi Venedik'te.
-03  [warm] Ve tam ortada, denizcilerin kasabası... Peraşt vardı.
-04  [bold] Peraştlılar, Osmanlı'yı komşu Risan'dan söküp attı.
-05  [ominous] Cevap... bin altı yüz elli dört baharında geldi.
-06  [serious, building] Risan'ın sürgündeki dizdarı Mehmed Ağa, altı bine yakın askerle yürüdü.
-07  [low] Karşısında... yüz kişiyi bile bulmayan bir savunma.
-08  [tense, urgent] Evler yanıyordu. Kasaba düşmek üzereydi.
-09  [whispers] Ve sonra... [dramatic] Mehmed Ağa vuruldu.
-10  [serious] Komutanını kaybeden ordu, geri çekildi.
-11  [proud, slow] Peraşt düşmedi. [short pause] Otuz üç yıl sonra Osmanlı, körfezden tamamen çekildi.
-12  [curious] Peki dağlardaki Karadağlılar? [short pause] Sıradaki bölümde.
-```
+p1  [calm, storytelling] Osmanlı, Karadağ'ı dört asra yakın yönetti. Ama Kotor Körfezi'nin kıyısında, gözünün önünde duran küçücük bir kasaba, hiçbir zaman Osmanlı'nın olmadı. Adı Peraşt'tı.
 
-## ElevenLabs – Multilingual v2 (alternatif)
-Stability 0.35 · Similarity 0.80 · Style 0.40 · Speaker Boost açık. Yine satır satır üretin. Satır içi duraklama: `<break time="0.3s" />`.
+p2  [storytelling] Çünkü körfez ikiye bölünmüştü: denize açılan girişini bin dört yüz seksen ikiden beri Osmanlı tutuyordu, dağların arasına sokulan iç sularıysa Venedik'in elindeydi. Peraşt, tam bu sınırın üzerinde, denizcileriyle ünlü bir Venedik kasabasıydı.
+
+p3  [storytelling, slightly tense] Ve Peraştlılar yalnızca savunmakla yetinmedi. Bin altı yüz kırk sekizde, komşu Risan'daki Osmanlı garnizonunu oradan söküp attılar. Bunun cevapsız kalmayacağını herkes biliyordu.
+
+p4  [serious, building tension] On beş Mayıs, bin altı yüz elli dört. Risan'dan sürülen dizdar Mehmed Ağa, altı bine yakın askerle Peraşt'a yürüdü. Karşısında yüz kişiyi bile bulmayan bir savunma vardı. Saldırganlar sokaklara girdi, evler alev aldı ve kasaba düşmenin eşiğine geldi.
+
+p5  [dramatic, then calm] Ama savaşın en kızgın anında Mehmed Ağa vuruldu. Komutanını kaybeden ordu geri çekildi ve Peraşt ayakta kaldı. Otuz üç yıl sonra ise Osmanlı, Kotor Körfezi'nden tamamen çekilecekti.
+
+p6  [reflective, curious] Peraştlılar o günü bugün hâlâ her on beş Mayıs'ta kutluyor. Peki, Osmanlı'nın yönettiği ama hiçbir zaman tam olarak boyun eğdiremediği Karadağ dağları? Onların hikâyesi, bir sonraki bölümde.
+```
+Multilingual v2 kullanılırsa: etiketleri silin, aynı metni aynı paragraf bölümüyle üretin.
 
 ---
 
 ## Sahne planı (storyboard)
-Sesin gerçek süresi gelince saniyeler yeniden ayarlanacak; sahneler satırlara bağlı.
+Paragraf süreleri ses gelince kesinleşecek; sahneler cümlelere bağlı. Geçişler sert kesme değil, **kamera hareketiyle akar** (harita ↔ sahne geçişleri zoom ile).
 
-| Sahne | Satır | ~Zaman | Görsel | Ekran yazısı | Ses / müzik |
-|---|---|---|---|---|---|
-| **1 · Kanca** | 01 | 0–4 | Gece, alçak açı. Körfezin suyunda yansıyan Peraşt silüeti: **çan kulesi**, iki adacık (kubbeli kilise + selvili ada), arkada dik dağ. Kamera yavaşça yaklaşır. "asla alamadı" sözünde kasabanın üstüne **kırmızı bir harita iğnesi** düşer | `OSMANLI'NIN ALAMADIĞI KASABA` | Düşük drone sesi, tek kös vuruşu "asla"da |
-| **2 · Karadağ haritası** | 01 sonu–02 | 4–8 | Balkanlar haritası, Karadağ **kırmızıya** boyanır, damga `1496–1878`. Kamera Kotor Körfezi'ne dalar. Körfez ikiye ayrılır: giriş (Herceg Novi, Risan) **kırmızı + hilal**, iç kısım (Kotor, Peraşt) **altın + Venedik aslanı** | `OSMANLI` / `VENEDİK` | Kâğıt hışırtısı, "whoosh" |
-| **3 · Peraşt** | 03 | 8–11 | Haritada Peraşt'a yakın plan, **Verige Boğazı** (en dar nokta) işaretli. Kesme: sabah ışığında Peraşt rıhtımı, yelkenli gemiler, çan kulesi | `PERAŞT · DENİZCİLER KASABASI` | Martı + deniz sesi, ud motifi |
-| **4 · Kıvılcım** | 04 | 11–14 | Harita: Peraşt'tan Risan'a altın ok. Risan'daki Osmanlı sancağı düşer, Venedik sancağı çıkar | `1648–49 · RİSAN` | Kısa davul geçişi |
-| **5 · Cevap** | 05–06 | 14–21 | Sinematik: şafak öncesi dağlar. Sırttan aşağı inen **meşale kolları** (ordu); önde tuğlu sancak, komutan siluetiyle. "altı bine yakın"da ekran ikiye bölünür: solda yüzlerce kırmızı nokta | `1654 BAHARI` → `MEHMED AĞA` | Mehter davulu başlar, giderek hızlanır |
-| **6 · Dengesizlik** | 07 | 21–24 | Bölünmüş ekranın sağında **avuç kadar altın nokta**. Rakamlar sayarak büyür: `~6.000` ↔ `~100` | `6.000 ↔ 100` | Davul susar, tek tel gerilimi |
-| **7 · Yangın** | 08 | 24–27 | Peraşt sokakları: turuncu ateş ışığı, duman, kıvılcımlar. **Çan kulesi alarm verir** (çan sallanır) | `KASABA DÜŞMEK ÜZERE` | Çan, ateş çıtırtısı, kalabalık uğultusu |
-| **8 · Dönüm noktası** | 09 | 27–30 | Ağır çekim: kuleden **tüfek parıltısı** (kan/şiddet gösterilmez), tuğlu sancak ağır çekimde yere düşer. Ekran bir an susar | `VURULDU` | Sessizlik → tek kös → reverb |
-| **9 · Geri çekilme** | 10 | 30–33 | Harita: kırmızı oklar dağlara doğru geri döner; yangınlar söner | — | Müzik açılır |
-| **10 · Sonuç** | 11 | 33–37 | Peraşt'a **"HİÇ DÜŞMEDİ"** mührü basılır. Zaman çizgisi `1654 → 1687`; körfezin girişi de altına döner (Osmanlı çekilir) | `PERAŞT HİÇ DÜŞMEDİ` · `1687` | Zafer akoru, zil |
-| **11 · Kanca / CTA** | 12 | 37–40 | Kamera körfezden yükselir, arkadaki **sisli Karadağ dağları**. Kart: `SIRADAKİ: Osmanlı ve Karadağ'ın dağları` + `TAKİP ET` | — | Müzik açık kalır (merak) |
+| Par. | Cümle / an | Görsel | Ekran yazısı | Ses |
+|---|---|---|---|---|
+| **1** | "dört asra yakın yönetti" | Balkanlar haritası; Karadağ kırmızıya boyanır | `1496 – 1878` | Düşük drone |
+| | "küçücük bir kasaba…" | Haritadan dalış → gece, suda yansıyan Peraşt: **çan kulesi**, iki adacık, dik dağ. Kamera yavaşça yaklaşır | — | Deniz, uzak çan |
+| | "Adı Peraşt'tı." | Kasabanın üstüne başlık iner | `PERAŞT` | Tek kös |
+| **2** | "körfez ikiye bölünmüştü" | Kamera yükselir → Kotor Körfezi haritası (gerçek biçim). Giriş (Herceg Novi, Risan) **kırmızı + hilal**, iç sular (Kotor) **altın + Venedik aslanı**; sınır çizgisi çizilir | `OSMANLI · 1482` / `VENEDİK` | Kâğıt, whoosh |
+| | "tam bu sınırın üzerinde" | Peraşt'a iğne; **Verige Boğazı** vurgulanır. Kesme: gündüz rıhtım, yelkenliler, kaptanlar | `DENİZCİLER KASABASI` | Martılar, ud motifi |
+| **3** | "yetinmedi… söküp attılar" | Harita: Peraşt'tan Risan'a altın ok; Risan'daki kırmızı sancak düşer | `1648 · RİSAN` | Davul vuruşu |
+| | "cevapsız kalmayacağını" | Dağların üstünde kararan gökyüzü, uzakta tek meşale | — | Gerilim teli |
+| **4** | "15 Mayıs 1654" | Tarih damgası | `15 MAYIS 1654` | Kös |
+| | "Mehmed Ağa… yürüdü" | Şafak öncesi dağ sırtından inen **meşale kolları**; önde **tuğlu sancak** (portre yok) | `MEHMED AĞA` | Mehter davulu başlar |
+| | "yüz kişiyi bile bulmayan" | Bölünmüş ekran: solda yüzlerce kırmızı nokta, sağda avuç kadar altın nokta; sayaç | `~6.000 ↔ ~100` | Davul durur, tek tel |
+| | "sokaklara girdi, evler alev aldı" | Peraşt sokakları, turuncu ateş, duman; **çan kulesi alarm verir** | `KASABA DÜŞMEK ÜZERE` | Çan, ateş, uğultu |
+| **5** | "Mehmed Ağa vuruldu" | Ağır çekim: kuleden tüfek parıltısı → tuğlu sancak düşer (kan yok) | — | Sessizlik → kös → reverb |
+| | "geri çekildi… ayakta kaldı" | Harita: kırmızı oklar dağlara döner; yangınlar söner, şafak | `PERAŞT DÜŞMEDİ` (mühür) | Müzik açılır |
+| | "Otuz üç yıl sonra" | Zaman çizgisi `1654 → 1687`; körfezin girişi de altına döner | `1687` | Zafer akoru |
+| **6** | "15 Mayıs'ta kutluyor" | Bugünkü Peraşt, gün batımı, rıhtımda bayrak/kutlama siluetleri, adacıklar | `HER 15 MAYIS` | Sıcak, sakin müzik |
+| | "Karadağ dağları?" | Kamera körfezden yükselir, sisli Karadağ dağları | `SIRADAKİ: KARADAĞ'IN DAĞLARI` + `TAKİP ET` | Açık kalan akor |
 
-### Görsel kurallar (bu bölüm için)
-- Renk kodu her yerde aynı: **Osmanlı = kırmızı**, **Venedik/Peraşt = altın**.
-- Harita doğruluğu: Kotor Körfezi'nin gerçek biçimi (Herceg Novi girişi → Kumbor → Tivat → **Verige** → iç körfezler: batıda **Risan**, güneydoğuda **Kotor**; Peraşt Verige'nin hemen içinde, kuzey kıyıda; iki adacık Peraşt'ın önünde).
-- Her sahnede tek odak noktası; büyük formlar; yazılar ekranın üst yarısında.
-- Şiddet sembolle anlatılır (düşen sancak, sönen ateş). Taraflardan biri küçümsenmez.
+### Görsel kurallar
+- Renk kodu: **Osmanlı = kırmızı**, **Venedik/Peraşt = altın**.
+- Harita doğruluğu: Herceg Novi girişi → Kumbor → Tivat → **Verige** → iç körfezler (batıda **Risan**, güneydoğuda **Kotor**). Peraşt Verige'nin hemen içinde, kuzey kıyıda; iki adacık önünde.
+- Her sahnede tek odak; büyük formlar; yazılar üst yarıda. Altyazı y≈1350, alt %18 ve sağ kenar boş.
+- Şiddet sembolle anlatılır; taraflardan biri küçümsenmez.
 
 ## Kaynaklar
 Ayrıntılı notlar ve bağlantılar: [ARASTIRMA.md](ARASTIRMA.md)
