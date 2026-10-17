@@ -48,18 +48,19 @@
   "sure": 5.2,
   "olcumler": {
    "rms_dbfs": -19.0,
-   "tepe_dbfs": -6.92,
+   "tepe_dbfs": -7.12,
    "kirpilma_ornek": 0,
-   "enerji_4k_ustu_oran": 0.0002,
-   "enerji_1k5_4k_oran": 0.0022,
-   "merkez_250ms_hz_ortanca": 316.9,
-   "merkez_sicrama_max_oktav": 0.681,
-   "merkez_sicrama_p95_oktav": 0.373,
+   "enerji_4k_ustu_oran": 0.0001,
+   "enerji_1k5_4k_oran": 0.0019,
+   "merkez_250ms_hz_ortanca": 327.5,
+   "merkez_sicrama_max_oktav": 0.197,
+   "merkez_sicrama_p95_oktav": 0.142,
    "merkez_sicrama_1oktav_ustu_sayi": 0,
-   "rms_1sn_max_adim_db": 15.27,
+   "rms_1sn_max_artis_db": 3.2,
+   "rms_1sn_max_azalis_db": 13.79,
    "rms_1sn_aralik_db": [
-    -32.2,
-    -15.0
+    -31.4,
+    -14.9
    ]
   }
  },
@@ -67,32 +68,33 @@
  "leitmotif": "tam ve açık: ney, 5–7. ölçüler (gövde 7.27–18.18 sn → tam miksde 12.73–23.64 sn); 9–11. ölçülerde süslü ikinci veriliş (A'da açık biter); 17–18. ölçülerde telli+ney parçalı",
  "olcumler": {
   "rms_dbfs": -20.0,
-  "tepe_dbfs": -4.57,
+  "tepe_dbfs": -4.77,
   "kirpilma_ornek": 0,
-  "enerji_4k_ustu_oran": 0.0037,
-  "enerji_1k5_4k_oran": 0.0456,
-  "merkez_250ms_hz_ortanca": 428.2,
-  "merkez_sicrama_max_oktav": 2.296,
-  "merkez_sicrama_p95_oktav": 1.199,
-  "merkez_sicrama_1oktav_ustu_sayi": 38,
-  "rms_1sn_max_adim_db": 11.67,
+  "enerji_4k_ustu_oran": 0.0001,
+  "enerji_1k5_4k_oran": 0.0092,
+  "merkez_250ms_hz_ortanca": 385.0,
+  "merkez_sicrama_max_oktav": 0.766,
+  "merkez_sicrama_p95_oktav": 0.554,
+  "merkez_sicrama_1oktav_ustu_sayi": 0,
+  "rms_1sn_max_artis_db": 5.13,
+  "rms_1sn_max_azalis_db": 11.09,
   "rms_1sn_aralik_db": [
-   -41.9,
-   -16.0
+   -42.3,
+   -16.1
   ],
   "dongu": {
    "bas_ornek": 240545,
    "son_ornek": 3447818,
-   "gecis_ornek_adimi": 0.003639,
-   "yerel_max_ornek_adimi": 0.014859,
-   "adim_orani": 0.245,
-   "rms_farki_db_250ms": -2.7,
-   "merkez_sicramasi_oktav": 0.604
+   "gecis_ornek_adimi": 0.005442,
+   "yerel_max_ornek_adimi": 0.017952,
+   "adim_orani": 0.303,
+   "rms_farki_db_250ms": -0.47,
+   "merkez_sicramasi_oktav": 0.075
   },
   "sinirlayici_max_kazanc_azaltma_db": 0.0,
   "katman_rms_dbfs": {
-   "zemin": -24.5,
-   "ritim": -38.11,
+   "zemin": -24.59,
+   "ritim": -37.96,
    "melodi": -22.01
   }
  },
@@ -109,7 +111,7 @@
    "repo": "https://github.com/sgossner/VSCO-2-CE"
   },
   {
-   "dosya": "VSCO-2-CE Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_D1_v1_rr1.wav",
+   "dosya": "VSCO-2-CE Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav",
    "lisans": "CC0 1.0",
    "repo": "https://github.com/sgossner/VSCO-2-CE"
   },
@@ -119,5 +121,5 @@
    "not": "ney (additive + perdeli nefes), ud/kopuz (Karplus-Strong), rüzgâr, oda yankısı"
   }
  ],
- "uretim_sn": 50.1
+ "uretim_sn": 46.5
 }

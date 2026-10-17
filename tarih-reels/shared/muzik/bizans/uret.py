@@ -543,7 +543,7 @@ def main():
         "donem": [1, 2],
         "ton_makam": "Re (Pa) üzerinde ison; Bizans 1. echos'una (Echos protos, diyatonik, Chrysanthine aralıklarına yaklaşık) yaklaşım; 37–49. sn'de (döngü içi) kısa Hicaz başı = leitmotif iması (Mi♭ +15, Fa♯ −15 sent)",
         "bpm": "serbest (psaltiki; hece birimi ≈ 0.5–0.9 sn, ♩≈60–66 hissi)", "usul_olcu": "serbest ritim (ölçüsüz)",
-        "sure": round(len(tam) / SR, 2), "dongu": dongu,
+        "sure": round(len(tam) / SR, 2), "dongu": dongu, "dongu_ornek": [NG, NG + ND], "ornek_hizi": SR,
         "katmanlar": [{"ad": "zemin", "dosya": f"out/{ID}__zemin.flac", "icerik": "ison korosu (Re2+Re3, formant sentezi) + çok hafif çello/kontrbas Re"},
                       {"ad": "ritim", "dosya": f"out/{ID}__ritim.flac", "icerik": "vuruş YOK; seyrek uzak kilise çanları (döngüde 3 vuruş + kapanışta 1)"},
                       {"ad": "melodi", "dosya": f"out/{ID}__melodi.flac", "icerik": "tek sesli psaltis (sentez bariton), 1. echos + leitmotif iması"},

@@ -1,0 +1,110 @@
+{
+ "id": "rivayet",
+ "ad": "Rivayet / Rüya / Efsane",
+ "tarz": "rüya, gizem, zamansızlık; ritimsiz doku (kadeh dronu, fısıltı havası, alçak Nepal çanları), uzak ney benzeri taksim, tek başına leitmotif (el çanları)",
+ "kullanim": [
+  "Osman Bey'in rüyası",
+  "Bilecik düğün baskını rivayeti",
+  "demir kafes efsanesi",
+  "'RİVAYET' rozetli bütün anlar",
+  "'kaynaklar ne diyor?' sorgusu",
+  "geçmişe dönüş / rüyaya geçişler (vurgu dosyası)"
+ ],
+ "donem": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "ton_makam": "Re (D) merkez; Hicaz'a yaklaşım (D E♭ F♯ G A B♭ C, ney ve motifte E♭ +15 sent, F♯ −15 sent), dronlar Re–La boş beşli",
+ "bpm": 60,
+ "usul_olcu": "serbest zaman (ölçüsüz taksim); usul ve ritim yok – ♩=60 yalnız nominal",
+ "sure": 79.0,
+ "dongu": [
+  5.0,
+  73.0
+ ],
+ "dongu_ornek": [
+  220500,
+  3219300
+ ],
+ "katmanlar": [
+  {
+   "ad": "zemin",
+   "dosya": "out/rivayet__zemin.flac",
+   "icerik": "kadeh (cam sürtünme) dronu Re5/La4, fısıltı havası Re–La–Re, alçak kontrbas+çello dronu, alçaltılmış Nepal çanları"
+  },
+  {
+   "ad": "ritim",
+   "dosya": null,
+   "icerik": "YOK – bu tarz ritimsizdir; motor bu katmanı atlamalı"
+  },
+  {
+   "ad": "melodi",
+   "dosya": "out/rivayet__melodi.flac",
+   "icerik": "uzak ney benzeri taksim (5 cümle, Hicaz), rüya ortasında tek başına leitmotif (el çanları + cam hâlesi), seyrek flajole damlaları"
+  },
+  {
+   "ad": "vurgu",
+   "dosya": "out/rivayet__vurgu.flac",
+   "icerik": "5.2 sn rüyaya geçiş: ters şişen hava + kadeh → el çanı ikilisi Re4+La4 ve flajole"
+  }
+ ],
+ "ritim_katmani": false,
+ "yogunluk": "dusuk",
+ "leitmotif": "rüyanın ortasında (gövde 31.5–44 sn, tam dosyada 36.5–49 sn) tek başına, el çanlarıyla, uzun yankıyla: A4 B♭4 A4 G4 | F♯4 G4 E♭4 D4 (hafif rubato); bu sırada alçak dron ve fısıltı çekilir",
+ "olcumler": {
+  "rms_dbfs": -20.0,
+  "rms_govde_dbfs": -19.67,
+  "tepe_dbfs": -3.52,
+  "kirpilma_ornek": 0,
+  "tiz_4k_ustu_oran": 0.0,
+  "konusma_1k5_4k_oran": 0.0009,
+  "ortalama_spektral_merkez_hz": 370.6,
+  "merkez_sicrama_maks_oktav": 0.405,
+  "merkez_sicrama_p99_oktav": 0.291,
+  "merkez_aralik_hz": [
+   243,
+   469
+  ],
+  "dongu_rms_son250ms_dbfs": -20.3,
+  "dongu_rms_bas250ms_dbfs": -21.09,
+  "dongu_eklem_sicrama": 0.004995,
+  "dongu_tipik_ornek_farki_p99": 0.020097,
+  "dongu_eklem_merkez_sicrama_oktav": 0.084,
+  "lufs_entegre": -17.5,
+  "gercek_tepe_dbtp": -3.5,
+  "katman_toplami_hata_maks": 1.1102230246251565e-16,
+  "katman_rms_dbfs": {
+   "zemin": -22.42,
+   "melodi": -23.77
+  },
+  "vurgu": {
+   "sure_sn": 5.2,
+   "rms_dbfs": -19.72,
+   "tepe_dbfs": -6.3,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0
+  }
+ },
+ "kaynaklar": [
+  "shared/sfx · tarih-reels/shared/sfx/doku/kadeh_D#4.flac · CC0 1.0 (bkz. shared/sfx/katalog.json)",
+  "shared/sfx · tarih-reels/shared/sfx/doku/fx_uzun_1.flac · CC0 1.0 (bkz. shared/sfx/katalog.json)",
+  "shared/sfx · tarih-reels/shared/sfx/doku/fx_uzun_2.flac · CC0 1.0 (bkz. shared/sfx/katalog.json)",
+  "shared/sfx · tarih-reels/shared/sfx/muzik/kontrbas_D1.flac · CC0 1.0 (bkz. shared/sfx/katalog.json)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_D2_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Strings/Cello Section/susvib/susvib_A2_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_E3_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_A3_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_C4_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Idiophones/Struck Idiophones/Hand Chimes/sus_D3_r01_main.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Idiophones/Struck Idiophones/Hand Chimes/sus_E3_r01_main.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Idiophones/Struck Idiophones/Hand Chimes/sus_F#3_r01_main.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Idiophones/Struck Idiophones/Hand Chimes/sus_G#3_r01_main.wav · CC0 1.0 Universal (depodaki LICENSE)",
+  "https://github.com/sgossner/VCSL · Idiophones/Struck Idiophones/Hand Chimes/sus_A#3_r01_main.wav · CC0 1.0 Universal (depodaki LICENSE)"
+ ]
+}

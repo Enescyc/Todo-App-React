@@ -134,11 +134,27 @@ def _sk(k):   # genlik-tamamlayıcı geçiş (sin²) – hizalı (eş fazlı) ta
     return (np.sin(0.5 * np.pi * np.linspace(0, 1, max(k, 1))) ** 2)[:, None]
 
 
-def uzat(x, n, rng, xf=0.45, bas=0.8, son=0.6, ara=800):
+def kararli_bolge(x, esik_db=4.5, bas=0.6, son=0.6):
+    """Sürekli örnekte seviyesi ortancanın esik_db altına düşmeyen en uzun bölge (yay değişimi/çukurlardan kaçınır)."""
+    m = x.mean(1); W = int(0.1 * SR); k = len(m) // W
+    e = db(np.sqrt((m[:k * W].reshape(k, W) ** 2).mean(1)))
+    i0, i1 = int(bas * SR / W), k - int(son * SR / W)
+    ok = e[i0:i1] >= np.median(e[i0:i1]) - esik_db
+    en, cur, en_bas, cur_bas = 0, 0, i0, i0
+    for i, v in enumerate(ok):
+        if v:
+            if cur == 0: cur_bas = i0 + i
+            cur += 1
+            if cur > en: en, en_bas = cur, cur_bas
+        else: cur = 0
+    return en_bas * W, (en_bas + en) * W
+
+
+def uzat(x, n, rng, xf=0.3, bas=0.8, son=0.6, ara=800):
     """Sürekli bir sesi n örneğe uzatır: kararlı bölgeden faz hizalı taneler, kısa çapraz geçişler."""
     if len(x) >= n:
         return x[:n].copy()
-    X = int(xf * SR); K = 4096; s0 = int(min(bas * SR, len(x) * 0.25)) + ara; s1 = len(x) - int(son * SR) - ara
+    X = int(xf * SR); K = 4096; s0, s1 = kararli_bolge(x, bas=bas, son=son); s0 += ara; s1 -= ara
     out = np.zeros((n + len(x), x.shape[1]))
     out[:s1] = x[:s1]; out[s1 - X:s1] *= _sk(X)[::-1]
     pos, kaynak_son = s1 - X, s1
@@ -152,11 +168,11 @@ def uzat(x, n, rng, xf=0.45, bas=0.8, son=0.6, ara=800):
     return out[:n]
 
 
-def surekli_dongu(x, L, rng, xf=0.5, bas=1.0, son=0.6, ara=800):
+def surekli_dongu(x, L, rng, xf=0.25, bas=1.0, son=0.6, ara=800):
     """Periyodik (uzunluk L) sürekli ses: kararlı bölgeden faz hizalı taneler; sarma noktası da hizalanır
     (son tane gerekirse ≤ %0.3 yeniden örneklenir). Saldırı yok, çukur yok."""
     X = int(xf * SR); K = 4096
-    s0 = int(min(bas * SR, len(x) * 0.25)) + ara; s1 = len(x) - int(son * SR) - ara
+    s0, s1 = kararli_bolge(x, bas=bas, son=son); s0 += ara; s1 -= ara
     gmax = s1 - s0 - 2 * ara
     out = np.zeros((L + X + 8, x.shape[1])); pos = 0; o_ilk = None; kaynak_son = None
     while True:
@@ -179,7 +195,7 @@ def surekli_dongu(x, L, rng, xf=0.5, bas=1.0, son=0.6, ara=800):
         if bitti: break
         pos += glen - X; kaynak_son = o + glen
     P = out[:L].copy(); P[:X + 8] += out[L:L + X + 8]
-    return P
+    return np.roll(P, int(rng.integers(L)), axis=0)        # sarma noktaları sesler arasında ve döngü noktasında çakışmasın
 
 
 def _fft_filtre(x, kazanc, dongusel):
@@ -409,17 +425,19 @@ def sinirla(stems, tavan_db=-1.2):
 # =====================================================================================
 
 def ks_tel(f_hz, sure, rng, hiz=0.6, t60=None, konum=0.17, kay=None, c=0.24):
-    """Karplus–Strong tek tel (bloklu vektörel). kay=(f_bas, sn): tel f_bas'tan f_hz'e perdesiz kayar."""
+    """Karplus–Strong tek tel (bloklu vektörel). kay=(f_bas, sn[, bekle_sn]): tel f_bas'ta başlar, bekledikten sonra
+    f_hz'e perdesiz kayar (çarpma/çekme için kısa bekleme + hızlı kayma)."""
     n = int(sure * SR)
     if t60 is None:
         t60 = float(np.clip(2.4 - 0.55 * np.log2(f_hz / 110.0), 0.9, 2.8))
     fk = np.full(n, f_hz)
     if kay:
-        fb, ks_ = kay; r = np.clip((np.arange(n) - 0.035 * SR) / (ks_ * SR), 0, 1); r = r * r * (3 - 2 * r)
+        fb, ks_ = kay[0], kay[1]; bk = kay[2] if len(kay) > 2 else 0.035
+        r = np.clip((np.arange(n) - bk * SR) / (ks_ * SR), 0, 1); r = r * r * (3 - 2 * r)
         fk = 2 ** (np.log2(fb) + (np.log2(f_hz) - np.log2(fb)) * r)
     P0 = SR / fk[0]; m = int(P0)
     exc = rng.uniform(-1, 1, m)
-    fc = min(3000.0, fk[0] * (3.0 + 8.0 * hiz))             # mızrap parlaklığı: hızla artar, sıcak kalır
+    fc = min(2000.0, fk[0] * (2.2 + 5.0 * hiz))             # mızrap parlaklığı: hızla artar, sıcak kalır
     fe = np.fft.rfftfreq(m, 1 / SR); exc = np.fft.irfft(np.fft.rfft(exc) / np.sqrt(1 + (fe / fc) ** 4), m)
     d = max(1, int(konum * P0)); exc = exc - np.concatenate([np.zeros(d), exc[:-d]])
     exc -= exc.mean(); exc /= np.abs(exc).max() + 1e-9
@@ -499,7 +517,7 @@ def ney_cumle(notalar, vurus, rng, guc=1.0):
     fr = 2 ** (lf + (vib + dr) / 1200)
     ph = 2 * np.pi * np.cumsum(fr) / SR
     a_n = amp / max(amp.max(), 1e-9)
-    harm = [1.0, 0.30, 0.15, 0.065, 0.03, 0.012]
+    harm = [1.0, 0.36, 0.19, 0.09, 0.045, 0.02, 0.01]
     ton = sum(h * (0.55 + 0.45 * a_n) ** (i) * np.sin((i + 1) * ph + rng.uniform(0, 6.28)) for i, h in enumerate(harm))
     # perdeli nefes: dar bant gürültü × taşıyıcılar
     nb = suzgec(rng.standard_normal(n), lp=110, lp_d=2); nb /= np.sqrt((nb ** 2).mean()) + 1e-9
@@ -508,7 +526,7 @@ def ney_cumle(notalar, vurus, rng, guc=1.0):
     hava = suzgec(rng.standard_normal(n), lp=2600, hp=450, lp_d=2, hp_d=1); hava /= np.sqrt((hava ** 2).mean()) + 1e-9
     on_nefes = np.clip((t + ON) / ON, 0, 1) * (t < 0.05)
     y = amp * (ton + pnefes) + hava * (0.045 * amp + 0.10 * vurgu * (amp + 0.25) + 0.05 * on_nefes)
-    y = suzgec(y, lp=3000, hp=160, lp_d=2, hp_d=2, can=[(900, -1.5, 0.8)])
+    y = suzgec(y, lp=3600, hp=160, lp_d=2, hp_d=2, can=[(900, -1.5, 0.8), (2200, 1.5, 0.5)])
     return t0 - ON, y * guc
 
 
@@ -518,7 +536,7 @@ UD_GOVDE = [(110, 3.0, 0.5), (230, 2.5, 0.6), (600, 1.5, 0.7), (1500, -3.0, 0.6)
 def tremolo(bas, sure, hz_, v, adim=0.088):
     """Ud tremolosu: hızlı ardışık mızrap (aşağı/yukarı), her vuruş öncekini susturur."""
     k = max(2, int(sure / adim))
-    return [(bas + i * adim, hz_, v * (1.0 if i % 2 == 0 else 0.72) * (1 - 0.25 * i / k), None, adim + 0.02) for i in range(k)]
+    return [(bas + i * adim, hz_, v * 0.85 * (1.0 if i % 2 == 0 else 0.72) * (1 - 0.25 * i / k), None, adim + 0.02) for i in range(k)]
 
 
 # =====================================================================================
@@ -532,13 +550,14 @@ KAPANIS_SN = 7.0
 
 VCSL_DEF = "Membranophones/Struck Membranophones/Frame Drum/"
 VSCO_CELLO = "Strings/Cello Section/susvib/"
-VSCO_KB = "Strings/Solo Contrabass/SusVib/"
+VSCO_KB = "Strings/Solo Contrabass/SusNV/"
+VSCO_VLA = "Strings/Viola Section/susvib/"
 GEREKLI = [("VCSL", VCSL_DEF + f) for f in [
     "HDrumL_Hit_v2_rr1_Sum.wav", "HDrumL_Hit_v2_rr2_Sum.wav", "HDrumL_Hit_v3_rr1_Sum.wav", "HDrumL_Hit_v3_rr2_Sum.wav",
     "HDrumL_HitMuted_v2_rr1_Sum.wav", "HDrumL_HitMuted_v2_rr2_Sum.wav", "HDrumL_HitMuted_v3_rr1_Sum.wav", "HDrumL_HitMuted_v3_rr2_Sum.wav",
     "HDrumS_HitMuted_v2_rr1_Sum.wav", "HDrumS_HitMuted_v2_rr2_Sum.wav", "HDrumS_HitMuted_v3_rr2_Sum.wav"]] + [
     ("VSCO-2-CE", VSCO_CELLO + "susvib_D2_v1_1.wav"), ("VSCO-2-CE", VSCO_CELLO + "susvib_A2_v1_1.wav"),
-    ("VSCO-2-CE", VSCO_KB + "BKCtbss_SusVib_D1_v1_rr1.wav")]
+    ("VSCO-2-CE", VSCO_KB + "BKCtbss_SusNV_D1_v1_rr1.wav"), ("VSCO-2-CE", VSCO_VLA + "ViolaEns_susvib_D3_v1_1.wav")]
 
 # --- telli (ud/kopuz) : (vuruş, nota, hız, ops) ; ops: 'cin' çınlasın, 'carpma': süs, 'kay': kaydırma başlangıç notası,
 #     'trem': tremolo süresi (vuruş)
@@ -577,7 +596,7 @@ TELLI = [
 # --- ney cümleleri (vuruş, süre, nota, ops)
 NEY = [
     # 5–7: LEITMOTIF – tam ve açık
-    [(16, 1, "A4", {"v": .95}), (17, 1, "Bb4", {}), (18, 2, "A4", {"dil": 1, "vib": 12}), (20, 1, "G4", {}), (21, 1, "F#4", {"dil": 1}),
+    [(16, 1, "A4", {"v": .8}), (17, 1, "Bb4", {"v": .92}), (18, 2, "A4", {"dil": 1, "vib": 12}), (20, 1, "G4", {}), (21, 1, "F#4", {"dil": 1}),
      (22, 1, "G4", {}), (23, 1, "Eb4", {}), (24, 2.7, "D4", {"vib": 14, "dim": 1})],
     # 9–11: ikinci veriliş, süslü, A'da açık biter
     [(32, 1, "A4", {}), (33, 1, "Bb4", {}), (34, 2, "A4", {"dil": 1, "vib": 14}), (36, 1, "G4", {"carpma": "A4"}), (37, 1, "F#4", {}),
@@ -596,7 +615,7 @@ def sofyan():
     olay = []
     for olcu in range(4, 18):
         b = olcu * 4
-        k = 0.62 if olcu < 8 else 0.74 if olcu < 12 else 0.85 if olcu < 16 else 0.7
+        k = 0.45 + 0.05 * (olcu - 4) if olcu < 8 else 0.74 if olcu < 12 else 0.85 if olcu < 16 else 0.7
         olay += [(b, "dum", 1.0 * k), (b + 2, "te", 0.55 * k), (b + 3, "ke", 0.42 * k)]
         if olcu % 4 == 3: olay.append((b + 3.5, "ke", 0.28 * k))
         if olcu % 4 == 1: olay.append((b + 1.5, "dum", 0.38 * k))
@@ -612,8 +631,10 @@ def ud_partisyon(liste, vurus, rng, mutlak=False):
         sonraki = next((liste[j][0] for j in range(i + 1, len(liste)) if liste[j][0] - b > 0.05), b + 4)
         sure = 3.2 if op.get("cin") else max(0.25, (sonraki - b) * vurus + 0.03)
         f = hz(nota)
-        if "carpma" in op:
-            olay.append((t - 0.085, ud_nota(hz(op["carpma"]), 0.11, rng, v * 0.75, birak=0.02)))
+        if "carpma" in op:      # perdesiz çarpma: tek mızrap, süs perdesinde kısa bekleme, hızlı kayarak asıl notaya
+            olay.append((t - 0.085, ud_nota(f, sure + 0.085, rng, v * 0.9, kay=(hz(op["carpma"]), 0.03, 0.06),
+                                            birak=0.09 if not op.get("cin") else 0.6)))
+            continue
         if "trem" in op:
             for (tt, ff, vv, _, ss) in tremolo(t, op["trem"] * vurus, f, v):
                 olay.append((tt, ud_nota(ff, ss, rng, vv, birak=0.02)))
@@ -635,9 +656,10 @@ def def_ornek(tur, rng):
 
 def dron_kaynaklari():
     return [  # (örnek, kaynak Hz, hedef nota, seviye dB, pan, faz)
-        (kl("VSCO-2-CE", VSCO_KB + "BKCtbss_SusVib_D1_v1_rr1.wav"), vsco_hz("D1"), "D2", -4.0, 0.0, 0.3),
+        (kl("VSCO-2-CE", VSCO_KB + "BKCtbss_SusNV_D1_v1_rr1.wav"), vsco_hz("D1"), "D2", -4.0, 0.0, 0.3),
         (kl("VSCO-2-CE", VSCO_CELLO + "susvib_D2_v1_1.wav"), vsco_hz("D2"), "D3", 0.0, -0.25, 1.7),
         (kl("VSCO-2-CE", VSCO_CELLO + "susvib_A2_v1_1.wav"), vsco_hz("A2"), "A3", -3.5, 0.3, 4.1),
+        (kl("VSCO-2-CE", VSCO_VLA + "ViolaEns_susvib_D3_v1_1.wav"), vsco_hz("D3"), "D4", -9.0, -0.1, 5.3),
     ]
 
 
@@ -659,12 +681,12 @@ def main():
         tt = np.arange(L) / SR
         nefes = 1 + 0.18 * np.sin(2 * np.pi * 4 * tt / Ls + fz) + 0.08 * np.sin(2 * np.pi * 9 * tt / Ls + 2 * fz)
         dron.g[dron.O:dron.O + L] += pan(P, p, 0.8) * (10 ** (sv / 20)) * nefes[:, None]
-    dron.katla().isle(lambda x, d: suzgec(x, lp=1400, hp=45, can=[(2600, -4, 0.7)], dongusel=d))
+    dron.katla().isle(lambda x, d: suzgec(x, lp=1900, hp=45, can=[(90, -2.0, 0.6), (2800, -4, 0.7)], dongusel=d))
     # kapanış: D2–D3–A3 dem'i uzun nota olarak sönsün (doğrusal olaylar döngü sonundan ÖNCE başlamaz)
     for x, f0, nota, sv, p, fz in dron_kaynaklari():
         y = uzat(kaydir(x, hz(nota, False) / f0), int(7.0 * SR), rng)[int(0.6 * SR):]
         dron.ekle_d(son_s, y * zarf(len(y), 1.6, 4.6)[:, None], 10 ** (sv / 20), p)
-    dron.d = suzgec(dron.d, lp=1400, hp=45)
+    dron.d = suzgec(dron.d, lp=1900, hp=45, can=[(90, -2.0, 0.6)])
 
     ruzgar = Katman("ruzgar", L, T)
     tt = np.arange(L) / SR
@@ -699,7 +721,7 @@ def main():
     for b, tur, v in sofyan():
         defk.ekle(b * VUR + rng.normal(0, 0.006), def_ornek(tur, rng), v * 10 ** (rng.normal(0, 1.2) / 20), -0.1)
     defk.ekle_d(son_s + 0.25, def_ornek("dum", rng), 0.5, -0.1)
-    defk.katla().isle(lambda x, d: suzgec(x, hp=45, lp=2600, lp_d=2, dongusel=d))
+    defk.katla().isle(lambda x, d: suzgec(x, hp=60, lp=2600, lp_d=2, can=[(400, 2.0, 0.8)], dongusel=d))
 
     # ---------------- seviye dengesi + oda ----------------
     hedef = {"dron": -21.0, "ruzgar": -35.0, "telli": -21.5, "ney": -17.0, "def": -29.0}
@@ -767,7 +789,7 @@ def main():
         "kaynaklar": [
             {"dosya": "VCSL " + VCSL_DEF + "HDrum{L,S}_Hit/HitMuted_*", "lisans": "CC0 1.0", "repo": REPO["VCSL"], "not": "bendir/def (= shared/sfx ritim/def_*)"},
             {"dosya": "VSCO-2-CE " + VSCO_CELLO + "susvib_{D2,A2}_v1_1.wav", "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]},
-            {"dosya": "VSCO-2-CE " + VSCO_KB + "BKCtbss_SusVib_D1_v1_rr1.wav", "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]},
+            {"dosya": "VSCO-2-CE " + VSCO_KB + "BKCtbss_SusNV_D1_v1_rr1.wav", "lisans": "CC0 1.0", "repo": REPO["VSCO-2-CE"]},
             {"dosya": "sentez", "lisans": "kendi üretimimiz", "not": "ney (additive + perdeli nefes), ud/kopuz (Karplus-Strong), rüzgâr, oda yankısı"}],
         "uretim_sn": round(time.time() - t_bas, 1),
     }
@@ -788,7 +810,7 @@ def vurgu(rng):
         v.ekle_d(0.02 + t, suzgec(s, hp=70, lp=2800, can=UD_GOVDE, raf=(2200, -4.0)), 0.55, -0.18)
     t, s = ney_cumle([(0.0, 0.3, "Eb4", {"v": .85}), (0.3, 2.4, "D4", {"vib": 13, "dim": 1})], VUR, rng)
     v.ekle_d(0.45 + t, s, 0.30, 0.12)
-    v.ekle_d(0.0, suzgec(def_ornek("dum", rng), hp=45, lp=2600), 0.35, -0.1)
+    v.ekle_d(0.0, suzgec(def_ornek("dum", rng), hp=60, lp=2600, can=[(400, 2.0, 0.8)]), 0.35, -0.1)
     x = yanki(v.d[:T], 0.22)
     x *= gecis_zarfi(T, cikis=(T / SR - 1.2, T / SR))[:, None]
     x *= 10 ** ((-19.0 - db(np.sqrt((x ** 2).mean()))) / 20)

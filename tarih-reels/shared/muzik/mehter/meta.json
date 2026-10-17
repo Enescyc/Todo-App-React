@@ -38,51 +38,51 @@
  "yogunluk": "orta",
  "olcumler": {
   "rms_dbfs": -20.0,
-  "tepe_dbfs": -2.59,
+  "tepe_dbfs": -1.84,
   "kirpilma_ornek": 0,
   "tiz_4k_ustu_oran": 0.0,
-  "konusma_1k5_4k_oran": 0.0119,
-  "spektral_merkez_ort_hz": 458.8,
-  "merkez_sicrama_max_oktav": 0.895,
-  "merkez_sicrama_p99_oktav": 0.799,
-  "yogunluk_3sn_max_sicrama_db": 1.08,
-  "govde_rms_dbfs": -19.82,
-  "dongu_dikis_ornek_adim": 0.01055,
-  "dongu_dikis_rms_fark_db": 6.73,
-  "dongu_dikis_merkez_sicrama_oktav": 0.172,
-  "olcu_basi_ornek_adim_max": 0.03656,
-  "dongu_ici_ornek_adim_max": 0.0623,
+  "konusma_1k5_4k_oran": 0.0138,
+  "spektral_merkez_ort_hz": 476.5,
+  "merkez_sicrama_max_oktav": 0.991,
+  "merkez_sicrama_p99_oktav": 0.828,
+  "yogunluk_3sn_max_sicrama_db": 1.27,
+  "govde_rms_dbfs": -19.84,
+  "dongu_dikis_ornek_adim": 0.00986,
+  "dongu_dikis_rms_fark_db": 7.89,
+  "dongu_dikis_merkez_sicrama_oktav": 0.216,
+  "olcu_basi_ornek_adim_max": 0.03851,
+  "dongu_ici_ornek_adim_max": 0.06587,
   "olcu_basi_rms_fark_db_aralik": [
-   1.24,
-   7.43
+   1.73,
+   8.71
   ],
   "dongu_dikisi_olagan": true,
   "katman_toplami_fark_max": 2.384185791015625e-07,
   "katmanlar": {
    "zemin": {
-    "rms_dbfs": -22.71,
-    "tepe_dbfs": -9.77,
+    "rms_dbfs": -23.6,
+    "tepe_dbfs": -10.66,
     "tiz_4k_ustu_oran": 0.0,
     "konusma_1k5_4k_oran": 0.0
    },
    "ritim": {
-    "rms_dbfs": -28.38,
-    "tepe_dbfs": -4.74,
+    "rms_dbfs": -27.21,
+    "tepe_dbfs": -4.65,
     "tiz_4k_ustu_oran": 0.0,
-    "konusma_1k5_4k_oran": 0.0006
+    "konusma_1k5_4k_oran": 0.0007
    },
    "melodi": {
-    "rms_dbfs": -24.81,
-    "tepe_dbfs": -7.87,
+    "rms_dbfs": -24.15,
+    "tepe_dbfs": -7.29,
     "tiz_4k_ustu_oran": 0.0,
-    "konusma_1k5_4k_oran": 0.0354
+    "konusma_1k5_4k_oran": 0.0349
    }
   },
   "vurgu": {
-   "rms_dbfs": -21.57,
-   "tepe_dbfs": -2.01,
+   "rms_dbfs": -21.75,
+   "tepe_dbfs": -1.0,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0028,
+   "konusma_1k5_4k_oran": 0.0031,
    "merkez_sicrama_max_oktav": 0.731
   },
   "oda_yankisi": {

@@ -21,6 +21,11 @@
   5.0,
   75.0
  ],
+ "dongu_ornek": [
+  220500,
+  3307500
+ ],
+ "ornek_hizi": 44100,
  "katmanlar": [
   {
    "ad": "zemin",
@@ -47,47 +52,47 @@
  "olcumler": {
   "tam": {
    "rms_dbfs": -20.0,
-   "tepe_dbfs": -4.71,
+   "tepe_dbfs": -5.48,
    "kirpilma_ornek": 0,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0031,
-   "spektral_merkez_ort_hz": 474.5,
-   "merkez_sicrama_maks_oktav": 0.631,
-   "merkez_sicrama_zamani_sn": 71.25,
-   "yogunluk_artisi_maks_db_0_5sn": 5.96,
+   "konusma_1k5_4k_oran": 0.0038,
+   "spektral_merkez_ort_hz": 474.7,
+   "merkez_sicrama_maks_oktav": 0.524,
+   "merkez_sicrama_zamani_sn": 58.75,
+   "yogunluk_artisi_maks_db_0_5sn": 4.21,
    "dongu": {
-    "govde_bitisik_50ms_rms_fark_p95_db": 2.322,
-    "dalga_sicramasi": 0.007153,
-    "govde_ornek_farki_p99_9": 0.035379,
-    "rms_fark_db_50ms": 2.343,
-    "merkez_fark_oktav": 0.08,
-    "ek_yeri_merkez_sicrama_oktav": 0.373
+    "govde_bitisik_50ms_rms_fark_p95_db": 1.973,
+    "dalga_sicramasi": 0.006767,
+    "govde_ornek_farki_p99_9": 0.035746,
+    "rms_fark_db_50ms": 0.505,
+    "merkez_fark_oktav": 0.02,
+    "ek_yeri_merkez_sicrama_oktav": 0.167
    }
   },
   "zemin": {
-   "rms_dbfs": -22.27,
-   "tepe_dbfs": -7.86,
+   "rms_dbfs": -22.13,
+   "tepe_dbfs": -7.9,
    "tiz_4k_ustu_oran": 0.0,
    "konusma_1k5_4k_oran": 0.0004
   },
   "ritim": {
-   "rms_dbfs": -40.15,
-   "tepe_dbfs": -20.06,
+   "rms_dbfs": -40.05,
+   "tepe_dbfs": -19.97,
    "tiz_4k_ustu_oran": 0.0,
    "konusma_1k5_4k_oran": 0.0004
   },
   "melodi": {
-   "rms_dbfs": -24.18,
-   "tepe_dbfs": -7.28,
+   "rms_dbfs": -24.03,
+   "tepe_dbfs": -7.61,
    "tiz_4k_ustu_oran": 0.0001,
-   "konusma_1k5_4k_oran": 0.0077
+   "konusma_1k5_4k_oran": 0.0087
   },
   "vurgu": {
-   "rms_dbfs": -17.86,
-   "tepe_dbfs": -3.99,
+   "rms_dbfs": -17.91,
+   "tepe_dbfs": -4.07,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0012,
-   "merkez_sicrama_maks_oktav": 0.602
+   "konusma_1k5_4k_oran": 0.0013,
+   "merkez_sicrama_maks_oktav": 0.63
   },
   "katman_toplami_fark_db": -220.0
  },

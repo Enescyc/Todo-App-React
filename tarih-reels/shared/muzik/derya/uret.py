@@ -581,7 +581,8 @@ def olc(x, loop=None):
         d_p999 = np.percentile(np.abs(np.diff(x[a: b], axis=0)).max(1), 99.9)
         res["dongu"] = {"dalga_sicrama": round(float(d_seam), 6), "dalga_sicrama_tipik": round(float(d_typ), 6),
                         "dalga_sicrama_p99_9": round(float(d_p999), 6),
-                        "rms_fark_db": round(db(np.sqrt((x[b - q: b] ** 2).mean())) - db(np.sqrt((x[a: a + q] ** 2).mean())), 2)}
+                        "rms_fark_db": round(db(np.sqrt((x[b - q: b] ** 2).mean())) - db(np.sqrt((x[a: a + q] ** 2).mean())), 2),
+                        "rms_fark_1sn_db": round(db(np.sqrt((x[b - SR: b] ** 2).mean())) - db(np.sqrt((x[a: a + SR] ** 2).mean())), 2)}
         lv = np.array([db(np.sqrt((x[i: i + q] ** 2).mean())) for i in range(a, b - q, q)])
         res["dongu"]["govde_250ms_rms_ardisik_max_fark_db"] = round(float(np.abs(np.diff(lv)).max()), 2)
     return res

@@ -1,0 +1,617 @@
+{
+ "id": "akin",
+ "ad": "Akın / Savaş",
+ "tarz": "Hızlı savaş/akın müziği – 9/8 aksak darbuka-def-davul, timpani ve yaylı spiccato ostinatosu, kornoda parçalanmış leitmotif",
+ "kullanim": [
+  "meydan savaşı",
+  "akıncı baskını / süvari hücumu",
+  "harita okları: ordu ve akıncı hareketi",
+  "kuşatma hücumu",
+  "kovalamaca / geri çekilme"
+ ],
+ "donem": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "ton_makam": "Re Hicaz (E♭ +15 sent, F♯ −15 sent koma renkleri) – yaklaşım; ostinato Re pedalı, ara bölümde Sol ve E♭ (Hicaz'ın II. derecesi) renkleri",
+ "bpm": 126,
+ "usul_olcu": "9/8 aksak (2+2+2+3), sekizlik = 252/dk; darbuka: D k T k T k D k T",
+ "sure": 78.743,
+ "dongu": [
+  4.285714,
+  72.857143
+ ],
+ "dongu_ornek": [
+  189000,
+  3213000
+ ],
+ "katmanlar": [
+  "akin__zemin.flac",
+  "akin__ritim.flac",
+  "akin__melodi.flac"
+ ],
+ "vurgu": "akin__vurgu.flac",
+ "yogunluk": "yuksek",
+ "olcumler": {
+  "rms_dbfs": -20.19,
+  "tepe_dbfs": -1.5,
+  "kirpilma_ornek": 0,
+  "tiz_4k_ustu_oran": 0.0,
+  "konusma_1k5_4k_oran": 0.0133,
+  "spektral_merkez_ort_hz": 378.0,
+  "merkez_sicrama_max_oktav": 0.911,
+  "merkez_sicrama_p99_oktav": 0.803,
+  "yogunluk_3sn_max_sicrama_db": 1.53,
+  "govde_rms_dbfs": -20.1,
+  "dongu_dikis_ornek_adim": 0.00649,
+  "dongu_dikis_rms_fark_db": 1.9,
+  "dongu_dikis_merkez_sicrama_oktav": 0.11,
+  "olcu_basi_ornek_adim_max": 0.01238,
+  "dongu_ici_ornek_adim_max": 0.08057,
+  "olcu_basi_rms_fark_db_aralik": [
+   -0.29,
+   7.5
+  ],
+  "dongu_dikisi_olagan": true,
+  "katman_toplami_fark_max": 2.384185791015625e-07,
+  "katmanlar": {
+   "zemin": {
+    "rms_dbfs": -23.88,
+    "tepe_dbfs": -6.25,
+    "tiz_4k_ustu_oran": 0.0,
+    "konusma_1k5_4k_oran": 0.021
+   },
+   "ritim": {
+    "rms_dbfs": -27.74,
+    "tepe_dbfs": -5.12,
+    "tiz_4k_ustu_oran": 0.0001,
+    "konusma_1k5_4k_oran": 0.0115
+   },
+   "melodi": {
+    "rms_dbfs": -24.33,
+    "tepe_dbfs": -5.49,
+    "tiz_4k_ustu_oran": 0.0,
+    "konusma_1k5_4k_oran": 0.0066
+   }
+  },
+  "vurgu": {
+   "rms_dbfs": -21.61,
+   "tepe_dbfs": -3.6,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0063,
+   "merkez_sicrama_max_oktav": 1.058
+  },
+  "oda_yankisi": {
+   "rt60_sn": "2.0 (bas) / 1.8 (orta) / 1.3–0.4 (tiz)",
+   "on_gecikme_ms": 12,
+   "islak_oran": 0.18
+  }
+ },
+ "kaynaklar": [
+  {
+   "dosya": "spic_D2_v1_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_D2_v1_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_D2_v1_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_D2_v1_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_D2_v2_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_D2_v2_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_D2_v2_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_D2_v2_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_G1_v1_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_G1_v1_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_G1_v1_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_G1_v1_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_G1_v2_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_G1_v2_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_G1_v2_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_G1_v2_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_B1_v1_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_B1_v1_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_B1_v1_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_B1_v1_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_B1_v2_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_B1_v2_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_B1_v2_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_B1_v2_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_F2_v1_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_F2_v1_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_F2_v1_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_F2_v1_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_F2_v2_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_F2_v2_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_F2_v2_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_F2_v2_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_A2_v1_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_A2_v1_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_A2_v1_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_A2_v1_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_A2_v2_RR1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_A2_v2_RR1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "spic_A2_v2_RR2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Cello Section/spic/spic_A2_v2_RR2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_D1_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_D1_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_D1_v3_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_D1_v3_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_C1_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_C1_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_C1_v3_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_C1_v3_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_G0_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_G0_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_G0_v3_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_G0_v3_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_E1_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_E1_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_E1_v3_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "BKCtbss_Spic_E1_v3_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_D3_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_D3_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_D3_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_D3_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_D3_v2_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_D3_v2_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_F3_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_F3_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_F3_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_F3_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_F3_v2_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_F3_v2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_F3_v2_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_F3_v2_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_A3_v1_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_A3_v1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_A3_v1_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_A3_v1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_A3_v2_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_A3_v2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Violas_spic_A3_v2_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Strings/Viola Section/spic/Violas_spic_A3_v2_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_stac_D2_v2_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/stac/MOHorn_stac_D2_v2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_stac_D2_v2_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/stac/MOHorn_stac_D2_v2_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_stac_F2_v2_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/stac/MOHorn_stac_F2_v2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_stac_F2_v2_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/stac/MOHorn_stac_F2_v2_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_stac_A2_v2_rr1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/stac/MOHorn_stac_A2_v2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_stac_A2_v2_rr2.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/stac/MOHorn_stac_A2_v2_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_sus_D2_v2_1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/sus/MOHorn_sus_D2_v2_1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_sus_F2_v2_1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/sus/MOHorn_sus_F2_v2_1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_sus_A2_v2_1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/sus/MOHorn_sus_A2_v2_1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "MOHorn_sus_C3_v2_1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Brass/F Horn/sus/MOHorn_sus_C3_v2_1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "muzik/cello_D2",
+   "depo": "shared/sfx",
+   "yol": "muzik/cello_D2",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "muzik/kontrbas_D1",
+   "depo": "shared/sfx",
+   "yol": "muzik/kontrbas_D1",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "muzik/cello_tremolo_D2",
+   "depo": "shared/sfx",
+   "yol": "muzik/cello_tremolo_D2",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_1_hit_vl2_rr1.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_1_hit_vl2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_5_hit_vl1_rr2.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_5_hit_vl1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_4_hit_vl1_rr1.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_4_hit_vl1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_2_hit_vl1_rr1.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_2_hit_vl1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "HDrumL_Hit_v3_rr1_Sum.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Frame Drum/HDrumL_Hit_v3_rr1_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "HDrumL_HitMuted_v2_rr2_Sum.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Frame Drum/HDrumL_HitMuted_v2_rr2_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "HDrumL_Hit_v3_rr2_Sum.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Frame Drum/HDrumL_Hit_v3_rr2_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani1_Hit_v3_rr1_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_4_hit_vl2_rr1.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_4_hit_vl2_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani2_Hit_v3_rr1_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani2_Hit_v3_rr1_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani1_Hit_v1_rr1_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani1_Hit_v1_rr1_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani1_Hit_v1_rr2_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani1_Hit_v1_rr2_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "EthnicLargeMallet_hit_f_1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_f_1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "EthnicLargeMallet_hit_mf_1.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_mf_1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani1_Hit_v3_rr2_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_3_hit_vl1_rr1.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_3_hit_vl1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_4_hit_vl1_rr2.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_4_hit_vl1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_2_hit_vl1_rr2.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_2_hit_vl1_rr2.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "vurus/buyuk_davul_mf",
+   "depo": "shared/sfx",
+   "yol": "vurus/buyuk_davul_mf",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani2_Hit_v3_rr2_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani2_Hit_v3_rr2_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Timpani2_Hit_v4_rr1_Sum.wav",
+   "depo": "VSCO-2-CE",
+   "yol": "Percussion/Timpani/Timpani2_Hit_v4_rr1_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "HDrumL_Hit_v2_rr1_Sum.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Frame Drum/HDrumL_Hit_v2_rr1_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "HDrumL_Hit_v2_rr2_Sum.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Frame Drum/HDrumL_Hit_v2_rr2_Sum.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "vurus/timpani_rulo",
+   "depo": "shared/sfx",
+   "yol": "vurus/timpani_rulo",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_1_hit_vl1_rr1.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_1_hit_vl1_rr1.wav",
+   "lisans": "CC0 1.0"
+  },
+  {
+   "dosya": "Darbuka_4_hit_vl2_rr2.wav",
+   "depo": "VCSL",
+   "yol": "Membranophones/Struck Membranophones/Darbuka/Darbuka_4_hit_vl2_rr2.wav",
+   "lisans": "CC0 1.0"
+  }
+ ]
+}

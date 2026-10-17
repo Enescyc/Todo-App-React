@@ -58,36 +58,36 @@
  "olcumler": {
   "rms_dbfs": -20.0,
   "rms_govde_dbfs": -19.62,
-  "tepe_dbfs": -4.93,
+  "tepe_dbfs": -4.25,
   "kirpilma_ornek": 0,
   "tiz_4k_ustu_oran": 0.0,
-  "konusma_1k5_4k_oran": 0.0094,
-  "ortalama_spektral_merkez_hz": 312.5,
-  "merkez_sicrama_maks_oktav": 0.792,
-  "merkez_sicrama_p99_oktav": 0.617,
+  "konusma_1k5_4k_oran": 0.01,
+  "ortalama_spektral_merkez_hz": 320.8,
+  "merkez_sicrama_maks_oktav": 0.836,
+  "merkez_sicrama_p99_oktav": 0.622,
   "merkez_aralik_hz": [
-   155,
-   534
+   135,
+   516
   ],
-  "dongu_rms_son250ms_dbfs": -23.94,
-  "dongu_rms_bas250ms_dbfs": -24.18,
-  "dongu_eklem_sicrama": 0.015004,
-  "dongu_tipik_ornek_farki_p99": 0.022231,
-  "dongu_eklem_merkez_sicrama_oktav": 0.371,
-  "lufs_entegre": -17.9,
-  "gercek_tepe_dbtp": -4.9,
+  "dongu_rms_son250ms_dbfs": -23.42,
+  "dongu_rms_bas250ms_dbfs": -23.9,
+  "dongu_eklem_sicrama": 0.015005,
+  "dongu_tipik_ornek_farki_p99": 0.023663,
+  "dongu_eklem_merkez_sicrama_oktav": 0.514,
+  "lufs_entegre": -17.8,
+  "gercek_tepe_dbtp": -4.2,
   "katman_toplami_hata_maks": 1.1102230246251565e-16,
   "katman_rms_dbfs": {
-   "zemin": -23.0,
-   "ritim": -34.23,
-   "melodi": -23.54
+   "zemin": -23.46,
+   "ritim": -32.93,
+   "melodi": -22.85
   },
   "vurgu": {
    "sure_sn": 5.4,
-   "rms_dbfs": -20.38,
-   "tepe_dbfs": -6.0,
+   "rms_dbfs": -20.42,
+   "tepe_dbfs": -5.48,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0105
+   "konusma_1k5_4k_oran": 0.0097
   }
  },
  "kaynaklar": [
@@ -105,7 +105,6 @@
   "shared/sfx · tarih-reels/shared/sfx/muzik/kontrbas_D1.flac · CC0 1.0 (bkz. shared/sfx/katalog.json)",
   "https://github.com/sgossner/VSCO-2-CE · Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v1_rr1.wav · CC0 1.0 Universal (depodaki LICENSE)",
   "https://github.com/sgossner/VSCO-2-CE · Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v1_rr1.wav · CC0 1.0 Universal (depodaki LICENSE)",
-  "https://github.com/sgossner/VSCO-2-CE · Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav · CC0 1.0 Universal (depodaki LICENSE)",
   "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_E3_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
   "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_A3_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",
   "https://github.com/sgossner/VSCO-2-CE · Woodwinds/Flute/susNV/LDFlute_susNV_C4_v1_1.wav · CC0 1.0 Universal (depodaki LICENSE)",

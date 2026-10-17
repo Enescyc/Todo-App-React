@@ -609,7 +609,7 @@ def govde_yaz():
             ek = (5, 7)
         duyek(B, t, v, ek=ek)
         if not (12 <= o < 16) or o in (12, 14):
-            kos_vur(B, t, 0.75 * v + 0.1, rr=o)
+            kos_vur(B, t, (0.75 * v + 0.1) * (0.85 if o < 8 or 12 <= o < 16 else 1.0), rr=o)
         if 16 <= o < 20:
             kos_vur(B, t + 2 * VURUS, 0.6, rr=o + 1)
         # nakkare
@@ -631,7 +631,7 @@ def govde_yaz():
         if 16 <= o < 20:
             zil_vur(B, t + 2 * VURUS, 0.45, rr=(o + 1) % 3)
     # --- melodi: zemin (B), nakarat (C), miyan (D), dönüş/doruk (E), boru çağrısı (F)
-    zurna_ekle(B, MOTIF + kaydir_olcu(CEVAP_1, 3), 4 * OLCU, kaz=0.9, sesler=("z1",), kaba=0.6)
+    zurna_ekle(B, MOTIF + kaydir_olcu(CEVAP_1, 3), 4 * OLCU, kaz=0.9, sesler=("z1",), kaba=0.8)
     zurna_ekle(B, MOTIF + kaydir_olcu(CEVAP_2, 3), 8 * OLCU, kaz=0.95, sesler=("z1", "z2"), kaba=True)
     zurna_ekle(B, MIYAN[:7], 12 * OLCU, kaz=0.85, sesler=("z1", "z2"))
     zurna_ekle(B, kaydir_olcu(MIYAN[7:], -2), 14 * OLCU, kaz=0.9, sesler=("z1", "z2"), kaba=True)
@@ -672,8 +672,8 @@ def kapanis_yaz():
     zurna_ekle(B, SON, 0.0, kaz=1.0, sesler=("z1", "z2"), kaba=True)
     boru_dron(B, 0.0, T - 0.8, ("D3", "A3"), kaz=0.9, atak=0.2, birak=2.6)
     dusuk_pedal(B, 0.0, T - 1.0, kaz=0.9)
-    B.ekle("ritim", OLCU, davul_dum(1.0, 0), kazanc=1.0, pan=-0.05)
-    kos_vur(B, OLCU, 1.0, rr=1)
+    B.ekle("ritim", OLCU, davul_dum(0.92, 0), kazanc=1.0, pan=-0.05)
+    kos_vur(B, OLCU, 0.85, rr=1)
     zil_vur(B, OLCU, 0.6, rr=2)
     return B
 
@@ -737,6 +737,7 @@ def main():
     st = birlestir(giris, govde, kapanis, b0, L, son_n)
     tam = sum(st[k] for k in KATMANLAR)
     g = 10 ** (HEDEF_RMS_DB / 20) / rms(tam)
+    g = min(g, 10 ** (-1.5 / 20) / np.abs(tam).max())     # güvenlik: tepe ≤ −1.5 dBFS (gerekirse RMS biraz düşer)
     tam *= g
     for k in KATMANLAR:
         st[k] *= g

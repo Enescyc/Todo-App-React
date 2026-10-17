@@ -192,6 +192,13 @@ def nota(o, f, sure, att=.06, rel=.5, bas=0.0, kayma=None, zarf=None, esguc=Fals
     return y * a[:, None]
 
 
+def yumusat_zarf(y, oran=.6, hizli=4.0, yavas=.2):
+    """Yavaş sıkıştırıcı: hızlı genlik dalgalanmalarını (dB cinsinden) `oran` kadar azaltır, yavaş seyri korur."""
+    p = y.mean(1) ** 2
+    e1 = np.sqrt(np.maximum(lp(p, hizli, 1), 1e-12)); e2 = np.sqrt(np.maximum(lp(p, yavas, 1), 1e-12))
+    return y * ((e2 / e1) ** oran)[:, None]
+
+
 def pan_(y, p):
     if not p: return y
     return y * np.array([np.cos((p + 1) * np.pi / 4), np.sin((p + 1) * np.pi / 4)]) * np.sqrt(2)
@@ -217,6 +224,11 @@ class Dongu(Iz):
         i = int(round(t * SR)) % self.L; y = pan_(y, pan) * g; k = 0
         while k < len(y):
             m = min(self.L - i, len(y) - k); self.b[i: i + m] += y[k: k + m]; k += m; i = 0
+
+
+# Ortak oda: bütün tarzlarda aynı tohum → aynı mekân. Tohumlar, gürültü tabanlı yankının dar rezonans tepeleri
+# serinin gam seslerine (D Hicaz/Kürdi, komalı ve 12-TET) en az denk gelecek biçimde 0–119 arasında tarandı.
+ODA_TOHUM = 58
 
 
 def ir_yap(rt, sure, tohum, on_gecikme=.012, rt_tiz=None, rt_bas=None):
@@ -357,9 +369,8 @@ def ney_cumle(notalar, b, flutler, rng, rel=.5, kaydir=-70, vib_hz=4.7, vib_sent
     for (f, d, v), dd in zip(notalar, durs):
         i0, i1 = int(t0 * SR), min(n, int((t0 + dd) * SR))
         lf[i0:] = np.log2(f); amp[i0:] = v
-        if dd > 1.0:   # uzun notada geciken titreşim
-            k = np.clip((t[i0:i1] - t0 - .45) / .8, 0, 1) * np.clip((t0 + dd - t[i0:i1]) / .25, 0, 1)
-            vd[i0:i1] = k * vib_sent
+        k = np.clip((t[i0:i1] - t0 - .35) / .7, 0, 1) * np.clip((t0 + dd - t[i0:i1]) / .25, 0, 1)
+        vd[i0:i1] = 4 + k * (vib_sent - 4) * (dd > .9)    # hep ~4 sent canlılık; uzun notada geciken tam titreşim
         t0 += dd
     ker = np.hanning(int(.085 * SR)); ker /= ker.sum()
     lf = np.convolve(np.pad(lf, (len(ker), len(ker)), "edge"), ker, "same")[len(ker):-len(ker)]
@@ -368,6 +379,7 @@ def ney_cumle(notalar, b, flutler, rng, rel=.5, kaydir=-70, vib_hz=4.7, vib_sent
     lf += kaydir / 1200 * (1 - np.clip(t / .22, 0, 1)) ** 2          # başta aşağıdan kayarak giriş
     ph = rng.uniform(0, 2 * np.pi)
     lf += vd / 1200 * np.sin(2 * np.pi * vib_hz * t * (1 + .03 * np.sin(2 * np.pi * .3 * t)) + ph)
+    sap = lp(np.cumsum(rng.standard_normal(n)), 1.2); lf += 3 / 1200 * (sap - sap.mean()) / (np.abs(sap - sap.mean()).max() + 1e-9)
     fc = 2 ** lf
     if son_sonus:   # son nota tutuşu boyunca sönerek kaybolur (çözülmeden)
         i0 = int((T - durs[-1]) * SR); amp[i0:] *= np.concatenate([np.linspace(1, 0, n - i0 - int(rel * SR)) ** 1.5, np.zeros(int(rel * SR))])
@@ -379,6 +391,9 @@ def ney_cumle(notalar, b, flutler, rng, rel=.5, kaydir=-70, vib_hz=4.7, vib_sent
     pos = .05 * SR + np.concatenate([[0.], np.cumsum(ratio[:-1])])
     ton = interp(o.uzat(int(pos[-1]) + 8), pos)
     faz = 2 * np.pi * np.cumsum(fc) / SR
+    # flütten 'ney' kovukluğuna: perdeye kilitli 2. (≈−8 dB) ve 3. (≈−17 dB) harmonik, tonun kendi zarfıyla (sınırlı)
+    e = np.sqrt(2 * np.maximum(lp(ton.mean(1) ** 2, 20, 1), 0))
+    ton = ton + (e * (.40 * np.sin(2 * faz + .5) + .14 * np.sin(3 * faz + 1.1)))[:, None]
     nz = lambda c: (lambda z: z / (rms(z) + 1e-12))(lp(rng.standard_normal(n), c))
     b1 = nz(45) * np.sin(faz); b2 = nz(60) * np.sin(2 * faz + 1.0)
     hava = bp_(rng.standard_normal(n), 300, 2400); hava /= rms(hava)
@@ -487,7 +502,7 @@ def main():
     NEY = [(hz("A4"), 3.0, .75), (hz("Bb4"), 1.0, .85), (hz("A4"), 2.0, .8), (hz("G4"), 1.0, .72),
            (hz("F#4", -15), 1.0, .78), (hz("G4"), 1.0, .74), (hz("Eb4", 15), 3.5, .7)]
     ney = ney_cumle(NEY, b, flut, rng, rel=.6, son_sonus=True)
-    ir_uzak = ir_yap(3.2, 4.0, TOHUM + 7, on_gecikme=.03, rt_tiz=1.0)
+    ir_uzak = ir_yap(3.2, 4.0, 20, on_gecikme=.03, rt_tiz=1.0)     # tohum: ney seslerinde rezonans tepesi en az
     ney = oda(np.vstack([ney, np.zeros((int(3.5 * SR), 2))]), ir_uzak, .35)
     mel.ekle(V(49.5), ney, .62, pan=.22)
     mel_dry = mel.b
@@ -517,7 +532,7 @@ def main():
     rit_dry = rit.b
 
     # ---------------- oda yankısı (dairesel: döngü gövdesinin kararlı hâli) ----------------
-    ir = ir_yap(1.8, 2.6, TOHUM)
+    ir = ir_yap(1.8, 2.6, ODA_TOHUM)
     zem_w = oda(zem_dry, ir, .18, True); mel_w = oda(mel_dry, ir, .18, True); rit_w = oda(rit_dry, ir, .20, True)
 
     # ---------------- giriş / kapanış ----------------

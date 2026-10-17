@@ -1,0 +1,138 @@
+{
+ "id": "saray",
+ "ad": "Saray entrikası / Gerilim",
+ "tarz": "Karanlık gerilim: pes yaylı tremolo, yumuşak ahşap tik-tak ve pes nabız (timpani + kontrbas pizzicato), bas hattında yavaşlatılmış leitmotif, viyola/kemanda yarım ses sürtüşmeli uzun notalar",
+ "kullanim": [
+  "taht kavgaları ve veraset meseleleri",
+  "iç savaş (Bizans iç savaşı 1341–47, Kantakuzenos)",
+  "Fetret dönemi (1402–13)",
+  "kardeş katli, suikast, komplo",
+  "gizli diplomasi, belirsizlik",
+  "\"ama bir sorun vardı\" dönüş anları"
+ ],
+ "donem": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "ton_makam": "Re; Re pedalı üzerinde Hicaz dizisi (Re–Mi♭–Fa♯–Sol–La–Si♭–Do), Mi♭ +15 / Fa♯ −15 sent koma; leitmotif bas hattında iki kat yavaş (tam: 18.3–36.7 sn, parçalı: 51.7–70.8 sn)",
+ "bpm": 72,
+ "usul_olcu": "4/4 (usul değil; batı ölçüsü, saat tik-takı hissi)",
+ "sure": 77.67,
+ "dongu": [
+  5.0,
+  71.6667
+ ],
+ "dongu_ornek": [
+  220500,
+  3160500
+ ],
+ "ornek_hizi": 44100,
+ "katmanlar": [
+  {
+   "ad": "zemin",
+   "dosya": "out/saray__zemin.flac",
+   "icerik": "pes yaylı tremolo Re2+Re3 + kontrbas Re2 (bölümlere göre kabarır)"
+  },
+  {
+   "ad": "ritim",
+   "dosya": "out/saray__ritim.flac",
+   "icerik": "ahşap tik-tak (her vuruş), yumuşak timpani Re2, kontrbas pizzicato Re2/Mi♭2"
+  },
+  {
+   "ad": "melodi",
+   "dosya": "out/saray__melodi.flac",
+   "icerik": "bas leitmotifi (çello+kontrbas) + viyola/keman yarım ses sürtüşmeleri"
+  },
+  {
+   "ad": "vurgu",
+   "dosya": "out/saray__vurgu.flac",
+   "icerik": "4.5 sn karanlık vurgu: timpani + pizz Re2, Re/Mi♭ tremolo kümesi şişip söner, viyola Re4 / keman Mi♭4"
+  }
+ ],
+ "yogunluk": "orta",
+ "olcumler": {
+  "tam": {
+   "rms_dbfs": -20.0,
+   "tepe_dbfs": -3.86,
+   "kirpilma_ornek": 0,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0067,
+   "spektral_merkez_ort_hz": 282.8,
+   "merkez_sicrama_maks_oktav": 0.857,
+   "merkez_sicrama_zamani_sn": 71.75,
+   "yogunluk_artisi_maks_db_0_5sn": 3.21,
+   "dongu": {
+    "govde_bitisik_50ms_rms_fark_p95_db": 1.959,
+    "dalga_sicramasi": 0.002499,
+    "govde_ornek_farki_p99_9": 0.030992,
+    "rms_fark_db_50ms": 0.972,
+    "merkez_fark_oktav": 0.266,
+    "ek_yeri_merkez_sicrama_oktav": 0.464
+   }
+  },
+  "zemin": {
+   "rms_dbfs": -23.32,
+   "tepe_dbfs": -7.78,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0064,
+   "merkez_sicrama_maks_oktav": 0.555
+  },
+  "ritim": {
+   "rms_dbfs": -25.99,
+   "tepe_dbfs": -10.64,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0,
+   "merkez_sicrama_maks_oktav": 1.111
+  },
+  "melodi": {
+   "rms_dbfs": -25.25,
+   "tepe_dbfs": -9.03,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0137,
+   "merkez_sicrama_maks_oktav": 2.536
+  },
+  "vurgu": {
+   "rms_dbfs": -21.59,
+   "tepe_dbfs": -6.37,
+   "tiz_4k_ustu_oran": 0.0,
+   "konusma_1k5_4k_oran": 0.0053,
+   "merkez_sicrama_maks_oktav": 0.548
+  },
+  "katman_toplami_fark_db": -220.0
+ },
+ "kaynaklar": [
+  "VCSL: Idiophones/Struck Idiophones/Slit Drum/LogDrumHi_MedM_v1_rr1_Sum.wav",
+  "VCSL: Idiophones/Struck Idiophones/Slit Drum/LogDrumHi_MedM_v2_rr1_Sum.wav",
+  "VCSL: Idiophones/Struck Idiophones/Slit Drum/LogDrumLo_MedM_v1_rr1_Sum.wav",
+  "VCSL: Idiophones/Struck Idiophones/Slit Drum/LogDrumLo_MedM_v2_rr1_Sum.wav",
+  "VSCO-2-CE: Percussion/Timpani/Timpani1_Hit_v1_rr1_Sum.wav",
+  "VSCO-2-CE: Percussion/Timpani/Timpani1_Hit_v1_rr2_Sum.wav",
+  "VSCO-2-CE: Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_B1_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_E1_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/susvib/susvib_G1_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/trem/trem_D2_v1_1.wav",
+  "VSCO-2-CE: Strings/Cello Section/trem/trem_E1_v1_1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_D1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_D1_v1_rr2.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_F#1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G#1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Solo Contrabass/Trem/BKCtbss_Trem_E1_v1_rr1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_A3_v1_1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_B2_v1_1.wav",
+  "VSCO-2-CE: Strings/Viola Section/susvib/ViolaEns_susvib_D3_v1_1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_B2_v1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_D3_v1.wav",
+  "VSCO-2-CE: Strings/Violin Section/susVib/VlnEns_susVib_F#3_v1.wav",
+  "shared/sfx: muzik/cello_tremolo_D2.flac",
+  "sentez: yok (yalnız işleme: perde kaydırma, döngüsel doku, süzgeç, oda yankısı)"
+ ]
+}
