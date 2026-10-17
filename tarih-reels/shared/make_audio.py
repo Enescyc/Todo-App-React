@@ -32,9 +32,42 @@ def syll(w):
     return max(1, len(re.findall(r"[aeıioöuüâîûAEIİOÖUÜÂÎÛ]", w)))
 
 
+def split_full(path, n, texts):
+    """Tek parça seslendirmeyi n paragrafa böler: en uzun n-1 sessizlik (paragraf arası [long pause]) kesim noktasıdır.
+    Kontrol: her parçanın süresi hece oranıyla kabaca uyuşmalı; uymazsa uyarır."""
+    v = load_audio(path); hop = int(.01 * SR)
+    db = 20 * np.log10(np.sqrt(np.convolve(v ** 2, np.ones(hop) / hop, "same")[::hop]) + 1e-9)
+    sil = db < max(-45, db.max() - 38); gaps, i = [], 0
+    while i < len(sil):
+        if sil[i]:
+            j = i
+            while j < len(sil) and sil[j]: j += 1
+            if i > 0 and j < len(sil): gaps.append((j - i, i, j))
+            i = j
+        else: i += 1
+    cuts = sorted(sorted(gaps, reverse=True)[: n - 1], key=lambda g: g[1])
+    assert len(cuts) == n - 1, f"yalnızca {len(cuts)} duraklama bulundu, {n - 1} gerekli"
+    bounds = [0] + [(a + b) // 2 for _, a, b in cuts] + [len(sil)]
+    parts = [v[bounds[k] * hop: bounds[k + 1] * hop] for k in range(n)]
+    want = np.array([sum(syll(w) for w in t.split()) for t in texts], float); got = np.array([len(p) for p in parts], float)
+    ratio = (got / got.sum()) / (want / want.sum())
+    print("paragraf bölme – süre/hece oranı:", " ".join(f"p{k + 1}:{r:.2f}" for k, r in enumerate(ratio)), "| en kısa kesim duraklaması:", min(g[0] for g in cuts) / 100, "sn")
+    if (np.abs(np.log(ratio)) > .45).any(): print("UYARI: bir paragraf sınırı yanlış olabilir – kontrol edin")
+    tmp = []
+    for k, p in enumerate(parts):
+        f = os.path.join(EPD, "audio", f"_p{k + 1}.wav")
+        with wave.open(f, "wb") as w:
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(p / np.abs(v).max(), -1, 1) * 32767).astype(np.int16).tobytes())
+        tmp.append(f)
+    return tmp
+
+
 # ---------------- 1) seslendirme ----------------
 EP = read_ep()
 vo_files = [os.path.join(EPD, "vo", f"p{i + 1}.mp3") for i in range(len(EP["paras"]))]
+full = next((os.path.join(EPD, "vo", f) for f in sorted(os.listdir(os.path.join(EPD, "vo"))) if f.startswith("full.")), None) if os.path.isdir(os.path.join(EPD, "vo")) else None
+if not all(os.path.exists(f) for f in vo_files) and full:
+    vo_files = split_full(full, len(EP["paras"]), [P["text"] for P in EP["paras"]])
 VO_CLIPS = None
 if all(os.path.exists(f) for f in vo_files):
     lead, gap, VO_CLIPS, paras = EP.get("lead", .4), EP.get("gap", .55), [], []
