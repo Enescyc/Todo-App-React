@@ -609,7 +609,7 @@ def govde_yaz():
             ek = (5, 7)
         duyek(B, t, v, ek=ek)
         if not (12 <= o < 16) or o in (12, 14):
-            kos_vur(B, t, (0.75 * v + 0.1) * (0.85 if o < 8 or 12 <= o < 16 else 1.0), rr=o)
+            kos_vur(B, t, (0.75 * v + 0.1) * (0.75 if o < 8 or 12 <= o < 16 else 1.0), rr=o)
         if 16 <= o < 20:
             kos_vur(B, t + 2 * VURUS, 0.6, rr=o + 1)
         # nakkare
@@ -673,7 +673,7 @@ def kapanis_yaz():
     boru_dron(B, 0.0, T - 0.8, ("D3", "A3"), kaz=0.9, atak=0.2, birak=2.6)
     dusuk_pedal(B, 0.0, T - 1.0, kaz=0.9)
     B.ekle("ritim", OLCU, davul_dum(0.92, 0), kazanc=1.0, pan=-0.05)
-    kos_vur(B, OLCU, 0.85, rr=1)
+    kos_vur(B, OLCU, 0.75, rr=1)
     zil_vur(B, OLCU, 0.6, rr=2)
     return B
 
@@ -698,7 +698,7 @@ def vurgu_yaz():
 # =====================================================================================
 # Miks, yazım, ölçüm
 # =====================================================================================
-KATMAN_KAZANC = {"zemin": 0.78, "ritim": 0.9, "melodi": 0.74}
+KATMAN_KAZANC = {"zemin": 0.88, "ritim": 0.9, "melodi": 0.74}
 TON = {  # katman başına son ton ayarı (yumuşak tiz, konuşma bölgesi hafif boş)
     "zemin": dict(lo=30, hi=1800, n_hi=2),
     "ritim": dict(lo=30, hi=3200, n_hi=2, tepe=[(2600, 0.7, -3.0), (75, 1.0, -3.0)]),

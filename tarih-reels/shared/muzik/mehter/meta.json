@@ -38,51 +38,51 @@
  "yogunluk": "orta",
  "olcumler": {
   "rms_dbfs": -20.0,
-  "tepe_dbfs": -1.84,
+  "tepe_dbfs": -2.17,
   "kirpilma_ornek": 0,
   "tiz_4k_ustu_oran": 0.0,
-  "konusma_1k5_4k_oran": 0.0138,
-  "spektral_merkez_ort_hz": 476.5,
-  "merkez_sicrama_max_oktav": 0.991,
+  "konusma_1k5_4k_oran": 0.0123,
+  "spektral_merkez_ort_hz": 461.2,
+  "merkez_sicrama_max_oktav": 0.901,
   "merkez_sicrama_p99_oktav": 0.828,
-  "yogunluk_3sn_max_sicrama_db": 1.27,
-  "govde_rms_dbfs": -19.84,
-  "dongu_dikis_ornek_adim": 0.00986,
-  "dongu_dikis_rms_fark_db": 7.89,
-  "dongu_dikis_merkez_sicrama_oktav": 0.216,
-  "olcu_basi_ornek_adim_max": 0.03851,
-  "dongu_ici_ornek_adim_max": 0.06587,
+  "yogunluk_3sn_max_sicrama_db": 1.07,
+  "govde_rms_dbfs": -19.83,
+  "dongu_dikis_ornek_adim": 0.01022,
+  "dongu_dikis_rms_fark_db": 7.1,
+  "dongu_dikis_merkez_sicrama_oktav": 0.131,
+  "olcu_basi_ornek_adim_max": 0.03685,
+  "dongu_ici_ornek_adim_max": 0.06349,
   "olcu_basi_rms_fark_db_aralik": [
-   1.73,
-   8.71
+   1.61,
+   7.91
   ],
   "dongu_dikisi_olagan": true,
   "katman_toplami_fark_max": 2.384185791015625e-07,
   "katmanlar": {
    "zemin": {
-    "rms_dbfs": -23.6,
-    "tepe_dbfs": -10.66,
+    "rms_dbfs": -23.03,
+    "tepe_dbfs": -10.09,
     "tiz_4k_ustu_oran": 0.0,
     "konusma_1k5_4k_oran": 0.0
    },
    "ritim": {
-    "rms_dbfs": -27.21,
-    "tepe_dbfs": -4.65,
+    "rms_dbfs": -27.71,
+    "tepe_dbfs": -4.69,
     "tiz_4k_ustu_oran": 0.0,
     "konusma_1k5_4k_oran": 0.0007
    },
    "melodi": {
-    "rms_dbfs": -24.15,
-    "tepe_dbfs": -7.29,
+    "rms_dbfs": -24.63,
+    "tepe_dbfs": -7.76,
     "tiz_4k_ustu_oran": 0.0,
     "konusma_1k5_4k_oran": 0.0349
    }
   },
   "vurgu": {
-   "rms_dbfs": -21.75,
-   "tepe_dbfs": -1.0,
+   "rms_dbfs": -21.5,
+   "tepe_dbfs": -1.11,
    "tiz_4k_ustu_oran": 0.0,
-   "konusma_1k5_4k_oran": 0.0031,
+   "konusma_1k5_4k_oran": 0.0029,
    "merkez_sicrama_max_oktav": 0.731
   },
   "oda_yankisi": {
