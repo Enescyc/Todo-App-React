@@ -38,23 +38,22 @@ window.EP = {
     { at: 'p1:Yıldırım', amp: 8, sfx: 'vurus/timpani_alcak', gain: .8 },
     { at: 'p2:dağıldı', amp: 14, sfx: 'vurus/buyuk_davul_ff', gain: .9 },
     { at: 'p2:esir', amp: 0, sfx: 'metal/zincir_surtunme', gain: .45 },
-    { at: 'p2:Ankara', amp: 12, sfx: 'vurus/zil_gong', gain: .7 },
-    { at: 'p2:Ankara', amp: 0, sfx: 'vurus/buyuk_davul_ff', gain: .8 },
+    { at: 'p2:Ankara', amp: 12, sfx: 'vurus/buyuk_davul_ff', gain: .85 },
+    { at: 'p2:Ankara', amp: 0, sfx: 'vurus/timpani_alcak', gain: .6 },
     { at: 'p3:sınır', amp: 0, sfx: 'doku/kadeh_D#4', gain: .35 },
     { at: 'p3:kimse+0.35', amp: 4, sfx: 'vurus/timpani_alcak', gain: .5 },
     { at: 'p3.end+0.7', amp: 0, sfx: 'vurus/gong_mf', gain: .45 },
   ],
   risers: [
-    { to: 'p2:dağıldı', sfx: 'gecis/zil_kresendo_2s', gain: .45 },
-    { to: 'p2:Ankara', sfx: 'gecis/zil_kresendo_2s', gain: .35 },
+    { to: 'p2:dağıldı', sfx: 'vurus/timpani_rulo', gain: .55 },
+    { to: 'p2:Ankara', sfx: 'vurus/timpani_rulo', gain: .45 },
   ],
-  // müzik (make_audio.py: kütüphane tabanlı stiller)
+  // müzik: shared/muzik tarz parçaları; sync = [çapa, parçanın saniyesi] (leitmotif doğru kelimeye denk gelsin), fallback = parça yoksa kütüphane stili
   music: [
-    { from: 'p1', to: 'p1:Yıldırım-0.2', style: 'lib:dawn' },
-    { from: 'p1:Yıldırım-0.2', to: 'p2-0.1', style: 'lib:tension' },
-    { from: 'p2-0.1', to: 'p2:Ankara-0.15', style: 'lib:collapse' },
-    { from: 'p2:Ankara-0.15', to: 'p3-0.2', style: 'lib:dark' },
-    { from: 'p3-0.2', to: 'p3:Ve-0.1', style: 'lib:rewind' },
-    { from: 'p3:Ve-0.1', to: 'end', style: 'lib:theme' },
+    { from: 'p1', to: 'p2-0.1', style: 'trk:destan', sync: ['p1:Yıldırım', 30], gain: .8, fallback: 'lib:dawn' },
+    { from: 'p2-0.1', to: 'p2:Ankara-0.15', style: 'trk:akin', sync: ['p2:dağıldı', 40], gain: .75, fallback: 'lib:collapse' },
+    { from: 'p2:Ankara-0.15', to: 'p3-0.2', style: 'trk:agit', sync: ['p2:Ankara', 23], gain: .9, fallback: 'lib:dark' },
+    { from: 'p3-0.2', to: 'p3:Ve-0.1', style: 'trk:rivayet', sync: ['p3:sınır', 37], gain: .9, fallback: 'lib:rewind' },
+    { from: 'p3:Ve-0.1', to: 'end', style: 'trk:kurulus', sync: ['p3.end+0.7', 20], gain: .9, fallback: 'lib:theme' },
   ],
 };

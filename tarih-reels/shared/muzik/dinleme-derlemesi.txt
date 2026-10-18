@@ -1,0 +1,12 @@
+Seri müzik tarzları – dinleme derlemesi (her tarzdan ~24 sn, leitmotifin duyulduğu bölüm)
+
+0:00.0  kurulus    Uç / Kuruluş teması · ney ile leitmotif  (parçanın 18–42. saniyeleri)
+0:25.2  destan     Destansı yükseliş · motif tam, doruk  (parçanın 28–52. saniyeleri)
+0:50.4  mehter     Mehter yürüyüşü · zurna benzeri sesle leitmotif  (parçanın 17–41. saniyeleri)
+1:15.6  akin       Akın / Savaş · 9/8 aksak, doruk  (parçanın 30–54. saniyeleri)
+1:40.8  derya      Derya · kornoda leitmotif, 6/8  (parçanın 24–48. saniyeleri)
+2:06.0  bizans     Bizans ilahisi · ison + ilahi, motif iması  (parçanın 36–60. saniyeleri)
+2:31.2  saray      Saray entrikası · basta karanlık motif  (parçanın 15–39. saniyeleri)
+2:56.4  rivayet    Rivayet / Rüya · motif tek başına, çanlar  (parçanın 33–57. saniyeleri)
+3:21.6  agit       Ağıt / Çöküş · yarım kalan motif  (parçanın 20–44. saniyeleri)
+3:46.8  yenilesme  Yenileşme · klavsen soruyor, kanun cevaplıyor  (parçanın 15–39. saniyeleri)

@@ -435,6 +435,6 @@ window.exportCues = () => ({
   transitions: TRN.map(x => ({ t: x.t, type: x.type })),
   hits: HITS_R.map(h => ({ t: h.t, sfx: h.sfx, gain: h.gain ?? 1 })),
   risers: (EP.risers || []).map(r => ({ ...r, t: cue(r.to) })),
-  music: (EP.music || []).map(m => ({ ...m, t0: cue(m.from), t1: cue(m.to) })),
+  music: (EP.music || []).map(m => ({ ...m, t0: cue(m.from), t1: cue(m.to), syncT: m.sync ? cue(m.sync[0]) : undefined })),
 });
 window.renderAt = render; window.DUR = DUR;

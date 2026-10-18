@@ -243,7 +243,9 @@ for m in CUES["music"]:
     a, b, st = m["t0"], m["t1"], m["style"]; L = b - a
     if L <= .05: continue
     if st.startswith("trk:"):
-        ok = sesler.track(music, st[4:], a, b, m.get("gain", .8), tuple(m.get("layers", ["tam"])), m.get("offset"))
+        off = m.get("offset")
+        if m.get("sync"): off = max(0.0, m["sync"][1] - (m["syncT"] - a))   # parçanın sync[1]. saniyesi sync[0] çapasına denk gelsin
+        ok = sesler.track(music, st[4:], a, b, m.get("gain", .8), tuple(m.get("layers", ["tam"])), off)
         if ok: continue
         st = m.get("fallback", "lib:theme"); print(f"uyarı: {m['style']} parçası yok → {st}")
     if st in sesler.STYLES:
