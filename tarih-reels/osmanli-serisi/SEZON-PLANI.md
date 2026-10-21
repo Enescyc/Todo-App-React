@@ -20,5 +20,5 @@ Her sezon 8–10 bölüm, her bölüm 60–90 sn. Bir bölüm tek bir anı derin
 
 **Neden Sezon 1'den başlıyoruz?**
 1. **Hazır bir küresel kitle var:** *Diriliş Ertuğrul* ve *Kuruluş Osman* izleyicileri Pakistan'da, Arap dünyasında ve Türkiye'de bu dönemi biliyor. "Dizide anlatılan ile gerçekte belgelenen" farkı çok güçlü bir merak kancası.
-2. **Tarafsız anlatı için ideal:** Dönem büyük ölçüde efsane, belgesi az ve tarihçiler arasında tartışmalı. "Neyi biliyoruz, neyi bilmiyoruz?" sorusu dürüst ve özgün bir anlatı dili sağlıyor.
+2. **Tarafsız anlatı için ideal:** Dönem büyük ölçüde efsane, belgesi az ve tarihçiler arasında tartışmalı. Doğru bilgiyi harmanlayıp hikâye olarak anlatmak; efsaneyi tek bir işaretle ("anlatılana göre") ayırmak ve kaynak ayrıntısını ekrandaki rozete bırakmak (21 Ekim 2026 kararı) dürüst ve özgün bir anlatı dili sağlıyor.
 3. **Dramatik yapı:** Küçük bir başlangıç, yükseliş, neredeyse yok oluş. Sezonun sonundaki çöküş güçlü bir merak kancası bırakıyor.

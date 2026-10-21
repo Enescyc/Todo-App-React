@@ -5,8 +5,8 @@ description: Tarih Reels serisi için tarihî araştırma, doğrulama ve tarafs�
 
 # Araştırma ve doğrulama
 
-Serinin ayırt edici yanı şu dürüstlük: **"Neyi biliyoruz, neyi sanıyoruz?"** Her iddia rozetle işaretlenir; dizilerdeki efsane belgelerle yan yana konur.
-Bu yüzden araştırma, anlatım yazılmadan önce yapılır. Ekrandaki her yazı ve haritadaki her sınır değişikliği bir kaynağa dayanmalıdır.
+Seri, doğru bilgiyi harmanlayıp Osmanlı tarihini **tek bir hikâye** olarak anlatır. Doğruluk işimizin temelidir ama anlatının konusu değildir: kullanıcı "şunun kaydı yok, bunu şu yazdı" diye kaynağa odaklanan metinleri istemiyor. Kaynak ayrıntısı `FACTS.md`'de, ekrandaki rozette ve paylaşım açıklamasında durur; anlatıcı hikâyeyi anlatır.
+Bu yüzden araştırma, anlatım yazılmadan önce yapılır ve **hikâye malzemesi** de toplar: sahneler, kişiler, mekânlar, kronik anlatılarının ayrıntıları (rivayet olarak işaretlenmiş hâlde). Ekrandaki her yazı ve haritadaki her sınır değişikliği bir kaynağa dayanmalıdır.
 
 ## Kaynak hiyerarşisi
 1. **Çağdaş kaynaklar:** Olayla aynı dönemde yazılmış metinler.
@@ -29,8 +29,8 @@ Bu yüzden araştırma, anlatım yazılmadan önce yapılır. Ekrandaki her yaz�
 | Rozet | Anlamı | Anlatımda nasıl |
 |---|---|---|
 | 🟢 BELGE | Çağdaş kaynak ya da nesnel kanıt var | Düz anlatılır |
-| 🟡 TARTIŞMALI | Olay kesin; tarih, ayrıntı ya da yorum farklı | Seçenekler söylenir: "kaynaklar ayrışır", "bazı tarihçiler…". Ekranda birden çok tarih kartı gösterilir |
-| 🔴 RİVAYET | Çok sonra yazılmış anlatı ya da efsane | Efsane bölümü bir kez çerçevelenir ("Rivayete göre…", "belki duymuşsunuzdur"). Ekranda kırmızı rozet efsane boyunca durur ve `rivayet` müziği çalar; bu çerçevenin içinde hikâye düz anlatılabilir. Gerçeğe dönüş açıkça yapılır: "Ama…" |
+| 🟡 TARTIŞMALI | Olay kesin; tarih, ayrıntı ya da yorum farklı | Yuvarlak ve doğru söylenir: "bin üç yüzlerin başında", "yaklaşık", tartışmalı ayrıntıya girmeden. Seçenekleri saymak yalnız tartışmanın kendisi hikâyenin parçasıysa (ör. Kosova'da iki tarafın hafızası). Ekranda rozet ve gerekirse tarih aralığı |
+| 🔴 RİVAYET | Çok sonra yazılmış anlatı ya da efsane | Tek bir işaretle hikâyenin içinde anlatılır ("anlatılana göre", "rivayete göre"; içeride -mış kipi). Ekranda kırmızı rozet efsane boyunca durur ve `rivayet` müziği çalar. Ardından "ama bu doğrulanmaz" türü açıklamaya girilmez; hikâye belgeli olaylarla devam eder |
 | ⚪ DOĞRULANACAK | Kaynakla doğrulanamadı | **Seslendirmeye ve ekrana girmez.** Doğrulanınca rozetini alır |
 
 Rozetler `timeline.js` → `badges` ile ekranın sağ üstünde görünür: `{from, to, k: 'belge'|'tartismali'|'rivayet'|'dogrulanacak', src}`. `src` en fazla ~40 karakterlik bir **dayanak etiketidir**: kaynak ("Âşıkpaşazâde, ~1480") ya da iddianın özeti ("Kösedağ · 26 Haziran 1243").

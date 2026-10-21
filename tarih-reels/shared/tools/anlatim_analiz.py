@@ -12,7 +12,7 @@ Kullanım: python3 shared/tools/anlatim_analiz.py <dosya|klasör> [...] [--md ç
   · izleyiciye hitap (siz/sen, bakın, düşünün, hayal edin…) · "biz" dili · anlatı zamanı (cümle sonu yüklemi: şimdiki/geniş/geçmiş/-mış/gelecek/isim)
   · geçiş kelimeleri (ama, peki, yani, işte, çünkü…) · merak kalıpları (peki, neden, nasıl, asıl, birazdan…) · ünlem
   · sayılar · sözcük çeşitliliği · ilk 3 cümle (kanca) ve son 2 cümle (kapanış)
-  · ilk/son/en uzun cümle (kelime) · kaynak dili (göre, rivayet, kronik…) · yasak ve klişe kelimeler
+  · ilk/son/en uzun cümle (kelime) · kaynak tartışması kelimeleri (kronik, belge, kayıt, kaynak, tarihçi) · yasak ve klişe kelimeler
 Sürüm 2 (21 Ekim 2026): "-yordu" ve "-mıştı" geçmiş sayılır (şimdiki ve -mış sütunları yalnızca şimdiki zamanı ve rivayet kipini
 gösterir); cümle sonu "-dır/-tır" (ve "-mıştır") ayrı "kitap" sütununa gider (sürüm 1'de geniş zamana düşüyordu); ikinci tekil
 hitap ekleri (-iyorsun, -eceksin, -saydın, düşünsene…) ve "biz" iyelikleri (elimizde, bildiğimiz) sayılır; merak kalıplarına
@@ -95,7 +95,8 @@ def analyse(path):
         if re.fullmatch(r"\d+", x) or x in NUMW: grp.append(x); continue
         if grp and grp != ["bir"]: nums += 1
         grp = []
-    kaynak = sum(1 for x in lw if x in ("göre", "rivayet", "rivayete", "efsane", "efsaneye", "efsaneler", "kronik", "kronikler", "kroniklerde", "belge", "belgeler", "belgelerde", "tarihçi", "tarihçiler", "kaynak", "kaynaklar", "kaynaklarda", "kaynakların", "bilmiyoruz", "biliyoruz") or x.startswith(("rivayet", "kronik", "tarihçi", "belge", "kaynak", "efsane")))
+    # kaynak tartışması (ANLATICI-DILI.md §4: hikâye önde, kaynak arkada): anlatı kaynağı konu ediyorsa bu sayı büyür
+    kaynak = sum(1 for x in lw if x.startswith(("kronik", "belge", "kayıt", "kayd", "kaynak", "tarihçi")))
     # yüklemsiz cümle adayı (ANLATICI-DILI.md §3.6): soru değil, sorunun cevabı değil, "Yıl …" açılışı değil ve son kelimesi
     # bir yüklem ekiyle bitmiyor. Kaba bir eleme: listede çıkan her cümleye elle bakılır.
     yuklemsiz = []
@@ -148,7 +149,7 @@ HEDEF = [
     ("gelecek_%", 3, 20, '"-ecekti" önsezisi'),
     ("merak_100", 2.0, None, "merak kalıpları /100"),
     ("sayı_100", None, 4.0, "sayı /100"),
-    ("kaynak_dili", 1, None, "kaynak ve belirsizlik kelimeleri (adet)"),
+    ("kaynak_dili", None, 2, "kaynak tartışması kelimeleri (adet, §4)"),
     ("yüklemsiz", None, 0, "yüklemsiz cümle adayı (elle bak, §3.6)"),
 ]
 YUKLEM_KELIME = {"var", "yok", "değil", "gibi", "mı", "mi", "mu", "mü", "evet", "hayır"}

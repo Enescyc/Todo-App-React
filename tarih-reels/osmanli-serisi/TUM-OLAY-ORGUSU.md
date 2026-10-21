@@ -2,7 +2,7 @@
 
 **Anlatıcı:** Emrullah Uzun (bütün seri boyunca tek ses) · **Format:** 8 sezon × 10 bölüm, her bölüm 60–75 sn · **Toplam:** ~80 bölüm, ~90 dakika
 **Seriyi taşıyan soru:** *Bir sınır beyliği nasıl üç kıtaya yayılan bir imparatorluğa dönüştü, 623 yıl nasıl ayakta kaldı ve nasıl sona erdi?*
-**Seriyi taşıyan anlatım dili:** *"Bildiklerimiz ve sandıklarımız."* Belge, tartışma ve rivayet her bölümde ayrılır: 🟢 BELGE · 🟡 TARTIŞMALI · 🔴 RİVAYET.
+**Seriyi taşıyan anlatım dili:** *Doğru bilgiyi harmanlayıp bütün Osmanlı tarihini tek bir hikâye olarak anlatmak.* Doğruluk işimizin temeli, anlatının konusu değil: kaynak tartışması `FACTS.md`'de, ekrandaki rozette (🟢 BELGE · 🟡 TARTIŞMALI · 🔴 RİVAYET) ve paylaşım açıklamasında yaşar. Anlatıcı rivayeti tek bir işaretle ayırır ("anlatılana göre") ve hikâyeye devam eder (kullanıcı kararı, 21 Ekim 2026; ayrıntı: `ANLATICI-DILI.md`).
 
 > **Doğrulama durumu:** Bu dosya serinin omurgasıdır. Tarihler genel kabul gören bilgilerdir ve **her sezon, senaryo yazılmadan önce Sezon 1'deki gibi ayrı bir kaynaklı araştırmadan geçecek** (TDV ve İnalcık, Emecen, Ortaylı gibi tarihçilerin eserleri, ayrıca karşı tarafın kaynakları). Tartışmalı olduğu bilinen başlıklar şimdiden 🟡/🔴 ile işaretlendi.
 

@@ -9,7 +9,7 @@
 | **3. Görsel kompozisyon** | Her karede tek odak; harita okunur; renk yayı hissediliyor; güvenli alan temiz | Kalabalık etiketler, eşit ağırlıklı öğeler | Çakışan yazılar, taşmalar, okunmaz harita |
 | **4. Hareket ve kamera** | Kamera hiç ölü değil; uçuşlar ve dalışlar akıcı; geçişleri nesneler taşıyor; vuruşta tepme | Çoğu geçiş çapraz; statik tutuşlar | Sarsıntılı, rastgele, hız sıçramaları |
 | **5. Ses** | Leitmotif doğru kelimede; 3–5 güçlü an; −14 LUFS; anlatıcı net; sert tiz yok | Müzik düz zemin; efektler rastgele | Müzik konuşmayı bastırıyor; bas → tiz zıtlığı |
-| **6. Doğruluk ve tarafsızlık** | Ekrandaki her şey FACTS'te; rozetler doğru; yargısız dil; tartışmalı noktalar seçenekleriyle | Bir iki küçük kaynaksız ayrıntı | Uydurma tarih ya da rakam; taraf tutan dil; portre |
+| **6. Doğruluk ve tarafsızlık** | Ekrandaki ve seslendirmedeki her şey FACTS'te; rozetler doğru; yargısız dil; rivayet tek işaretle ayrılmış; anlatı kaynak tartışmasına kaymıyor | Bir iki küçük kaynaksız ayrıntı | Uydurma tarih ya da rakam; taraf tutan dil; portre |
 | **7. Bitiş ve seri bağlılığı** | Sıradaki kartı + merak; seri imzası ve sayaç; son kare 0.8–1.2 sn yaşayarak tutuluyor | Kart var ama soğuk | Ani kesme; sıradakiyle bağ yok |
 
 **Kural:** Her boyut ≥ 4. Altında kalan her boyut için:

@@ -11,7 +11,7 @@ description: >-
 
 **Amaç.** Kısa tutmak değil; eğlenceli, dikkat çekici ve güvenilir anlatmak. Varsayılan biçim 90 sn (150–170 kelime); muharebe ve iki taraflı bölümler 2 dk (210–230); sezon finali 3 dk (320–340). Kullanıcı hangi biçimi seçtiyse o geçerli.
 
-**Anlatıcı.** Haritanın başında oturan, kaynakları elinde tutan, sizi sahneye çağıran sıcak bir anlatıcı. İzleyiciye "siz" der, yer yer "biz"le yanına alır; "sen", "dostlarım", argo ve abone çağrısı yok. Kişilere sıfat takmaz; dram, olguları yan yana koymaktan doğar.
+**Anlatıcı.** Haritanın başında oturan, olayları tek bir hikâye gibi anlatan, sizi sahneye çağıran sıcak bir anlatıcı. İzleyiciye "siz" der, yer yer "biz"le yanına alır; "sen", "dostlarım", argo ve abone çağrısı yok. Kişilere sıfat takmaz; dram, olguları yan yana koymaktan doğar.
 
 **Üslup.** Akıcı paragraflar: kullanıcı bölük pörçük dili reddetti, akıcı Peraşt metnini "çok daha iyi" diye onayladı. Kısa cümle paragrafın içinde bir vuruştur, liste değil.
 - **Zaman:** olaylar **-dı**; arka plan -yordu/-mıştı; **doruk şimdiki zaman**; rivayet çerçevesinin içi -mış; kapanış -ecekti. Geniş zaman ≤ %15, "-dır/-tır" ≤ %10 ("Liderinin adı Osman'dır" değil, "Başlarındaki beyin adı ise Osman."). Şimdiki zamana bir sahne çerçevesiyle girilir ("Bin dört yüz iki yazında, Ankara yakınlarında…") ve sahne bitene kadar orada kalınır.
@@ -24,10 +24,10 @@ description: >-
 
 **Paragraf zaman birimidir.** Seslendirme paragraflardan bölünerek hizalanır. Bir paragraf bir anlam birimi; harita sessizliği paragraf sonuna `pause` olarak konur. `SENARYOLAR.md`'de metin tek blok halindeyse kelimelerine dokunmadan cümle sınırlarından böl ve bölmeyi kullanıcıya göster.
 
-**Rozetlerin sesli karşılığı** (rehber §4):
-- 🟢 düz -dı, gerekirse kaynak adı ("Pakhymeres'e göre…").
-- 🟡 "İki anlatım var: X'e göre…, Y'ye göre…", sayı aralığı.
-- 🔴 çerçeveyi aç ("Efsane şöyle anlatır:" / "Rivayete göre"), içeride -mış, çerçeveyi kapat ("Güzel bir hikâye. Ama…").
+**Hikâye önde, kaynak arkada** (rehber §4; kullanıcı kararı): Anlatı, doğru bilgiyi harmanlayıp hikâye olarak anlatır. "Bunun kaydı yok", "bunu şu tarihçi yazdı", "kroniklerde ilk kez…" türü cümleler istenmiyor; kaynak ayrıntısı ekrandaki rozette ve `FACTS.md`'de kalır.
+- 🟢 düz anlatılır, kaynak adı söylenmez (kaynak kişi hikâyenin karakteri değilse).
+- 🟡 yuvarlak ve doğru söylenir ("bin üç yüzlerin başında", "yaklaşık"); seçenekleri saymak yalnız tartışma hikâyenin parçasıysa.
+- 🔴 tek bir işaretle hikâyenin içinde anlatılır ("anlatılana göre…", içeride -mış); ardından çürütme paragrafı yazılmaz.
 - ⚪ seslendirmeye girmez.
 
 **Süre hesabı.** Emrullah Uzun ~2.0 kelime/sn okur. 160 kelime ≈ 80 sn konuşma; harita sessizlikleri ve kartlarla ≈ 90 sn. Hız artırılmaz; enerji kısa cümle ve sessizlikten gelir.

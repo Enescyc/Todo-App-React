@@ -5,7 +5,7 @@
 
 **Dramatik eğri:** Belirsiz başlangıç → ilk zafer → şehirler ve devlet kurumları → Avrupa'ya geçiş → Balkanlar → zirve → **Ankara'da çöküş** (sezon sonu kancası).
 
-**Ana tema (yeni bir anlatım dili): "Bildiklerimiz ve sandıklarımız."** Her bölüm, belgelere dayanan bilgiyi rivayetten ayırarak anlatır. Dizilerden tanınan hikâyelerle "gerçekte ne biliyoruz?" sorusu arasındaki gerilim seriyi hem tarafsız hem merak uyandırıcı yapar. Tarih kanallarında pek görülmeyen bir yaklaşım.
+**Ana tema (21 Ekim 2026 kararıyla değişti):** Sezon, Kösedağ'dan Ankara'ya tek bir hikâye olarak anlatılır. Doğruluk arka planda kalır: rivayet tek bir işaretle ayrılır, kaynak tartışması anlatıya girmez, rozetler ekranda durur (`ANLATICI-DILI.md`). *Eski tema ("Bildiklerimiz ve sandıklarımız") kullanıcı tarafından fazla kaynak odaklı bulundu.* Eski not: Her bölüm, belgelere dayanan bilgiyi rivayetten ayırarak anlatır. Dizilerden tanınan hikâyelerle "gerçekte ne biliyoruz?" sorusu arasındaki gerilim seriyi hem tarafsız hem merak uyandırıcı yapar. Tarih kanallarında pek görülmeyen bir yaklaşım.
 
 ## Bölümler (her biri 60–90 sn, kendi başına anlaşılır)
 | # | Çalışma başlığı | Kanca (ilk 3 sn) | Hikâyenin dönüm noktası | Bitiş kancası | Güven |

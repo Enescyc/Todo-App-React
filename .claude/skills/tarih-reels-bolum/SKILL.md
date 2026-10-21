@@ -13,7 +13,7 @@ Her bölüm kodla çizilir. Görüntü, 1080×1920 deterministik bir canvas ile 
 Bu kurallar konuşmalardan çıktı. Akışın her adımında geçerlidir.
 - **Dil:** Kullanıcıyla Türkçe konuş. Teknik terimleri kısa açıkla.
 - **Anlatım:** Serinin anlatıcı dili `tarih-reels/osmanli-serisi/ANLATICI-DILI.md`'de (6 kanalın analizinden). Hedef kısa tutmak değil; eğlenceli, dikkat çekici ve güvenilir anlatmak: süre gerekirse 90 sn, 2 dk ya da 3 dk olur. Akıcı belgesel diliyle yaz. Kesik kesik, liste gibi cümleler beğenilmedi ("Bak bu anlatım dili çok daha iyi" denen üslup, Bölüm 2 Peraşt'taki 6 paragraflık akış).
-- **Tarafsızlık ve kaynak:** İnalcık, Emecen, Ortaylı gibi Türk tarihçilerin eserleriyle doğrula. Efsaneyi efsane diye söyle.
+- **Tarafsızlık ve kaynak:** İnalcık, Emecen, Ortaylı gibi Türk tarihçilerin eserleriyle doğrula. Ama anlatı kaynağı değil hikâyeyi anlatır: "şunun kaydı yok, bunu şu yazdı" türü cümleler istenmiyor. Efsane tek bir işaretle ("anlatılana göre") ayrılır; kaynak ayrıntısı ekrandaki rozete ve `FACTS.md`'ye kalır.
 - **Anlatıcı:** Bütün seride tek anlatıcı var: **Emrullah Uzun** (ElevenLabs v4). Metinler kullanıcıya **parça parça** sunulur. En önemli hedef, bütün serinin olay örgüsünü eksiksiz anlatabilmesidir.
 - **Ses:** Kulak tırmalamasın. Bastan sonra çok tiz bir ses gelmesin. Uyumlu bir miks istenir.
 - **Hazır kaynaklar:** Hazır asset ve ses kullanılabilir, ama yalnızca CC0 ya da kamu malı olanlar.
