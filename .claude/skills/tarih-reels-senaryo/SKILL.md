@@ -14,8 +14,9 @@ description: >-
 **Anlatıcı.** Haritanın başında oturan, kaynakları elinde tutan, sizi sahneye çağıran sıcak bir anlatıcı. İzleyiciye "siz" der, yer yer "biz"le yanına alır; "sen", "dostlarım", argo ve abone çağrısı yok. Kişilere sıfat takmaz; dram, olguları yan yana koymaktan doğar.
 
 **Üslup.** Akıcı paragraflar: kullanıcı bölük pörçük dili reddetti, akıcı Peraşt metnini "çok daha iyi" diye onayladı. Kısa cümle paragrafın içinde bir vuruştur, liste değil.
-- **Zaman:** olaylar **-dı**; arka plan -yordu/-mıştı; **doruk şimdiki zaman**; rivayet çerçevesinin içi -mış; kapanış -ecekti. Geniş zaman ≤ %15, "-dır/-tır" ≤ %10 ("Liderinin adı Osman'dır" değil, "Adı, Osman.").
-- **Cümle:** ortalama 8–11 kelime; %20–40'ı ≤ 5 kelime; 20 kelimeyi aşan cümle yok; kanca ve doruk cümleleri ≤ 6 kelime.
+- **Zaman:** olaylar **-dı**; arka plan -yordu/-mıştı; **doruk şimdiki zaman**; rivayet çerçevesinin içi -mış; kapanış -ecekti. Geniş zaman ≤ %15, "-dır/-tır" ≤ %10 ("Liderinin adı Osman'dır" değil, "Başlarındaki beyin adı ise Osman."). Şimdiki zamana bir sahne çerçevesiyle girilir ("Bin dört yüz iki yazında, Ankara yakınlarında…") ve sahne bitene kadar orada kalınır.
+- **Cümle:** ortalama 8–11 kelime; 20 kelimeyi aşan cümle yok; kanca ve doruk cümleleri kısa ama **tam** (yüklemli). Cümleyi parçalara bölmek kısa cümle yazmak değildir.
+- **Anlatım bozukluğu yok** (rehber §3.6, kırmızı çizgi): her cümlenin yüklemi var (istisna: soruya kısa cevap); zaman geçişi çerçeveli; özne ve gönderim açık ("saflar" kimin, "bu devlet" hangisi); "ve" aynı türden öğeleri bağlar; özne ile yüklem arasına virgül girmez; metin öbür bölümlerle çelişmez. Kullanıcı Fragman taslağını tam bu yüzden geri çevirdi. Metni yüksek sesle okuyarak denetle.
 - **İzleyici:** 2–4 soru ("Peki…?" cevabı hemen gelir), 1–2 hitap ("Düşünün…"), 1–3 "biz".
 - **Dönemeç:** her 15–25 sn'de bir "Ama / Oysa / Peki / Ta ki" ya da yeni görüntü ölçeği.
 
@@ -42,7 +43,7 @@ description: >-
 python3 shared/tools/anlatim_analiz.py <bölüm>/timeline.js      # ölçüm + hedef kontrolü (rehber §12)
 python3 shared/tools/anlatim_analiz.py taslak.txt --hedef       # timeline'a girmemiş taslak
 ```
-Sonra rehberin §11'indeki **puan kartını** doldur: 10 madde × 0–2, geçme ≥ 16/20 ve hiçbir maddede 0 yok. Kırmızı çizgilerden biri varsa metni sunma.
+Araç yüklemsiz cümle adaylarını listeler; her birine elle bak. Sonra rehberin §11'indeki **puan kartını** doldur: 10 madde × 0–2, geçme ≥ 16/20 ve hiçbir maddede 0 yok. Kırmızı çizgilerden biri varsa metni sunma.
 
 **Kullanıcıya sunuş.** Metni paragraf paragraf ver; kullanıcı "part part" değerlendiriyor. Her paragrafın yanında kullandığın teknik kodları (ör. `K2 · T3`) ve rozetleri yaz. Sonda kelime sayısı, tahmini süre, puan kartı (`Puan 17/20 · zayıf: 3, 8`) ve hedef dışı ölçüler (nedeniyle) bulunsun.
 
@@ -77,6 +78,7 @@ Sonra rehberin §11'indeki **puan kartını** doldur: 10 madde × 0–2, geçme 
 
 ## 4. Kontrol listesi (kullanıcıya göstermeden önce)
 - [ ] `anlatim_analiz.py` hedef kontrolü yapıldı; hedef dışı ölçülerin nedeni yazıldı.
+- [ ] Metin yüksek sesle okundu; §3.6 anlatım bozukluğu denetimi temiz.
 - [ ] Puan kartı ≥ 16/20, hiçbir maddede 0 yok, kırmızı çizgi yok (`ANLATICI-DILI.md` §11).
 - [ ] İlk 3 saniyede kanca var; son cümle sıradaki bölüme bağlanıyor.
 - [ ] Her iddia `FACTS.md`'de; ⚪ yok; 🟡 ve 🔴 dilde belli.

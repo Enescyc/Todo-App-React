@@ -69,6 +69,7 @@ def analyse(path):
     q = sum(1 for s in sents if s.endswith("?")) + sum(1 for x in lw if x in ("mi", "mı", "mu", "mü") or re.fullmatch(r"(mi|mı|mu|mü)(yd[ıiuü]|ydi|ydı|s[ıiuü]n(ız|iz|uz|üz)?|y[ıiuü]z)", x))
     hitap = sum(1 for x in lw if x in ("siz", "sen", "sizin", "senin", "size", "sana", "sizi", "seni", "sizce", "bakın", "bakalım", "düşünün", "düşünsenize", "hayal", "tahmin", "dikkat", "unutmayın", "görün", "inanır", "inanın"))
     hitap += sum(1 for x in lw if re.search(r"(sınız|siniz|sunuz|sünüz|ırsınız|irsiniz|ursunuz|ürsünüz|abilirsiniz|ebilirsiniz)(d[ıiuü]r)?$", x))
+    hitap += sum(1 for x in lw if re.search(r"(ınız|iniz|unuz|ünüz)(dan|den|da|de|ı|i|u|ü|a|e|ın|in|un|ün)$", x) and len(x) > 7)   # sandığınızdan, avucunuza
     # ikinci tekil (Random Animasyon "sen" dili): yalnız yanlış pozitifi az olan biçimler; "olsun/versin" gibi 3. tekil emirler sayılmaz
     hitap += sum(1 for x in lw if re.search(r"([ıiuü]yorsun|(acak|ecek)s[ıi]n|(abilir|ebilir)s[ıi]n|(mal|mel)[ıi]s[ıi]n|(sa|se)yd[ıi]n|(sa|se)n[ıi]z|m[ıiuü]s[ıiuü]n|m[ıi]şs[ıi]n|(sana|sene|senize|sanıza))$", x) and len(x) > 5)
     biz = sum(1 for x in lw if x in ("biz", "bizim", "bize", "bizi", "hepimiz", "bizce")) + sum(1 for x in lw if re.search(r"(yoruz|acağız|eceğiz|alım|elim|dık|dik|duk|dük|tık|tik|tuk|tük)$", x) and len(x) > 4)
@@ -95,6 +96,16 @@ def analyse(path):
         if grp and grp != ["bir"]: nums += 1
         grp = []
     kaynak = sum(1 for x in lw if x in ("göre", "rivayet", "rivayete", "efsane", "efsaneye", "efsaneler", "kronik", "kronikler", "kroniklerde", "belge", "belgeler", "belgelerde", "tarihçi", "tarihçiler", "kaynak", "kaynaklar", "kaynaklarda", "kaynakların", "bilmiyoruz", "biliyoruz") or x.startswith(("rivayet", "kronik", "tarihçi", "belge", "kaynak", "efsane")))
+    # yüklemsiz cümle adayı (ANLATICI-DILI.md §3.6): soru değil, sorunun cevabı değil, "Yıl …" açılışı değil ve son kelimesi
+    # bir yüklem ekiyle bitmiyor. Kaba bir eleme: listede çıkan her cümleye elle bakılır.
+    yuklemsiz = []
+    if not auto_punct:
+        for i, x in enumerate(sents):
+            ws = [y.lower().replace("’", "'") for y in words(x)]
+            if not ws or x.endswith("?") or (i and sents[i - 1].endswith("?")) or ws[0] == "yıl": continue
+            last = ws[-1].split("'")[-1] if "'" in ws[-1] else ws[-1]
+            if last in YUKLEM_KELIME or YUKLEM_EK.search(last): continue
+            yuklemsiz.append(x)
     low = " " + " ".join(lw) + " "
     yasak = sorted({x for x in lw if x in YASAK} | {p for p in YASAK_IFADE if f" {p} " in low})
     klise = sorted({x for x in lw if x in KLISE} | {p for p in KLISE_IFADE if f" {p} " in low})
@@ -116,7 +127,7 @@ def analyse(path):
         "kapanış": " ".join(sents[-2:])[:240] if not auto_punct else " ".join(w[-35:]),
         "noktalama_yok": auto_punct,
         "ilk_cümle": sl[0] if sl else None, "son_cümle": sl[-1] if sl else None, "en_uzun": max(sl) if sl else None,
-        "kaynak_dili": kaynak, "yasak": yasak, "klişe": klise,
+        "kaynak_dili": kaynak, "yasak": yasak, "klişe": klise, "yüklemsiz": len(yuklemsiz) if not auto_punct else None, "yüklemsiz_liste": yuklemsiz,
     }
     return res
 
@@ -124,7 +135,7 @@ def analyse(path):
 # Kaynak: osmanli-serisi/ANLATICI-DILI.md §3 ve §12. (alt, üst) kapalı aralık; None = sınır yok.
 HEDEF = [
     ("ort_cümle", 7.5, 11.5, "ortalama cümle (kelime)"),
-    ("vurucu_%", 20, 40, "≤5 kelimelik cümle"),
+    ("vurucu_%", 10, 35, "≤5 kelimelik cümle"),
     ("en_uzun", None, 20, "en uzun cümle (kelime)"),
     ("ilk_cümle", None, 8, "ilk cümle (kanca)"),
     ("son_cümle", None, 12, "son cümle (kapanış)"),
@@ -138,7 +149,12 @@ HEDEF = [
     ("merak_100", 2.0, None, "merak kalıpları /100"),
     ("sayı_100", None, 4.0, "sayı /100"),
     ("kaynak_dili", 1, None, "kaynak ve belirsizlik kelimeleri (adet)"),
+    ("yüklemsiz", None, 0, "yüklemsiz cümle adayı (elle bak, §3.6)"),
 ]
+YUKLEM_KELIME = {"var", "yok", "değil", "gibi", "mı", "mi", "mu", "mü", "evet", "hayır"}
+YUKLEM_EK = re.compile(r"(yor|yordu|m[ıiuü]ş|d[ıiuü]|t[ıiuü]|d[ıiuü][mnk]|t[ıiuü][mnk]|d[ıiuü]lar|d[ıiuü]ler|acak|ecek|acağ[ıi][mz]|eceğ[ıi][mz]|"
+                       r"[aeıiuü]r|[aeıiuü]rlar|[aeıiuü]rler|maz|mez|mal[ıi]|mel[ıi]|s[ıiuü]n|s[ıiuü]n[ıiuü]z|[ıiuü]n|[ıiuü]n[ıiuü]z|[ıiuü]z|"
+                       r"l[ıi]m|d[ıiuü]r|t[ıiuü]r|yd[ıiuü]|yd[ıiuü]lar|ym[ıiuü]ş|ysa|yse|sa|se|ken)$")
 YASAK = {"kafir", "kâfir", "kafirler", "gavur", "gavurlar", "küffar", "mücahid", "mücahit", "mücahitler", "hain", "hainler", "hainlik",
          "dostlarım", "arkadaşlar", "abone", "merhaba", "videoda", "videomuzda"}
 YASAK_IFADE = ["beğenmeyi unutmayın", "bu videoda", "abone olun"]
@@ -181,6 +197,7 @@ def main():
         out.append(f"\n**Hedef kontrolü: {r['dosya']}** ({n_ok}/{len(h)} ✓; nitel puan kartı ayrıca: ANLATICI-DILI.md §11)")
         out.append("| ölçü | değer | hedef | |\n|---|---|---|---|")
         out += [f"| {ad} | {v} | {rng} | {'✓' if ok else '✗'} |" for ad, v, rng, ok in h]
+        if r["yüklemsiz_liste"]: out.append("\nYüklemsiz cümle adayları (anlatım bozukluğu mu, bilinçli isim cümlesi mi? elle karar ver):\n" + "\n".join(f"- «{x}»" for x in r["yüklemsiz_liste"]))
     s = "\n".join(out); print(s)
     if md: open(md, "w", encoding="utf-8").write(s + "\n")
 

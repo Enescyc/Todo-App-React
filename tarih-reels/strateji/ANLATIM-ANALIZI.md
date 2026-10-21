@@ -61,7 +61,7 @@ Kanal raporlarındaki ortalamalar (araç sürüm 1). "Net hız", 1,5–2 sn'den 
 | Random Animasyon, anlatıcı | 2,5 | 7,2 | 39 | 1,4 | ~4 ("sen") | 3,6 | -dı, isim cümlesi | 6 | 0,2–1,4 |
 | Harp Tarihi | 2,0 | 13,2 | 8 | 0,05 | 0,15 | 0,9 | -dı (%60), -mıştı | **22** | 0 |
 | **Bizim eski metinler** | 2,0 | 8,0–8,8 | 15–43 | 0,9–1,7 | **0** | **0** (v1) | geniş zaman (%62) | 0 (yalnız 0,6 sn paragraf arası) | 0 |
-| **Hedef** (`ANLATICI-DILI.md` §12) | 2,0 | 7,5–11,5 | 20–40 | 1,0–3,5 | 0,5–2,0 | 0,3–2,5 | -dı; doruk şimdiki | 5–10 | belgeden, ≤ 0,2 |
+| **Hedef** (`ANLATICI-DILI.md` §12) | 2,0 | 7,5–11,5 | 10–35 | 1,0–3,5 | 0,5–2,0 | 0,3–2,5 | -dı; doruk şimdiki | 5–10 | belgeden, ≤ 0,2 |
 
 **Ana sonuçlar:**
 1. Belgesel tarih kanallarının hızı Emrullah Uzun'unkiyle aynı (≈2,0 kel/sn). Hızlı kanallarda bu hızı mizah ve skeç taşıyor. Enerjiyi hızdan değil cümle boyundan, dönemeçlerden ve sessizlikten alacağız.

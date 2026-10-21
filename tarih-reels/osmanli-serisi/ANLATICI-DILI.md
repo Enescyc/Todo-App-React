@@ -18,7 +18,7 @@ Sezonun teması zaten bu: **"Bildiklerimiz ve sandıklarımız"** (`sezon-1-kuru
 | **Yusuf Kayaalp** | Kendi sorup kendi cevaplama; ironik ileri atlamayla kapanış; domino zinciri ve refren | "Peki…? Cevap." (T4), simetrik kapanış (S2), domino (T10), refren (T11), "-ebilirdi"/"gerçek tarihte" kip disiplini | Argo, uydurma kaynak şakası, oyun jargonu, 190 kel/dk |
 | **Bebar Bilim** | "Ama bir saniye" ile efsane düzeltme; "siz o kaptansınız" sahnesi; ölçek benzetmesi; kesik üçleme | T5, T6, T8, T9, "X dediler ona" (T19), taşınan imge (T18), "-ecekti" önsezisi | Uzun felsefi giriş, argo, kişilere psikolojik teşhis |
 | **Anime Tarih** | Haritaya susmak (sürenin %10'u sessiz); "Tarih…, yer…" levhası; iki seçenekli ihtilaf dili | Harita sessizliği (T15), levha (T1), "kimilerine göre…" (T7), yan yana ironi (T12), "Ta ki…" (T13) | Kancasız açılış, envanter dili, tören sıfatları |
-| **Random Animasyon** | İzleyiciyi karar anına oturtmak; kısa cümle (ort. 7 kelime) | "Düşünün…" sahnesi (siz diliyle), kancada anılıp sonda ödenen ayrıntı, kanca ve doruk cümlesi ≤ 6 kelime | "Sen" dili, gerçek kişilere uydurma diyalog, efsaneyi olgu gibi oynamak |
+| **Random Animasyon** | İzleyiciyi karar anına oturtmak; kısa cümle (ort. 7 kelime) | "Düşünün…" sahnesi (siz diliyle), kancada anılıp sonda ödenen ayrıntı, kısa ama tam kanca ve doruk cümleleri | "Sen" dili, gerçek kişilere uydurma diyalog, efsaneyi olgu gibi oynamak |
 | **Harp Tarihi** | "Yıl 1302." açılışı; "-acaktı" askısı; rivayet karşılaştırması; doruktan sonra müzikli nefes | Hızın teyidi (2,0 kel/sn), tarih damgalı ilk cümle, "İki anlatım var" (🟡), sayı aralığı | Abone çağrısıyla açılış, dinî-taraflı ve eski dil, 20+ kelimelik cümleler |
 
 **Ölçülerin özeti** (ayrıntı: `strateji/ANLATIM-ANALIZI.md`):
@@ -46,17 +46,18 @@ Sezonun teması zaten bu: **"Bildiklerimiz ve sandıklarımız"** (`sezon-1-kuru
 |---|---|---|
 | Olay (taban kip) | **-dı** | "Moğollar Selçuklu ordusunu bozguna uğrattı." |
 | Arka plan, süreç | -yordu, -mıştı | "Merkez her yıl biraz daha zayıflıyordu." |
-| **Doruk** (1–4 cümle) | **şimdiki zaman** | "Surlar çöküyor. Gece yarısı." |
+| **Doruk** (1–4 cümle) | **şimdiki zaman**, bir sahne çerçevesi içinde (§3.6) | "Gece yarısı yer sarsılıyor ve surlar çöküyor." |
 | Rivayet çerçevesinin içi | **-mış** | "…şeyhin göğsünden bir ay doğmuş." |
 | Önsezi ve kapanış | **-ecekti** | "Bu küçük sikke, yüzyıllar sonra tek kanıt olacaktı." |
 | Kaynakların bugünkü durumu, genel doğru | geniş zaman (az) | "Bizans kaynakları bu düğünden hiç söz etmez." |
-| **Kaçın:** yazı dili "-dır/-tır" | — | "Liderinin adı Osman'dır." yerine "Başlarında bir bey var. Adı, Osman." |
+| **Kaçın:** yazı dili "-dır/-tır" | — | "Liderinin adı Osman'dır." yerine "Başlarındaki beyin adı ise Osman." |
 
 Geniş zaman en çok %15, "-dır/-tır" en çok %10 (ölçü: §12). Eski metinlerimizde olaylar geniş zamanla anlatılıyordu ("yener", "dönüşür"). Bu, ders kitabı sesi veriyor.
 
 ### 3.2 Cümle
-- **Ortalama 8–11 kelime.** Cümlelerin %20–40'ı 5 kelime ya da daha kısa. **20 kelimeyi aşan cümle yok.**
-- **Kanca ve doruk cümleleri ≤ 6 kelime.** Son cümle ≤ 12 kelime.
+- **Ortalama 8–11 kelime.** Cümlelerin %10–35'i 5 kelime ya da daha kısa (üst sınır kopukluğa karşı). **20 kelimeyi aşan cümle yok.**
+- **Kanca ve doruk cümleleri kısa ama tam cümledir** (yüklemi olan). İlk cümle ≤ 8 kelime hedeflenir; tarih yazıyla yazıldığı için birkaç kelime aşabilir. Son cümle ≤ 12 kelime.
+- Kısa cümle, cümleyi bölmek değildir: "Tek bir gün. Saflar bozuluyor." gibi parçalar yerine "Günün sonunda ordu dağılıyor ve sultan esir düşüyor."
 - Akış korunur. Kullanıcı bölük pörçük dili reddetti, akıcı Peraşt paragrafını onayladı. Kısa cümleler bağlaçlarla bağlanır ve paragrafın içinde bir vuruş olur; paragraf bir liste gibi okunmaz.
 - **Dönemeç kelimeleri:** "Ama", "Oysa", "Peki", "Çünkü", "İşte", "Ta ki". Aynı bağlaç art arda iki cümlede kullanılmaz. Cümleye "Ve" ile başlamak bölümde en çok iki kez.
 
@@ -80,6 +81,22 @@ Geniş zaman en çok %15, "-dır/-tır" en çok %10 (ölçü: §12). Eski metinl
 - **Gerekçesiz kullanılmaz:** şanlı, yüce, muhteşem, efsanevi, inanılmaz, barbar, vahşi; "altın harflerle", "tarihin en …", "dünyanın en …". Bir "ilk" ya da "en" iddiası ancak FACTS'te 🟢 ise söylenir.
 - Gerçek kişilere uydurma söz yazılmaz. Alıntı yalnız belgeliyse ve künyesiyle yapılır.
 
+### 3.6 Anlatım bozukluğu denetimi
+Kullanıcı Fragman'ın ilk taslağını "çok kopuk ve anlatım bozukluğu var" diye geri çevirdi. O taslaktaki hataların her biri aşağıda bir kural oldu. Her metin, kullanıcıya gitmeden önce **yüksek sesle** okunur ve her cümle bu sekiz soruyla denetlenir:
+
+| # | Kural | Bozuk örnek (eski taslaklarımızdan) | Doğrusu |
+|---|---|---|---|
+| 1 | **Her cümlenin yüklemi var.** İsim öbeklerini sıralamak cümle kurmak değildir. İstisnalar: hemen önceki soruya verilen kısa cevap ("Peki elimizde ne var? Küçük bir sikke.") ve bölüm başında bir kez "Yıl bin üç yüz iki." kalıbı | "Balkanlar'dan Fırat'a uzanan topraklar, yenilmez sanılan bir ordu ve Yıldırım lakaplı bir sultan." · "Ankara, bin dört yüz iki." | "Sultanın toprakları Balkanlar'dan Fırat'a kadar uzanıyor ve ordusu yenilmez sanılıyor." |
+| 2 | **Zaman geçişi çerçevelidir.** Şimdiki zamana bir sahne çerçevesiyle girilir ("Bin dört yüz iki yazında, Ankara yakınlarında…") ve sahne bitene kadar orada kalınır. Geçmişe bir zaman işaretiyle dönülür ("Oysa yüz yıl önce…"). | "…bir imparatorluk vardı." → "…saflar bozuluyor." (çerçevesiz geçmişten şimdiye) | "…iki ordu karşı karşıya geliyor. (…) Oysa bu devlet, yüz yıl önce küçük bir sınır beyliğiydi." |
+| 3 | **Özne ve gönderim açıktır.** "Saflar" kimin, "bu devlet" hangisi, "buraya" neresi? Zamir ve işaret sıfatı bir önceki cümlede adı geçen şeye döner. Aynı şeyin adı değişmez (imparatorluk, devlet, beylik bilinçli seçilir). | "Peki bu devlet (…) buraya nasıl gelmişti?" (önceki cümlede "imparatorluk"; "buraya" belirsiz) | "Peki o küçük beylik, bir asırda nasıl bu kadar büyüdü?" |
+| 4 | **"Ve" aynı türden öğeleri bağlar.** İsimle cümle, "ve" ile bağlanmaz. Ortak yüklem bütün öğelere uyar. | "Küçük bir sikke ve üzerinde (…) Ertuğrul oğlu Osman yazıyor." | "Küçük bir sikke. Üzerinde, okunabildiği kadarıyla, Ertuğrul oğlu Osman yazıyor." |
+| 5 | **Kelimeler anlamca uyar.** | "Cevap, sandığınızdan çok daha az." (cevap az olmaz) · "hikâyenin başını yazmak" | "Bildiklerimiz, sandığınızdan çok daha az." · "kuruluşunu yazıya geçirmek" |
+| 6 | **Özne ile yüklemin arasına virgül girmez.** Seslendirmede duraklama gerekiyorsa cümle yeniden kurulur. | "Adı, Osman." · "Gelinin adı, Nilüfer." | "Başlarındaki beyin adı ise Osman." · "Gelinin adı Nilüfer'miş." |
+| 7 | **Mantık sırası korunur.** Her soru önceki cümleden doğar. Birbirine bağlanmayan iki soru arka arkaya sorulmaz. Çöküşü gösterdikten hemen sonra "buraya nasıl geldi" diye sorulmaz; önce zirve ile başlangıç arasındaki fark kurulur. | "…nasıl gelmişti? Ve neden (…) kimse yazmamıştı?" | "Oysa bu devlet (…) küçük bir sınır beyliğiydi. Peki (…) nasıl bu kadar büyüdü? Cevabı bulmak sandığınızdan zor, çünkü…" |
+| 8 | **İç tutarlılık ve tekrar.** Metin öbür bölümlerle çelişmez. Aynı kök arka arkaya iki cümlede gelmez. Aynı ad üç cümle üst üste tekrarlanmaz. | "kimse yazmamıştı" (Bölüm 1'de Pakhymeres yazıyor) · "adı… adına" · "sığan… sığıyor" | "hiçbir Osmanlı yazmadı" · "imaret, bugün hâlâ İznik'te ayakta" |
+
+**Araç desteği:** `anlatim_analiz.py`, yüklemi olmayan cümle adaylarını listeler (kural 1). Liste kaba bir elemedir: çıkan her cümleye elle bakılır. Bilinçli bir isim cümlesi ("Bilecik'teki düğün baskını da öyle.") kalabilir, ama nedeni sunuşta yazılır. Öbür yedi kural elle denetlenir.
+
 ---
 
 ## 4. Rozetlerin sesli karşılığı
@@ -102,14 +119,14 @@ Storyboard'da her satırın "Teknik" sütununa kod yazılır (ör. `T4`). Bir b�
 | Kod | Teknik | Kalıp | Doz | Kurgu karşılığı | Kaynak |
 |---|---|---|---|---|---|
 | T1 | **Tarih ve yer levhası** | "Yıl bin üç yüz iki. İzmit yakınları." | açılış ya da perde başı | yıl sayacı ve iğne aynı karede | Anime Tarih, Harp Tarihi, Bebar |
-| T2 | **Adı geciktirme** | "İki imparatorluğun arasında, adı bile bilinmeyen bir oba…" → ad 3–5 sn sonra | bölümde 1 | önce siluet, ad kartı adla birlikte çakılır | Holosen, Bebar |
+| T2 | **Adı geciktirme** | "İki imparatorluğun arasında, adı bile bilinmeyen bir topluluk yaşıyordu." → ad 3–5 sn sonra | bölümde 1 | önce siluet, ad kartı adla birlikte çakılır | Holosen, Bebar |
 | T3 | **Açık döngü** | büyük soru %10–25'te açılır, %60–80'de ödenir | 1 büyük (+1 küçük) | soru ekranda bir nesneyle işaretlenir; ödemede aynı nesne döner | Bebar, Anime Tarih |
-| T4 | **Peki–cevap** | "Peki elimizde ne var? Tek bir sikke." | 2–3 | soruda kamera durur, cevapta kesme ya da vuruş | Yusuf Kayaalp, Bebar |
+| T4 | **Peki–cevap** | "Peki elimizde ne var? Küçük bir sikke." (sorunun cevabı yüklemsiz olabilir; §3.6) | 2–3 | soruda kamera durur, cevapta kesme ya da vuruş | Yusuf Kayaalp, Bebar |
 | T5 | **Sizi sahneye koyma** | "Bir an kendinizi Söğüt'te düşünün…" | en çok 1 | yakın plan, öznel kamera, ortam sesi | Bebar, Random Animasyon |
 | T6 | **Ama bir saniye** | yaygın bilgi → dur → "Bunu kim yazdı?" → kaynakla cevap | 1 | görüntü donar ya da geri sarar (`rewindFX`), müzik bir an kesilir | Bebar, Holosen |
 | T7 | **İki anlatım** | "X'e göre…, Y'ye göre…" | gerektikçe | bölünmüş ekran ya da iki kart | Harp Tarihi, Anime Tarih |
 | T8 | **Ölçek ve bugüne köprü** | "Bu, bugün birinin Birinci Dünya Savaşı'nı ilk kez yazması gibi." · "Bugün hâlâ İznik'te…" | 1 | haritada iki alan yan yana; bugünkü şehir adı | Bebar, Holosen, Harp Tarihi |
-| T9 | **Kesik üçleme** | "Saflar bozuluyor. Ordu dağılıyor. Sultan esir düşüyor." | yalnız doruğa, 1 | her fiile bir vuruş (`hits`) | Bebar |
+| T9 | **Kesik üçleme** | "Saflar bozuluyor, ordu dağılıyor ve sultan esir düşüyor." (her biri yüklemli; sahne çerçevesi içinde) | yalnız doruğa, 1 | her fiile bir vuruş (`hits`) | Bebar |
 | T10 | **Domino zinciri** | olayın sonuçları 3–4 kısa cümle | 0–1 | haritada sırayla yanan alanlar | Yusuf Kayaalp |
 | T11 | **Refren** | "Bilecik… Yarhisar… İnegöl…" | 0–1 | her ada bir iğne | Yusuf Kayaalp |
 | T12 | **Yan yana ironi** | beklenti cümlesi + onu bozan olgu, yorum yok | 0–1 | aynı kadrajda iki zaman ya da iki harita | Anime Tarih |
@@ -132,11 +149,11 @@ Storyboard'da her satırın "Teknik" sütununa kod yazılır (ör. `T4`). Bir b�
 | Kod | Kalıp | Örnek (Sezon 1) |
 |---|---|---|
 | K1 | **Tarih + yer + tehlike** | "Yıl bin üç yüz iki. Bir Bizans ordusu yürüyor." |
-| K2 | **Çelişki** | "Altı yüz yıl ayakta kalan bir imparatorluk. Kuruluşunu, o günlerde hiçbir Osmanlı yazmadı." |
-| K3 | **Bildiğinizi sanıyorsunuz** | "Osman Bey'in rüyasını duymuşsunuzdur. Peki onu kim yazdı?" |
-| K4 | **Sahnenin ortası** | "Gece. Gelibolu'da yer sarsılıyor." |
+| K2 | **Çelişki** | "Osmanlı İmparatorluğu altı yüz yıldan fazla ayakta kaldı. Ama kuruluşunu, o günlerde hiçbir Osmanlı yazmadı." |
+| K3 | **Bildiğinizi sanıyorsunuz** | "Osman Bey'in ünlü rüyasını duymuşsunuzdur. Peki onu ilk kim yazdı?" |
+| K4 | **Sahnenin ortası** | "Bin dört yüz iki yazında, Ankara yakınlarında iki ordu karşı karşıya geliyor." |
 | K5 | **Olmasaydı** (karşı olgu, "-ebilirdi") | "O gece deprem olmasaydı, hikâye Asya'da kalabilirdi." (🟡: kaynakla desteklenmeli) |
-| K6 | **Adı geciktiren betimleme** | "İki imparatorluğun arasında, adı bile bilinmeyen bir oba…" |
+| K6 | **Adı geciktiren betimleme** | "İki imparatorluğun arasında, adı bile bilinmeyen bir topluluk yaşıyordu." → ad 3–5 sn sonra |
 
 ### Kapanışlar (son 5–8 saniye)
 Son cümle ≤ 12 kelime. Abone, beğeni ve "sıradaki bölümde görüşmek üzere" yok. Sıradaki bölüme köprü sözle kurulur, kartla tamamlanır.
@@ -171,7 +188,7 @@ Hız 2,0 kel/sn (Emrullah Uzun). Süreye harita sessizlikleri ve kartlar eklenir
 | 3–12 sn | Vaat ve açık döngü | Bölümün büyük sorusu açılır | T3 |
 | 12–40 sn | Bağlam ve tırmanış | "Oysa/Ama" dönemeçleri, bir Peki–cevap, bir ölçek | T4, T8, T14 |
 | 40–50 sn | Kırılma | "Düşünün…" sahnesi ya da "Ama bir saniye" | T5 veya T6, T7 |
-| 50–70 sn | **Doruk (kahraman an)** | şimdiki zaman, ≤ 6 kelimelik cümleler, kesik üçleme; ardından 1,5–3 sn harita sessizliği | T9, T15 |
+| 50–70 sn | **Doruk (kahraman an)** | sahne çerçevesi içinde şimdiki zaman, kısa ve tam cümleler, kesik üçleme; ardından 1,5–3 sn harita sessizliği | T9, T15 |
 | 70–82 sn | Döngünün ödemesi | Büyük soru cevaplanır; ne biliyoruz, ne bilmiyoruz | T20, rozet dili |
 | son 5–8 sn | Kapanış | S1–S5; sonraki bölüm kartı | T14 |
 
@@ -219,7 +236,7 @@ Sezon 1'in taşınan imgesi **mürekkep ve yazı**. Her bölüm bir kaynağın g
 
 **Bölümler arası köprü zinciri** (sezon akışındaki boşluğu kapatır; şu an Bölüm 1'in son cümlesi Bölüm 3'ün konusunu açıyor):
 - B1 sonu → B2: "Peki o yüz yıllık boşluğu ne doldurdu? Efsaneler."
-- B2 sonu → B3: "Ama Osman'ı, yaşadığı günlerde kaydeden biri vardı. Bir Bizanslı."
+- B2 sonu → B3: "Peki efsanelerden çok önce, Osman'ı anlatan ilk metni kim yazdı? Bir Bizans tarihçisi, hem de bir savaşı anlatırken."
 
 ---
 
@@ -228,30 +245,30 @@ Bölümlerimizden örnekler. Olgular aynı kalır, değişen dildir. Tam yeniden
 
 **1. Kanca (Bölüm 1)**
 - Önce: "Altı yüz yılı aşkın süre ayakta kalan bir imparatorluğun nasıl kurulduğunu, aslında kimse yazmadı." (14 kelime; bilgi doğru ama vuruş yok)
-- Sonra: "Altı yüz yıl ayakta kalan bir imparatorluk. Kuruluşunu, o günlerde hiçbir Osmanlı yazmadı." (K2; iki vuruş. "Hiçbir Osmanlı" ifadesi, Pakhymeres'in yazdığı kapanışla da çelişmez.)
+- Sonra: "Osmanlı İmparatorluğu altı yüz yıldan fazla ayakta kaldı. Ama kuruluşunu, o günlerde hiçbir Osmanlı yazmadı." (K2; iki tam cümle, iki vuruş. "Hiçbir Osmanlı" ifadesi, Pakhymeres'in yazdığı kapanışla çelişmez.)
 
 **2. Anlatı zamanı (Bölüm 1)**
 - Önce: "Moğollar Selçuklu ordusunu yener ve Anadolu Selçuklu Devleti vergi ödeyen bir tabi devlete dönüşür."
-- Sonra: "Yıl bin iki yüz kırk üç. Kösedağ. Moğollar Selçuklu ordusunu bozguna uğrattı. Ve Anadolu Selçuklu sultanı, artık Moğollara vergi ödüyordu." (T1 + taban kip -dı + arka plan -yordu)
+- Sonra: "Bin iki yüz kırk üç yılında, Sivas ile Erzincan arasındaki Kösedağ'da Moğollar Selçuklu ordusunu bozguna uğrattı. Anadolu'nun hâkimi Selçuklular artık Moğollara vergi ödüyordu." (taban kip -dı + arka plan -yordu)
 
 **3. Yazı dili → sahne (Bölüm 1)**
 - Önce: "Bunlardan biri, Bizans sınırında, Söğüt çevresindeki küçük bir topluluktur. Liderinin adı Osman'dır."
-- Sonra: "Bir an kendinizi Söğüt'te düşünün. Doğuda Moğollara bağlı bir Selçuklu, batıda Bizans kaleleri. Arada küçük bir topluluk. Başında bir bey var. Adı, Osman." (T5 + T2; "-dır" yok)
+- Sonra: "Bir an kendinizi o yılların Söğüt'ünde düşünün. Doğunuzda Moğollara bağlı Selçuklular, batınızda Bizans'ın kaleleri var. Aradaki küçük topluluğun başındaki beyin adı ise Osman." (T5 + T2; "-dır" yok, her cümle yüklemli)
 
 **4. Rivayet çerçevesi ve "Ama bir saniye" (Bölüm 2)**
 - Önce: "Osman Bey'in rüyasını belki duymuşsunuzdur. Şeyh Edebali'nin göğsünden bir ay doğar ve Osman'ın göğsüne girer."
-- Sonra: "Osman Bey'in rüyasını duymuşsunuzdur. Efsaneye göre şeyhin göğsünden bir ay doğmuş ve gelip Osman'ın göğsüne girmiş. (…) Güzel bir hikâye. Ama bir saniye. Bu rüyayı kim yazdı? Ve ne zaman?" (🔴 çerçeve açık, içerisi -mış; T6 ile 🟢'ye dönüş. FACTS'teki "p2'de rivayete göre yok" sorunu da çözülür.)
+- Sonra: "Osman Bey'in ünlü rüyasını duymuşsunuzdur. Peki onu ilk kim yazdı? Efsaneye göre Osman bir gece rüyasında, Şeyh Edebali'nin göğsünden bir ay doğduğunu ve gelip kendi göğsüne girdiğini görmüş. (…) Kulağa güzel geliyor. Ama durun bir saniye: onu yazanların hiçbiri Osman'ı görmemişti." (🔴 çerçeve açık, içerisi -mış; T6 ile 🟢'ye dönüş. FACTS'teki "p2'de rivayete göre yok" sorunu da çözülür.)
 
-**5. Doruk ve sessizlik (Fragman)**
-- Önce: "Bir gün içinde ordu dağıldı, sultan esir düştü. Ankara, bin dört yüz iki."
-- Sonra: "Ankara, bin dört yüz iki. Tek bir gün. Saflar bozuluyor. Ordu dağılıyor. Sultan esir düşüyor." + `pause: 2` (T1, şimdiki zaman, T9, T15: harita çatlar, müzik konuşur)
+**5. Fragman: kopukluktan akışa** (kullanıcının geri çevirdiği taslak → yeniden yazım; ayrıntı §3.6)
+- Önce: "Bir sabah, bir imparatorluk vardı. Balkanlar'dan Fırat'a uzanan topraklar, yenilmez sanılan bir ordu ve Yıldırım lakaplı bir sultan. Ankara, bin dört yüz iki. Tek bir gün içinde saflar bozuluyor…" (yüklemsiz iki cümle, çerçevesiz zaman geçişi, belirsiz özne)
+- Sonra: "Bin dört yüz iki yazında, Ankara yakınlarında iki ordu karşı karşıya geliyor. Bir yanda Timur, öbür yanda Osmanlı sultanı Yıldırım Bayezid var. Sultanın toprakları Balkanlar'dan Fırat'a kadar uzanıyor ve ordusu yenilmez sanılıyor. Ama savaşın ortasında, Osmanlı saflarındaki bazı birlikler taraf değiştiriyor. Günün sonunda ordu dağılıyor ve sultan esir düşüyor." + `pause: 2` (K4 sahne çerçevesi, şimdiki zaman sahne boyunca, T15)
 
 **6. Kapanış ve köprü (Bölüm 2 → Bölüm 3)**
 - Önce: "Peki o hâlde, belgelere geçen ilk an neydi?"
-- Sonra: "Ama Osman'ı, yaşadığı günlerde kaydeden biri vardı. Bir Bizanslı. Ve onun yazdığı ilk sahne, bir savaştı." (S1/S3; §9'daki köprü zinciri)
+- Sonra: "Peki efsanelerden çok önce, Osman'ı anlatan ilk metni kim yazdı? Bir Bizans tarihçisi, hem de bir savaşı anlatırken." (S3; soru-cevap; §9'daki köprü zinciri)
 
 **7. Bugüne köprü (Bölüm 2, öneri)**
-- "Bilecik'teki o düğünden tek bir belge yok. Ama Nilüfer Hatun'un adı, bugün İznik'te ayakta duran bir yapıda yaşıyor." (T8/S5; kaynak: TDV "Nilüfer Hatun İmareti", FACTS #12)
+- "Bilecik'teki o düğünden tek bir belge yok. Ama oğlunun Nilüfer Hatun için yaptırdığı imaret, bugün hâlâ İznik'te ayakta." (T8/S5; kaynak: TDV "Nilüfer Hatun İmareti", FACTS #12)
 
 ---
 
@@ -268,11 +285,11 @@ Her metin kullanıcıya sunulmadan önce puanlanır. Her madde 0 (yok), 1 (var a
 | 6 | **Doruk** | %55–75'te tek kahraman an; şimdiki zaman; kısa cümleler; ardından harita sessizliği |
 | 7 | **Dürüstlük dili** | Her 🟡 ve 🔴 seste belli (§4); en az bir kaynak adı; ⚪ yok |
 | 8 | **Anlam tutamağı** | En az bir ölçek, bugüne köprü ya da "bu neden önemli" cümlesi |
-| 9 | **Ritim ve dil** | §12 ölçüleri hedefte; "-dır" yazı dili yok; aynı bağlaç art arda değil |
+| 9 | **Ritim ve dil** | §12 ölçüleri hedefte; §3.6 denetimi temiz (yüklemsiz cümle, çerçevesiz zaman geçişi, belirsiz gönderim yok); "-dır" yazı dili yok |
 | 10 | **Kapanış** | Son cümle ≤ 12 kelime; S1–S5'ten biri; sıradaki bölüme bağlı |
 
 **Geçme:** 20 üzerinden ≥ 16 ve hiçbir maddede 0 yok.
-**Kırmızı çizgiler** (biri bile varsa metin sunulmaz): ⚪ iddia seste; efsane olgu gibi anlatılmış; gerçek kişiye uydurma söz; §3.5'teki yasak kelimeler; taraf tutan sıfat; anlatının içinde sponsor ya da abone çağrısı.
+**Kırmızı çizgiler** (biri bile varsa metin sunulmaz): anlatım bozukluğu (§3.6); ⚪ iddia seste; efsane olgu gibi anlatılmış; gerçek kişiye uydurma söz; §3.5'teki yasak kelimeler; taraf tutan sıfat; anlatının içinde sponsor ya da abone çağrısı.
 
 Kullanıcıya sunarken puanı ve en zayıf iki maddeyi tek satırda göster: `Puan 17/20 · zayıf: 3 (yeniden kanca), 8 (ölçek)`.
 
@@ -286,7 +303,7 @@ python3 shared/tools/anlatim_analiz.py taslak.txt --hedef          # düz metin 
 | Ölçü | Hedef | Eski B1 | Eski B2 | Neden |
 |---|---|---|---|---|
 | Ortalama cümle | 7,5–11,5 kelime | 8,8 ✓ | 8,0 ✓ | Bebar tarih 10,1; Random Animasyon 7,2 |
-| ≤ 5 kelimelik cümle | %20–40 | 15 ✗ | 43 ✗ | vuruş var ama liste gibi değil |
+| ≤ 5 kelimelik cümle | %10–35 | 15 ✓ | 43 ✗ | vuruş var ama liste gibi değil; Bebar tarih %26, Anime Tarih %10 |
 | En uzun cümle | ≤ 20 kelime | 14 ✓ | 16 ✓ | Harp Tarihi'nde %14 uzun cümle; bizde yok |
 | İlk cümle | ≤ 8 kelime | 14 ✗ | 5 ✓ | kanca |
 | Son cümle | ≤ 12 kelime | 8 ✓ | 8 ✓ | kapanış |
@@ -301,6 +318,7 @@ python3 shared/tools/anlatim_analiz.py taslak.txt --hedef          # düz metin 
 | Sayı /100 | ≤ 4 | 2,6 ✓ | 0,9 ✓ | Anime Tarih 3,4 (fazla) |
 | Kaynak dili (adet) | ≥ 1 | 1 ✓ | 8 ✓ | rozetlerin sesli karşılığı |
 | Yasak, klişe | yok | ✓ | ✓ | §3.5 |
+| Yüklemsiz cümle adayı | 0 (elle bak) | 0 ✓ | 2 ✗ | §3.6; eski Fragman'da da 2 |
 
 Ölçümler kaba düzenli ifadelerle yapılır, karar puan kartınındır. Bir ölçü hedef dışındaysa ve bunun iyi bir nedeni varsa (ör. Fragman 56 kelime olduğu için şimdiki zaman yok), nedeni sunuşta tek cümleyle yazılır.
 
