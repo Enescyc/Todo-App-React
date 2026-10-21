@@ -7,7 +7,7 @@
 
 | # | Bölüm | Kelime | Tahmini anlatım |
 |---|---|---|---|
-| 0 | Fragman: Bir Günde Çöküş | 56 | ~28 sn |
+| 0 | Fragman: Uçtaki Beylik (✅ v5) | 87 | ~47 sn |
 | 1 | Kimsenin Yazmadığı Başlangıç | 115 | ~57 sn |
 | 2 | Bir Rüya, Bir Düğün: Efsaneler | 112 | ~55 sn |
 | 3 | Koyunhisar: Tarihe Girilen Gün | 120 | ~59 sn |
@@ -21,22 +21,33 @@
 
 ---
 
-## Fragman · Fragman: Bir Günde Çöküş
-**Rozetler:** 🟢 · **Anlatım:** 56 kelime (~28 sn) · **Araştırma:** Ankara 1402 (Bölüm 10 araştırması)
-**Görsel kimlik:** Karanlık, savaş sonrası Çubuk Ovası → hızlı geri sarma → boş Anadolu haritası
+## Fragman · Uçtaki Beylik: Sezon tanıtımı
+**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v5). Görüntü ve zaman çizelgesi henüz eski metne göre; yeni storyboard gerekiyor.
+**Rozetler:** 🟢🟡 · **Anlatım:** 87 kelime (~47 sn) · **Araştırma:** ARASTIRMA §2–§5 · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada)
+**Biçim:** Sezonun montajı. Her cümle sezondan bir an; harita her cümlede biraz daha genişler, Ankara'da çatlar.
 
-**Anlatım metni**
-> Bir sabah, bir imparatorluk vardı. Balkanlar'dan Fırat'a uzanan topraklar, yenilmez sanılan bir ordu ve Yıldırım lakaplı bir sultan. Bir gün içinde ordu dağıldı, sultan esir düştü. Ankara, bin dört yüz iki. Peki bu devlet, nasıl olmuştu da yüz yıl önce adı bile bilinmeyen bir sınır beyliğinden buraya gelmişti? Ve neden, bütün bu hikâyenin başını, kimse yazmamıştı?
+**Anlatım metni** (paragraflar zaman birimidir)
+> **p1** Bin üç yüzlerin başında, Söğüt çevresinde küçük bir sınır beyliği var. Onu Osman adında bir bey yönetiyor.
+> **p2** Önümüzdeki yüz yılda bu beylik Bizans'ın ordusunu yenecek ve kuşattığı bir şehri kılıç çekmeden teslim alacak.
+> **p3** Bir Bizans imparatoru kızını Osmanlı hükümdarıyla evlendirecek. Bir deprem Gelibolu'nun surlarını yıkacak ve Osmanlılar Avrupa'ya yerleşecek.
+> **p4** Bir sultan savaş meydanında hayatını kaybedecek. Avrupa'nın şövalyeleri Tuna kıyısında bozguna uğrayacak ve devletin toprakları Balkanlar'dan Fırat'a kadar uzanacak.
+> **p5** Ama bin dört yüz iki yazında, Ankara'da her şey tek bir günde değişecek. *(pause 2.5: harita çatlar)*
+> **p6** Bu, Söğüt'ten Ankara'ya uzanan yüz yılın hikâyesi. *(sezon kartı)*
 
-**Sahne akışı**
-| Cümle / an | Görsel | Ekran yazısı | Rozet |
-|---|---|---|---|
-| "Bir sabah, bir imparatorluk vardı…" | Şafakta dalgalanan Osmanlı sancakları, Balkanlar'dan Fırat'a uzanan harita (1400 sınırları) | — | — |
-| "Bir gün içinde ordu dağıldı…" | Harita bir anda çatlıyor ve parçalara ayrılıyor; düşen bir tuğ (siluet) | ANKARA · 1402 | 🟢 |
-| "Peki bu devlet nasıl olmuştu da…" | Geri sarma: harita küçülerek Söğüt çevresindeki tek bir noktaya iniyor | ~1300 | — |
-| "kimse yazmamıştı?…" | Boş bir parşömen; mürekkep damlası düşüyor | UÇTAKİ BEYLİK · SEZON 1 | — |
+**Cümle → olay → dayanak**
+| Cümle | Olay (bölüm) | Dayanak |
+|---|---|---|
+| p1 | Söğüt, Osman (B1–B2) | ARASTIRMA §1–§2 🟢 |
+| p2 "Bizans'ın ordusunu yenecek" | Bafeus (B3) | §2 🟢 olay, 🟡 tarih (söylenmiyor) |
+| p2 "kılıç çekmeden teslim alacak" | Bursa (B4) | §3 🟡 ("uzun abluka, müzakereyle teslim") |
+| p3 "imparator kızını … evlendirecek" | Kantakuzenos, Theodora, Orhan 1346 (B5) | §3 🟢 |
+| p3 "deprem Gelibolu'nun surlarını yıkacak" | Gelibolu 1354 (B6) | §3 🟢/🟡 (yıl 1354/1356, söylenmiyor) |
+| p4 "sultan savaş meydanında" | Kosova 1389, I. Murad (B8) | §4 🟢 |
+| p4 "şövalyeler Tuna kıyısında" | Niğbolu 1396 (B9) | SENARYOLAR B9 🟢 |
+| p4 "Balkanlar'dan Fırat'a" | ~1400 sınırları | sahiplik.js, eski Fragman 🟢 |
+| p5 "Ankara'da … tek bir günde" | Ankara 1402 (B10) | §5 🟢 (yaz 1402; gün 20/28 Temmuz söylenmiyor) |
 
-**Ses planı (kütüphane kimlikleri):** gecis/zil_kresendo_4s → vurus/zil_gong + vurus/buyuk_davul_ff (çöküş) · muzik/kontrbas_D1 + muzik/cello_D2 zemin · sonda doku/kadeh_D#4
+**Eski metin (v1, taslak; kopuk bulundu):** Bir sabah, bir imparatorluk vardı. Balkanlar'dan Fırat'a uzanan topraklar, yenilmez sanılan bir ordu ve Yıldırım lakaplı bir sultan. Bir gün içinde ordu dağıldı, sultan esir düştü. Ankara, bin dört yüz iki. Peki bu devlet, nasıl olmuştu da yüz yıl önce adı bile bilinmeyen bir sınır beyliğinden buraya gelmişti? Ve neden, bütün bu hikâyenin başını, kimse yazmamıştı?
 
 ---
 
