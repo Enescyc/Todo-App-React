@@ -11,6 +11,7 @@ const EP = window.EP, VO = window.VO || null;
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, k) => a + (b - a) * k;
 const seg = (t, a, b) => clamp((t - a) / (b - a));
+const fract = x => x - Math.floor(x);   // döngüsel faz: negatif zamanda da 0..1 (JS'te % negatif kalır)
 const eIO = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
 const eOut = k => 1 - Math.pow(1 - k, 3);
 const eIn = k => k * k * k;

@@ -65,7 +65,7 @@ window.SCENE_FNS = {
     const le = seg(t, ts + .3, ts + .8); if (le > 0) mapLabel(cam, 'SELÇUKLU · İLHANLI', ...LL(31.7, 39.6), 32, { a: le, sp: 3 });
     ownCity(cam, 'Bursa', Y, { a: lb, size: 28 }); ownCity(cam, 'İznik', Y, { a: lb, size: 28 }); ownCity(cam, 'İzmit', Y, { a: lb, size: 28 });
     const p = W2S(cam, ...CITY['Söğüt']), pa = seg(t, ts, ts + .5);
-    if (pa > 0) { glow(p[0], p[1], 260, `rgba(255,120,70,${.6 * pa})`); for (let i = 0; i < 3; i++) { const r = ((t - ts) * .8 + i / 3) % 1; ctx.strokeStyle = `rgba(255,214,140,${pa * (1 - r)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p[0], p[1], 24 + r * 170, 0, TAU); ctx.stroke(); } }
+    if (pa > 0) { glow(p[0], p[1], 260, `rgba(255,120,70,${.6 * pa})`); for (let i = 0; i < 3; i++) { const r = fract((t - ts) * .8 + i / 3); ctx.strokeStyle = `rgba(255,214,140,${pa * (1 - r)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p[0], p[1], 24 + r * 170, 0, TAU); ctx.stroke(); } }
     const tt = C('p3:topluluktur'); for (let i = 0; i < 5; i++) { const a = eBack(seg(t, tt + i * .08, tt + i * .08 + .3)); if (a > 0) { const [x, y] = W2S(cam, ...LL(30.18 + [-.12, .1, -.03, .16, -.18][i], 40.02 + [.06, .05, -.04, -.03, -.06][i])); ctx.save(); ctx.globalAlpha = clamp(a); tent(x, y, .1 * a, t, { door: null, smoke: false }); ctx.restore(); } }
     mapPin(cam, ...CITY['Söğüt'], t, ts - .05, 'SÖĞÜT', { date: '~1300' });
   },

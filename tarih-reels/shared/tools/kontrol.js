@@ -5,12 +5,13 @@
 //   --kare    : tam boy tek kareler → kontrol/kare_<t>.png
 //   --det     : determinizm testi: aynı kareler karışık sırayla iki kez çizilir, özetler aynı olmalı
 //   --guvenli : Instagram arayüz bölgelerini (üst 220, alt 420, sağ 140 px) kırmızı tarar; yazı bu bölgelere taşmamalı
-// Bayrak verilmezse --tablo --det --guvenli çalışır.
+//   --tara [adım] : bütün zaman çizgisini (varsayılan 0.1 sn adımla) çizip hata veren anları listeler (render çökmesini önler)
+// Bayrak verilmezse --tablo --det --guvenli --tara çalışır.
 const { chromium } = require('playwright');
 const path = require('path'), fs = require('fs');
 (async () => {
   const argv = process.argv.slice(2), ep = path.resolve(argv[0]), has = n => argv.includes(n), val = (n, k = 1) => argv.slice(argv.indexOf(n) + 1, argv.indexOf(n) + 1 + k);
-  const any = ['--tablo', '--serit', '--kare', '--det'].some(has), safe = has('--guvenli') || !any;
+  const any = ['--tablo', '--serit', '--kare', '--det', '--tara'].some(has), safe = has('--guvenli') || !any;
   const outDir = path.join(ep, 'kontrol'); fs.mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch(), page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   const errors = []; page.on('pageerror', e => errors.push(e.message));
@@ -61,6 +62,12 @@ const path = require('path'), fs = require('fs');
     for (const t of shuffled) h2[t] = await page.evaluate(t => window.__hash(t), t);
     const bad = ts.filter(t => h1[t] !== h2[t]);
     console.log(bad.length ? `DETERMİNİZM HATASI: ${bad.join(', ')} sn farklı çizildi (Math.random, Date veya kareler arası durum var)` : 'determinizm: 10/10 kare aynı');
+  }
+  if (has('--tara') || !any) {
+    const step = has('--tara') && !isNaN(+val('--tara')[0]) ? +val('--tara')[0] : .1;
+    const bad = await page.evaluate(([dur, step]) => { const out = []; for (let t = 0; t < dur; t += step) { try { renderAt(t); } catch (e) { out.push([+t.toFixed(2), e.message.split('\n')[0]]); } } return out; }, [dur, step]);
+    if (bad.length) { const grp = {}; for (const [t, m] of bad) (grp[m] = grp[m] || []).push(t); console.log('ÇİZİM HATASI (render bu anlarda çöker):'); for (const m in grp) console.log(`  ${grp[m][0]}–${grp[m][grp[m].length - 1]} sn (${grp[m].length} kare): ${m}`); }
+    else console.log(`tarama: ${Math.ceil(dur / step)} kare hatasız (${step} sn adım)`);
   }
   if (errors.length) console.log('SAYFA HATALARI:\n  ' + [...new Set(errors)].join('\n  '));
   await browser.close();

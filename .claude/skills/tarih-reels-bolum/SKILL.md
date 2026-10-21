@@ -55,7 +55,7 @@ NODE_PATH=$(npm root -g) node shared/render.js $B $B/onizleme.mp4 30 --taslak   
 NODE_PATH=$(npm root -g) node shared/render.js $B $B/final.mp4 30 --mb 6         # yayın (PNG kare, CRF 16, bt709)
 ffmpeg -i $B/onizleme.mp4 -vf scale=720:1280 -c:v libx264 -crf 25 -c:a aac -b:a 160k $B/onizleme-720.mp4   # kullanıcıya gönderilecek kopya
 ```
-Uzun render'ları arka planda çalıştır (60 sn'lik bölüm: taslak ~6 dk, yayın ~11 dk). Kullanıcıya dosya göndermek için 720p kopyayı `SendUserFile` ile yolla.
+Uzun render'ları arka planda çalıştır (60 sn'lik bölüm: taslak ~6 dk, yayın ~11 dk). Bitince `ffprobe` ile videonun süresinin bölüm süresine eşit olduğunu doğrula; render bir karede çökerse dosya yarım kalır. Kullanıcıya dosya göndermek için 720p kopyayı `SendUserFile` ile yolla.
 
 ## Yeni bölüm klasörü
 1. Aynı sezondaki bir bölümün `index.html` ve `.gitignore` dosyalarını kopyala; yalnız `<title>`'ı değiştir.

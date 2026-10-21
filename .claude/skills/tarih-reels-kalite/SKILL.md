@@ -9,7 +9,7 @@ Render pahalıdır: 60 sn'lik yayın render'ı yaklaşık 11 dk sürer. Kullanı
 
 ## Kapı 1: İletişim tablosu (render'dan önce, her zaman)
 ```bash
-NODE_PATH=$(npm root -g) node shared/tools/kontrol.js <bölüm>            # tablo + determinizm + güvenli alan
+NODE_PATH=$(npm root -g) node shared/tools/kontrol.js <bölüm>            # tablo + determinizm + güvenli alan + 0.1 sn'lik tarama
 NODE_PATH=$(npm root -g) node shared/tools/kontrol.js <bölüm> --serit 14.5 18.5 12   # en zor 2–4 saniye
 NODE_PATH=$(npm root -g) node shared/tools/kontrol.js <bölüm> --kare 5,22,56          # tam boy kareler
 ```
@@ -19,6 +19,7 @@ NODE_PATH=$(npm root -g) node shared/tools/kontrol.js <bölüm> --kare 5,22,56  
 - **Okunabilirlik:** Okunmayacak kadar kısa sahne (araç 1.4 sn altını uyarır); karanlıkta kaybolan siluet; zeminden ayrılmayan etiket.
 - **Statiklik:** Art arda iki kare neredeyse aynıysa kamera duruyor demektir.
 - **Kontrol sonuçları:** Determinizm sonucu "10/10 kare aynı" olmalı; değilse sahnede `Math.random` ya da durum var. Sayfa hatası satırı olmamalı.
+- **Tarama:** "N kare hatasız" olmalı. Bir anda çizim hatası varsa render o karede çöker. Bir kez Fragman'ın önizlemesi 18,8. saniyede sessizce kesilmişti; kullanıcıya bu kesik sürüm gönderilmişti. Sebebi, sahne başlamadan önce eksi değer alan bir halka yarıçapıydı. Render'dan sonra mutlaka `ffprobe` ile süreyi doğrula.
 
 Tabloyu kullanıcıya da gönder; kurgu üzerine konuşmanın en hızlı yolu budur.
 

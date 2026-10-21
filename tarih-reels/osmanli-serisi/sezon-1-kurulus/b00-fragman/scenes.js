@@ -84,7 +84,7 @@ window.SCENE_FNS = {
     if (kr < .98) ownerLabels(cam, Y, { only: ['OSM'], a: .8 });
     const lk = seg(t, ts + .2, ts + .8); if (lk > 0) { mapLabel(cam, 'BİZANS', ...LL(29.75, 40.78), 46, { a: lk }); mapLabel(cam, 'SELÇUKLU', ...LL(31.25, 39.6), 40, { a: lk }); }
     const p = W2S(cam, ...CITY['Söğüt']), pa = seg(t, ts - .2, ts + .4);
-    if (pa > 0) { glow(p[0], p[1], 220, `rgba(255,120,70,${.7 * pa})`); for (let i = 0; i < 3; i++) { const r = ((t - ts) * .9 + i / 3) % 1; ctx.strokeStyle = `rgba(255,214,140,${pa * (1 - r)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p[0], p[1], 20 + r * 160, 0, TAU); ctx.stroke(); } }
+    if (pa > 0) { glow(p[0], p[1], 220, `rgba(255,120,70,${.7 * pa})`); for (let i = 0; i < 3; i++) { const r = fract((t - ts) * .9 + i / 3); ctx.strokeStyle = `rgba(255,214,140,${pa * (1 - r)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p[0], p[1], 20 + r * 160, 0, TAU); ctx.stroke(); } }
     mapPin(cam, ...CITY['Söğüt'], t, ts, 'SÖĞÜT', { date: '~1300' });
     rewindFX(t, (1 - seg(t, ts - .4, ts)) * seg(t, s.t0, s.t0 + .3));
     yearTicker(W / 2, 430, Y, 130, { a: 1 - seg(t, ts + .6, ts + 1.2) });

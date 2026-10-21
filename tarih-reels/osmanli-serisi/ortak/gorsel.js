@@ -131,7 +131,7 @@ function glowPath(cam, pts, t, k, o = {}) {
 // vergi/haraç akışı: noktalar bir yol boyunca akar
 function flowDots(cam, pts, t, a = 1, o = {}) {
   if (a <= 0) return; const P = spline(pts.map(p => W2S(cam, ...p)), 12), L = polyLen(P);
-  for (let i = 0; i < (o.n || 12); i++) { const k = ((t * (o.speed || .35) + i / (o.n || 12)) % 1), [x, y] = pointAt(P, L, k), f = Math.sin(k * Math.PI);
+  for (let i = 0; i < (o.n || 12); i++) { const k = fract(t * (o.speed || .35) + i / (o.n || 12)), [x, y] = pointAt(P, L, k), f = Math.sin(k * Math.PI);
     ctx.save(); ctx.globalAlpha = a * f; coinIcon(x, y, (o.r || 11) * (.7 + .3 * f)); ctx.restore(); }
 }
 function coinIcon(x, y, r) {
@@ -276,7 +276,7 @@ function pennant(x, y, s, t, o = {}) {
 }
 function tent(x, y, s, t, o = {}) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s); const sil = o.sil;
-  if (o.smoke !== false) for (let i = 0; i < 8; i++) { const k = (t * .25 + i / 8) % 1; ctx.globalAlpha = .25 * (1 - k); ctx.fillStyle = '#d9cbb0'; ctx.beginPath(); ctx.arc(Math.sin(k * 6 + i) * 20 + k * 60, -230 - k * 260, 14 + k * 40, 0, TAU); ctx.fill(); }
+  if (o.smoke !== false) for (let i = 0; i < 8; i++) { const k = fract(t * .25 + i / 8); ctx.globalAlpha = .25 * (1 - k); ctx.fillStyle = '#d9cbb0'; ctx.beginPath(); ctx.arc(Math.sin(k * 6 + i) * 20 + k * 60, -230 - k * 260, 14 + k * 40, 0, TAU); ctx.fill(); }
   ctx.globalAlpha = 1;
   ctx.fillStyle = sil || '#6b4a2a'; ctx.beginPath(); ctx.moveTo(-170, 0); ctx.lineTo(-160, -110); ctx.quadraticCurveTo(0, -260, 160, -110); ctx.lineTo(170, 0); ctx.closePath(); ctx.fill();
   if (!sil) { ctx.strokeStyle = 'rgba(30,18,8,.45)'; ctx.lineWidth = 4; for (let i = -3; i <= 3; i++) { ctx.beginPath(); ctx.moveTo(i * 45, 0); ctx.lineTo(i * 18, -200); ctx.stroke(); }
@@ -301,7 +301,7 @@ function tug(x, y, s, t, o = {}) {
 }
 // atlı: yandan, sağa bakar; gait 0..1 dörtnala döngüsü
 function rider(x, y, s, t, o = {}) {
-  const g = (t * (o.speed || 2.2) + (o.ph || 0)) % 1, A = Math.sin(g * TAU), B = Math.cos(g * TAU);
+  const g = fract(t * (o.speed || 2.2) + (o.ph || 0)), A = Math.sin(g * TAU), B = Math.cos(g * TAU);
   ctx.save(); ctx.translate(x, y + Math.abs(A) * -6 * s); ctx.scale(s * (o.flip ? -1 : 1), s); ctx.fillStyle = o.sil || '#1a120a'; ctx.strokeStyle = o.sil || '#1a120a'; ctx.lineCap = 'round';
   // bacaklar
   ctx.lineWidth = 9; for (const [hx, ph] of [[-62, 0], [-48, .5], [52, .25], [66, .75]]) { const a = Math.sin((g + ph) * TAU) * .6; ctx.beginPath(); ctx.moveTo(hx, -70); const kx = hx + Math.sin(a) * 30, ky = -35; ctx.lineTo(kx, ky); ctx.lineTo(kx + Math.sin(a + .6) * 26, 0); ctx.stroke(); }

@@ -7,6 +7,7 @@ Hepsi global. `ctx` o an çizilen tuvaldir. Harita koordinatı km'dir (LAEA). Ek
 |---|---|
 | `cue('p2:kelime+0.3')` (`C`) | Çapanın saniyesi |
 | `seg(t, a, b)` | 0..1 ilerleme |
+| `fract(x)` | Döngüsel faz 0..1 (negatif zamanda da güvenli) |
 | `clamp`, `lerp` | Sınırlama, doğrusal ara değer |
 | `eIO`, `eOut`, `eIn`, `eBack` | Yumuşatmalar |
 | `keyed([[t, ...değerler]], t)` | Eski anahtar kare yöntemi; kamera için `camPath` tercih edilir |

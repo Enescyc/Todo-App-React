@@ -20,6 +20,7 @@ window.SCENE_FNS = {
 };
 ```
 - **Her şey `t`'nin saf bir fonksiyonu olmalı.** `Math.random`, `Date`, `performance.now` ve kareler arası durum kullanma; rastgelelik için `rng(tohum)` kullan. Render kareleri sırasız ve paralel çizebilir. `kontrol.js --det` bunu test eder.
+- **Döngüsel fazlar için `fract(x)` kullan, `x % 1` kullanma.** JS'te `%` negatif zamanda negatif kalır; bu, eksi yarıçapla `arc` çağrısında render'ı çökertir. Çapadan önce başlayan animasyonlarda zaman farkı negatiftir. Yarıçap ve boyutları `Math.max(0, …)` ile koru.
 - **Zamanlamayı kelimelere bağla:** `C('p3:Osman\'dır')`, `seg(t, a, b)` ve `eIO / eOut / eBack / spring`. Sabit saniye yazma; ses gelince her şey kayar.
 - **Koordinatlar:** Haritada km (LAEA 29°D/40.5°K) kullan: `CITY['Bursa']`, `LL(boylam, enlem)`. Ekranda 1080×1920 piksel.
 

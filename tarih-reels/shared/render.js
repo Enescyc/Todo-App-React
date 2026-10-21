@@ -24,11 +24,12 @@ const path = require('path'), fs = require('fs');
     '-movflags', '+faststart', out);
   const ff = spawn('ffmpeg', args, { stdio: ['pipe', 'inherit', 'inherit'] });
   const mime = draft ? 'image/jpeg' : 'image/png';
+  const fail = e => { console.error(`\nRENDER DURDU (${e.message.split('\n')[0]})\nYarım dosya silindi. Önce: node shared/tools/kontrol.js <bölüm> --tara`); ff.kill('SIGKILL'); try { fs.unlinkSync(out); } catch (_) {} browser.close().finally(() => process.exit(1)); };
   for (let i = 0; i < frames; i++) {
     const b64 = await page.evaluate(([t, mime, mb, dt]) => {
       if (mb > 1 && window.blurAt(t)) window.renderBlurred(t, mb, dt); else renderAt(t);
       return document.getElementById('c').toDataURL(mime, .92).split(',')[1];
-    }, [i / fps, mime, mb, .5 / fps]);
+    }, [i / fps, mime, mb, .5 / fps]).catch(e => { fail(e); return new Promise(() => {}); });
     if (!ff.stdin.write(Buffer.from(b64, 'base64'))) await new Promise(r => ff.stdin.once('drain', r));
     if (i % 300 === 0) console.log(`kare ${i}/${frames}`);
   }
