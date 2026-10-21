@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Anlatım dili ölçümü: YouTube transkriptleri (.vtt/.srt/.txt) ya da bizim timeline.js metinlerimiz.
 
-Kullanım: python3 shared/tools/anlatim_analiz.py <dosya|klasör> [...] [--md çıktı.md]
+Kullanım: python3 shared/tools/anlatim_analiz.py <dosya|klasör> [...] [--md çıktı.md] [--hedef]
+  --hedef    : her dosyayı osmanli-serisi/ANLATICI-DILI.md §12'deki hedef aralıklarla karşılaştırır (timeline.js için kendiliğinden açık)
   .vtt/.srt  : zaman damgalı altyazı (yt-dlp --write-auto-subs --sub-langs tr ya da YouTube "Transkripti göster" kopyası)
   .txt       : düz metin (YouTube transkript kopyasındaki "0:12" satırları da zaman olarak okunur)
   timeline.js: bizim bölümlerimiz (paras[].text; hız Emrullah Uzun ~2.0 kelime/sn varsayılır)
@@ -11,6 +12,10 @@ Kullanım: python3 shared/tools/anlatim_analiz.py <dosya|klasör> [...] [--md ç
   · izleyiciye hitap (siz/sen, bakın, düşünün, hayal edin…) · "biz" dili · anlatı zamanı (cümle sonu yüklemi: şimdiki/geniş/geçmiş/-mış/gelecek/isim)
   · geçiş kelimeleri (ama, peki, yani, işte, çünkü…) · merak kalıpları (peki, neden, nasıl, asıl, birazdan…) · ünlem
   · sayılar · sözcük çeşitliliği · ilk 3 cümle (kanca) ve son 2 cümle (kapanış)
+  · ilk/son/en uzun cümle (kelime) · kaynak dili (göre, rivayet, kronik…) · yasak ve klişe kelimeler
+Sürüm 2 (21 Ekim 2026): "-yordu" ve "-mıştı" geçmiş sayılır (şimdiki ve -mış sütunları yalnızca şimdiki zamanı ve rivayet kipini
+gösterir); cümle sonu "-dır/-tır" (ve "-mıştır") ayrı "kitap" sütununa gider (sürüm 1'de geniş zamana düşüyordu); ikinci tekil
+hitap ekleri (-iyorsun, -eceksin, -saydın, düşünsene…) sayılır. Kanal raporlarındaki (strateji/anlatim/) değerler sürüm 1'dir.
 Türkçe biçimbilim için kaba düzenli ifadeler kullanır: sonuçlar karşılaştırma içindir, dilbilimsel kesinlik iddiası yoktur.
 """
 import json, os, re, subprocess, sys
@@ -28,8 +33,9 @@ def secs(m):
 def read(path):
     """→ (metin, süre_sn | None, kaynak türü)"""
     if path.endswith("timeline.js"):
-        out = subprocess.run(["node", "-e", "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(JSON.stringify(window.EP.paras.map(p=>p.text)))", path], capture_output=True, text=True, check=True).stdout
-        text = " ".join(json.loads(out)); return text, len(text.split()) / 2.0, "bizim (tahmini 2.0 kel/sn)"
+        out = subprocess.run(["node", "-e", "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(JSON.stringify(window.EP.paras.map(p=>[p.text,p.pause||0])))", path], capture_output=True, text=True, check=True).stdout
+        P = json.loads(out); text = " ".join(t for t, _ in P)
+        return text, len(text.split()) / 2.0 + sum(x for _, x in P), "bizim (tahmini 2.0 kel/sn + harita sessizlikleri)"
     raw = open(path, encoding="utf-8", errors="replace").read()
     lines, times, prev = [], [], None
     for L in raw.splitlines():
@@ -48,6 +54,8 @@ def read(path):
 
 
 V = "aeıioöuüâîû"
+NUMW = {"sıfır", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on", "yirmi", "otuz", "kırk", "elli", "altmış",
+        "yetmiş", "seksen", "doksan", "yüz", "bin", "milyon", "milyar"}
 def words(t): return re.findall(r"[\wçğıöşüâîûÇĞİÖŞÜÂÎÛ'’]+", t)
 
 
@@ -59,22 +67,35 @@ def analyse(path):
     sl = [len(words(s)) for s in sents] if not auto_punct else []
     q = sum(1 for s in sents if s.endswith("?")) + sum(1 for x in lw if x in ("mi", "mı", "mu", "mü") or re.fullmatch(r"(mi|mı|mu|mü)(yd[ıiuü]|ydi|ydı|s[ıiuü]n(ız|iz|uz|üz)?|y[ıiuü]z)", x))
     hitap = sum(1 for x in lw if x in ("siz", "sen", "sizin", "senin", "size", "sana", "sizi", "seni", "sizce", "bakın", "bakalım", "düşünün", "düşünsenize", "hayal", "tahmin", "dikkat", "unutmayın", "görün", "inanır", "inanın"))
-    hitap += sum(1 for x in lw if re.search(r"(sınız|siniz|sunuz|sünüz|ırsınız|irsiniz|ursunuz|ürsünüz|abilirsiniz|ebilirsiniz)$", x))
+    hitap += sum(1 for x in lw if re.search(r"(sınız|siniz|sunuz|sünüz|ırsınız|irsiniz|ursunuz|ürsünüz|abilirsiniz|ebilirsiniz)(d[ıiuü]r)?$", x))
+    # ikinci tekil (Random Animasyon "sen" dili): yalnız yanlış pozitifi az olan biçimler; "olsun/versin" gibi 3. tekil emirler sayılmaz
+    hitap += sum(1 for x in lw if re.search(r"([ıiuü]yorsun|(acak|ecek)s[ıi]n|(abilir|ebilir)s[ıi]n|(mal|mel)[ıi]s[ıi]n|(sa|se)yd[ıi]n|(sa|se)n[ıi]z|m[ıiuü]s[ıiuü]n|m[ıi]şs[ıi]n|(sana|sene|senize|sanıza))$", x) and len(x) > 5)
     biz = sum(1 for x in lw if x in ("biz", "bizim", "bize", "bizi", "hepimiz", "bizce")) + sum(1 for x in lw if re.search(r"(yoruz|acağız|eceğiz|alım|elim|dık|dik|duk|dük|tık|tik|tuk|tük)$", x) and len(x) > 4)
     # anlatı zamanı: Türkçe yüklem çoğunlukla cümle sonundadır → cümle sonu kelimelerinden (noktalama yoksa bütün kelimelerden, kaba)
     preds = [words(x)[-1].lower() for x in sents if words(x)] if not auto_punct else lw
     zaman = Counter()
     for x in preds:
-        if re.search(r"[ıiuü]yor(um|sun|uz|sunuz|lar|du|dı|muş|mış)?$", x): zaman["şimdiki"] += 1
+        if re.search(r"(yor|m[ıiuü]ş)(d[uıü]|t[ıiuü])(m|n|k|nuz|lar|ler)?$", x): zaman["geçmiş"] += 1      # -yordu, -mıştı: hikâye ve arka plan
+        elif re.search(r"[ıiuü]yor(um|sun|uz|sunuz|lar|muş|mış)?$", x): zaman["şimdiki"] += 1
         elif re.search(r"(acak|ecek)(t[ıi]r|lar|ler|t[ıi])?$", x): zaman["gelecek"] += 1
-        elif re.search(r"m[ıiuü]ş(t[ıiuü]r|t[ıiuü]|lar)?$", x): zaman["mış"] += 1
+        elif re.search(r"(d|t)[ıiuü]r(lar|ler)?$", x) and len(x) > 3: zaman["kitap"] += 1                  # -dır/-tır, -mıştır: yazı dili
+        elif re.search(r"m[ıiuü]ş(lar|ler)?$", x): zaman["mış"] += 1
         elif re.search(r"(d|t)[ıiuü](m|n|k|nız|niz|nuz|nüz|lar|ler)?$", x) and len(x) > 3: zaman["geçmiş"] += 1
         elif not auto_punct and re.search(r"(ar|er|ır|ir|ur|ür)(lar|ler)?$", x) and len(x) > 4 and x not in ("kadar", "bunlar", "onlar", "şunlar", "yer", "bir", "her", "var", "bazılar"): zaman["geniş"] += 1
         elif not auto_punct: zaman["isim/diğer"] += 1
     zt = max(1, sum(zaman.values()))
     gecis = Counter(x for x in lw if x in ("ama", "fakat", "ancak", "peki", "yani", "işte", "üstelik", "çünkü", "derken", "oysa", "sonra", "şimdi", "aslında", "hatta", "bile", "tabii"))
     merak = sum(1 for x in lw if x in ("peki", "neden", "nasıl", "niye", "acaba", "asıl", "birazdan", "sonra", "gizem", "sır", "kimse", "hiç"))
-    nums = sum(1 for x in lw if re.fullmatch(r"\d+", x) or x in ("bin", "yüz", "milyon", "milyar"))
+    # sayı: yazıyla yazılmış sayılar tek ifade sayılır ("bin dört yüz iki" = 1); tek başına "bir" (belirsizlik sıfatı) sayılmaz
+    nums, grp = 0, []
+    for x in lw + [""]:
+        if re.fullmatch(r"\d+", x) or x in NUMW: grp.append(x); continue
+        if grp and grp != ["bir"]: nums += 1
+        grp = []
+    kaynak = sum(1 for x in lw if x in ("göre", "rivayet", "rivayete", "efsane", "efsaneye", "efsaneler", "kronik", "kronikler", "kroniklerde", "belge", "belgeler", "belgelerde", "tarihçi", "tarihçiler", "kaynak", "kaynaklar", "kaynaklarda", "kaynakların", "bilmiyoruz", "biliyoruz") or x.startswith(("rivayet", "kronik", "tarihçi", "belge", "kaynak", "efsane")))
+    low = " " + " ".join(lw) + " "
+    yasak = sorted({x for x in lw if x in YASAK} | {p for p in YASAK_IFADE if f" {p} " in low})
+    klise = sorted({x for x in lw if x in KLISE} | {p for p in KLISE_IFADE if f" {p} " in low})
     r = lambda a: round(100 * a / max(1, n), 2)
     res = {
         "dosya": os.path.relpath(path), "tür": kind, "kelime": n,
@@ -85,14 +106,56 @@ def analyse(path):
         "uzun_%": round(100 * sum(1 for x in sl if x > 20) / len(sl), 1) if sl else None,
         "soru_100": r(q), "hitap_100": r(hitap), "biz_100": r(biz), "ünlem_100": r(text.count("!")),
         "şimdiki_%": round(100 * zaman["şimdiki"] / zt), "geniş_%": round(100 * zaman["geniş"] / zt), "geçmiş_%": round(100 * zaman["geçmiş"] / zt),
-        "mış_%": round(100 * zaman["mış"] / zt), "gelecek_%": round(100 * zaman["gelecek"] / zt), "isim_%": round(100 * zaman["isim/diğer"] / zt),
+        "mış_%": round(100 * zaman["mış"] / zt), "gelecek_%": round(100 * zaman["gelecek"] / zt), "kitap_%": round(100 * zaman["kitap"] / zt),
+        "isim_%": round(100 * zaman["isim/diğer"] / zt),
         "geçiş_100": r(sum(gecis.values())), "en_sık_geçişler": ", ".join(f"{k}:{v}" for k, v in gecis.most_common(5)),
         "merak_100": r(merak), "sayı_100": r(nums), "çeşitlilik": round(len(set(lw)) / max(1, n), 2),
         "kanca": " ".join(sents[:3])[:300] if not auto_punct else " ".join(w[:45]),
         "kapanış": " ".join(sents[-2:])[:240] if not auto_punct else " ".join(w[-35:]),
         "noktalama_yok": auto_punct,
+        "ilk_cümle": sl[0] if sl else None, "son_cümle": sl[-1] if sl else None, "en_uzun": max(sl) if sl else None,
+        "kaynak_dili": kaynak, "yasak": yasak, "klişe": klise,
     }
     return res
+
+
+# Kaynak: osmanli-serisi/ANLATICI-DILI.md §3 ve §12. (alt, üst) kapalı aralık; None = sınır yok.
+HEDEF = [
+    ("ort_cümle", 7.5, 11.5, "ortalama cümle (kelime)"),
+    ("vurucu_%", 20, 40, "≤5 kelimelik cümle"),
+    ("en_uzun", None, 20, "en uzun cümle (kelime)"),
+    ("ilk_cümle", None, 8, "ilk cümle (kanca)"),
+    ("son_cümle", None, 12, "son cümle (kapanış)"),
+    ("soru_100", 1.0, 3.5, "soru /100 kelime"),
+    ("hitap_100", 0.5, 2.0, "izleyiciye hitap /100"),
+    ("biz_100", 0.3, 2.5, '"biz" dili /100'),
+    ("geniş_%", None, 15, "geniş zaman (cümle sonu)"),
+    ("kitap_%", None, 10, '"-dır/-tır" yazı dili'),
+    ("şimdiki_%", 5, 30, "şimdiki zaman (doruk)"),
+    ("gelecek_%", 3, 20, '"-ecekti" önsezisi'),
+    ("merak_100", 2.0, None, "merak kalıpları /100"),
+    ("sayı_100", None, 4.0, "sayı /100"),
+    ("kaynak_dili", 1, None, "kaynak ve belirsizlik kelimeleri (adet)"),
+]
+YASAK = {"kafir", "kâfir", "kafirler", "gavur", "gavurlar", "küffar", "mücahid", "mücahit", "mücahitler", "hain", "hainler", "hainlik",
+         "dostlarım", "arkadaşlar", "abone", "merhaba", "videoda", "videomuzda"}
+YASAK_IFADE = ["beğenmeyi unutmayın", "bu videoda", "abone olun"]
+KLISE = {"şanlı", "yüce", "muhteşem", "efsanevi", "inanılmaz", "destansı", "kahramanca", "acımasız", "barbar", "vahşi"}
+KLISE_IFADE = ["altın harflerle", "tarihin en", "en büyük", "dünyanın en"]
+
+
+def hedef(r):
+    """→ [(ölçü, değer, aralık metni, geçti mi)]; ölçülemeyen değerler atlanır."""
+    out = []
+    for k, lo, hi, ad in HEDEF:
+        v = r.get(k)
+        if v is None: continue
+        ok = (lo is None or v >= lo) and (hi is None or v <= hi)
+        rng = f"{lo if lo is not None else ''}–{hi if hi is not None else ''}" if lo is not None and hi is not None else (f"≤ {hi}" if lo is None else f"≥ {lo}")
+        out.append((ad, v, rng, ok))
+    out.append(("yasak kelime", ", ".join(r["yasak"]) or "yok", "yok", not r["yasak"]))
+    out.append(("klişe / övgü sıfatı", ", ".join(r["klişe"]) or "yok", "yok (gerekçesiz)", not r["klişe"]))
+    return out
 
 
 def main():
@@ -105,11 +168,17 @@ def main():
                 files += [os.path.join(root, f) for f in sorted(fs) if f.endswith((".vtt", ".srt", ".txt")) or f == "timeline.js"]
         else: files.append(a)
     rows = [analyse(f) for f in files]
-    cols = ["kelime", "süre_sn", "kelime_dk", "ort_cümle", "vurucu_%", "uzun_%", "soru_100", "hitap_100", "biz_100", "ünlem_100", "şimdiki_%", "geniş_%", "geçmiş_%", "mış_%", "gelecek_%", "isim_%", "geçiş_100", "merak_100", "sayı_100", "çeşitlilik"]
+    cols = ["kelime", "süre_sn", "kelime_dk", "ort_cümle", "vurucu_%", "uzun_%", "soru_100", "hitap_100", "biz_100", "ünlem_100", "şimdiki_%", "geniş_%", "geçmiş_%", "mış_%", "gelecek_%", "kitap_%", "isim_%", "geçiş_100", "merak_100", "sayı_100", "çeşitlilik"]
     out = ["| dosya | " + " | ".join(cols) + " |", "|---|" + "---|" * len(cols)]
     for r in rows: out.append(f"| {r['dosya']} | " + " | ".join("" if r[c] is None else str(r[c]) for c in cols) + " |")
     out.append("\n**Kanca / kapanış ve sık geçişler**")
     for r in rows: out.append(f"- **{r['dosya']}**{' (noktalama yok: cümle ölçüleri atlandı)' if r['noktalama_yok'] else ''}\n  - kanca: {r['kanca']}\n  - kapanış: {r['kapanış']}\n  - geçişler: {r['en_sık_geçişler']}")
+    for r in rows:
+        if not ("--hedef" in sys.argv or r["dosya"].endswith("timeline.js")): continue
+        h = hedef(r); n_ok = sum(1 for x in h if x[3])
+        out.append(f"\n**Hedef kontrolü: {r['dosya']}** ({n_ok}/{len(h)} ✓; nitel puan kartı ayrıca: ANLATICI-DILI.md §11)")
+        out.append("| ölçü | değer | hedef | |\n|---|---|---|---|")
+        out += [f"| {ad} | {v} | {rng} | {'✓' if ok else '✗'} |" for ad, v, rng, ok in h]
     s = "\n".join(out); print(s)
     if md: open(md, "w", encoding="utf-8").write(s + "\n")
 

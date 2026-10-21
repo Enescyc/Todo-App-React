@@ -122,7 +122,7 @@ if all(os.path.exists(f) for f in vo_files):
             if wt[k][0] < wt[k - 1][0] + .05: wt[k][0] = wt[k - 1][0] + .05
             wt[k - 1][1] = min(wt[k - 1][1], wt[k][0]) if wt[k - 1][1] > wt[k][0] else wt[k - 1][1]
         VO_CLIPS.append((t, v)); paras.append({"t0": wt[0][0], "t1": t + len(v) / SR, "words": wt})
-        t += len(v) / SR + gap
+        t += len(v) / SR + gap + P.get("pause", 0)                      # paras[].pause: harita sessizliği
     dur = round(t - gap + EP.get("tail", 3.0), 2)
     with open(os.path.join(EPD, "audio", "vo_timing.js"), "w", encoding="utf-8") as f:
         f.write("// shared/make_audio.py üretti: seslendirmenin gerçek kelime zamanları\nwindow.VO = " + json.dumps({"duration": dur, "paras": paras}) + ";\n")

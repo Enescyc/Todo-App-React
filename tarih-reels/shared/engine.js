@@ -98,7 +98,8 @@ const TIMING = (() => {
       for (const w of words) { const d = syll(w) / RATE; wt.push([x, x + d]); x += d + (/[.!?:;]$/.test(w) ? .42 : /[,—]$/.test(w) ? .2 : .03); }
     }
     paras.push({ words, wt, t0: wt[0][0], t1: wt[wt.length - 1][1] });
-    t = (VO && VO.paras && VO.paras[pi + 1]) ? VO.paras[pi + 1].t0 : paras[pi].t1 + (EP.gap ?? .55);
+    // P.pause: paragraftan sonra ek sessizlik (harita sessizliği, ANLATICI-DILI.md T15); gerçek seste make_audio aynı boşluğu koyar
+    t = (VO && VO.paras && VO.paras[pi + 1]) ? VO.paras[pi + 1].t0 : paras[pi].t1 + (EP.gap ?? .55) + (P.pause || 0);
   });
   const dur = VO && VO.duration ? VO.duration : paras[paras.length - 1].t1 + (EP.tail ?? 2.6);
   return { paras, dur };

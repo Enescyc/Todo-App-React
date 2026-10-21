@@ -5,7 +5,7 @@
 | Boyut | 5 – yayına hazır | 3 – şablon gibi | 1 – yayına çıkmaz |
 |---|---|---|---|
 | **1. Kanca (ilk 3 sn)** | Çelişki ya da şaşırtıcı olgu + güçlü ilk görüntü; kaydırmayı durdurur | Konu söyleniyor ama merak yok | Logo, uzun giriş, boş kare |
-| **2. Anlatım akışı** | Paragraflar bağlaçla akıyor; tek kahraman an %60–75'te; son cümle sıradakine bağlıyor | Doğru ama liste gibi; kahraman an belirsiz | Kesik kesik; anlam kopuk |
+| **2. Anlatım** | Anlatım puan kartı ≥ 16/20 (`ANLATICI-DILI.md` §11); her 15–25 sn'de dönemeç; tek kahraman an %55–75'te ve ardından harita sessizliği; izleyiciyle konuşuyor; son cümle sıradakine bağlıyor | Doğru ama ders kitabı gibi: geniş zaman, "-dır", soru ve hitap yok; kahraman an belirsiz | Kesik kesik; anlam kopuk; efsane olgu gibi |
 | **3. Görsel kompozisyon** | Her karede tek odak; harita okunur; renk yayı hissediliyor; güvenli alan temiz | Kalabalık etiketler, eşit ağırlıklı öğeler | Çakışan yazılar, taşmalar, okunmaz harita |
 | **4. Hareket ve kamera** | Kamera hiç ölü değil; uçuşlar ve dalışlar akıcı; geçişleri nesneler taşıyor; vuruşta tepme | Çoğu geçiş çapraz; statik tutuşlar | Sarsıntılı, rastgele, hız sıçramaları |
 | **5. Ses** | Leitmotif doğru kelimede; 3–5 güçlü an; −14 LUFS; anlatıcı net; sert tiz yok | Müzik düz zemin; efektler rastgele | Müzik konuşmayı bastırıyor; bas → tiz zıtlığı |

@@ -5,7 +5,8 @@ window.EP = {
   rate: 6.5, lead: .8, gap: .6, tail: 4.4, film: false,   // rate: ses gelene kadar tahmini hece/sn
   paras: [
     { text: "<Paragraf 1: kanca. Seslendirme metniyle kelimesi kelimesine aynı.>", hl: ["<vurgulanacak kelime başı>"] },
-    { text: "<Paragraf 2>", hl: [] },
+    { text: "<Paragraf 2: doruk. Kısa cümleler, şimdiki zaman.>", hl: [], pause: 2.0 },   // pause: paragraftan sonra harita sessizliği (sn)
+    { text: "<Paragraf 3>", hl: [] },
   ],
   scenes: [
     { id: '<giris>', from: 'p1' },

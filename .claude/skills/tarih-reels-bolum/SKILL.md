@@ -12,7 +12,7 @@ Her bölüm kodla çizilir. Görüntü, 1080×1920 deterministik bir canvas ile 
 ## Kullanıcıyı tanı
 Bu kurallar konuşmalardan çıktı. Akışın her adımında geçerlidir.
 - **Dil:** Kullanıcıyla Türkçe konuş. Teknik terimleri kısa açıkla.
-- **Anlatım:** Akıcı belgesel diliyle yaz. Kesik kesik, liste gibi cümleler beğenilmedi ("Bak bu anlatım dili çok daha iyi" denen üslup, Bölüm 2 Peraşt'taki 6 paragraflık akış). Süre gerekirse uzar, ama bütünlük korunur.
+- **Anlatım:** Serinin anlatıcı dili `tarih-reels/osmanli-serisi/ANLATICI-DILI.md`'de (6 kanalın analizinden). Hedef kısa tutmak değil; eğlenceli, dikkat çekici ve güvenilir anlatmak: süre gerekirse 90 sn, 2 dk ya da 3 dk olur. Akıcı belgesel diliyle yaz. Kesik kesik, liste gibi cümleler beğenilmedi ("Bak bu anlatım dili çok daha iyi" denen üslup, Bölüm 2 Peraşt'taki 6 paragraflık akış).
 - **Tarafsızlık ve kaynak:** İnalcık, Emecen, Ortaylı gibi Türk tarihçilerin eserleriyle doğrula. Efsaneyi efsane diye söyle.
 - **Anlatıcı:** Bütün seride tek anlatıcı var: **Emrullah Uzun** (ElevenLabs v4). Metinler kullanıcıya **parça parça** sunulur. En önemli hedef, bütün serinin olay örgüsünü eksiksiz anlatabilmesidir.
 - **Ses:** Kulak tırmalamasın. Bastan sonra çok tiz bir ses gelmesin. Uyumlu bir miks istenir.
@@ -22,6 +22,7 @@ Bu kurallar konuşmalardan çıktı. Akışın her adımında geçerlidir.
 | Yol | Ne |
 |---|---|
 | `osmanli-serisi/TUM-OLAY-ORGUSU.md`, `SEZON-PLANI.md` | 8 sezonun olay örgüsü, seriyi bağlayan iplikler, hassas başlıklar |
+| `osmanli-serisi/ANLATICI-DILI.md` | Serinin anlatıcı dili: kimlik, teknikler, kanca ve kapanış kalıpları, yapı şablonları, puan kartı |
 | `osmanli-serisi/sezon-N-*/ARASTIRMA.md`, `OLAY-ORGUSU.md`, `SENARYOLAR.md`, `SESLENDIRME.md` | Sezonun araştırması, kurgusu, metinleri, ElevenLabs metinleri |
 | `osmanli-serisi/sezon-N-*/bNN-ad/` | Bölüm klasörü: `timeline.js`, `scenes.js`, `index.html`, `vo/`, `audio/`, `kontrol/` |
 | `osmanli-serisi/ortak/sahiplik.js`, `gorsel.js` | Zaman haritası sahiplik tablosu; serinin görsel kitaplığı |
@@ -29,6 +30,7 @@ Bu kurallar konuşmalardan çıktı. Akışın her adımında geçerlidir.
 | `shared/tools/kontrol.js`, `ses_olc.py` | Kalite kontrol araçları |
 | `shared/sfx/`, `shared/muzik/` | CC0 efekt kütüphanesi (48 ses) ve 10 müzik tarzı |
 | `strateji/REFERANS-DEPOLAR.md` | Dış referanslardan çıkan dersler |
+| `strateji/ANLATIM-ANALIZI.md`, `strateji/anlatim/` | 6 Türkçe tarih kanalının anlatım analizi (transkriptler git dışında) |
 
 ## Akış ve kapılar
 Her aşamanın çıktısı bir sonraki aşamanın girdisidir. Bir kapı geçilmeden sonraki aşamaya geçme. Böylece hatalar ucuzken yakalanır: render'dan sonra fark edilen yanlış bir tarih, bütün videoyu baştan üretmek demektir.
@@ -36,7 +38,7 @@ Her aşamanın çıktısı bir sonraki aşamanın girdisidir. Bir kapı geçilme
 | # | Aşama | Çıktı | Skill | Kapı |
 |---|---|---|---|---|
 | 1 | Araştırma | Sezonun `ARASTIRMA.md`'sine bölüm notu + bölüm klasöründe `FACTS.md` | `tarih-reels-arastirma` | Anlatıma ve ekrana girecek her iddianın kaynağı ve güven rozeti var; ⚪ (doğrulanmamış) iddia yok |
-| 2 | Anlatım + storyboard | Metin `SENARYOLAR.md`'de (paragraflara bölünmüş); storyboard bölüm klasöründe `STORYBOARD.md` | `tarih-reels-senaryo` | Kullanıcı metni onayladı (parça parça). `SENARYOLAR.md`'deki "taslak v1" metinler **onaylı sayılmaz**: 3–5. aşamalar taslakla yapılabilir, ElevenLabs metni yalnızca onaydan sonra verilir |
+| 2 | Anlatım + storyboard | Metin `SENARYOLAR.md`'de (paragraflara bölünmüş); storyboard bölüm klasöründe `STORYBOARD.md` | `tarih-reels-senaryo` | Anlatım puan kartı ≥ 16/20 ve `anlatim_analiz.py` hedef kontrolü yapıldı. Kullanıcı metni onayladı (parça parça). `SENARYOLAR.md`'deki "taslak v1" metinler **onaylı sayılmaz**: 3–5. aşamalar taslakla yapılabilir, ElevenLabs metni yalnızca onaydan sonra verilir |
 | 3 | Uygulama | `timeline.js`, `scenes.js`, `index.html` | `tarih-reels-senaryo` + `tarih-reels-gorsel` | Sayfa hatasız açılıyor; `kontrol.js --capalar` her çapanın doğru kelimeye oturduğunu gösteriyor |
 | 4 | Ön kontrol | `kontrol/tablo.png`, şeritler | `tarih-reels-kalite` | İletişim tablosu kullanıcıya gösterildi; taşma, okunmaz kare ya da güvenli alan ihlali yok |
 | 5 | Önizleme | Tahmini zamanlamalı ses + `--taslak` render (720p kopya) | `tarih-reels-ses` | Kullanıcıya gönderildi |

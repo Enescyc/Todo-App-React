@@ -4,16 +4,24 @@
 Proje: Instagram için animasyonlu Osmanlı tarihi serisi (Türkçe, tek erkek anlatıcı, haritalar ve siluetler). Kullanıcının hedefi kısa tutmak değil; **eğlenceli, dikkat çekici, sürdürülebilir bir anlatıcı dili** kurmak. Bu kanallardan teknikleri öğreneceğiz.
 
 ## Adımlar (kanal başına)
-1. **Video listesi:** Kanaldaki videoları Türkçe başlıklarla al:
-   `yt-dlp --flat-playlist --extractor-args "youtube:lang=tr" --print "%(id)s|%(view_count)s|%(duration)s|%(title)s" "https://www.youtube.com/@<kanal>/videos"`
-   Görüntülenme bilgisi gelmezse ilk ~60 videonun ayrıntısını `--print` ile tek tek al (yavaş gitmekte sakınca yok).
+1. **Video listesi:** Kanaldaki videoları al:
+   `yt-dlp --flat-playlist --print "%(id)s|%(view_count)s|%(duration)s|%(title)s" "https://www.youtube.com/@<kanal>/videos"`
+   Görüntülenme sayısı için `lang=tr` **kullanma**: Türkçe arayüzde "1,2 B" (bin) "milyar" gibi okunuyor ve sayılar bozuluyor. Görüntülenme gelmezse ilk ~60 videonun ayrıntısını `--print` ile tek tek al (yavaş gitmekte sakınca yok).
 2. **Seçim (5–6 video):**
    - en çok izlenen 2
    - en yeni 2
    - konumuza en yakın 1–2 (Osmanlı, Selçuklu, Bizans, Ortaçağ, savaş; yoksa genel tarih)
    - kanalın Shorts sekmesi varsa (`/shorts`) en çok izlenen 1–2 Shorts. Biz Instagram Reels yapıyoruz, kısa formdaki tekniği ayrıca görmek önemli.
-3. **Transkript:** Video indirme, yalnızca altyazı:
-   `yt-dlp --skip-download --write-subs --write-auto-subs --sub-langs "tr,tr-orig,tr.*" --sub-format vtt --extractor-args "youtube:lang=tr" -o "tarih-reels/strateji/transkript/<kanal>/%(id)s.%(ext)s" <url>`
+3. **Transkript:** Video indirme, yalnızca altyazı. Bu ortamda çalışan bayraklar (21 Ekim 2026'da denendi):
+   ```bash
+   yt-dlp --skip-download --write-subs --write-auto-subs --sub-langs "tr,tr-orig" --sub-format vtt \
+     --js-runtimes node --ignore-no-formats-error \
+     --extractor-args "youtube:lang=tr;player_client=web_embedded;player_skip=webpage" \
+     -o "tarih-reels/strateji/transkript/<kanal>/%(id)s.%(ext)s" <url>
+   ```
+   - `player_client=web_embedded;player_skip=webpage`: YouTube'un "bot değilim" doğrulamasını aşar.
+   - `--ignore-no-formats-error`: video biçimi gelmese de altyazıyı indirir.
+   - `--sub-langs "tr,tr-orig"`: `tr.*` yazma; çeviri altyazılarını da ister ve HTTP 429 (çok fazla istek) alırsın.
    Elle yazılmış Türkçe altyazı varsa onu tercih et (noktalama içerir). Otomatik altyazıda tekrarlar ve noktalama eksikliği olur; araç tekrarları ayıklar.
 4. **Nicel ölçüm:**
    `python3 tarih-reels/shared/tools/anlatim_analiz.py tarih-reels/strateji/transkript/<kanal> --md tarih-reels/strateji/transkript/<kanal>/olcum.md`

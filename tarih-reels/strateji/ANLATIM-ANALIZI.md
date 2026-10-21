@@ -2,20 +2,20 @@
 
 **Amaç:** Bir şeyi 40–50 saniyeye sığdırmak değil, **eğlenceli, dikkat çekici ve sürdürülebilir** bir anlatıcı dili kurmak. Başarılı Türkçe kanalların seslendirme metinlerini (transkript) çıkarıp anlatım tekniklerini ölçeceğiz. Bu teknikleri kendi sesimize çevirip kurguyu buna göre ayarlayacağız.
 
-## Kanallar ve video seçimi
-| Kanal | Not | Seçilecek videolar |
-|---|---|---|
-| Holosen | Kanal bağlantısı kullanıcıdan alınacak (aramada bulunamadı) | Kanal başına 4–6 video: |
-| Yusuf Kayaalp | Tarih, "basit bir dille" anlatım (vidIQ: ~1,7 M abone, 2024) | • en çok izlenen 2 video |
-| Bebar Bilim | Bilim, uzay ve tarih anlatımı, animasyonlu | • en yeni 2 video |
-| (öneri) Anime Tarih, Random Animasyon, Harp Tarihi | Haritalı, 2D animasyonlu tarih anlatımı; bizim görsel dilimize en yakın kanallar | • konumuza en yakın 1–2 video (Osmanlı, Selçuklu, Ortaçağ) |
+**Durum (21 Ekim 2026): tamamlandı.** 6 kanal, 46 video analiz edildi; sonuç rehberi: `osmanli-serisi/ANLATICI-DILI.md`.
+
+## Kanallar ve raporlar
+| Kanal | Abone | Video | Neden | Rapor |
+|---|---|---|---|---|
+| Holosen (`@holosen`) | ~590 bin | 5 uzun + 2 Shorts | belgesel biyografi ve tarih, ciddi ses | `anlatim/holosen.md` |
+| Yusuf Kayaalp (`@YusufKayaalp`) | ~2,03 M | 6 uzun + 2 Shorts | haritalı hızlı anlatım, mizah, kendi sorup cevaplama | `anlatim/yusuf-kayaalp.md` |
+| Bebar Bilim (`@BebarBilim`) | ~1,53 M | 7 uzun + 3 Shorts | anlatı ağırlıklı tarih ve bilim, efsane düzeltme | `anlatim/bebar-bilim.md` |
+| Anime Tarih (`@AnimeTarih`) | ~823 bin | 7 uzun (Shorts yok) | haritalı 2D animasyon, görsel dilimize en yakın | `anlatim/anime-tarih.md` |
+| Random Animasyon (`@RandomAnimasyon`) | ~491 bin | 6 uzun + 2 Shorts | "olsaydın?" formatı, izleyiciyi sahneye koyma | `anlatim/random-animasyon.md` |
+| Harp Tarihi (`@HarpTarihi`) | ~879 bin | 5 uzun + 1 Shorts | Kings & Generals'a en yakın Türkçe kanal, Osman Gazi serisi | `anlatim/harp-tarihi.md` |
 
 ## Transkriptleri alma
-YouTube bu oturumun ağ politikası tarafından engelli (`www.youtube.com` CONNECT 403). Üç yol var:
-1. **Ağ izni (önerilen):** Ortam ayarlarında `youtube.com` ve `www.youtube.com` izinli alan adlarına eklenir. Sonra yalnızca otomatik altyazılar indirilir; video inmez:
-   `yt-dlp --skip-download --write-auto-subs --sub-langs tr --sub-format vtt <bağlantı>`
-2. **Kopyala-yapıştır:** YouTube'da videonun açıklaması → "Transkripti göster" → tümünü seç → kopyala → sohbete yapıştır ya da `.txt` olarak yükle. Satır başlarındaki "0:12" zamanları da işe yarar.
-3. **Kendi bilgisayarında yt-dlp:** Yukarıdaki komutla `.vtt` dosyalarını indirip yükle.
+Kullanıcı ortamın ağ izinlerine YouTube'u ekledi. Bu ortamda çalışan `yt-dlp` bayrakları ve alt ajan adımları: `anlatim/BRIEF.md`. Elle transkript için YouTube'da "Transkripti göster" kopyası da araçla okunur.
 
 **Telif:** Transkriptler yalnızca analiz içindir. `strateji/transkript/` git dışında tutulur. Repoya yalnızca analiz ve kısa örnek alıntılar girer. Kendi metinlerimizde onların cümlelerini değil, tekniklerini kullanırız.
 
@@ -48,14 +48,36 @@ YouTube bu oturumun ağ politikası tarafından engelli (`www.youtube.com` CONNE
 - **Kurgu:** Kesme sıklığı, görsel şakalar ve ekran yazısı anlatım temposuna göre yeniden ayarlanır (`STORYBOARD.md` şablonu güncellenir).
 - **Uygulama:** Fragman, Bölüm 1 ve Bölüm 2 metinleri yeni dille yeniden yazılır ve parça parça onaya sunulur.
 
-## Başlangıç ölçümü: bizim metinlerimiz (21 Ekim 2026)
-| Bölüm | kelime | kelime/dk | ort. cümle | vurucu % | soru /100 | hitap /100 | "biz" /100 | baskın zaman | merak /100 |
+## Kanal karşılaştırması
+Kanal raporlarındaki ortalamalar (araç sürüm 1). "Net hız", 1,5–2 sn'den uzun duraklamalar çıkarılarak altyazının kelime zamanlarından hesaplandı.
+
+| Küme | Net hız (kel/sn) | Ort. cümle | Vurucu % | Soru /100 | Hitap /100 | "Biz" /100 | Taban kip | Sessizlik % | Mizah /dk |
 |---|---|---|---|---|---|---|---|---|---|
-| Fragman | 56 | 120* | 9.3 | 33 | 3.6 | **0** | 0 | geçmiş / -mış | 7.1 |
-| Bölüm 1 | 115 | 120* | 8.8 | 15 | 1.7 | **0** | 0 | geniş zaman (62 %) | 3.5 |
-| Bölüm 2 | 112 | 120* | 8.0 | 43 | 0.9 | **0** | 0 | geniş zaman (64 %) | 1.8 |
-| 1914 (Bölüm 3) | 210 | 121 | 13.1 | 19 | 0.5 | **0** | 0.5 | geçmiş (69 %) | 1.9 |
+| Holosen, Shorts | 2,7 | 12,1 | 7 | 0,3 | 0 | 0,9 | -dı (%53), -mış (%33) | ~0 | 0 |
+| Holosen, uzun | 2,1 | 13,3 | 9 | 0,2 | 0,4 | 0,8 | -dı / şimdiki / -mış | ~0 | ~0,1 |
+| Yusuf Kayaalp | 2,6–2,8 | 9,4 | 27 | 0,9 | 0,7 | 0,9 | -dı (%46) | ~0 | 2–3 |
+| Bebar Bilim, tarih | 2,0 | 10,1 | 26 | 0,2 | 0,3 | 1,2 | -dı (%41), -ecekti %9 | 0 | 0,1–0,2 |
+| Anime Tarih | 2,0 | 12,8 | 10 | ≈0 | 0,1 | 0,3 | -dı (%70) | **9,6** | ≈0 |
+| Random Animasyon, anlatıcı | 2,5 | 7,2 | 39 | 1,4 | ~4 ("sen") | 3,6 | -dı, isim cümlesi | 6 | 0,2–1,4 |
+| Harp Tarihi | 2,0 | 13,2 | 8 | 0,05 | 0,15 | 0,9 | -dı (%60), -mıştı | **22** | 0 |
+| **Bizim eski metinler** | 2,0 | 8,0–8,8 | 15–43 | 0,9–1,7 | **0** | **0** | geniş zaman (%62) | 0 (yalnız 0,6 sn paragraf arası) | 0 |
+| **Hedef** (`ANLATICI-DILI.md` §12) | 2,0 | 7,5–11,5 | 20–40 | 1,0–3,5 | 0,5–2,0 | 0,3–2,5 | -dı; doruk şimdiki | 5–10 | belgeden, ≤ 0,2 |
 
-\* Hız, Emrullah Uzun kaydından ölçülen ~2.0 kelime/sn'dir.
+**Ana sonuçlar:**
+1. Belgesel tarih kanallarının hızı Emrullah Uzun'unkiyle aynı (≈2,0 kel/sn). Hızlı kanallarda bu hızı mizah ve skeç taşıyor. Enerjiyi hızdan değil cümle boyundan, dönemeçlerden ve sessizlikten alacağız.
+2. Bizim asıl eksiğimiz izleyiciyle ilişki (hitap, "biz", soru) ve anlatı zamanı (yazı dilinin geniş zamanı ve "-dır").
+3. Haritalı kanallar haritaya susuyor (Anime Tarih %10, Harp Tarihi %22). Bizde sessizlik yoktu; motor artık paragraf başına `pause` alıyor.
+4. Rozet sistemimizin sesli karşılığı kanallarda hazır: "Efsane şöyle:" (Holosen), "Ama bir saniye" (Bebar), "kimilerine göre" (Anime Tarih), "İki anlatım var" (Harp Tarihi). Hiçbir kanal bunları bir sisteme bağlamıyor; bu bizim farkımız olabilir.
 
-**İlk gözlem:** Metinlerimiz bilgi açısından doğru ve akıcı, ama izleyiciyle hiç konuşmuyor: hitap ve "biz" dili sıfır, soru ve merak kalıpları düşük. Anlatı "kitap dili" geniş zamanında. Karşılaştırmalı tablo, transkriptler gelince doldurulacak.
+## Başlangıç ölçümü: bizim metinlerimiz (21 Ekim 2026)
+Araç sürüm 2 (`-yordu`/`-mıştı` geçmiş, `-dır` ayrı sütun). Hedef kontrolü: `python3 shared/tools/anlatim_analiz.py <bölüm>/timeline.js`.
+
+| Bölüm | kelime | ort. cümle | vurucu % | soru /100 | hitap /100 | "biz" /100 | geniş % | "-dır" % | şimdiki % | merak /100 | hedef |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Fragman | 56 | 9.3 | 33 | 3.6 | **0** | 0 | 0 | 0 | 0 | 7.1 | 11/17 |
+| Bölüm 1 | 115 | 8.8 | 15 | 1.7 | **0** | 0 | **31** | **31** | 0 | 3.5 | 10/17 |
+| Bölüm 2 | 112 | 8.0 | 43 | 0.9 | 0.9 | 0 | **50** | 14 | 0 | 1.8 | 10/17 |
+
+Hız, Emrullah Uzun kaydından ölçülen ~2.0 kelime/sn'dir.
+
+**İlk gözlem:** Metinlerimiz bilgi açısından doğru ve akıcı, ama izleyiciyle konuşmuyor: hitap ve "biz" dili neredeyse sıfır, soru ve merak kalıpları düşük. Olaylar yazı dilinin geniş zamanıyla ve "-dır" ekiyle anlatılıyor; doruk anında şimdiki zamana geçen tek cümle yok.
