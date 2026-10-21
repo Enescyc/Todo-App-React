@@ -60,7 +60,7 @@ Kanal raporlarındaki ortalamalar (araç sürüm 1). "Net hız", 1,5–2 sn'den 
 | Anime Tarih | 2,0 | 12,8 | 10 | ≈0 | 0,1 | 0,3 | -dı (%70) | **9,6** | ≈0 |
 | Random Animasyon, anlatıcı | 2,5 | 7,2 | 39 | 1,4 | ~4 ("sen") | 3,6 | -dı, isim cümlesi | 6 | 0,2–1,4 |
 | Harp Tarihi | 2,0 | 13,2 | 8 | 0,05 | 0,15 | 0,9 | -dı (%60), -mıştı | **22** | 0 |
-| **Bizim eski metinler** | 2,0 | 8,0–8,8 | 15–43 | 0,9–1,7 | **0** | **0** | geniş zaman (%62) | 0 (yalnız 0,6 sn paragraf arası) | 0 |
+| **Bizim eski metinler** | 2,0 | 8,0–8,8 | 15–43 | 0,9–1,7 | **0** | **0** (v1) | geniş zaman (%62) | 0 (yalnız 0,6 sn paragraf arası) | 0 |
 | **Hedef** (`ANLATICI-DILI.md` §12) | 2,0 | 7,5–11,5 | 20–40 | 1,0–3,5 | 0,5–2,0 | 0,3–2,5 | -dı; doruk şimdiki | 5–10 | belgeden, ≤ 0,2 |
 
 **Ana sonuçlar:**
@@ -70,14 +70,14 @@ Kanal raporlarındaki ortalamalar (araç sürüm 1). "Net hız", 1,5–2 sn'den 
 4. Rozet sistemimizin sesli karşılığı kanallarda hazır: "Efsane şöyle:" (Holosen), "Ama bir saniye" (Bebar), "kimilerine göre" (Anime Tarih), "İki anlatım var" (Harp Tarihi). Hiçbir kanal bunları bir sisteme bağlamıyor; bu bizim farkımız olabilir.
 
 ## Başlangıç ölçümü: bizim metinlerimiz (21 Ekim 2026)
-Araç sürüm 2 (`-yordu`/`-mıştı` geçmiş, `-dır` ayrı sütun). Hedef kontrolü: `python3 shared/tools/anlatim_analiz.py <bölüm>/timeline.js`.
+Araç sürüm 2 (`-yordu`/`-mıştı` geçmiş, `-dır` ayrı sütun, "biz" iyelikleri sayılır). Hedef kontrolü: `python3 shared/tools/anlatim_analiz.py <bölüm>/timeline.js`.
 
 | Bölüm | kelime | ort. cümle | vurucu % | soru /100 | hitap /100 | "biz" /100 | geniş % | "-dır" % | şimdiki % | merak /100 | hedef |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Fragman | 56 | 9.3 | 33 | 3.6 | **0** | 0 | 0 | 0 | 0 | 7.1 | 11/17 |
-| Bölüm 1 | 115 | 8.8 | 15 | 1.7 | **0** | 0 | **31** | **31** | 0 | 3.5 | 10/17 |
-| Bölüm 2 | 112 | 8.0 | 43 | 0.9 | 0.9 | 0 | **50** | 14 | 0 | 1.8 | 10/17 |
+| Bölüm 1 | 115 | 8.8 | 15 | 1.7 | **0** | 0.9 | **31** | **31** | 0 | 3.5 | 11/17 |
+| Bölüm 2 | 112 | 8.0 | 43 | 0.9 | 0.9 | 0.9 | **50** | 14 | 0 | 1.8 | 11/17 |
 
 Hız, Emrullah Uzun kaydından ölçülen ~2.0 kelime/sn'dir.
 
-**İlk gözlem:** Metinlerimiz bilgi açısından doğru ve akıcı, ama izleyiciyle konuşmuyor: hitap ve "biz" dili neredeyse sıfır, soru ve merak kalıpları düşük. Olaylar yazı dilinin geniş zamanıyla ve "-dır" ekiyle anlatılıyor; doruk anında şimdiki zamana geçen tek cümle yok.
+**İlk gözlem:** Metinlerimiz bilgi açısından doğru ve akıcı, ama izleyiciyle konuşmuyor: hitap neredeyse sıfır, "biz" dili yalnız kalıp ifadelerde ("elimizdeki", "karşımıza"), soru ve merak kalıpları düşük. Olaylar yazı dilinin geniş zamanıyla ve "-dır" ekiyle anlatılıyor; doruk anında şimdiki zamana geçen tek cümle yok.

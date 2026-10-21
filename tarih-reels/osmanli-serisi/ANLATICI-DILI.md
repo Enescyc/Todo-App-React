@@ -23,7 +23,7 @@ Sezonun teması zaten bu: **"Bildiklerimiz ve sandıklarımız"** (`sezon-1-kuru
 
 **Ölçülerin özeti** (ayrıntı: `strateji/ANLATIM-ANALIZI.md`):
 - Belgesel tarih kanallarının (Bebar tarih, Anime Tarih, Harp Tarihi) net hızı **≈2,0 kel/sn**: Emrullah Uzun'la aynı. Hızlı kanallar (Holosen Shorts, Yusuf Kayaalp, Random Animasyon) 2,5–2,8 kel/sn konuşuyor; son ikisinde bu hızı mizah ve skeç taşıyor.
-- Bizim farkımız hızda değil, **izleyiciyle ilişkide**. Hitap ve "biz" dili sıfırdı, soru azdı, anlatı yazı dilinin geniş zamanındaydı (%62) ve hiç susmuyorduk.
+- Bizim farkımız hızda değil, **izleyiciyle ilişkide**. Hitap neredeyse sıfırdı, "biz" dili yalnız kalıp ifadelerdeydi, soru azdı, anlatı yazı dilinin geniş zamanındaydı (%62) ve hiç susmuyorduk.
 
 ---
 
@@ -292,7 +292,7 @@ python3 shared/tools/anlatim_analiz.py taslak.txt --hedef          # düz metin 
 | Son cümle | ≤ 12 kelime | 8 ✓ | 8 ✓ | kapanış |
 | Soru /100 kelime | 1,0–3,5 | 1,7 ✓ | 0,9 ✗ | Random Animasyon anlatıcısı 1,4 |
 | Hitap /100 | 0,5–2,0 | 0 ✗ | 0,9 ✓ | Bebar tarih 0,3; Random Animasyon 1,5 |
-| "Biz" /100 | 0,3–2,5 | 0 ✗ | 0 ✗ | Bebar tarih 1,2 |
+| "Biz" /100 | 0,3–2,5 | 0,9 ✓ | 0,9 ✓ | Bebar tarih 1,2; bizde yalnız kalıp ifadelerde ("elimizdeki", "karşımıza") |
 | Geniş zaman | ≤ %15 | 31 ✗ | 50 ✗ | Bebar tarih %6 |
 | "-dır/-tır" | ≤ %10 | 31 ✗ | 14 ✗ | yazı dili |
 | Şimdiki zaman | %5–30 | 0 ✗ | 0 ✗ | doruk |

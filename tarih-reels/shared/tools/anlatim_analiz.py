@@ -15,7 +15,8 @@ Kullanım: python3 shared/tools/anlatim_analiz.py <dosya|klasör> [...] [--md ç
   · ilk/son/en uzun cümle (kelime) · kaynak dili (göre, rivayet, kronik…) · yasak ve klişe kelimeler
 Sürüm 2 (21 Ekim 2026): "-yordu" ve "-mıştı" geçmiş sayılır (şimdiki ve -mış sütunları yalnızca şimdiki zamanı ve rivayet kipini
 gösterir); cümle sonu "-dır/-tır" (ve "-mıştır") ayrı "kitap" sütununa gider (sürüm 1'de geniş zamana düşüyordu); ikinci tekil
-hitap ekleri (-iyorsun, -eceksin, -saydın, düşünsene…) sayılır. Kanal raporlarındaki (strateji/anlatim/) değerler sürüm 1'dir.
+hitap ekleri (-iyorsun, -eceksin, -saydın, düşünsene…) ve "biz" iyelikleri (elimizde, bildiğimiz) sayılır; merak kalıplarına
+"kim, nerede, hangi" eklendi. Kanal raporlarındaki (strateji/anlatim/) değerler sürüm 1'dir.
 Türkçe biçimbilim için kaba düzenli ifadeler kullanır: sonuçlar karşılaştırma içindir, dilbilimsel kesinlik iddiası yoktur.
 """
 import json, os, re, subprocess, sys
@@ -71,6 +72,7 @@ def analyse(path):
     # ikinci tekil (Random Animasyon "sen" dili): yalnız yanlış pozitifi az olan biçimler; "olsun/versin" gibi 3. tekil emirler sayılmaz
     hitap += sum(1 for x in lw if re.search(r"([ıiuü]yorsun|(acak|ecek)s[ıi]n|(abilir|ebilir)s[ıi]n|(mal|mel)[ıi]s[ıi]n|(sa|se)yd[ıi]n|(sa|se)n[ıi]z|m[ıiuü]s[ıiuü]n|m[ıi]şs[ıi]n|(sana|sene|senize|sanıza))$", x) and len(x) > 5)
     biz = sum(1 for x in lw if x in ("biz", "bizim", "bize", "bizi", "hepimiz", "bizce")) + sum(1 for x in lw if re.search(r"(yoruz|acağız|eceğiz|alım|elim|dık|dik|duk|dük|tık|tik|tuk|tük)$", x) and len(x) > 4)
+    biz += sum(1 for x in lw if re.search(r"(ımız|imiz|umuz|ümüz)(da|de|dan|den|daki|deki|ı|i|u|ü|a|e|ın|in|un|ün)?$", x) and len(x) > 5)   # elimizde, bildiğimiz
     # anlatı zamanı: Türkçe yüklem çoğunlukla cümle sonundadır → cümle sonu kelimelerinden (noktalama yoksa bütün kelimelerden, kaba)
     preds = [words(x)[-1].lower() for x in sents if words(x)] if not auto_punct else lw
     zaman = Counter()
@@ -85,7 +87,7 @@ def analyse(path):
         elif not auto_punct: zaman["isim/diğer"] += 1
     zt = max(1, sum(zaman.values()))
     gecis = Counter(x for x in lw if x in ("ama", "fakat", "ancak", "peki", "yani", "işte", "üstelik", "çünkü", "derken", "oysa", "sonra", "şimdi", "aslında", "hatta", "bile", "tabii"))
-    merak = sum(1 for x in lw if x in ("peki", "neden", "nasıl", "niye", "acaba", "asıl", "birazdan", "sonra", "gizem", "sır", "kimse", "hiç"))
+    merak = sum(1 for x in lw if x in ("peki", "neden", "nasıl", "niye", "kim", "nerede", "hangi", "acaba", "asıl", "birazdan", "sonra", "gizem", "sır", "kimse", "hiç"))
     # sayı: yazıyla yazılmış sayılar tek ifade sayılır ("bin dört yüz iki" = 1); tek başına "bir" (belirsizlik sıfatı) sayılmaz
     nums, grp = 0, []
     for x in lw + [""]:
