@@ -43,16 +43,20 @@
 
 ## 3. Dil kuralları
 
-### 3.1 Anlatı zamanı
-| Ne anlatılıyor | Kip | Örnek |
+### 3.1 Anlatı zamanı: tek taban, anlamlı sapmalar
+Kullanıcı bunu açıkça istedi (21 Ekim 2026): "Bazen -yor, bazen geniş zaman, bazen -dı, bazen -miş kullanıyoruz; bunları anlamlı bir zemine oturtmak lazım." Bu yüzden anlatının **tek bir taban kipi** var, her sapmanın da **tek bir anlamı**:
+
+| Kip | Ne zaman (tek anlamı) | Örnek |
 |---|---|---|
-| Olay (taban kip) | **-dı** | "Moğollar Selçuklu ordusunu bozguna uğrattı." |
-| Arka plan, süreç | -yordu, -mıştı | "Merkez her yıl biraz daha zayıflıyordu." |
-| **Doruk** (1–4 cümle) | **şimdiki zaman**, bir sahne çerçevesi içinde (§3.6) | "Gece yarısı yer sarsılıyor ve surlar çöküyor." |
-| Rivayet çerçevesinin içi | **-mış** | "…şeyhin göğsünden bir ay doğmuş." |
-| Önsezi ve kapanış | **-ecekti** | "Bu küçük beylik, yüz yıl sonra Balkanlar'dan Fırat'a uzanacaktı." |
-| Coğrafya, genel doğru | geniş zaman (az) | "Sakarya, Söğüt'ün hemen yanından akar." |
+| **-dı** (taban) | Anlatılan bütün olaylar, doruk dahil. Doruktaki dram kip değişiminden değil; kısa cümleden, kesik üçlemeden ve ardından gelen sessizlikten gelir | "Türk atlıları hücuma kalkınca Bizans hattı dağıldı." |
+| **-yordu** | Olay anında süren durum, arka plan | "Saflarda öfke büyüyordu." |
+| **-mıştı** | Anlatılan andan önce olmuş olan | "Muzalon, askerlerinin atlarını alıp paralı askerlere vermişti." |
+| **-ecekti** | Anlatılan andan sonra olacak olan: önsezi, bölüm köprüsü, fragmanın ileri bakışı | "Ama bir gece yer sarsılacaktı." |
+| **-mış, -ırmış** | **Yalnız rivayet.** "Anlatılır ki…" ya da "Rivayete göre…" ile açılan bölümün içinde. Rivayet bitince hemen -dı'ya dönülür; rivayet dışında -mış kullanılmaz | "Anlatılır ki Osman bir gece rüyasında… görmüş." |
+| **şimdiki ve geniş zaman** | **Yalnız anlatıcının bugünkü sesi:** izleyiciye seslenme ("düşünün", "bakalım"), bugünden söz ("bugün hâlâ ayakta") ve "anlatılır" kalıbı. Tarihî olay bu kiplerle anlatılmaz. Tek istisna izleyiciyi o güne çağıran "Bir an kendinizi … düşünün" paragrafıdır; paragraf bitince açık bir zaman işaretiyle -dı'ya dönülür | "Düşünün: bu kuleler yıllarca şehri gözledi." |
 | **Kaçın:** yazı dili "-dır/-tır" | — | "Liderinin adı Osman'dır." yerine "Başlarındaki beyin adı ise Osman." |
+
+**Aynı cümlede kip karıştırılmaz.** "Muzalon atlarını paralı askerlere vermiş ve saflarda öfke büyüyor." cümlesinde üç kip bir arada; doğrusu "Muzalon atlarını paralı askerlere vermişti ve saflarda öfke büyüyordu."
 
 Geniş zaman en çok %15, "-dır/-tır" en çok %10 (ölçü: §12). Eski metinlerimizde olaylar geniş zamanla anlatılıyordu ("yener", "dönüşür"). Bu, ders kitabı sesi veriyor.
 
@@ -89,7 +93,7 @@ Kullanıcı Fragman'ın ilk taslağını "çok kopuk ve anlatım bozukluğu var"
 | # | Kural | Bozuk örnek (eski taslaklarımızdan) | Doğrusu |
 |---|---|---|---|
 | 1 | **Her cümlenin yüklemi var.** İsim öbeklerini sıralamak cümle kurmak değildir. İstisnalar: hemen önceki soruya verilen kısa cevap ("Peki elimizde ne var? Küçük bir sikke.") ve bölüm başında bir kez "Yıl bin üç yüz iki." kalıbı | "Balkanlar'dan Fırat'a uzanan topraklar, yenilmez sanılan bir ordu ve Yıldırım lakaplı bir sultan." · "Ankara, bin dört yüz iki." | "Sultanın toprakları Balkanlar'dan Fırat'a kadar uzanıyor ve ordusu yenilmez sanılıyor." |
-| 2 | **Zaman geçişi çerçevelidir.** Şimdiki zamana bir sahne çerçevesiyle girilir ("Bin dört yüz iki yazında, Ankara yakınlarında…") ve sahne bitene kadar orada kalınır. Geçmişe bir zaman işaretiyle dönülür ("Oysa yüz yıl önce…"). | "…bir imparatorluk vardı." → "…saflar bozuluyor." (çerçevesiz geçmişten şimdiye) | "…iki ordu karşı karşıya geliyor. (…) Oysa bu devlet, yüz yıl önce küçük bir sınır beyliğiydi." |
+| 2 | **Kip, §3.1'e uyar.** Taban kip -dı. Şimdiki zaman yalnız anlatıcının bugünkü sesi ve "düşünün" paragrafı için, -mış yalnız rivayet bölümü için kullanılır. Aynı cümlede iki ayrı zaman kipi birleşmez. | "…bir imparatorluk vardı." → "…saflar bozuluyor." · "Muzalon atlarını vermiş ve saflarda öfke büyüyor." | "Muzalon atlarını vermişti ve saflarda öfke büyüyordu." |
 | 3 | **Özne ve gönderim açıktır.** "Saflar" kimin, "bu devlet" hangisi, "buraya" neresi? Zamir ve işaret sıfatı bir önceki cümlede adı geçen şeye döner. Aynı şeyin adı değişmez (imparatorluk, devlet, beylik bilinçli seçilir). | "Peki bu devlet (…) buraya nasıl gelmişti?" (önceki cümlede "imparatorluk"; "buraya" belirsiz) | "Peki o küçük beylik, bir asırda nasıl bu kadar büyüdü?" |
 | 4 | **"Ve" aynı türden öğeleri bağlar.** İsimle cümle, "ve" ile bağlanmaz. Ortak yüklem bütün öğelere uyar. | "Küçük bir sikke ve üzerinde (…) Ertuğrul oğlu Osman yazıyor." | "Küçük bir sikke. Üzerinde, okunabildiği kadarıyla, Ertuğrul oğlu Osman yazıyor." |
 | 5 | **Kelimeler anlamca uyar.** | "Cevap, sandığınızdan çok daha az." (cevap az olmaz) · "hikâyenin başını yazmak" | "Bildiklerimiz sandığınızdan çok daha az." · "kuruluşunu yazıya geçirmek" |
@@ -133,7 +137,7 @@ Storyboard'da her satırın "Teknik" sütununa kod yazılır (ör. `T4`). Bir b�
 | T6 | **Ama bir saniye** | yaygın bilinen hikâye → dur → doğrusu, hikâyeyi değiştiren bir olguyla | sezonda 1–2 (§4) | görüntü donar ya da geri sarar (`rewindFX`), müzik bir an kesilir | Bebar, Holosen |
 | T7 | **İki anlatım** | "Bir yanda …, öbür yanda …" | yalnız tartışma hikâyenin parçasıysa (Kosova) | bölünmüş ekran ya da iki kart | Harp Tarihi, Anime Tarih |
 | T8 | **Ölçek ve bugüne köprü** | "Bu, bugün birinin Birinci Dünya Savaşı'nı ilk kez yazması gibi." · "Bugün hâlâ İznik'te…" | 1 | haritada iki alan yan yana; bugünkü şehir adı | Bebar, Holosen, Harp Tarihi |
-| T9 | **Kesik üçleme** | "Saflar bozuluyor, ordu dağılıyor ve sultan esir düşüyor." (her biri yüklemli; sahne çerçevesi içinde) | yalnız doruğa, 1 | her fiile bir vuruş (`hits`) | Bebar |
+| T9 | **Kesik üçleme** | "Saflar bozuldu, ordu dağıldı ve sultan esir düştü." (her biri yüklemli, -dı kipiyle) | yalnız doruğa, 1 | her fiile bir vuruş (`hits`) | Bebar |
 | T10 | **Domino zinciri** | olayın sonuçları 3–4 kısa cümle | 0–1 | haritada sırayla yanan alanlar | Yusuf Kayaalp |
 | T11 | **Refren** | "Bilecik… Yarhisar… İnegöl…" | 0–1 | her ada bir iğne | Yusuf Kayaalp |
 | T12 | **Yan yana ironi** | beklenti cümlesi + onu bozan olgu, yorum yok | 0–1 | aynı kadrajda iki zaman ya da iki harita | Anime Tarih |
@@ -158,7 +162,7 @@ Storyboard'da her satırın "Teknik" sütununa kod yazılır (ör. `T4`). Bir b�
 | K1 | **Tarih + yer + tehlike** | "Yıl bin üç yüz iki. Bir Bizans ordusu yürüyor." |
 | K2 | **Çelişki** | "Altı yüz yıl sürecek bir imparatorluk, Söğüt'te küçük bir sınır beyliği olarak doğdu." |
 | K3 | **Bildiğinizi sanıyorsunuz** | "Osman Bey'in ünlü rüyasını duymuşsunuzdur. Peki o rüyadan sonra neler oldu?" |
-| K4 | **Sahnenin ortası** | "Bin dört yüz iki yazında, Ankara yakınlarında iki ordu karşı karşıya geliyor." |
+| K4 | **Sahnenin ortası** | "Bin üç yüzlerin hemen başında, bir temmuz günü, imparatorun gönderdiği ordu İzmit Körfezi'ne bakan bir ovada Osman'ı bekliyordu." |
 | K5 | **Olmasaydı** (karşı olgu, "-ebilirdi") | "O gece deprem olmasaydı, hikâye Asya'da kalabilirdi." (🟡: kaynakla desteklenmeli) |
 | K6 | **Adı geciktiren betimleme** | "İki imparatorluğun arasında, adı bile bilinmeyen bir topluluk yaşıyordu." → ad 3–5 sn sonra |
 
@@ -195,7 +199,7 @@ Hız 2,0 kel/sn (Emrullah Uzun). Süreye harita sessizlikleri ve kartlar eklenir
 | 3–12 sn | Vaat ve açık döngü | Bölümün büyük sorusu açılır | T3 |
 | 12–40 sn | Bağlam ve tırmanış | "Oysa/Ama" dönemeçleri, bir Peki–cevap, bir ölçek | T4, T8, T14 |
 | 40–50 sn | Kırılma | "Düşünün…" sahnesi ya da "Ama bir saniye" | T5 veya T6, T7 |
-| 50–70 sn | **Doruk (kahraman an)** | sahne çerçevesi içinde şimdiki zaman, kısa ve tam cümleler, kesik üçleme; ardından 1,5–3 sn harita sessizliği | T9, T15 |
+| 50–70 sn | **Doruk (kahraman an)** | -dı kipiyle kısa ve tam cümleler, kesik üçleme; ardından 1,5–3 sn harita sessizliği | T9, T15 |
 | 70–82 sn | Döngünün ödemesi | Büyük soru hikâyenin içinde cevaplanır; sonucu ve anlamı söylenir | T8, T14 |
 | son 5–8 sn | Kapanış | S1–S5; sonraki bölüm kartı | T14 |
 
@@ -291,7 +295,7 @@ Her metin kullanıcıya sunulmadan önce puanlanır. Her madde 0 (yok), 1 (var a
 | 3 | **Yeniden kancalar** | Her 15–25 sn'de bir dönemeç; 25 sn'den uzun düz anlatım yok |
 | 4 | **İzleyiciyle ilişki** | 2–4 soru (cevaplar hemen), 1–2 hitap, "biz" dili var; "sen" ve "dostlarım" yok |
 | 5 | **Somut sahne** | En az bir duyusal sahne (ses, ışık, mekân, kişi); bilgi önce görüntüyle geliyor |
-| 6 | **Doruk** | %55–75'te tek kahraman an; şimdiki zaman; kısa cümleler; ardından harita sessizliği |
+| 6 | **Doruk** | %55–75'te tek kahraman an; kısa cümleler; ardından harita sessizliği |
 | 7 | **Doğruluk, sessizce** | Her 🔴 tek bir işaretle ayrılmış, 🟡 yuvarlak ve doğru söylenmiş (§4); anlatı kaynak tartışmasına kaymıyor; ⚪ yok |
 | 8 | **Anlam tutamağı** | En az bir ölçek, bugüne köprü ya da "bu neden önemli" cümlesi |
 | 9 | **Ritim ve dil** | §12 ölçüleri hedefte; §3.6 denetimi temiz (yüklemsiz cümle, çerçevesiz zaman geçişi, belirsiz gönderim ve bağsız paragraf yok); "-dır" yazı dili yok |
@@ -321,7 +325,8 @@ python3 shared/tools/anlatim_analiz.py taslak.txt --hedef          # düz metin 
 | "Biz" /100 | 0,3–2,5 | 0,9 ✓ | 0,9 ✓ | Bebar tarih 1,2; bizde yalnız kalıp ifadelerde ("elimizdeki", "karşımıza") |
 | Geniş zaman | ≤ %15 | 31 ✗ | 50 ✗ | Bebar tarih %6 |
 | "-dır/-tır" | ≤ %10 | 31 ✗ | 14 ✗ | yazı dili |
-| Şimdiki zaman | %5–30 | 0 ✗ | 0 ✗ | doruk |
+| Şimdiki zaman | ≤ %10 | 0 ✓ | 0 ✓ | §3.1: yalnız seslenme ve "düşünün" paragrafı |
+| Kip uyarısı (adet) | 0 (elle bak) | — | — | §3.1: rivayet dışında -mış, seslenme dışında -yor, aynı cümlede karışık kip |
 | "-ecekti" | %3–20 | 8 ✓ | 7 ✓ | Bebar tarih %9 |
 | Merak kalıpları /100 | ≥ 2 | 3,5 ✓ | 1,8 ✗ | |
 | Sayı /100 | ≤ 4 | 2,6 ✓ | 0,9 ✓ | Anime Tarih 3,4 (fazla) |
@@ -336,6 +341,7 @@ python3 shared/tools/anlatim_analiz.py taslak.txt --hedef          # düz metin 
 ## 13. Kararlar
 - **21 Ekim 2026 · Hikâye önde, kaynak arkada.** Kullanıcı: "Bunun kaydı yok, bunu şu kayıt etti gibi gereksiz yere odaklanıyoruz; mevzu doğru bilgileri harmanlayıp bütün Osmanlı tarihini bir hikâye olarak sunabilmek." Sezon teması "Bildiklerimiz ve sandıklarımız" bırakıldı; §0, §2, §4, §9 ve puan kartının 7. maddesi buna göre değişti.
 - **21 Ekim 2026 · Anlatım bozukluğu kırmızı çizgi.** Fragman taslağı kopuk bulundu; §3.6 eklendi.
+- **21 Ekim 2026 · Kip sistemi.** Kullanıcı kiplerin (-yor, geniş zaman, -dı, -miş) karışık kullanıldığını söyledi; §3.1 tek taban (-dı) ve anlamlı sapmalar olarak yeniden yazıldı, doruğu şimdiki zamanla anlatma kuralı kaldırıldı, araca kip uyarısı eklendi.
 - **21 Ekim 2026 · Paragraf köprüsü.** Bölüm 3–5 taslakları olay listesi gibi bulundu ("kopukluklar hâlâ mevcut"); §3.6 kural 9 ve araçta bağsız paragraf taraması eklendi.
 
 ## 14. Açık kararlar (kullanıcıya)

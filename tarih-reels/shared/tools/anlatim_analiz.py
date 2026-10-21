@@ -118,6 +118,27 @@ def analyse(path):
             ilk = [x.lower() for x in words(sb[0])[:2]] if sb else []
             if any(x in BAGLAC for x in ilk) or " ".join(ilk) in BAGLAC or (kok(" ".join(sa[-2:])) & kok(sb[0] if sb else "")): continue
             bagsiz.append(sb[0] if sb else b)
+    # kip denetimi (ANLATICI-DILI.md §3.1): taban -dı; -mış yalnız rivayet paragrafında; -yor yalnız seslenme paragrafında;
+    # aynı cümlede -mış ile -yor ya da -dı birleşmez. Yalnız yan cümle sonundaki fiillere bakılır ("vermiş ve", "büyüyor."),
+    # "kuşatılmış şehri" gibi sıfat-fiiller sayılmaz.
+    kip_uyari = []
+    if not auto_punct:
+        MIS = re.compile(r"[\wçğıöşüâîû']+m[ıiuü]ş(?:lar|ler)?(?=\s+(?:ve|ama)\b|[,;:.!?…])", re.I)
+        YOR = re.compile(r"[\wçğıöşüâîû']+[ıiuü]yor(?:lar|um|uz|sun|sunuz)?(?=\s+(?:ve|ama)\b|[,;:.!?…])", re.I)
+        DI = re.compile(r"[\wçğıöşüâîû']+(?:d|t)[ıiuü](?:lar|ler|k|m|n)?(?=\s+(?:ve|ama)\b|[,;:.!?…])", re.I)
+        onceki_rivayet = False
+        for para in (paras or [text]):
+            pl = para.lower()
+            ilk = (re.split(r"(?<=[.!?…])\s+", para) or [""])[0]
+            # rivayet bölümü birkaç paragraf sürebilir: işaretli paragraftan sonra -mış'la açılan paragraflar da rivayettir
+            rivayet = any(k in pl for k in ("anlatılır", "rivayet", "efsane")) or (onceki_rivayet and bool(MIS.search(ilk)))
+            onceki_rivayet = rivayet
+            seslenme = any(k in pl for k in ("düşünün", "kendinizi", "bakalım", "görelim", "bugün"))
+            for snt in [x for x in re.split(r"(?<=[.!?…])\s+", para) if x.strip()]:
+                m, y, d = MIS.findall(snt), YOR.findall(snt), [w for w in DI.findall(snt) if len(w) > 3 and not w.lower().endswith(("ydı", "ydi"))]
+                if m and not rivayet: kip_uyari.append((snt, "rivayet dışında -mış: " + ", ".join(m)))
+                elif y and not seslenme: kip_uyari.append((snt, "olay şimdiki zamanla: " + ", ".join(y)))
+                elif m and (y or d) and rivayet: kip_uyari.append((snt, "aynı cümlede karışık kip: " + ", ".join(m + y + d)))
     low = " " + " ".join(lw) + " "
     yasak = sorted({x for x in lw if x in YASAK} | {p for p in YASAK_IFADE if f" {p} " in low})
     klise = sorted({x for x in lw if x in KLISE} | {p for p in KLISE_IFADE if f" {p} " in low})
@@ -141,6 +162,7 @@ def analyse(path):
         "ilk_cümle": sl[0] if sl else None, "son_cümle": sl[-1] if sl else None, "en_uzun": max(sl) if sl else None,
         "kaynak_dili": kaynak, "yasak": yasak, "klişe": klise, "yüklemsiz": len(yuklemsiz) if not auto_punct else None, "yüklemsiz_liste": yuklemsiz,
         "bağsız": len(bagsiz) if paras else None, "bağsız_liste": bagsiz,
+        "kip": len(kip_uyari) if not auto_punct else None, "kip_liste": kip_uyari,
     }
     return res
 
@@ -157,13 +179,14 @@ HEDEF = [
     ("biz_100", 0.3, 2.5, '"biz" dili /100'),
     ("geniş_%", None, 15, "geniş zaman (cümle sonu)"),
     ("kitap_%", None, 10, '"-dır/-tır" yazı dili'),
-    ("şimdiki_%", 5, 30, "şimdiki zaman (doruk)"),
+    ("şimdiki_%", None, 10, "şimdiki zaman (yalnız seslenme, §3.1)"),
     ("gelecek_%", 3, 20, '"-ecekti" önsezisi'),
     ("merak_100", 2.0, None, "merak kalıpları /100"),
     ("sayı_100", None, 4.0, "sayı /100"),
     ("kaynak_dili", None, 2, "kaynak tartışması kelimeleri (adet, §4)"),
     ("yüklemsiz", None, 0, "yüklemsiz cümle adayı (elle bak, §3.6)"),
     ("bağsız", None, 0, "öncekine bağlanmayan paragraf (elle bak, §3.6 kural 9)"),
+    ("kip", None, 0, "kip uyarısı (elle bak, §3.1)"),
 ]
 BAGLAC = {"ama", "oysa", "fakat", "ancak", "çünkü", "bu", "bunun", "bunu", "buna", "böylece", "derken", "tam", "ertesi", "sonunda",
           "ardından", "o", "onu", "ona", "onun", "onlar", "aynı", "peki", "işte", "yine", "üstelik", "kısa", "sonra", "geriye", "bir an",
@@ -216,6 +239,7 @@ def main():
         out.append(f"\n**Hedef kontrolü: {r['dosya']}** ({n_ok}/{len(h)} ✓; nitel puan kartı ayrıca: ANLATICI-DILI.md §11)")
         out.append("| ölçü | değer | hedef | |\n|---|---|---|---|")
         out += [f"| {ad} | {v} | {rng} | {'✓' if ok else '✗'} |" for ad, v, rng, ok in h]
+        if r["kip_liste"]: out.append("\nKip uyarıları (§3.1; elle bak):\n" + "\n".join(f"- «{a}» → {b}" for a, b in r["kip_liste"]))
         if r["bağsız_liste"]: out.append("\nÖncekine bağlanmayan paragraf başları (kopukluk adayı; bağlaç, gönderim ya da ortak öğe ekle):\n" + "\n".join(f"- «{x}»" for x in r["bağsız_liste"]))
         if r["yüklemsiz_liste"]: out.append("\nYüklemsiz cümle adayları (anlatım bozukluğu mu, bilinçli isim cümlesi mi? elle karar ver):\n" + "\n".join(f"- «{x}»" for x in r["yüklemsiz_liste"]))
     s = "\n".join(out); print(s)
