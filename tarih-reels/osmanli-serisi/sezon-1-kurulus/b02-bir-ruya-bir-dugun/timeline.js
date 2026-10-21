@@ -29,7 +29,8 @@ window.EP = {
     { id: 'yorum', from: 'p3-0.3' },                                              // sabah: yorum ve evlilik sözü
     { id: 'bilecik', from: 'p4-0.3', note: 'YAKLAŞIK SINIRLAR · ~1299' },         // soru: Bilecik iğnesi; düğün Bilecik ↔ Yarhisar
     { id: 'tuzak', from: 'p4:Ama-0.15', note: 'YAKLAŞIK SINIRLAR · ~1299' },      // aynı kamera: tuzak halkası, haber Söğüt'e sızar
-    { id: 'kervan', from: 'p5-0.3' },                                             // yük kervanı hisara; yüklerin arasında silahlar
+    { id: 'kervan', from: 'p5-0.3' },                                             // yük kervanı hisara yaklaşır (Bölüm 1'in emanet yükleri)
+    { id: 'kapi', from: 'p5:Bu-0.15' },                                           // kapıda meşale: yük gölgeleri silahlı adam gölgelerine döner
     { id: 'hisar', from: 'p5:Garnizon-0.2' },                                     // garnizon düğünde, hisar düşer
     { id: 'baskin', from: 'p5:düğün#2-0.2' },                                     // #1 = "düğündeyken"; düğün alayı baskına uğrar, gelin esir
     { id: 'sessizlik', from: 'p5.end+0.25', note: 'YAKLAŞIK SINIRLAR · ~1300' },  // 2 sn harita sessizliği: Bilecik kızıla döner
@@ -45,6 +46,7 @@ window.EP = {
     { at: 'p3-0.3', type: 'dip', d: .3 },                  // gece haritası → sabah
     { at: 'p4-0.3', type: 'rise', d: .3 },                 // odadan haritaya (soru)
     { at: 'p5-0.3', type: 'dive', d: .3 },                 // Bilecik'e dalış → yol
+    { at: 'p5:Bu-0.15', type: 'dive', d: .3 },              // ışıklı kapıya dalış
     { at: 'p5:Garnizon-0.2', type: 'dip', d: .25 },
     { at: 'p5:düğün#2-0.2', type: 'whip', d: .22 },
     { at: 'p5.end+0.25', type: 'rise', d: .3 },            // baskından haritaya: sessizlik

@@ -1,6 +1,6 @@
 /* Sezon 1 · Bölüm 2 sahneleri: Bir Rüya, Bir Düğün. Çapalar: timeline.js · araçlar: shared/engine.js + osmanli-serisi/ortak/gorsel.js
  * Portre yok: kişiler siluetle. Rüya ve düğün RİVAYET (FACTS.md); Nilüfer Hatun, I. Murad, ~1300 haritası, Muzalon'un ordusu belgeli/tartışmalı.
- * Bölüme özel çizimler bu dosyada: yukDengi (emanet yükü), atYuku, yaya, evCiz, nilufer, dotLL, surHalka. */
+ * Bölüme özel çizimler bu dosyada: emanetYuk ve golgeAdam (Bölüm 1'den birebir kopya), atYuku, yaya, evCiz, nilufer, dotLL, surHalka. */
 'use strict';
 const C = cue;
 const camAt = (keys, t, creep = .008) => camPath(keys, t, { creep });   // monoton kübik + log-zoom + sürekli hafif itme
@@ -11,20 +11,24 @@ const YEN = LL(29.65, 40.26), INE = LL(29.51, 40.08), YAR = LL(29.58, 40.30);
 const BIL = CITY['Bilecik'], SOG = CITY['Söğüt'], IZN = CITY['İznik'], KON = CITY['Konstantinopolis'], BAF = CITY['Bafeus'];
 
 /* ---------- bölüme özel çizimler ---------- */
-// emanet yükü: kilim desenli, iple çaprazlanmış denk. Bölüm 1'deki "ağır yükler"in görsel karşılığı (aynı nesne). (x, y) merkez
-function yukDengi(x, y, s, o = {}) {
-  const w = 118, h = 80;
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.rotate(o.rot || 0); ctx.globalAlpha *= o.a ?? 1;
-  ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, 24); ctx.save(); ctx.clip();
-  ctx.fillStyle = '#7a3420'; ctx.fillRect(-w / 2, -h / 2, w, h);
-  for (const [c, f, th] of [['#b0823a', -.34, 7], ['#d8c49a', -.22, 4], ['#3a1810', -.13, 6], ['#3a1810', .13, 6], ['#d8c49a', .22, 4], ['#b0823a', .34, 7]]) { ctx.fillStyle = c; ctx.fillRect(-w / 2, f * h - th / 2, w, th); }
-  ctx.fillStyle = '#e2cf9e'; for (let i = -2; i <= 2; i++) { ctx.beginPath(); ctx.moveTo(i * 24, -8); ctx.lineTo(i * 24 + 8, 0); ctx.lineTo(i * 24, 8); ctx.lineTo(i * 24 - 8, 0); ctx.fill(); }
-  ctx.fillStyle = lg(0, -h / 2, 0, h / 2, [[0, 'rgba(255,230,180,.22)'], [.45, 'rgba(0,0,0,0)'], [1, 'rgba(0,0,0,.5)']]); ctx.fillRect(-w / 2, -h / 2, w, h);
+// emanet yükü: kilim desenli, iple çaprazlanmış denk. Bölüm 1'in scenes.js'inden BİREBİR kopya (görsel süreklilik: Bölüm 1 p6'daki emanet yükleri)
+function emanetYuk(x, y, s, o = {}) {
+  const d = o.dark ?? 0, w = 64, h = 42;
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.rotate(o.rot || 0);
+  ctx.fillStyle = mix('#7a2c1e', '#160a08', d); ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, 12); ctx.fill();
+  ctx.save(); ctx.clip(); ctx.fillStyle = mix('#d4a24a', '#2a1a10', d); ctx.fillRect(-w / 2, -6, w, 12);
+  ctx.fillStyle = mix('#2a1410', '#0a0504', d); for (let i = -2; i <= 2; i++) { ctx.beginPath(); ctx.moveTo(i * 13 - 5, 0); ctx.lineTo(i * 13, -5); ctx.lineTo(i * 13 + 5, 0); ctx.lineTo(i * 13, 5); ctx.closePath(); ctx.fill(); }
+  ctx.fillStyle = mix('#a8483a', '#1a0c0a', d); ctx.fillRect(-w / 2, -h / 2 + 5, w, 4); ctx.fillRect(-w / 2, h / 2 - 9, w, 4); ctx.restore();
+  ctx.strokeStyle = mix('#3a2412', '#060303', d); ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, 12); ctx.stroke();
+  ctx.strokeStyle = mix('#e0c890', '#3a2a18', d); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(-w / 2 + 7, -h / 2 + 4); ctx.lineTo(w / 2 - 7, h / 2 - 4); ctx.moveTo(w / 2 - 7, -h / 2 + 4); ctx.lineTo(-w / 2 + 7, h / 2 - 4); ctx.stroke();
   ctx.restore();
-  ctx.strokeStyle = '#24160a'; ctx.lineWidth = 4.5; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.moveTo(-w / 2 + 8, -h / 2 + 12); ctx.lineTo(w / 2 - 8, h / 2 - 12); ctx.moveTo(w / 2 - 8, -h / 2 + 12); ctx.lineTo(-w / 2 + 8, h / 2 - 12); ctx.stroke();
-  ctx.fillStyle = '#24160a'; ctx.beginPath(); ctx.arc(0, 0, 7, 0, TAU); ctx.fill();
-  ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(20,10,4,.85)'; ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, 24); ctx.stroke();
+}
+// yere/duvara düşen silahlı adam gölgesi: Bölüm 1'in scenes.js'inden BİREBİR kopya (Bölüm 1'de yük gölgeleri bu gölgelere dönüşür)
+function golgeAdam(x, y, h, a, i) {
+  if (a <= 0) return; ctx.save(); ctx.globalAlpha = a; ctx.fillStyle = '#080302'; ctx.strokeStyle = '#080302'; ctx.translate(x, y); const k = h / 330; ctx.scale(k * (1 + i * .04), k);
+  ctx.beginPath(); ctx.moveTo(-44, 0); ctx.lineTo(-36, -190); ctx.quadraticCurveTo(0, -216, 36, -190); ctx.lineTo(44, 0); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.arc(0, -238, 23, 0, TAU); ctx.fill(); ctx.beginPath(); ctx.moveTo(-26, -242); ctx.lineTo(0, -292); ctx.lineTo(26, -242); ctx.closePath(); ctx.fill();
+  ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(52, 10); ctx.lineTo(64, -390); ctx.stroke(); ctx.beginPath(); ctx.moveTo(66, -420); ctx.lineTo(56, -386); ctx.lineTo(74, -386); ctx.closePath(); ctx.fill();
   ctx.restore();
 }
 // mızrak ucu (yükün arasından çıkan silah): kısa sap + yaprak uç; glint 0..1 sıcak ışıltı
@@ -47,7 +51,7 @@ function atYuku(x, y, s, t, o = {}) {
   ctx.beginPath(); ctx.moveTo(54, -106); ctx.quadraticCurveTo(90, -132 + hd, 110, -124 + hd); ctx.lineTo(132, -98 + hd); ctx.lineTo(122, -86 + hd); ctx.quadraticCurveTo(98, -100, 76, -80); ctx.fill();
   ctx.beginPath(); ctx.moveTo(104, -128 + hd); ctx.lineTo(110, -146 + hd); ctx.lineTo(116, -126 + hd); ctx.fill();
   ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(-78, -100); ctx.quadraticCurveTo(-98, -80, -94, -44); ctx.stroke();
-  if (o.load !== false) { ctx.fillStyle = 'rgba(30,18,10,.9)'; ctx.fillRect(-46, -128, 92, 18); yukDengi(-26, -150, .78, { rot: -.05 }); yukDengi(30, -152, .78, { rot: .06 }); }
+  if (o.load !== false) { ctx.fillStyle = 'rgba(30,18,10,.9)'; ctx.fillRect(-46, -126, 92, 16); emanetYuk(-28, -144, 1.3, { dark: o.dark, rot: -.04 }); emanetYuk(32, -140, 1.2, { dark: o.dark, rot: .05 }); }
   ctx.restore();
 }
 // yürüyen adam (sağa): pelerin, asa. o.spear: asanın ucu mızrak (0..1 ortaya çıkış)
@@ -274,40 +278,66 @@ window.SCENE_FNS = {
     mapPin(cam, ...YAR, t, -9, 'YARHİSAR', { left: true, size: 32, a: 1 - seg(t, s.t0, s.t0 + .8) });
     mapPin(cam, ...BIL, t, -9, 'BİLECİK', { left: true, size: 34 });
   },
-  /* "Osman da her yaz olduğu gibi yüklerini Bilecik hisarına göndermiş. Bu kez aralarında silahlı adamlar varmış." */
+  /* "Osman da her yaz olduğu gibi yüklerini Bilecik hisarına göndermiş." — kervan hisara yaklaşır */
   kervan(t, s) {
-    const tbu = C('p5:Bu'), tsl = C('p5:silahlı'), el = t - s.t0;
-    const zk = eIO(seg(t, tbu - .3, tsl + .5)), z = lerp(1, 1.85, zk) * (1 + .006 * el), fx = lerp(540, 600, zk), fy = lerp(1000, 1150, zk);
-    const dusk = 1 - .65 * zk;
+    const el = t - s.t0, zk = eIO(seg(t, s.t0 + 2.0, s.t1 + .3)), cx = 960 - el * 20;
+    const z = lerp(1, 1.3, zk) * (1 + .008 * el), fx = lerp(540, cx - 60, zk), fy = lerp(1000, 1080, zk), dusk = 1 - .35 * zk;
     ctx.save(); ctx.translate(540, 1000); ctx.scale(z, z); ctx.translate(-fx, -fy);
     // akşam göğü: ufuk bandı kervanın arkasında (siluetler ışığa karşı okunur)
     ctx.fillStyle = lg(0, 300, 0, 1290, [[0, '#14142a'], [.45, mix('#2a2238', '#4a3040', dusk)], [.78, mix('#5a3a3a', '#c2703a', dusk)], [1, mix('#7a4a34', '#f0ae62', dusk)]]); ctx.fillRect(-300, -200, W + 600, 1500);
     glow(300, 1230, 520, `rgba(255,190,110,${.55 * dusk})`); ctx.fillStyle = `rgba(255,222,160,${.85 * dusk})`; ctx.beginPath(); ctx.arc(300, 1250, 58, Math.PI, 0); ctx.fill();
     stars(t, .5 * (1 - dusk));
     ctx.fillStyle = mix('#3a2a34', '#7a5248', dusk); ctx.beginPath(); ctx.moveTo(-300, 1290); for (let x = -300; x <= W + 300; x += 40) ctx.lineTo(x, 1215 - 26 * Math.sin(x * .006 + .8) - 10 * Math.cos(x * .017)); ctx.lineTo(W + 300, 1290); ctx.fill();
-    // hisar: tepe üstünde, yaklaşır
-    const cx = 960 - el * 20;
+    // hisar: tepe üstünde, yaklaşır; kapısı ışıklı
     ctx.fillStyle = '#1c1216'; ctx.beginPath(); ctx.moveTo(cx - 420, 1290); ctx.quadraticCurveTo(cx - 160, 1060, cx, 1040); ctx.quadraticCurveTo(cx + 200, 1050, cx + 460, 1290); ctx.fill();
     castle(cx, 1040, .5, '#140d10');
-    ctx.fillStyle = 'rgba(255,170,80,.6)'; ctx.fillRect(cx - 16, 1005, 32, 34);
+    ctx.fillStyle = 'rgba(255,170,80,.7)'; ctx.fillRect(cx - 16, 1005, 32, 34); glow(cx, 1022, 90, 'rgba(255,170,80,.35)');
     // yol ve zemin
-    ctx.fillStyle = lg(0, 1285, 0, 1600, [[0, '#24160c'], [1, '#080504']]); ctx.fillRect(-300, 1285, W + 600, 1000);
+    ctx.fillStyle = lg(0, 1285, 0, 1560, [[0, mix('#2a1a10', '#5e3c22', dusk)], [.35, mix('#1a100a', '#3a2414', dusk)], [1, '#080504']]); ctx.fillRect(-300, 1285, W + 600, 1000);
     ctx.strokeStyle = 'rgba(200,150,90,.18)'; ctx.lineWidth = 3; for (let i = 0; i < 12; i++) { const x = ((i * 140 - el * 46) % 1700 + 1700) % 1700 - 200; ctx.beginPath(); ctx.moveTo(x, 1330); ctx.lineTo(x + 60, 1330); ctx.stroke(); }
-    // kervan: yaya, at, at, yaya, at (sağa yürür)
-    const walk = el * 14, sp = eOut(seg(t, tsl - .15, tsl + .7)), gl = hitPulse(t, tsl + .25, 1.2) + .25 * sp;
-    yaya(40 + walk, 1300, .95, t, { ph: .1, spear: sp, glint: gl });
+    // kervan: yaya, at, at, yaya, at (sağa yürür); yükler Bölüm 1'deki emanet yükleri
+    const walk = el * 14;
+    yaya(40 + walk, 1300, .95, t, { ph: .1 });
     atYuku(260 + walk, 1300, 1, t, { ph: .3 });
     atYuku(520 + walk, 1300, 1, t, { ph: .7 });
-    // yüklerin arasından mızrak uçları
-    if (sp > 0) { const bx = 520 + walk; mizrak(bx - 2, 1300 - 150 * 1 - 2, 30 + 40 * sp, -.12, gl); mizrak(bx + 6, 1300 - 152, 20 + 50 * sp, .1, gl * .8); }
-    yaya(700 + walk, 1300, .95, t, { ph: .55, spear: sp, glint: gl * .9 });
+    yaya(700 + walk, 1300, .95, t, { ph: .55 });
     atYuku(900 + walk, 1300, 1, t, { ph: .9 });
     ctx.restore();
-    geceTon(.35 * zk);
+    geceTon(.25 * zk);
+  },
+  /* "Bu kez aralarında silahlı adamlar varmış." — hisar kapısında meşale; yüklerin gölgeleri silahlı adam gölgelerine döner (Bölüm 1 p6'nın karşılığı) */
+  kapi(t, s) {
+    const tsl = C('p5:silahlı'), m = eIO(seg(t, tsl - .3, C('p5:varmış') + .2)), el = t - s.t0, z = lerp(1, 1.07, eIO(seg(t, s.t0, s.t1)));
+    const fl = .88 + .08 * Math.sin(t * 13) + .04 * Math.sin(t * 29), dx = Math.sin(t * 11) * 5;
+    ctx.save(); ctx.translate(540, 1050); ctx.scale(z, z); ctx.translate(-540, -1050);
+    ctx.fillStyle = '#2a1914'; ctx.fillRect(-100, -100, W + 200, H + 200);
+    const R = rng(131); ctx.strokeStyle = 'rgba(10,5,3,.55)'; ctx.lineWidth = 3;
+    for (let r = 0; r < 14; r++) { const y = 300 + r * 70, off = r % 2 ? 0 : 60; for (let c = -1; c < 9; c++) { const x = off + c * 130 + R() * 10; ctx.strokeRect(x, y, 128, 68); } }
+    ctx.fillStyle = rg(160, 720, 30, 1100 * fl, [[0, 'rgba(255,180,100,.55)'], [.4, 'rgba(160,80,40,.25)'], [1, 'rgba(0,0,0,0)']]); ctx.fillRect(-100, -100, W + 200, H + 200);
+    // geçen yüklü atlar (ön plan) ve duvardaki gölgeleri
+    const hs = [0, 1, 2].map(i => 140 + i * 330 + el * 42);
+    hs.forEach((hx, i) => {
+      const bx = hx - 30, by = 1180, sx = bx + (bx - 150) * .3 + 90 + dx, sy = by - 110 - i * 6;
+      if (m < 1) { ctx.save(); ctx.globalAlpha = .62 * (1 - m); ctx.fillStyle = '#0a0503'; ctx.filter = 'blur(6px)'; ctx.beginPath(); ctx.roundRect(sx - 120, sy - 70, 250, 140, 34); ctx.fill(); ctx.restore(); }
+      if (m > 0) golgeAdam(sx, sy + 60, lerp(160, 560 + i * 36, m), m * .82, i);
+    });
+    // kapı kemeri: geçidin içi
+    ctx.fillStyle = '#0c0705'; ctx.beginPath(); ctx.rect(-200, -200, W + 400, H + 400); ctx.moveTo(60, 1500); ctx.lineTo(60, 640); ctx.quadraticCurveTo(60, 300, 540, 290); ctx.quadraticCurveTo(1020, 300, 1020, 640); ctx.lineTo(1020, 1500); ctx.closePath(); ctx.fill('evenodd');
+    ctx.fillStyle = lg(0, 1240, 0, 1500, [[0, '#1a0f0a'], [1, '#070403']]); ctx.fillRect(-100, 1240, W + 200, 900);
+    hs.forEach((hx, i) => atYuku(hx, 1300, 1.12, t, { ph: .3 + i * .37, speed: .7, sil: '#0b0604', dark: .1 }));
+    // yüklerin arasından mızrak uçları
+    const sp = eOut(seg(t, tsl - .1, tsl + .6)), gl = hitPulse(t, tsl + .2, 1.2) + .3 * sp;
+    if (sp > 0) hs.forEach((hx, i) => { if (i === 1) { mizrak(hx - 2, 1138, 34 + 46 * sp, -.1, gl); mizrak(hx + 10, 1140, 24 + 52 * sp, .09, gl * .8); } });
+    // meşale
+    ctx.fillStyle = '#120a06'; ctx.fillRect(140, 735, 16, 120); ctx.fillRect(126, 728, 44, 12);
+    glow(150, 700, 420 * fl, 'rgba(255,160,70,.45)'); glow(150, 705, 120 * fl, 'rgba(255,220,150,.8)');
+    ctx.save(); ctx.translate(150, 728); ctx.scale(1, fl); ctx.fillStyle = 'rgba(255,190,90,.95)'; ctx.beginPath(); ctx.moveTo(-16, 0); ctx.quadraticCurveTo(-18, -36, 0, -76 + Math.sin(t * 9) * 6); ctx.quadraticCurveTo(18, -36, 16, 0); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.restore();
+    ctx.save(); ctx.globalCompositeOperation = 'soft-light'; ctx.globalAlpha = .3; ctx.fillStyle = '#b0302a'; ctx.fillRect(0, 0, W, H); ctx.restore();
   },
   /* "Garnizon düğündeyken hisar kısa sürede düşmüş," */
   hisar(t, s) {
-    const th = C('p5:hisar#2'), tf = C('p5:düşmüş'), el = t - s.t0, z = 1 + .03 * el + .05 * eIO(seg(t, th, tf));
+    const th = C('p5:hisar#2'), tf = C('p5:kısa') + .2, td = C('p5:düşmüş'), el = t - s.t0, z = 1 + .03 * el + .05 * eIO(seg(t, th, td));   // sancak "kısa sürede" iner: whip'ten önce okunsun
     ctx.save(); ctx.translate(560, 1000); ctx.scale(z, z); ctx.translate(-560, -1000);
     ctx.fillStyle = lg(0, 0, 0, 1300, [[0, '#060918'], [.6, '#10162c'], [.85, '#2a2030'], [1, '#3a2620']]); ctx.fillRect(-100, -100, W + 200, H + 200);
     stars(t, .6);
@@ -319,14 +349,14 @@ window.SCENE_FNS = {
     // hisar
     const fall = seg(t, tf - .1, tf + .5);
     castle(640, 1060, .9, '#06050a');
-    const wf = hitPulse(t, tf, 1.4); if (wf > 0) glow(640, 930, 420 * wf, 'rgba(255,160,80,.55)');
+    const wf = hitPulse(t, td, 1.4); if (wf > 0) glow(640, 930, 420 * wf, 'rgba(255,160,80,.55)');
     // kapı: yükler içeride
     ctx.fillStyle = 'rgba(255,170,80,.75)'; ctx.beginPath(); ctx.moveTo(612, 1062); ctx.lineTo(612, 1016); ctx.arc(640, 1016, 28, Math.PI, 0); ctx.lineTo(668, 1062); ctx.fill();
-    yukDengi(632, 1046, .26, {}); yukDengi(652, 1050, .24, { rot: .1 });
+    emanetYuk(630, 1048, .42, { dark: .25 }); emanetYuk(652, 1052, .38, { dark: .3, rot: .1 });
     // sancak: hisarın mor sancağı iner, yerine kırmızı sancak çıkar
     const px = 640 + 70 * .9, py = 1060 - 170 * .9 - 12;
     ctx.save(); ctx.translate(px, py); ctx.rotate(1.3 * eIn(fall)); ctx.globalAlpha = 1 - seg(t, tf + .2, tf + .6); pennant(0, 0, .36, t, { col: BIZC }); ctx.restore();
-    const up = eOut(seg(t, tf + .2, tf + 1.0)); if (up > 0) { ctx.save(); ctx.beginPath(); ctx.rect(px - 10, py - 120, 120, 120); ctx.clip(); pennant(px, py + 100 * (1 - up), .36, t, { col: OSMC }); ctx.restore(); }
+    const up = eOut(seg(t, tf + .2, tf + .8)); if (up > 0) { ctx.save(); ctx.beginPath(); ctx.rect(px - 10, py - 120, 120, 120); ctx.clip(); pennant(px, py + 100 * (1 - up), .36, t, { col: OSMC }); ctx.restore(); }
     if (t > tf) smokeLayer(t, .5 * seg(t, tf, tf + 1.5), '#2a2018', 7);
     ctx.restore();
   },
@@ -456,8 +486,9 @@ window.SCENE_FNS = {
       ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = OSMC; tracePath(P); ctx.fill(); ctx.restore();
     });
     ownCity(cam, 'İznik', Y, { size: 30, a: 1 - seg(t, s.t0, s.t0 + .6) });
-    ownCity(cam, 'İzmit', Y, { size: 28, a: seg(t, tg, tg + .5) });
-    mapLabel(cam, 'BİZANS', ...LL(29.3, 40.6), 44, { a: seg(t, tbz - .1, tbz + .4) });
+    const kf = 1 - seg(t, tend + .3, tend + .8);   // sıradaki kartından önce harita yazıları söner
+    ownCity(cam, 'İzmit', Y, { size: 28, a: seg(t, tg, tg + .5) * kf });
+    mapLabel(cam, 'BİZANS', ...LL(29.3, 40.6), 44, { a: seg(t, tbz - .1, tbz + .4) * kf });
     // imparatorun ordusu: Konstantinopolis'ten Boğaz'ı geçip Bitinya'ya
     arrow(cam, [[...KON], [8, -50], [26, -40], [44, -32], [58, -27]], eIO(seg(t, tbg - .2, tg + .4)), 22, BIZC, { col0: '#5a3f78' });
     // Osman'ın kuvvetleri karşıdan
@@ -466,6 +497,6 @@ window.SCENE_FNS = {
     if (mk > 0) { const hp = hitPulse(t, tk, 1.2); glow(qx, qy, 120 + 220 * hp, `rgba(255,200,130,${.35 + .4 * hp})`); }
     const qa = spring(t, C('p8:gelecekti'), { freq: 1.5, damp: .7 }) * (1 - seg(t, tend + .5, tend + .9));
     if (qa > 0) { ctx.save(); ctx.globalAlpha = clamp(qa); title('?', qx, qy - 140 + Math.sin(t * 2.4) * 5, 170 * clamp(qa, .2, 1.2), { fam: F.cinzel, w: 900, gold: true }); ctx.restore(); }
-    mapPin(cam, ...KON, t, ti - .05, 'KONSTANTİNOPOLİS', { date: 'İMPARATOR II. ANDRONİKOS', size: 30, col: BIZC });
+    mapPin(cam, ...KON, t, ti - .05, 'KONSTANTİNOPOLİS', { date: 'İMPARATOR II. ANDRONİKOS', size: 30, col: BIZC, a: kf });
   },
 };

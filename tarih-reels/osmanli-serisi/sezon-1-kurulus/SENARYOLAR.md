@@ -57,7 +57,7 @@
 ---
 
 ## Bölüm 1 · Sınırın İki Yakası
-**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v6); ElevenLabs metni `SESLENDIRME.md`'de. Görüntü ve zaman çizelgesi eski metne göre; yeni storyboard gerekiyor. Klasör adı şimdilik `b01-kimsenin-yazmadigi-baslangic`.
+**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v6) · ✅ Seslendirme geldi (`vo/full.mp3`) · ✅ Görüntü yeni metne göre kuruldu (önizleme 98,9 sn; çekim listesi `STORYBOARD.md`, olgular `FACTS.md`). Klasör adı şimdilik `b01-kimsenin-yazmadigi-baslangic`.
 **Rozetler:** 🟢🟡🔴 · **Anlatım:** 171 kelime (~86 sn + 1,5 sn sessizlik) · **Araştırma:** ARASTIRMA §1, §2b · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada)
 **Hikâye:** Kösedağ'dan sonra Anadolu dağılır, Türkmen obaları batıdaki uçlara akar; Bizans'ın gözü batıdadır ve sınır bekçileri dağılır. Söğüt'te Ertuğrul'un obası, ardından Osman; Bilecik tekfuruyla komşuluk (Bölüm 2'de karşılığı gelir); Karacahisar; Edebali'ye köprü.
 
@@ -94,7 +94,7 @@
 ---
 
 ## Bölüm 2 · Bir Rüya, Bir Düğün
-**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v6); ElevenLabs metni `SESLENDIRME.md`'de. Görüntü ve zaman çizelgesi eski metne göre; yeni storyboard gerekiyor. `FACTS.md` yeni metne göre güncellenecek.
+**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v6) · ✅ Seslendirme geldi (`vo/full.mp3`) · ✅ Görüntü yeni metne göre kuruldu (önizleme 97,5 sn; çekim listesi `STORYBOARD.md`, olgular `FACTS.md`).
 **Rozetler:** 🔴🟡🟢 · **Anlatım:** 178 kelime (~89 sn + 2 sn sessizlik) · **Araştırma:** ARASTIRMA §2, §2b · **Yazım:** `ANLATICI-DILI.md`
 **Hikâye:** Rüya (rivayet), Bilecik düğünü ve hisarın düşüşü (rivayet; Bölüm 1'deki emanet yüklerinin karşılığı), Nilüfer, 1300'e doğru Bilecik–Yarhisar–İnegöl, Yenişehir üssü, İznik'in sarılması, imparatorun ordu göndermesi (Bölüm 3'e köprü).
 
