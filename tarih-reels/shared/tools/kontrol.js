@@ -5,18 +5,25 @@
 //   --kare    : tam boy tek kareler → kontrol/kare_<t>.png
 //   --det     : determinizm testi: aynı kareler karışık sırayla iki kez çizilir, özetler aynı olmalı
 //   --guvenli : Instagram arayüz bölgelerini (üst 220, alt 420, sağ 140 px) kırmızı tarar; yazı bu bölgelere taşmamalı
+//   --capalar : timeline.js'teki bütün çapaların saniyesini ve yakaladığı kelimeyi listeler (yanlış kelimeye oturan çapa için)
 //   --tara [adım] : bütün zaman çizgisini (varsayılan 0.1 sn adımla) çizip hata veren anları listeler (render çökmesini önler)
 // Bayrak verilmezse --tablo --det --guvenli --tara çalışır.
 const { chromium } = require('playwright');
 const path = require('path'), fs = require('fs');
 (async () => {
   const argv = process.argv.slice(2), ep = path.resolve(argv[0]), has = n => argv.includes(n), val = (n, k = 1) => argv.slice(argv.indexOf(n) + 1, argv.indexOf(n) + 1 + k);
-  const any = ['--tablo', '--serit', '--kare', '--det', '--tara'].some(has), safe = has('--guvenli') || !any;
+  const any = ['--tablo', '--serit', '--kare', '--det', '--tara', '--capalar'].some(has), safe = has('--guvenli') || !any;
   const outDir = path.join(ep, 'kontrol'); fs.mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch(), page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('file://' + path.join(ep, 'index.html') + '?capture');
-  await page.waitForFunction(() => window.READY, null, { timeout: 20000 });
+  const ready = await page.waitForFunction(() => window.READY, null, { timeout: 20000 }).then(() => true, () => false);
+  const missing = ready ? await page.evaluate(() => typeof exportCues !== 'function' ? ['(motor yüklenmedi)'] : !window.SCENE_FNS ? ['(SCENE_FNS yok: scenes.js yüklenmedi)'] : exportCues().scenes.map(s => s.id).filter(id => typeof window.SCENE_FNS[id] !== 'function')).catch(e => ['(' + e.message + ')']) : ['(sayfa READY olmadı)'];
+  if (!ready || missing.length) {
+    console.log('SAYFA AÇILAMADI ya da eksik sahne fonksiyonu: ' + missing.join(', '));
+    if (errors.length) console.log('SAYFA HATALARI:\n  ' + [...new Set(errors)].join('\n  '));
+    await browser.close(); process.exit(1);
+  }
   // sayfa içi yardımcılar: kareleri küçültüp tek tuvalde birleştirir
   await page.evaluate(() => {
     window.__sheet = (items, cols, tw, safe) => {
@@ -39,7 +46,7 @@ const path = require('path'), fs = require('fs');
   if (has('--tablo') || !any) {
     const items = [];
     cues.scenes.forEach((s, i) => {
-      const d = s.t1 - s.t0, ts = d > 4.5 ? [s.t0 + 1.0, s.t0 + d / 2, s.t1 - .45] : [s.t0 + Math.min(1.0, d * .55)];
+      const d = s.t1 - s.t0, ts = d > 4.5 ? [s.t0 + 1.0, s.t0 + d / 2, s.t1 - .45] : d > 2.2 ? [s.t0 + .6, s.t1 - .4] : [s.t0 + Math.min(1.0, d * .55)];
       ts.forEach((t, j) => items.push({ t: Math.min(t, dur - .05), label: `${i + 1}${ts.length > 1 ? 'abc'[j] : ''} ${s.id} · ${t.toFixed(1)}s` }));
     });
     items.push({ t: dur - .1, label: `son kare · ${(dur - .1).toFixed(1)}s` });
@@ -62,6 +69,18 @@ const path = require('path'), fs = require('fs');
     for (const t of shuffled) h2[t] = await page.evaluate(t => window.__hash(t), t);
     const bad = ts.filter(t => h1[t] !== h2[t]);
     console.log(bad.length ? `DETERMİNİZM HATASI: ${bad.join(', ')} sn farklı çizildi (Math.random, Date veya kareler arası durum var)` : 'determinizm: 10/10 kare aynı');
+  }
+  if (has('--capalar')) {
+    const rows = await page.evaluate(() => {
+      const E = window.EP, out = [], add = (kind, c) => { if (c === undefined || typeof c === 'number') return; let t = null, err = null; try { t = cue(c); } catch (e) { err = e.message; } out.push([kind, c, t, CUE_WORD[c] || '', err]); };
+      (E.scenes || []).forEach(x => add('sahne ' + x.id, x.from)); (E.transitions || []).forEach(x => add('geçiş ' + x.type, x.at));
+      (E.badges || []).forEach(x => { add('rozet ' + x.k, x.from); add('rozet bitiş', x.to); }); (E.cards || []).forEach(x => { add('kart', x.from); add('kart bitiş', x.to); });
+      (E.hits || []).forEach(x => add('vuruş ' + x.sfx, x.at)); (E.risers || []).forEach(x => add('yükselen ' + x.sfx, x.to));
+      (E.music || []).forEach(x => { add('müzik ' + x.style, x.from); if (x.sync) add('müzik sync', x.sync[0]); }); (E.blur || []).forEach(x => { add('bulanıklık', x.from); add('bulanıklık bitiş', x.to); });
+      return out.sort((a, b) => (a[2] ?? -1) - (b[2] ?? -1));
+    });
+    console.log('ÇAPALAR (saniye · çapa · yakalanan kelime · kullanıldığı yer):');
+    for (const [k, c, t, w, e] of rows) console.log(e ? `  HATA   ${c}  → ${e}  (${k})` : `  ${t.toFixed(2).padStart(6)}  ${c.padEnd(28)} ${(w ? '«' + w + '»' : '').padEnd(18)} ${k}`);
   }
   if (has('--tara') || !any) {
     const step = has('--tara') && !isNaN(+val('--tara')[0]) ? +val('--tara')[0] : .1;

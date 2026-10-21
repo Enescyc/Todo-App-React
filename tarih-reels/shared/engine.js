@@ -55,10 +55,11 @@ function mono(ts, vs, t) {
   const h = ts[i + 1] - ts[i], u = (t - ts[i]) / h, u2 = u * u, u3 = u2 * u;
   return (2 * u3 - 3 * u2 + 1) * vs[i] + (u3 - 2 * u2 + u) * h * m[i] + (-2 * u3 + 3 * u2) * vs[i + 1] + (u3 - u2) * h * m[i + 1];
 }
-// kamera yolu: keys = [[t, x, y, zoom], ...]. Zoom log uzayında (algıda eşit hız). o.creep: son karede saniyede bu oranda yavaş itme (ör. .02)
+// kamera yolu: keys = [[t, x, y, zoom], ...]. Zoom log uzayında (algıda eşit hız). o.creep: ilk anahtardan itibaren saniyede bu oranda
+// sürekli yavaş itme (ör. .01 = saniyede %1); kamera tutuşlarda da ölmez
 function camPath(keys, t, o = {}) {
   const ts = keys.map(k => k[0]), z = Math.exp(mono(ts, keys.map(k => Math.log(k[3])), t));
-  const hold = o.creep ? 1 + o.creep * Math.max(0, t - ts[ts.length - 1]) : 1;
+  const hold = o.creep ? 1 + o.creep * Math.max(0, t - ts[0]) : 1;
   return [mono(ts, keys.map(k => k[1]), t), mono(ts, keys.map(k => k[2]), t), z * hold];
 }
 // uzak iki nokta arası "uzaklaş → kay → yakınlaş" uçuşu (van Wijk & Nuij 2003). a, b = [x, y, zoom]; k 0..1 (dışarıda yumuşatın: eIO(seg(...)))
@@ -103,7 +104,7 @@ const TIMING = (() => {
   return { paras, dur };
 })();
 const DUR = TIMING.dur;
-const CUE_CACHE = {};
+const CUE_CACHE = {}, CUE_WORD = {};   // CUE_WORD: çapanın yakaladığı kelime (kontrol.js --capalar)
 function cue(c) {
   if (typeof c === 'number') return c;
   if (c in CUE_CACHE) return CUE_CACHE[c];
@@ -118,7 +119,7 @@ function cue(c) {
       const key = trLower(m[4]), nth = +(m[5] || 1); let n = 0, idx = -1;
       P.words.forEach((w, i) => { if (idx < 0 && trLower(w).startsWith(key) && ++n === nth) idx = i; });
       if (idx < 0) throw new Error('kelime bulunamadı: ' + c);
-      v = P.wt[idx][0];
+      v = P.wt[idx][0]; CUE_WORD[c] = P.words[idx];
     } else v = P.t0;
   }
   return (CUE_CACHE[c] = v + (m[6] ? parseFloat(m[6]) : 0));
@@ -442,7 +443,8 @@ const HITS_R = (EP.hits || []).map(h => ({ ...h, t: cue(h.at) }));
 const bufA = mkCanvas(W, H), bufB = mkCanvas(W, H);
 const sceneAt = t => SCN.find(s => t >= s.t0 && t < s.t1) || SCN[SCN.length - 1];
 function drawScene(s, t, target) {
-  const prev = ctx; ctx = target; if (ctx.reset) ctx.reset(); ctx.save();   // reset: önceki karenin çizim durumu (font, harf aralığı…) sızmasın → determinizm ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, W, H);
+  // reset: önceki karenin çizim durumu (font, harf aralığı…) sızmasın → determinizm
+  const prev = ctx; ctx = target; if (ctx.reset) ctx.reset(); ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, W, H);
   const [sx, sy, sz] = shakeAt(t); ctx.translate(W / 2 + sx, H / 2 + sy); ctx.scale(1.03 * sz, 1.03 * sz); ctx.translate(-W / 2, -H / 2);
   window.SCENE_FNS[s.id](t, s); ctx.restore(); ctx = prev;
 }

@@ -11,7 +11,7 @@ description: >-
 
 **Yapı (60–75 sn):**
 - **İlk cümle kanca olsun.** İlk 3 saniyede bir çelişki ya da şaşırtıcı bir olgu ver: "600 yıl süren bir imparatorluğun nasıl kurulduğunu… kimse yazmadı."
-- **Gövde 4–6 paragraf.** Her paragraf bir anlam birimidir ve aynı zamanda **zaman birimidir**: seslendirme paragraflardan bölünerek hizalanır.
+- **Toplam 4–7 paragraf** (kanca ve kapanış dahil; kanca tek kısa cümlelik bir paragraf olabilir). Her paragraf bir anlam birimidir ve aynı zamanda **zaman birimidir**: seslendirme paragraflardan bölünerek hizalanır. `SENARYOLAR.md`'de metin tek blok halindeyse kelimelerine dokunmadan cümle sınırlarından anlam birimlerine böl ve bölmeyi kullanıcıya göster.
 - **Kahraman an:** Bölümün ~%60–75'inde tek bir unutulmaz görüntü olsun (sikke, deprem, çöküş).
 - **Son cümle merak kancası** olsun ve sıradaki bölüme bağlansın. "Sıradaki bölümde" demek gerekmez; soru yeterli.
 
@@ -53,11 +53,11 @@ description: >-
 
 **Çapa söz dizimi:** `'p2'` paragraf başı, `'p2.end'` paragraf sonu, `'p2:Kösedağ'da'` o paragrafta bu harflerle **başlayan ilk** kelime, `'p4:bir#2'` ikinci eşleşme, `'+0.3'` ve `'-0.2'` saniye kaydırma, `'end'` videonun sonu.
 - **Tuzak:** Arama önek eşleşmesidir. `'p2:on'` "on dört"ü yakalar, `'p3:Bir'` paragraftaki ilk "bir"i yakalar. Ayırt edici bir kelime seç ya da `#n` kullan.
-- **Kontrol:** Sayfayı açıp `cue('p3:Osman\'dır')` değerlerine bakın ya da `shared/tools/kontrol.js` ile iletişim tablosu alın. Kelime bulunamazsa sayfa hata verir.
+- **Kontrol:** `NODE_PATH=$(npm root -g) node shared/tools/kontrol.js <bölüm> --capalar`. Her çapanın saniyesini ve **yakaladığı kelimeyi** listeler (ör. `p4:baskın` → «baskını» uyarısı). Kelime bulunamazsa satır HATA olarak görünür.
 
 ## 4. Kontrol listesi (kullanıcıya göstermeden önce)
 - [ ] İlk 3 saniyede kanca var; son cümle merak bırakıyor.
 - [ ] Her iddia `FACTS.md`'de; ⚪ yok; 🟡 ve 🔴 dilde belli.
 - [ ] Kelime sayısı ve süre hedefte.
 - [ ] Storyboard'da her çekimin çıkış nesnesi ve rozeti var; yasaklar listesi yazılı.
-- [ ] `timeline.js` paragraf metinleri `SESLENDIRME.md`'deki metinle aynı. Etiketler (`[calm]` gibi) yalnızca ElevenLabs metninde bulunur.
+- [ ] `timeline.js` paragraf metinleri `SENARYOLAR.md` ile aynı. Bölüm `SESLENDIRME.md`'ye eklendiyse (onaydan sonra, `tarih-reels-seslendirme`) oradaki kelimelerle de aynı. Etiketler (`[calm]` gibi) yalnızca ElevenLabs metninde bulunur.

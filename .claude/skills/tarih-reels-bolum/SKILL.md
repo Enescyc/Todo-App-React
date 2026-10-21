@@ -35,9 +35,9 @@ Her aşamanın çıktısı bir sonraki aşamanın girdisidir. Bir kapı geçilme
 
 | # | Aşama | Çıktı | Skill | Kapı |
 |---|---|---|---|---|
-| 1 | Araştırma | `ARASTIRMA.md` bölümü + bölümün `FACTS.md`'si | `tarih-reels-arastirma` | Anlatıma ve ekrana girecek her iddianın kaynağı ve güven rozeti var; ⚪ (doğrulanmamış) iddia yok |
-| 2 | Anlatım + storyboard | `SENARYOLAR.md`'de metin (paragraflar) ve storyboard tablosu | `tarih-reels-senaryo` | Kullanıcı metni onayladı (parça parça) |
-| 3 | Uygulama | `timeline.js`, `scenes.js`, `index.html` | `tarih-reels-senaryo` + `tarih-reels-gorsel` | Sayfa hatasız açılıyor; çapalar doğru kelimeye oturuyor |
+| 1 | Araştırma | Sezonun `ARASTIRMA.md`'sine bölüm notu + bölüm klasöründe `FACTS.md` | `tarih-reels-arastirma` | Anlatıma ve ekrana girecek her iddianın kaynağı ve güven rozeti var; ⚪ (doğrulanmamış) iddia yok |
+| 2 | Anlatım + storyboard | Metin `SENARYOLAR.md`'de (paragraflara bölünmüş); storyboard bölüm klasöründe `STORYBOARD.md` | `tarih-reels-senaryo` | Kullanıcı metni onayladı (parça parça). `SENARYOLAR.md`'deki "taslak v1" metinler **onaylı sayılmaz**: 3–5. aşamalar taslakla yapılabilir, ElevenLabs metni yalnızca onaydan sonra verilir |
+| 3 | Uygulama | `timeline.js`, `scenes.js`, `index.html` | `tarih-reels-senaryo` + `tarih-reels-gorsel` | Sayfa hatasız açılıyor; `kontrol.js --capalar` her çapanın doğru kelimeye oturduğunu gösteriyor |
 | 4 | Ön kontrol | `kontrol/tablo.png`, şeritler | `tarih-reels-kalite` | İletişim tablosu kullanıcıya gösterildi; taşma, okunmaz kare ya da güvenli alan ihlali yok |
 | 5 | Önizleme | Tahmini zamanlamalı ses + `--taslak` render (720p kopya) | `tarih-reels-ses` | Kullanıcıya gönderildi |
 | 6 | Seslendirme | ElevenLabs v4 metni → kullanıcı `vo/full.mp3` gönderir → hizalama | `tarih-reels-seslendirme` | Paragraf kesimleri ve hız oranları tutarlı |
@@ -60,7 +60,8 @@ Uzun render'ları arka planda çalıştır (60 sn'lik bölüm: taslak ~6 dk, yay
 ## Yeni bölüm klasörü
 1. Aynı sezondaki bir bölümün `index.html` ve `.gitignore` dosyalarını kopyala; yalnız `<title>`'ı değiştir.
 2. `timeline.js`'i `tarih-reels-senaryo` skill'indeki şablondan kur.
-3. `scenes.js`'te her `scenes[].id` için bir fonksiyon yaz. `C = cue` ve `A(şehir, kayma)` yardımcılarını kullan.
+3. `scenes.js`'te her `scenes[].id` için bir fonksiyon yaz. Dosyanın başında `const C = cue;` tanımla. Şehir + km kayması için ortak `cityPt('Bursa', [0, 20])` var.
+4. `SENARYOLAR.md`'deki bölüm başlığının altındaki eski "Sahne akışı" tablosu özet olarak kalır. Ayrıntılı çekim listesi `STORYBOARD.md`'dedir; ikisi çelişirse `STORYBOARD.md` geçerlidir ve özeti ona göre güncelle.
 
 ## Git
 - Değişiklikleri anlamlı parçalar halinde commit'le ve oturumun dalına push'la.

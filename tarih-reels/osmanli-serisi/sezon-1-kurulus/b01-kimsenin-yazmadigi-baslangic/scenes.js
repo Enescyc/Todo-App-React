@@ -5,7 +5,7 @@ const A = (n, d) => { const p = CITY[n]; return [p[0] + (d?.[0] || 0), p[1] + (d
 const MONGOL = '#3a342c', SELC = '#3f7f7a';
 function darkDesk() { ctx.fillStyle = rg(W / 2, H * .45, 100, H * .85, [[0, '#2e1f12'], [1, '#090604']]); ctx.fillRect(0, 0, W, H); }
 // harita kamerası: anahtar karelerle [t, x, y, z]
-const camAt = (keys, t) => camPath(keys, t, { creep: .015 });   // monoton kübik + log-zoom + hafif itme
+const camAt = (keys, t) => camPath(keys, t, { creep: .008 });   // monoton kübik + log-zoom + saniyede %0.8 itme
 
 window.SCENE_FNS = {
   /* "Altı yüz yılı aşkın süre ayakta kalan bir imparatorluğun nasıl kurulduğunu, aslında kimse yazmadı." */

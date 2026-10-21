@@ -11,6 +11,8 @@ const LL = (lon, lat) => {
   return [6371 * k * Math.cos(p) * Math.sin(l - l0), -6371 * k * (Math.cos(p0) * Math.sin(p) - Math.sin(p0) * Math.cos(p) * Math.cos(l - l0))];
 };
 const CITY = GEO.cities;
+// şehir noktası + km kayması: cityPt('Bursa', [0, 20])
+const cityPt = (n, d) => { const p = CITY[n]; return [p[0] + (d?.[0] || 0), p[1] + (d?.[1] || 0)]; };
 // nehri parlat (Tuna, Fırat, Meriç...)
 function riverGlow(cam, name, a, col = '#bfe6ff') {
   if (a <= 0 || !PATHS.rivers[name]) return;
@@ -354,7 +356,7 @@ function emptyArchive(t, o = {}) {
 }
 // zaman çizgisi: {from, to, y, marks:[[yıl, etiket, alt]], gap:[a,b,etiket], k (çizim ilerlemesi)}
 function timeline(t, o) {
-  const x0 = 110, x1 = W - 110, X = yr => lerp(x0, x1, (yr - o.from) / (o.to - o.from)), y = o.y || 960, k = o.k ?? 1;
+  const x0 = 110, x1 = W - 160, X = yr => lerp(x0, x1, (yr - o.from) / (o.to - o.from)), y = o.y || 960, k = o.k ?? 1;
   ctx.save(); ctx.lineCap = 'round';
   ctx.strokeStyle = 'rgba(242,199,92,.85)'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(lerp(x0, x1, eIO(k)), y); ctx.stroke();
   const st = o.step || 50; for (let yr = Math.ceil(o.from / st) * st; yr <= o.to; yr += st) { if (X(yr) > lerp(x0, x1, k)) break; ctx.fillStyle = 'rgba(242,199,92,.9)'; ctx.fillRect(X(yr) - 2, y - 16, 4, 32); setFont(26, F.mont, 800); ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.textAlign = 'center'; ctx.fillText(yr, X(yr), y + 50); }
@@ -416,4 +418,60 @@ function skyLand(t, o = {}) {
   const hills = (base, amp, col, seed) => { const R = rng(seed); ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(0, H); for (let x = 0; x <= W; x += 40) ctx.lineTo(x, base - amp * (.5 + .5 * Math.sin(x * .004 + seed) * Math.cos(x * .0021 + seed * 2)) - R() * 8); ctx.lineTo(W, H); ctx.fill(); };
   hills(1150, 140, mix('#141018', '#4a3a40', k * .6), 3); hills(1260, 110, mix('#0e0b10', '#2a2026', k * .4), 7); hills(1380, 70, '#0b0805', 11);
   if (o.mist !== false) { ctx.save(); ctx.globalAlpha = .25 + .15 * k; ctx.fillStyle = lg(0, 1150, 0, 1420, [[0, 'rgba(240,220,200,0)'], [.5, 'rgba(240,220,200,.5)'], [1, 'rgba(240,220,200,0)']]); ctx.fillRect(0, 1150, W, 270); ctx.restore(); }
+}
+
+/* ---------- gece göğü, figürler, mekân (Bölüm 2 denemesinden genelleştirildi) ---------- */
+const STARS = (() => { const R = rng(1324); return Array.from({ length: 150 }, () => [R() * W, R() * H * .6, .6 + R() * 1.8, R() * TAU]); })();
+function stars(t, a = 1) { ctx.save(); ctx.fillStyle = '#fff0d2'; for (const [x, y, r, ph] of STARS) { ctx.globalAlpha = a * (.3 + .3 * Math.sin(t * 1.3 + ph)); ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); } ctx.restore(); }
+const DUST = (() => { const R = rng(1299); return Array.from({ length: 60 }, () => [R() * W, R() * H, 1 + R() * 2.5, 10 + R() * 30, R() * TAU]); })();
+// süzülen altın toz (rüya, rivayet)
+function goldDust(t, a = 1) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = '#ffd98a'; for (const [x, y, r, sp, ph] of DUST) { ctx.globalAlpha = a * (.25 + .25 * Math.sin(t * 2 + ph)); ctx.beginPath(); ctx.arc(x + Math.sin(t * .5 + ph) * 30, fract((y - t * sp) / H) * H, r, 0, TAU); ctx.fill(); } ctx.restore(); }
+// gökteki ay (sembol değil, gece göğü)
+function crescentMoon(x, y, r) { glow(x, y, r * 3.2, 'rgba(255,236,190,.3)'); ctx.save(); ctx.fillStyle = '#f6e7bf'; ctx.beginPath(); ctx.arc(x, y, r, -Math.PI / 2, Math.PI / 2); ctx.ellipse(x, y, r * .45, r, 0, Math.PI / 2, -Math.PI / 2, true); ctx.fill(); ctx.restore(); }
+function fullMoon(x, y, r, a = 1) { glow(x, y, r * 4, 'rgba(255,230,170,.55)', a); ctx.save(); ctx.globalAlpha = a; ctx.fillStyle = rg(x - r * .3, y - r * .3, r * .1, r, [[0, '#fffbe8'], [.7, '#f6e2a8'], [1, '#e2c27a']]); ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.restore(); }
+// oturan siluet (yüzü sağa; o.flip sola). o.hat: 'kece' (derviş külahı) | 'sarik'; o.beard; o.rim: arka ışık rengi. Döner: göğüs noktası
+function seated(x, y, s, o = {}) {
+  const f = o.flip ? -1 : 1;
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * f, s); ctx.fillStyle = o.col || '#0b0710';
+  if (o.rim) { ctx.shadowColor = o.rim; ctx.shadowBlur = 26; }
+  ctx.beginPath(); ctx.ellipse(10, -30, 128, 34, 0, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-92, -34); ctx.quadraticCurveTo(-96, -150, -50, -212); ctx.lineTo(46, -212); ctx.quadraticCurveTo(92, -160, 104, -34); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(40, -170); ctx.quadraticCurveTo(110, -120, 120, -60); ctx.lineTo(96, -52); ctx.quadraticCurveTo(80, -110, 30, -140); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.arc(8, -246, 34, 0, TAU); ctx.fill();
+  if (o.hat === 'kece') { ctx.beginPath(); ctx.moveTo(-26, -262); ctx.quadraticCurveTo(-30, -338, 6, -352); ctx.quadraticCurveTo(34, -338, 30, -262); ctx.closePath(); ctx.fill(); }
+  else { ctx.beginPath(); ctx.ellipse(8, -272, 46, 24, 0, 0, TAU); ctx.fill(); ctx.beginPath(); ctx.ellipse(8, -290, 24, 16, 0, 0, TAU); ctx.fill(); }
+  if (o.beard) { ctx.beginPath(); ctx.moveTo(22, -234); ctx.quadraticCurveTo(52, -200, 20, -184); ctx.lineTo(0, -214); ctx.closePath(); ctx.fill(); }
+  ctx.restore();
+  return [x + 36 * s * f, y - 168 * s];
+}
+// uzanmış, uyuyan siluet (baş solda). Döner: {chest, navel}
+function sleeper(x, y, s, o = {}) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = o.col || '#0b0710';
+  if (o.rim) { ctx.shadowColor = o.rim; ctx.shadowBlur = 26; }
+  ctx.beginPath(); ctx.roundRect(-260, -18, 520, 26, 10); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(-205, -34, 48, 20, 0, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(-196, -66, 30, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(-232, -70, 24, 32, 0, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-172, -22); ctx.quadraticCurveTo(-150, -92, -60, -84); ctx.quadraticCurveTo(20, -80, 60, -76); ctx.quadraticCurveTo(120, -124, 172, -82); ctx.quadraticCurveTo(222, -52, 244, -20); ctx.closePath(); ctx.fill();
+  ctx.restore();
+  return { chest: [x - 110 * s, y - 88 * s], navel: [x + 10 * s, y - 80 * s] };
+}
+// mum (a: alevin yoğunluğu)
+function candle(x, y, s, t, a = 1, seed = 0) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  ctx.fillStyle = '#e8dcc0'; ctx.fillRect(-9, -70, 18, 70); ctx.fillStyle = '#120b06'; ctx.fillRect(-22, -4, 44, 8);
+  if (a > 0) { const fl = .85 + .1 * Math.sin(t * 13 + seed) + .05 * Math.sin(t * 29 + seed * 2);
+    glow(0, -88, 300 * fl * a, 'rgba(255,170,70,.35)'); glow(0, -88, 90 * fl * a, 'rgba(255,215,140,.55)');
+    ctx.globalAlpha = a; ctx.fillStyle = `rgba(255,205,115,${fl})`; ctx.beginPath(); ctx.ellipse(0, -86, 7, 17 * fl, Math.sin(t * 7 + seed) * .1, 0, TAU); ctx.fill(); }
+  ctx.restore();
+}
+// tepe üstünde kale siluet, ışıklı pencereler
+function castle(x, y, s, col = '#06050a') {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = col;
+  ctx.beginPath(); ctx.moveTo(-320, 60); ctx.quadraticCurveTo(-120, -30, 0, -10); ctx.quadraticCurveTo(160, -30, 340, 60); ctx.lineTo(340, 200); ctx.lineTo(-320, 200); ctx.fill();
+  ctx.fillRect(-170, -90, 340, 90);
+  for (const [tx, th] of [[-180, 150], [-60, 125], [70, 170], [180, 135]]) { ctx.fillRect(tx - 26, -th, 52, th); for (let i = 0; i < 3; i++) ctx.fillRect(tx - 26 + i * 20, -th - 12, 12, 12); }
+  for (let i = 0; i < 12; i++) ctx.fillRect(-170 + i * 30, -102, 16, 12);
+  ctx.fillStyle = 'rgba(255,190,110,.85)'; for (const [wx, wy] of [[-60, -80], [70, -120], [-180, -100], [10, -50]]) ctx.fillRect(wx - 4, wy, 8, 14);
+  ctx.restore();
 }

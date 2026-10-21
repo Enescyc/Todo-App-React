@@ -23,15 +23,19 @@ Bu yüzden araştırma, anlatım yazılmadan önce yapılır. Ekrandaki her yaz�
 
 **Erişim:** WebSearch çalışır. Wikipedia'ya doğrudan fetch genellikle engellidir. TDV maddeleri arama sonuçlarından okunur.
 
+**Arama özetleri çelişirse:** Örneğin damadın Bilecik tekfuru mu yoksa oğlu mu olduğunda özetler ayrıştı. Bu durumda TDV ya da akademik metnin kendi ifadesini esas al. Çözemiyorsan iddia 🟡'dür: varyantları `FACTS.md`'ye yaz, anlatımda tartışmalı ayrıntıya girmeden söyle ("Bilecik tekfurunun düğünü").
+
 ## Güven rozetleri
 | Rozet | Anlamı | Anlatımda nasıl |
 |---|---|---|
 | 🟢 BELGE | Çağdaş kaynak ya da nesnel kanıt var | Düz anlatılır |
 | 🟡 TARTIŞMALI | Olay kesin; tarih, ayrıntı ya da yorum farklı | Seçenekler söylenir: "kaynaklar ayrışır", "bazı tarihçiler…". Ekranda birden çok tarih kartı gösterilir |
-| 🔴 RİVAYET | Çok sonra yazılmış anlatı ya da efsane | Yalnızca "rivayete göre" ile anlatılır. Ekranda kırmızı rozet ve `rivayet` müziği kullanılır |
+| 🔴 RİVAYET | Çok sonra yazılmış anlatı ya da efsane | Efsane bölümü bir kez çerçevelenir ("Rivayete göre…", "belki duymuşsunuzdur"). Ekranda kırmızı rozet efsane boyunca durur ve `rivayet` müziği çalar; bu çerçevenin içinde hikâye düz anlatılabilir. Gerçeğe dönüş açıkça yapılır: "Ama…" |
 | ⚪ DOĞRULANACAK | Kaynakla doğrulanamadı | **Seslendirmeye ve ekrana girmez.** Doğrulanınca rozetini alır |
 
-Rozetler `timeline.js` → `badges` ile ekranın sağ üstünde görünür (`{from, to, k: 'belge'|'tartismali'|'rivayet'|'dogrulanacak', src: 'kısa kaynak'}`).
+Rozetler `timeline.js` → `badges` ile ekranın sağ üstünde görünür: `{from, to, k: 'belge'|'tartismali'|'rivayet'|'dogrulanacak', src}`. `src` en fazla ~40 karakterlik bir **dayanak etiketidir**: kaynak ("Âşıkpaşazâde, ~1480") ya da iddianın özeti ("Kösedağ · 26 Haziran 1243").
+
+**Rozet iddiaya verilir, olaya değil.** "Bu rüya ilk kez 15. yüzyıl kroniklerinde görülür" cümlesi 🟢'dür, rüyanın kendisi 🔴 olsa bile. "Bizans kaynaklarında doğrulanmaz" da 🟢'dür.
 
 ## FACTS.md (her bölüm klasöründe)
 Ekrandaki her tarih, rakam, isim, unvan, alıntı ve harita değişikliği bir satırdır. Biçim: [references/facts-sablonu.md](references/facts-sablonu.md).

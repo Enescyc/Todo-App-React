@@ -12,7 +12,7 @@ description: Tarih Reels sahnelerinin (scenes.js) görsel dili ve motor API'si. 
 window.SCENE_FNS = {
   harita(t, s) {                                   // s.t0, s.t1: sahnenin başı/sonu (saniye)
     const tk = C("p2:Kösedağ'da");                 // C = cue: kelimenin başladığı saniye
-    const cam = camPath([[s.t0, 900, 40, .7], [tk, 810, 20, 1.1], [s.t1, 800, 20, 1.12]], t, { creep: .02 });
+    const cam = camPath([[s.t0, 900, 40, .7], [tk, 810, 20, 1.1], [s.t1, 800, 20, 1.12]], t, { creep: .008 });
     drawTimeMap(t, cam, 1243.3, { focus: 'SEL', dim: .3 });
     arrow(cam, [CITY['Tebriz'], LL(41.3, 39.95), CITY['Kösedağ']], eIO(seg(t, s.t0 + .2, tk + .3)), 34, '#3a342c');
     mapPin(cam, ...CITY['Kösedağ'], t, tk - .1, 'KÖSEDAĞ', { date: '26 HAZİRAN 1243', left: true });
@@ -25,7 +25,7 @@ window.SCENE_FNS = {
 - **Koordinatlar:** Haritada km (LAEA 29°D/40.5°K) kullan: `CITY['Bursa']`, `LL(boylam, enlem)`. Ekranda 1080×1920 piksel.
 
 ## Kamera
-- **Kamera durmasın.** Tutuşlarda %2–5 yavaş itme kullan (`camPath(..., { creep: .02 })`). Statik bir harita "slayt" gibi görünür.
+- **Kamera durmasın.** `camPath(..., { creep: .005–.01 })` ilk anahtardan itibaren saniyede %0.5–1 sürekli yavaş itme ekler; tutuşlarda da kamera yaşar. Statik bir harita "slayt" gibi görünür.
 - **Ara noktalardan akarak geç.** Anahtar karelerde hız sıfırlanmamalı; zoom log uzayında ilerler. `keyed`/`eIO` yerine `camPath` kullan.
 - **Uzak noktalar arası atlama** (Ankara → Kosova) için `flyTo(a, b, eIO(seg(t, t0, t1)))` kullan: uzaklaş, kay, yakınlaş.
 - **Aynı haritayı kullanan ardışık sahneler aynı anahtarları paylaşır.** Bir sahnenin son karesi, sonrakinin ilk karesidir; kesme görünmez.
@@ -40,7 +40,7 @@ window.SCENE_FNS = {
 ## Instagram güvenli alanları (1080×1920)
 - **Üst 220 px:** Arayüz üst bölgeyi örter. Seri imzası ve rozetler `SAFE_TOP = 232`'den başlar.
 - **Alt 420 px (y > 1500):** Açıklama ve düğmeler var. Altyazı y≈1360'ta; "yaklaşık sınırlar" notu `NOTE_Y = 1452`'de.
-- **Sağ 140 px:** Beğeni ve paylaşım düğmeleri. Önemli yazıyı sağ kenara dayama.
+- **Sağ 140 px:** Beğeni ve paylaşım düğmeleri. Önemli yazıyı sağ kenara dayama (`timeline()` çizgisi x ≤ 920'de biter).
 - Yıl sayacı ve büyük başlıklar y ≥ 400'de dursun, böylece imzayla çakışmazlar.
 - `kontrol.js --guvenli` bu bölgeleri tarar.
 
@@ -57,6 +57,8 @@ window.SCENE_FNS = {
 
 ## Yeni görsel ekleme
 - **Bölüme özel çizim** `scenes.js`'te kalır. **Birden çok bölümde kullanılacak** çizim `osmanli-serisi/ortak/gorsel.js`'e girer. Başına tek satırlık açıklama koy; imza `(x, y, ölçek, t, o = {})` biçiminde olsun.
+- **gorsel.js'e global eklemeden önce** `grep -rn "<ad>" tarih-reels/osmanli-serisi/*/b*/scenes.js` ile aynı adın bir bölümde tanımlı olmadığını kontrol et. `const` yeniden tanımı sayfayı açtırmaz; `kontrol.js` bunu "Identifier … has already been declared" olarak bildirir.
+- **Hazır figürler:** atlı, Bizanslı tarihçi, oturan (derviş/şeyh), uyuyan, mum, kale, çadır, sancak, tuğ, gece göğü (yıldız, hilal ay, dolunay), altın toz. Bir figür yoksa önce bunları uyarlamayı dene; yeni çizdiğin figür birden çok bölümde işe yarayacaksa gorsel.js'e taşı.
 - **Siluet ilkesi:** Gerçek kişi portresi yok. Kişiler nesneyle anlatılır: tuğ, sancak, sikke, mühür, taç, eyer.
 - **Geliştirme fırsatları:** Referans depolardan çıkanlar, sırayla: parşömen yırtılması, mürekkep silmesi, kemer/sikke/tuğra biçiminde iris geçişi, kalınlığı değişen mürekkep çizgisi (`inkStroke`) ve saniyede 12 kez kaynayan kontur, OKLab renk karışımı, yıllar arası sınır biçim değişimi (morph). Ayrıntı ve kaynak dosyaları için bkz. `tarih-reels/strateji/REFERANS-DEPOLAR.md`. MIT lisanslı kod taşınırsa telif notu korunur; lisanssız depolardan (PDoomVideo) kod taşınmaz.
 
