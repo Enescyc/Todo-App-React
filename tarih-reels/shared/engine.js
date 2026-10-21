@@ -42,6 +42,45 @@ function keyed(keys, t) {
   return keys[keys.length - 1].slice(1);
 }
 
+/* ================= kamera ve hareket ================= */
+// monoton kübik (Fritsch–Carlson): anahtar karelerde hız sıfırlanmaz, aşma (overshoot) olmaz; uçlarda durağan başlar/biter
+function mono(ts, vs, t) {
+  const n = ts.length; if (n === 1 || t <= ts[0]) return vs[0]; if (t >= ts[n - 1]) return vs[n - 1];
+  const d = [], m = new Array(n).fill(0);
+  for (let i = 0; i < n - 1; i++) d.push((vs[i + 1] - vs[i]) / (ts[i + 1] - ts[i]));
+  for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : (d[i - 1] + d[i]) / 2;
+  for (let i = 0; i < n - 1; i++) { if (!d[i]) { m[i] = m[i + 1] = 0; continue; } const a = m[i] / d[i], b = m[i + 1] / d[i], q = a * a + b * b; if (q > 9) { const k = 3 / Math.sqrt(q); m[i] = k * a * d[i]; m[i + 1] = k * b * d[i]; } }
+  let i = 0; while (t > ts[i + 1]) i++;
+  const h = ts[i + 1] - ts[i], u = (t - ts[i]) / h, u2 = u * u, u3 = u2 * u;
+  return (2 * u3 - 3 * u2 + 1) * vs[i] + (u3 - 2 * u2 + u) * h * m[i] + (-2 * u3 + 3 * u2) * vs[i + 1] + (u3 - u2) * h * m[i + 1];
+}
+// kamera yolu: keys = [[t, x, y, zoom], ...]. Zoom log uzayında (algıda eşit hız). o.creep: son karede saniyede bu oranda yavaş itme (ör. .02)
+function camPath(keys, t, o = {}) {
+  const ts = keys.map(k => k[0]), z = Math.exp(mono(ts, keys.map(k => Math.log(k[3])), t));
+  const hold = o.creep ? 1 + o.creep * Math.max(0, t - ts[ts.length - 1]) : 1;
+  return [mono(ts, keys.map(k => k[1]), t), mono(ts, keys.map(k => k[2]), t), z * hold];
+}
+// uzak iki nokta arası "uzaklaş → kay → yakınlaş" uçuşu (van Wijk & Nuij 2003). a, b = [x, y, zoom]; k 0..1 (dışarıda yumuşatın: eIO(seg(...)))
+function flyTo(a, b, k, rho = 1.4) {
+  const w0 = W / a[2], w1 = W / b[2], dx = b[0] - a[0], dy = b[1] - a[1], d2 = dx * dx + dy * dy, r2 = rho * rho;
+  if (d2 < 1e-6) return [a[0], a[1], W / (w0 * Math.exp(Math.log(w1 / w0) * k))];
+  const d1 = Math.sqrt(d2), b0 = (w1 * w1 - w0 * w0 + r2 * r2 * d2) / (2 * w0 * r2 * d1), b1 = (w1 * w1 - w0 * w0 - r2 * r2 * d2) / (2 * w1 * r2 * d1);
+  const r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0), r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1), S = (r1 - r0) / rho, s = k * S;
+  const u = w0 / (r2 * d1) * (Math.cosh(r0) * Math.tanh(rho * s + r0) - Math.sinh(r0));
+  return [a[0] + u * dx, a[1] + u * dy, W / (w0 * Math.cosh(r0) / Math.cosh(rho * s + r0))];
+}
+// kapalı formda sönümlü yay (0 → 1, doğal aşma). freq Hz, damp 0..1
+function spring(t, t0, o = {}) {
+  const d = t - t0; if (d <= 0) return 0;
+  const w = TAU * (o.freq || 2.2), z = o.damp ?? .45, wd = w * Math.sqrt(1 - z * z);
+  return 1 - Math.exp(-z * w * d) * (Math.cos(wd * d) + z * w / wd * Math.sin(wd * d));
+}
+// hedefi birçok kez değişen değer: steps = [[t, değer], ...] → her değişim için bir yay toplanır (durum taşımadan, deterministik)
+function springSeq(t, steps, o = {}) { let v = steps[0][1]; for (let i = 1; i < steps.length; i++) v += (steps[i][1] - steps[i - 1][1]) * spring(t, steps[i][0], o); return v; }
+// el kamerası kayması: iki oktav değer gürültüsü (piksel)
+const vnoise = x => { const i = Math.floor(x), f = x - i, h = n => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }, u = f * f * (3 - 2 * f); return lerp(h(i), h(i + 1), u) * 2 - 1; };
+const handheld = (t, amp = 4) => [amp * (vnoise(t * .7) + .5 * vnoise(t * 1.9 + 7)), amp * (vnoise(t * .6 + 3) + .5 * vnoise(t * 1.7 + 11))];
+
 /* ================= zamanlama: paragraf → kelime → çapa ================= */
 const trLower = s => s.toLocaleLowerCase('tr-TR').replace(/[^\p{L}\p{N}]/gu, '');
 const syll = w => /\d/.test(w) ? w.replace(/\D/g, '').length * 1.7 : Math.max(1, (w.match(/[aeıioöuüâîûAEIİOÖUÜÂÎÛ]/g) || []).length);
@@ -176,10 +215,11 @@ function oldFilm(t, a = 1) {
   ctx.restore();
 }
 const hitPulse = (t, at, len = .35) => { const d = t - at; return d >= 0 && d < len ? Math.pow(1 - d / len, 2) : 0; };
+// vuruş sarsıntısı: sönümlü sinüs (yönü vuruşa göre sabit) + kısa zoom tepmesi (×1.0x). Döner: [dx, dy, zoomÇarpanı]
 function shakeAt(t) {
-  let x = 0, y = 0;
-  for (const h of HITS_R) { const d = t - h.t; if (d >= 0 && d < .5 && h.amp) { const a = h.amp * Math.pow(1 - d / .5, 2); x += Math.sin(d * 90 + h.t) * a; y += Math.cos(d * 77 + h.t * 3) * a; } }
-  return [x, y];
+  let x = 0, y = 0, z = 1;
+  for (const h of HITS_R) { const d = t - h.t; if (d >= 0 && d < .7 && h.amp) { const e = Math.exp(-d * 7), a = h.amp * e, ang = h.t * 2.399; x += Math.cos(ang) * Math.sin(d * TAU * 9) * a; y += Math.sin(ang) * Math.sin(d * TAU * 9 + 1.1) * a; z += .0022 * h.amp * Math.exp(-d * 5) * (1 - Math.exp(-d * 60)); } }
+  return [x, y, z];
 }
 function brand() {
   ctx.save(); ctx.fillStyle = 'rgba(10,6,4,.55)'; ctx.beginPath(); ctx.roundRect(54, 96, 360, 58, 29); ctx.fill();
@@ -401,13 +441,13 @@ const HITS_R = (EP.hits || []).map(h => ({ ...h, t: cue(h.at) }));
 const bufA = mkCanvas(W, H), bufB = mkCanvas(W, H);
 const sceneAt = t => SCN.find(s => t >= s.t0 && t < s.t1) || SCN[SCN.length - 1];
 function drawScene(s, t, target) {
-  const prev = ctx; ctx = target; ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, W, H);
-  const [sx, sy] = shakeAt(t); ctx.translate(W / 2 + sx, H / 2 + sy); ctx.scale(1.03, 1.03); ctx.translate(-W / 2, -H / 2);
+  const prev = ctx; ctx = target; if (ctx.reset) ctx.reset(); ctx.save();   // reset: önceki karenin çizim durumu (font, harf aralığı…) sızmasın → determinizm ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, W, H);
+  const [sx, sy, sz] = shakeAt(t); ctx.translate(W / 2 + sx, H / 2 + sy); ctx.scale(1.03 * sz, 1.03 * sz); ctx.translate(-W / 2, -H / 2);
   window.SCENE_FNS[s.id](t, s); ctx.restore(); ctx = prev;
 }
 function render(t) {
   const out = document.getElementById('c').getContext('2d'), tr = TRN.find(x => Math.abs(t - x.t) < x.d);
-  out.setTransform(1, 0, 0, 1, 0, 0); out.globalAlpha = 1; out.globalCompositeOperation = 'source-over';
+  if (out.reset) out.reset(); out.setTransform(1, 0, 0, 1, 0, 0); out.globalAlpha = 1; out.globalCompositeOperation = 'source-over';
   if (!tr) drawScene(sceneAt(t), t, out);
   else {
     const a = sceneAt(tr.t - .001), b = sceneAt(tr.t + .001), k = (t - (tr.t - tr.d)) / (2 * tr.d);
@@ -438,3 +478,12 @@ window.exportCues = () => ({
   music: (EP.music || []).map(m => ({ ...m, t0: cue(m.from), t1: cue(m.to), syncT: m.sync ? cue(m.sync[0]) : undefined })),
 });
 window.renderAt = render; window.DUR = DUR;
+// hareket bulanıklığı: hızlı anlarda (geçişler + EP.blur aralıkları) n alt kare ortalaması. render.js --mb N ile kullanır
+const BLUR_SPANS = [...TRN.map(x => [x.t - x.d, x.t + x.d]), ...(EP.blur || []).map(b => [cue(b.from), cue(b.to)])];
+window.blurAt = t => BLUR_SPANS.some(([a, b]) => t >= a && t <= b);
+const ACC = mkCanvas(W, H);
+window.renderBlurred = (t, n, dt) => {
+  const c = document.getElementById('c'), g = ACC.getContext('2d');
+  for (let j = 0; j < n; j++) { render(t + (j / (n - 1) - .5) * dt); g.globalAlpha = 1 / (j + 1); g.drawImage(c, 0, 0); }
+  const o = c.getContext('2d'); o.setTransform(1, 0, 0, 1, 0, 0); o.globalAlpha = 1; o.globalCompositeOperation = 'source-over'; o.drawImage(ACC, 0, 0);
+};

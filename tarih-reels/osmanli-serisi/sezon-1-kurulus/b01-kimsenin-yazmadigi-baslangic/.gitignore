@@ -2,3 +2,4 @@ audio/*.wav
 audio/_*
 *.mp4
 vo/kontrol/
+kontrol/

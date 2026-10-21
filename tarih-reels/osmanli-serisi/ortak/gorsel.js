@@ -17,6 +17,8 @@ function riverGlow(cam, name, a, col = '#bfe6ff') {
   inWorld(cam, () => { ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.globalCompositeOperation = 'screen';
     for (const [w, al] of [[16, .25], [7, .55], [3, .95]]) { ctx.strokeStyle = rgba(col, al * a); ctx.lineWidth = w / cam[2]; ctx.stroke(PATHS.rivers[name]); } ctx.restore(); });
 }
+// Instagram Reels güvenli alanı: üst ~220 px ve alt ~420 px arayüzle örtülür → imza, rozet ve notlar bu bölgelerin dışında
+const SAFE_TOP = 232, NOTE_Y = 1452;
 const BADGE = {
   belge: { c: '#3f9a4a', s: 'BELGE' }, tartismali: { c: '#d9a21b', s: 'TARTIŞMALI' },
   rivayet: { c: '#c0392b', s: 'RİVAYET' }, dogrulanacak: { c: '#b8b2a6', s: 'DOĞRULANACAK' },
@@ -28,13 +30,13 @@ const blink = (t, t0, t1, a = .25, b = .3) => clamp(Math.min(seg(t, t0, t0 + a),
 /* ---------- seri imzası: sol üst ---------- */
 window.BRAND = t => {
   const S = EP.series || {}; if (S.hide) return;
-  ctx.save(); ctx.fillStyle = 'rgba(10,6,4,.55)'; ctx.beginPath(); ctx.roundRect(54, 92, 404, 66, 33); ctx.fill();
+  ctx.save(); ctx.fillStyle = 'rgba(10,6,4,.55)'; ctx.beginPath(); ctx.roundRect(54, SAFE_TOP, 404, 66, 33); ctx.fill();
   ctx.strokeStyle = 'rgba(242,199,92,.55)'; ctx.lineWidth = 2; ctx.stroke();
-  ctx.fillStyle = 'rgba(242,199,92,.12)'; ctx.beginPath(); ctx.arc(94, 125, 24, 0, TAU); ctx.fill(); miniTree(94, 146, .135, 1, t, { leaves: false });
-  setFont(26, F.cinzel, 900); ctx.fillStyle = GOLD; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.letterSpacing = '2px'; ctx.fillText(S.season || 'OSMANLI', 124, 118);
+  ctx.fillStyle = 'rgba(242,199,92,.12)'; ctx.beginPath(); ctx.arc(94, SAFE_TOP + 33, 24, 0, TAU); ctx.fill(); miniTree(94, SAFE_TOP + 54, .135, 1, t, { leaves: false });
+  setFont(26, F.cinzel, 900); ctx.fillStyle = GOLD; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.letterSpacing = '2px'; ctx.fillText(S.season || 'OSMANLI', 124, SAFE_TOP + 26);
   setFont(19, F.mont, 800); ctx.letterSpacing = '3px'; ctx.fillStyle = 'rgba(255,255,255,.78)';
-  ctx.fillText(S.n ? `BÖLÜM ${S.n}/${S.of}` : 'FRAGMAN', 125, 140);
-  if (S.n) for (let i = 0; i < S.of; i++) { ctx.fillStyle = i < S.n ? GOLD : 'rgba(255,255,255,.25)'; ctx.beginPath(); ctx.arc(300 + i * 14, 140, i === S.n - 1 ? 5 : 3.6, 0, TAU); ctx.fill(); }
+  ctx.fillText(S.n ? `BÖLÜM ${S.n}/${S.of}` : 'FRAGMAN', 125, SAFE_TOP + 48);
+  if (S.n) for (let i = 0; i < S.of; i++) { ctx.fillStyle = i < S.n ? GOLD : 'rgba(255,255,255,.25)'; ctx.beginPath(); ctx.arc(300 + i * 14, SAFE_TOP + 48, i === S.n - 1 ? 5 : 3.6, 0, TAU); ctx.fill(); }
   ctx.restore();
 };
 /* ---------- son katman: sıcak ton + rozetler + kartlar ---------- */
@@ -48,7 +50,7 @@ function badge(t, b) {
   const k = blink(t, b.t0, b.t1, .35, .3); if (k <= 0) return;
   const B = BADGE[b.k], pop = eBack(seg(t, b.t0, b.t0 + .35));
   ctx.save(); setFont(24, F.mont, 900); ctx.letterSpacing = '3px';
-  const w = ctx.measureText(B.s).width + 86, x = W - 54 - w, y = 92;
+  const w = ctx.measureText(B.s).width + 86, x = W - 54 - w, y = SAFE_TOP;
   ctx.globalAlpha = k; ctx.translate(x + w, y + 33); ctx.scale(lerp(.6, 1, pop), lerp(.6, 1, pop)); ctx.translate(-(x + w), -(y + 33));
   ctx.fillStyle = 'rgba(10,6,4,.62)'; ctx.beginPath(); ctx.roundRect(x, y, w, 66, 33); ctx.fill();
   ctx.strokeStyle = rgba(B.c, .9); ctx.lineWidth = 2.5; ctx.stroke();
@@ -60,8 +62,8 @@ function badge(t, b) {
 }
 function mapNote(s) {
   ctx.save(); setFont(20, F.mont, 800); ctx.letterSpacing = '2px'; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
-  ctx.fillStyle = 'rgba(20,12,6,.55)'; const w = ctx.measureText(s).width + 28; ctx.beginPath(); ctx.roundRect(W - 40 - w, H - 300, w, 36, 18); ctx.fill();
-  ctx.fillStyle = 'rgba(255,240,210,.8)'; ctx.fillText(s, W - 54, H - 281); ctx.restore();
+  ctx.fillStyle = 'rgba(20,12,6,.55)'; const w = ctx.measureText(s).width + 28; ctx.beginPath(); ctx.roundRect(W - 40 - w, NOTE_Y, w, 36, 18); ctx.fill();
+  ctx.fillStyle = 'rgba(255,240,210,.8)'; ctx.fillText(s, W - 54, NOTE_Y + 19); ctx.restore();
 }
 // bölüm başlığı: {kicker, title:[satırlar], sub}
 function titleCard(t, c) {

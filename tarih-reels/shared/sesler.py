@@ -201,3 +201,46 @@ def room(x, wet=.18, seed=7, decay=3.2, sec=1.8):
 def soften(x, fc=7000.0, db=-4.0):
     F = np.fft.rfftfreq(len(x), 1 / SR); g = 10 ** (db * np.clip(np.log2(np.maximum(F, 1) / fc), 0, 1) / 20)
     return np.fft.irfft(np.fft.rfft(x, axis=0) * g[:, None], len(x), axis=0)
+
+
+# ---------------- ses yüksekliği (ITU-R BS.1770, K-ağırlıklı LUFS) ve mastering ----------------
+def _biquad(F, b, a):
+    z = np.exp(-1j * 2 * np.pi * F / SR)
+    return (b[0] + b[1] * z + b[2] * z * z) / (a[0] + a[1] * z + a[2] * z * z)
+
+
+def _kfilter(F):
+    """BS.1770 K-ağırlığı (raf + yüksek geçiren), frekans yanıtı olarak; scipy gerekmez."""
+    G, Q, fc = 3.999843853973347, 0.7071752369554196, 1681.974450955533
+    A, w0 = 10 ** (G / 40), 2 * np.pi * fc / SR; al = np.sin(w0) / (2 * Q); c = np.cos(w0); sA = np.sqrt(A)
+    shelf = _biquad(F, [A * ((A + 1) + (A - 1) * c + 2 * sA * al), -2 * A * ((A - 1) + (A + 1) * c), A * ((A + 1) + (A - 1) * c - 2 * sA * al)],
+                    [(A + 1) - (A - 1) * c + 2 * sA * al, 2 * ((A - 1) - (A + 1) * c), (A + 1) - (A - 1) * c - 2 * sA * al])
+    Q, fc = 0.5003270373238773, 38.13547087602444; w0 = 2 * np.pi * fc / SR; al = np.sin(w0) / (2 * Q); c = np.cos(w0)
+    hp = _biquad(F, [(1 + c) / 2, -(1 + c), (1 + c) / 2], [1 + al, -2 * c, 1 - al])
+    return shelf * hp
+
+
+def lufs(x):
+    """Bütünleşik ses yüksekliği (LUFS): 400 ms bloklar, %75 örtüşme, −70 mutlak ve −10 LU göreli kapı."""
+    if x.ndim == 1: x = np.stack([x, x], 1)
+    n = 1 << (len(x) - 1).bit_length(); F = np.fft.rfftfreq(n, 1 / SR); H = _kfilter(F)
+    y = np.stack([np.fft.irfft(np.fft.rfft(x[:, c], n) * H, n)[: len(x)] for c in range(2)], 1)
+    blk, hop = int(.4 * SR), int(.1 * SR)
+    cs = np.concatenate([[0], np.cumsum((y ** 2).sum(1))])
+    z = np.array([(cs[i + blk] - cs[i]) / blk for i in range(0, len(y) - blk, hop)])
+    if not len(z): return -70.0
+    L = -0.691 + 10 * np.log10(z + 1e-12); z = z[L > -70]
+    if not len(z): return -70.0
+    rel = -0.691 + 10 * np.log10(z.mean()) - 10; L = -0.691 + 10 * np.log10(z + 1e-12)
+    return float(-0.691 + 10 * np.log10(z[L > rel].mean()))
+
+
+def limit(x, ceiling_db=-1.0, knee_db=-4.0):
+    c, k = 10 ** (ceiling_db / 20), 10 ** ((ceiling_db + knee_db) / 20); a = np.abs(x)
+    return np.where(a > k, np.sign(x) * (k + (c - k) * np.tanh((a - k) / (c - k))), x)
+
+
+def master(x, target=-14.0, ceiling_db=-1.0):
+    """Instagram/YouTube hedefi: −14 LUFS bütünleşik, tepe ≤ −1 dBFS (yumuşak sınırlayıcı). Döner: (sinyal, kazanç)."""
+    g = 10 ** ((target - lufs(x)) / 20); y = limit(x * g, ceiling_db)
+    g2 = 10 ** ((target - lufs(y)) / 20); return limit(y * g2, ceiling_db), g * g2

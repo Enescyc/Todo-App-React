@@ -307,7 +307,9 @@ if VO_CLIPS:
     vo = vo / np.abs(vo).max() * .85
     env = np.convolve(np.abs(vo), np.ones(int(.05 * SR)) / int(.05 * SR), "same")
     env = np.convolve((env > .02).astype(float), np.ones(int(.3 * SR)) / int(.3 * SR), "same")
-    duck = 1 - .55 * np.clip(env, 0, 1); music *= duck[:, None]; amb *= duck[:, None]; sfx *= (1 - .25 * np.clip(env, 0, 1))[:, None]
+    # konuşma altında müzik: kütüphane modunda EP.duckDb (varsayılan 15 dB; anlatıcı müziğin 10–15 dB üstünde), eski bölümlerde ~7 dB
+    depth = 1 - 10 ** (-EP.get("duckDb", 15) / 20) if LIBMODE else .55
+    duck = 1 - depth * np.clip(env, 0, 1); music *= duck[:, None]; amb *= duck[:, None]; sfx *= (1 - .3 * np.clip(env, 0, 1))[:, None]
 
 ir_t = tt(2.2); ir = rnd.standard_normal((len(ir_t), 2)) * np.exp(-ir_t * 2.8)[:, None]; ir[0] = 1
 def reverb(x, wet):
@@ -319,10 +321,18 @@ if LIBMODE:   # kütüphane modu: bütün sesler aynı odada, tiz raf ile yumuş
     mix = sesler.soften(sesler.room(music * .85 + sfx, .18) + amb)
 else:
     mix = reverb(music, .25) * .85 + reverb(sfx, .2) + amb
-if VO_CLIPS: mix += np.stack([vo, vo], 1) * 1.15
 e = int(DUR * SR); fade = np.ones(N); fade[e - int(1.5 * SR): e] = np.linspace(1, 0, int(1.5 * SR)); fade[e:] = 0
-mix = np.tanh(mix * fade[:, None] / np.abs(mix).max() * 2.0) * .89
-mix = mix[:e]
+if LIBMODE:   # −14 LUFS, tepe ≤ −1 dBFS; ölçüm için ara katmanlar audio/_arka.wav ve audio/_vo.wav
+    bg = mix * fade[:, None]; full = bg + (np.stack([vo, vo], 1) * 1.15 * fade[:, None] if VO_CLIPS else 0)
+    mix, g = sesler.master(full[:e])
+    for name, sig in (("_arka", bg[:e] * g),) + ((("_vo", np.stack([vo, vo], 1)[:e] * 1.15 * g),) if VO_CLIPS else ()):
+        with wave.open(os.path.join(EPD, "audio", name + ".wav"), "wb") as w:
+            w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(sig, -1, 1) * 32767).astype(np.int16).tobytes())
+    print(f"mastering: {sesler.lufs(mix):.1f} LUFS, tepe {20 * np.log10(np.abs(mix).max()):.1f} dBFS")
+else:
+    if VO_CLIPS: mix += np.stack([vo, vo], 1) * 1.15
+    mix = np.tanh(mix * fade[:, None] / np.abs(mix).max() * 2.0) * .89
+    mix = mix[:e]
 wav = os.path.join(EPD, "audio", "final.wav")
 with wave.open(wav, "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((mix * 32767).astype(np.int16).tobytes())

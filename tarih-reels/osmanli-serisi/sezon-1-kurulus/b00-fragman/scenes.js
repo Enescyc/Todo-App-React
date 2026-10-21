@@ -47,8 +47,8 @@ window.SCENE_FNS = {
     glow(W / 2, 520, 420, 'rgba(255,190,90,.25)');
     tug(W / 2, 1500, 1.35, t, { fall: 0 });
     ctx.fillStyle = lg(0, 1250, 0, H, [[0, 'rgba(5,3,2,0)'], [.3, '#050302']]); ctx.fillRect(0, 1250, W, H - 1250);
-    kinetic('I. BAYEZİD', W / 2, 360, 92, t, C('p1:Yıldırım') - .05, { mode: 'letters', fam: F.cinzel, w: 900, gold: true, spacing: 4 });
-    kinetic('“YILDIRIM”', W / 2, 470, 54, t, C('p1:lakaplı'), { mode: 'fade', fam: F.mont, w: 900, col: '#e8e2ff', spacing: 10, stroke: false });
+    kinetic('I. BAYEZİD', W / 2, 430, 92, t, C('p1:Yıldırım') - .05, { mode: 'letters', fam: F.cinzel, w: 900, gold: true, spacing: 4 });
+    kinetic('“YILDIRIM”', W / 2, 540, 54, t, C('p1:lakaplı'), { mode: 'fade', fam: F.mont, w: 900, col: '#e8e2ff', spacing: 10, stroke: false });
   },
   /* "Bir gün içinde ordu dağıldı, sultan esir düştü." – Timur'un yürüyüşü, çöküş */
   collapse(t, s) {
@@ -87,7 +87,7 @@ window.SCENE_FNS = {
     if (pa > 0) { glow(p[0], p[1], 220, `rgba(255,120,70,${.7 * pa})`); for (let i = 0; i < 3; i++) { const r = ((t - ts) * .9 + i / 3) % 1; ctx.strokeStyle = `rgba(255,214,140,${pa * (1 - r)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p[0], p[1], 20 + r * 160, 0, TAU); ctx.stroke(); } }
     mapPin(cam, ...CITY['Söğüt'], t, ts, 'SÖĞÜT', { date: '~1300' });
     rewindFX(t, (1 - seg(t, ts - .4, ts)) * seg(t, s.t0, s.t0 + .3));
-    yearTicker(W / 2, 330, Y, 130, { a: 1 - seg(t, ts + .6, ts + 1.2) });
+    yearTicker(W / 2, 430, Y, 130, { a: 1 - seg(t, ts + .6, ts + 1.2) });
   },
   /* "Ve neden, bütün bu hikâyenin başını, kimse yazmamıştı?" – boş parşömen, mürekkep damlası, sezon kartı */
   blank(t, s) {

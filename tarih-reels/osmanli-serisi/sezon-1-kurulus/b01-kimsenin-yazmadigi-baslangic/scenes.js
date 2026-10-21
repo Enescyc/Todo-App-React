@@ -5,7 +5,7 @@ const A = (n, d) => { const p = CITY[n]; return [p[0] + (d?.[0] || 0), p[1] + (d
 const MONGOL = '#3a342c', SELC = '#3f7f7a';
 function darkDesk() { ctx.fillStyle = rg(W / 2, H * .45, 100, H * .85, [[0, '#2e1f12'], [1, '#090604']]); ctx.fillRect(0, 0, W, H); }
 // harita kamerası: anahtar karelerle [t, x, y, z]
-const camAt = (keys, t) => keyed(keys, t);
+const camAt = (keys, t) => camPath(keys, t, { creep: .015 });   // monoton kübik + log-zoom + hafif itme
 
 window.SCENE_FNS = {
   /* "Altı yüz yılı aşkın süre ayakta kalan bir imparatorluğun nasıl kurulduğunu, aslında kimse yazmadı." */
@@ -54,7 +54,7 @@ window.SCENE_FNS = {
     const [ux, uy] = W2S(cam, ...LL(29.2, 38.7));
     kinetic('UÇLAR', ux - 120, uy, 56, t, tu, { mode: 'slam', fam: F.cinzel, w: 900, col: '#fff3c8' });
     ownerLabels(cam, Y, { only: ['GER', 'KRS', 'SAR', 'AYD', 'MEN', 'HAM', 'KRM', 'CAN', 'BIZ', 'ORT'], a: seg(t, tb - .1, tb + .5), minArea: 3000, size: [20, 40] });
-    yearTicker(W / 2, 330, Y, 110, { approx: true });
+    yearTicker(W / 2, 430, Y, 110, { approx: true });
   },
   /* "Bunlardan biri, Bizans sınırında, Söğüt çevresindeki küçük bir topluluktur." */
   sogut(t, s) {
@@ -129,10 +129,10 @@ window.SCENE_FNS = {
     ctx.fillStyle = rg(W * .45, H * .55, 50, H * .8, [[0, '#5a3a1e'], [.45, '#2a1a0e'], [1, '#060403']]); ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = rg(330, 980, 20, 520, [[0, 'rgba(255,190,110,.55)'], [1, 'rgba(255,190,110,0)']]); ctx.fillRect(0, 400, W, 1200);
     scribe(330, 1360, 1.05, t, { write: true });
-    parchment(760, 760, 520, 640, { rot: .05, seed: 1302 });
-    inkScript(560, 560, 400, 7, t, s.t0 + .2, 4.5, { style: 'greek', lh: 62, seed: 6 });
+    parchment(760, 900, 520, 640, { rot: .05, seed: 1302 });
+    inkScript(560, 700, 400, 7, t, s.t0 + .2, 4.5, { style: 'greek', lh: 62, seed: 6 });
     const tb = C('p6:Bizanslıydı');
-    kinetic('BİZANSLI', W / 2, 300, 110, t, tb - .05, { mode: 'letters', fam: F.cinzel, w: 900, gold: true, spacing: 6 });
-    kinetic('BİR TARİHÇİ', W / 2, 400, 44, t, tb + .4, { mode: 'fade', fam: F.mont, w: 900, spacing: 12, col: 'rgba(255,240,215,.9)', stroke: false });
+    kinetic('BİZANSLI', W / 2, 400, 110, t, tb - .05, { mode: 'letters', fam: F.cinzel, w: 900, gold: true, spacing: 6 });
+    kinetic('BİR TARİHÇİ', W / 2, 500, 44, t, tb + .4, { mode: 'fade', fam: F.mont, w: 900, spacing: 12, col: 'rgba(255,240,215,.9)', stroke: false });
   },
 };
