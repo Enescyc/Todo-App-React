@@ -17,6 +17,7 @@ description: >-
 - **Zaman:** olaylar **-dı**; arka plan -yordu/-mıştı; **doruk şimdiki zaman**; rivayet çerçevesinin içi -mış; kapanış -ecekti. Geniş zaman ≤ %15, "-dır/-tır" ≤ %10 ("Liderinin adı Osman'dır" değil, "Başlarındaki beyin adı ise Osman."). Şimdiki zamana bir sahne çerçevesiyle girilir ("Bin dört yüz iki yazında, Ankara yakınlarında…") ve sahne bitene kadar orada kalınır.
 - **Cümle:** ortalama 8–11 kelime; 20 kelimeyi aşan cümle yok; kanca ve doruk cümleleri kısa ama **tam** (yüklemli). Cümleyi parçalara bölmek kısa cümle yazmak değildir.
 - **Anlatım bozukluğu yok** (rehber §3.6, kırmızı çizgi): her cümlenin yüklemi var (istisna: soruya kısa cevap); zaman geçişi çerçeveli; özne ve gönderim açık ("saflar" kimin, "bu devlet" hangisi); "ve" aynı türden öğeleri bağlar; özne ile yüklem arasına virgül girmez; metin öbür bölümlerle çelişmez. Kullanıcı Fragman taslağını tam bu yüzden geri çevirdi. Metni yüksek sesle okuyarak denetle.
+- **Kopukluk yok** (rehber §3.6 kural 9): her paragrafın ilk cümlesi öncekinin son öğesine bağlanır (aynı ad, "Bu…", "Bunun üzerine", "Tam bu sırada", "Ama"). Bölüm bir olay listesi değil, neden-sonuç zinciridir; bir paragrafa sığmayan olay çıkarılır. Kullanıcı Bölüm 3–5 taslaklarını "kopukluklar hâlâ mevcut" diye geri çevirdi.
 - **İzleyici:** 2–4 soru ("Peki…?" cevabı hemen gelir), 1–2 hitap ("Düşünün…"), 1–3 "biz".
 - **Dönemeç:** her 15–25 sn'de bir "Ama / Oysa / Peki / Ta ki" ya da yeni görüntü ölçeği.
 
@@ -43,7 +44,7 @@ description: >-
 python3 shared/tools/anlatim_analiz.py <bölüm>/timeline.js      # ölçüm + hedef kontrolü (rehber §12)
 python3 shared/tools/anlatim_analiz.py taslak.txt --hedef       # timeline'a girmemiş taslak
 ```
-Araç yüklemsiz cümle adaylarını listeler; her birine elle bak. Sonra rehberin §11'indeki **puan kartını** doldur: 10 madde × 0–2, geçme ≥ 16/20 ve hiçbir maddede 0 yok. Kırmızı çizgilerden biri varsa metni sunma.
+Araç yüklemsiz cümle adaylarını ve öncekine bağlanmayan paragraf başlarını listeler; her birine elle bak. Sonra rehberin §11'indeki **puan kartını** doldur: 10 madde × 0–2, geçme ≥ 16/20 ve hiçbir maddede 0 yok. Kırmızı çizgilerden biri varsa metni sunma.
 
 **Kullanıcıya sunuş.** Metni paragraf paragraf ver; kullanıcı "part part" değerlendiriyor. Her paragrafın yanında kullandığın teknik kodları (ör. `K2 · T3`) ve rozetleri yaz. Sonda kelime sayısı, tahmini süre, puan kartı (`Puan 17/20 · zayıf: 3, 8`) ve hedef dışı ölçüler (nedeniyle) bulunsun.
 

@@ -36,7 +36,7 @@ def read(path):
     if path.endswith("timeline.js"):
         out = subprocess.run(["node", "-e", "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(JSON.stringify(window.EP.paras.map(p=>[p.text,p.pause||0])))", path], capture_output=True, text=True, check=True).stdout
         P = json.loads(out); text = " ".join(t for t, _ in P)
-        return text, len(text.split()) / 2.0 + sum(x for _, x in P), "bizim (tahmini 2.0 kel/sn + harita sessizlikleri)"
+        return text, len(text.split()) / 2.0 + sum(x for _, x in P), "bizim (tahmini 2.0 kel/sn + harita sessizlikleri)", [t for t, _ in P]
     raw = open(path, encoding="utf-8", errors="replace").read()
     lines, times, prev = [], [], None
     for L in raw.splitlines():
@@ -51,7 +51,8 @@ def read(path):
     text = " ".join(lines)
     # otomatik altyazı tekrarları: bir satır öncekinin sonuyla başlıyorsa üst üste binen kısmı at
     dur = (max(times) - min(times)) if len(times) > 1 else None
-    return text, dur, "transkript"
+    paras = lines if path.endswith(".txt") and not times else None    # düz metin taslağı: her satır bir paragraf
+    return text, dur, "transkript", paras
 
 
 V = "aeıioöuüâîû"
@@ -61,7 +62,7 @@ def words(t): return re.findall(r"[\wçğıöşüâîûÇĞİÖŞÜÂÎÛ'’]+"
 
 
 def analyse(path):
-    text, dur, kind = read(path)
+    text, dur, kind, paras = read(path)
     w = words(text); n = len(w); lw = [x.lower().replace("’", "'") for x in w]
     sents = [s.strip() for s in re.split(r"(?<=[.!?…])\s+", text) if s.strip()]
     auto_punct = len(sents) < max(3, n / 60)          # otomatik altyazıda noktalama çoğu zaman yok
@@ -107,6 +108,16 @@ def analyse(path):
             last = ws[-1].split("'")[-1] if "'" in ws[-1] else ws[-1]
             if last in YUKLEM_KELIME or YUKLEM_EK.search(last): continue
             yuklemsiz.append(x)
+    # paragraf köprüsü (ANLATICI-DILI.md §3.6 kural 9): her paragraf bir öncekine bağlanmalı. Bağ sayılanlar: ilk iki kelimede
+    # bir bağlaç ya da gönderim sözü; ya da önceki paragrafın son iki cümlesiyle ortak bir içerik kökü (ilk 5 harf).
+    bagsiz = []
+    if paras:
+        kok = lambda t: {x.lower()[:5] for x in words(t) if len(x) >= 5 and x.lower() not in DURAK}
+        for a, b in zip(paras, paras[1:]):
+            sa = [x for x in re.split(r"(?<=[.!?…])\s+", a) if x.strip()]; sb = [x for x in re.split(r"(?<=[.!?…])\s+", b) if x.strip()]
+            ilk = [x.lower() for x in words(sb[0])[:2]] if sb else []
+            if any(x in BAGLAC for x in ilk) or " ".join(ilk) in BAGLAC or (kok(" ".join(sa[-2:])) & kok(sb[0] if sb else "")): continue
+            bagsiz.append(sb[0] if sb else b)
     low = " " + " ".join(lw) + " "
     yasak = sorted({x for x in lw if x in YASAK} | {p for p in YASAK_IFADE if f" {p} " in low})
     klise = sorted({x for x in lw if x in KLISE} | {p for p in KLISE_IFADE if f" {p} " in low})
@@ -129,6 +140,7 @@ def analyse(path):
         "noktalama_yok": auto_punct,
         "ilk_cümle": sl[0] if sl else None, "son_cümle": sl[-1] if sl else None, "en_uzun": max(sl) if sl else None,
         "kaynak_dili": kaynak, "yasak": yasak, "klişe": klise, "yüklemsiz": len(yuklemsiz) if not auto_punct else None, "yüklemsiz_liste": yuklemsiz,
+        "bağsız": len(bagsiz) if paras else None, "bağsız_liste": bagsiz,
     }
     return res
 
@@ -151,7 +163,13 @@ HEDEF = [
     ("sayı_100", None, 4.0, "sayı /100"),
     ("kaynak_dili", None, 2, "kaynak tartışması kelimeleri (adet, §4)"),
     ("yüklemsiz", None, 0, "yüklemsiz cümle adayı (elle bak, §3.6)"),
+    ("bağsız", None, 0, "öncekine bağlanmayan paragraf (elle bak, §3.6 kural 9)"),
 ]
+BAGLAC = {"ama", "oysa", "fakat", "ancak", "çünkü", "bu", "bunun", "bunu", "buna", "böylece", "derken", "tam", "ertesi", "sonunda",
+          "ardından", "o", "onu", "ona", "onun", "onlar", "aynı", "peki", "işte", "yine", "üstelik", "kısa", "sonra", "geriye", "bir an",
+          "anlatılır", "rivayete", "efsaneye", "şimdi", "artık", "böyle", "öyle", "oradan", "orada", "burada", "bunun üzerine",
+          "sabah", "akşam", "o gece", "o gün", "o sabah", "düşünün", "bir an", "aynı yıl", "aynı yıllarda", "bu sırada", "tam bu"}
+DURAK = {"ancak", "sonra", "kadar", "bütün", "değil", "olarak", "artık", "şimdi", "bunun", "üzerine", "içinde", "arasında"}
 YUKLEM_KELIME = {"var", "yok", "değil", "gibi", "mı", "mi", "mu", "mü", "evet", "hayır"}
 YUKLEM_EK = re.compile(r"(yor|yordu|m[ıiuü]ş|d[ıiuü]|t[ıiuü]|d[ıiuü][mnk]|t[ıiuü][mnk]|d[ıiuü]lar|d[ıiuü]ler|acak|ecek|acağ[ıi][mz]|eceğ[ıi][mz]|"
                        r"[aeıiuü]r|[aeıiuü]rlar|[aeıiuü]rler|maz|mez|mal[ıi]|mel[ıi]|s[ıiuü]n|s[ıiuü]n[ıiuü]z|[ıiuü]n|[ıiuü]n[ıiuü]z|[ıiuü]z|"
@@ -198,6 +216,7 @@ def main():
         out.append(f"\n**Hedef kontrolü: {r['dosya']}** ({n_ok}/{len(h)} ✓; nitel puan kartı ayrıca: ANLATICI-DILI.md §11)")
         out.append("| ölçü | değer | hedef | |\n|---|---|---|---|")
         out += [f"| {ad} | {v} | {rng} | {'✓' if ok else '✗'} |" for ad, v, rng, ok in h]
+        if r["bağsız_liste"]: out.append("\nÖncekine bağlanmayan paragraf başları (kopukluk adayı; bağlaç, gönderim ya da ortak öğe ekle):\n" + "\n".join(f"- «{x}»" for x in r["bağsız_liste"]))
         if r["yüklemsiz_liste"]: out.append("\nYüklemsiz cümle adayları (anlatım bozukluğu mu, bilinçli isim cümlesi mi? elle karar ver):\n" + "\n".join(f"- «{x}»" for x in r["yüklemsiz_liste"]))
     s = "\n".join(out); print(s)
     if md: open(md, "w", encoding="utf-8").write(s + "\n")

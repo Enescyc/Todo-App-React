@@ -84,7 +84,7 @@ Geniş zaman en çok %15, "-dır/-tır" en çok %10 (ölçü: §12). Eski metinl
 - Gerçek kişilere uydurma söz yazılmaz. Alıntı yalnız belgeliyse ve künyesiyle yapılır.
 
 ### 3.6 Anlatım bozukluğu denetimi
-Kullanıcı Fragman'ın ilk taslağını "çok kopuk ve anlatım bozukluğu var" diye geri çevirdi. O taslaktaki hataların her biri aşağıda bir kural oldu. Her metin, kullanıcıya gitmeden önce **yüksek sesle** okunur ve her cümle bu sekiz soruyla denetlenir:
+Kullanıcı Fragman'ın ilk taslağını "çok kopuk ve anlatım bozukluğu var" diye geri çevirdi. O taslaktaki hataların her biri aşağıda bir kural oldu. Her metin, kullanıcıya gitmeden önce **yüksek sesle** okunur ve bu dokuz kuralla denetlenir. Dokuzuncu kural, kullanıcı Bölüm 3–5 taslaklarını "kopukluklar hâlâ mevcut" diye geri çevirince eklendi:
 
 | # | Kural | Bozuk örnek (eski taslaklarımızdan) | Doğrusu |
 |---|---|---|---|
@@ -97,7 +97,9 @@ Kullanıcı Fragman'ın ilk taslağını "çok kopuk ve anlatım bozukluğu var"
 | 7 | **Mantık sırası korunur.** Her soru önceki cümleden doğar. Birbirine bağlanmayan iki soru arka arkaya sorulmaz. Çöküşü gösterdikten hemen sonra "buraya nasıl geldi" diye sorulmaz; önce zirve ile başlangıç arasındaki fark kurulur. | "…nasıl gelmişti? Ve neden (…) kimse yazmamıştı?" | "Oysa bu devlet (…) küçük bir sınır beyliğiydi. Peki (…) nasıl bu kadar büyüdü? Cevabı bulmak sandığınızdan zor, çünkü…" |
 | 8 | **İç tutarlılık ve tekrar.** Metin öbür bölümlerle çelişmez. Bir kelime ya da kök, anlam gerektirmediği hâlde aynı cümlede ya da art arda cümlelerde tekrarlanmaz ("küçük bir sikke … küçük bir sikkede", "ancak … ancak"). Konunun anahtar adı (düğün, rüya) gerektiğinde tekrar edebilir. Aynı ad üç cümle üst üste kullanılmaz. Aynı cümlede iki ayrı -de tümleci olmaz ("metinlerde … kroniklerde"). | "kimse yazmamıştı" (Bölüm 1'de Pakhymeres yazıyor) · "adı… adına" · "sığan… sığıyor" | "hiçbir Osmanlı yazmadı" · "imaret, bugün hâlâ İznik'te ayakta" |
 
-**Araç desteği:** `anlatim_analiz.py`, yüklemi olmayan cümle adaylarını listeler (kural 1). Liste kaba bir elemedir: çıkan her cümleye elle bakılır. Bilinçli bir isim cümlesi ("Bilecik'teki düğün baskını da öyle.") kalabilir, ama nedeni sunuşta yazılır. Öbür yedi kural elle denetlenir.
+| 9 | **Her paragraf bir öncekine bağlanır; bölüm olay listesi değil, neden-sonuç zinciridir.** Paragrafın ilk cümlesi öncekinin son öğesini devralır: aynı ad ya da gönderim ("Bu surlu şehirlerden biri…", "Kurtarılamayan İznik…"), neden-sonuç bağlacı ("Bunun üzerine", "Bu yüzden", "Böylece"), zaman köprüsü ("Tam bu sırada", "Ertesi yıl") ya da karşıtlık ("Ama", "Oysa"). Bir paragrafa sığmayan olay bölümden çıkarılır; olaylar art arda sıralanmaz. | "Bursa beyliğin yeni merkezi oldu." (gömülmeden sonra, bağsız) · "Şimdi Orhan'ın beyliğini bir yabancının gözünden görelim." · "Sıra Bursa'ya geliyordu." | "Bursa, Orhan'ın elinde beyliğin yeni merkezine dönüştü." · "Bu yıllarda Fas'tan gelen gezgin İbn Battûta da…" · "Bu surlu şehirlerden biri de Uludağ'ın eteğindeki Bursa'ydı." |
+
+**Araç desteği:** `anlatim_analiz.py`, yüklemi olmayan cümle adaylarını (kural 1) ve öncekine bağlanmayan paragraf başlarını (kural 9) listeler. İki liste de kaba bir elemedir: çıkan her cümleye elle bakılır. Bilinçli bir isim cümlesi ("Bilecik'teki düğün baskını da öyle.") kalabilir, ama nedeni sunuşta yazılır. Öbür yedi kural elle denetlenir.
 
 ---
 
@@ -292,7 +294,7 @@ Her metin kullanıcıya sunulmadan önce puanlanır. Her madde 0 (yok), 1 (var a
 | 6 | **Doruk** | %55–75'te tek kahraman an; şimdiki zaman; kısa cümleler; ardından harita sessizliği |
 | 7 | **Doğruluk, sessizce** | Her 🔴 tek bir işaretle ayrılmış, 🟡 yuvarlak ve doğru söylenmiş (§4); anlatı kaynak tartışmasına kaymıyor; ⚪ yok |
 | 8 | **Anlam tutamağı** | En az bir ölçek, bugüne köprü ya da "bu neden önemli" cümlesi |
-| 9 | **Ritim ve dil** | §12 ölçüleri hedefte; §3.6 denetimi temiz (yüklemsiz cümle, çerçevesiz zaman geçişi, belirsiz gönderim yok); "-dır" yazı dili yok |
+| 9 | **Ritim ve dil** | §12 ölçüleri hedefte; §3.6 denetimi temiz (yüklemsiz cümle, çerçevesiz zaman geçişi, belirsiz gönderim ve bağsız paragraf yok); "-dır" yazı dili yok |
 | 10 | **Kapanış** | Son cümle ≤ 12 kelime; S1–S5'ten biri; sıradaki bölüme bağlı |
 
 **Geçme:** 20 üzerinden ≥ 16 ve hiçbir maddede 0 yok.
@@ -334,6 +336,7 @@ python3 shared/tools/anlatim_analiz.py taslak.txt --hedef          # düz metin 
 ## 13. Kararlar
 - **21 Ekim 2026 · Hikâye önde, kaynak arkada.** Kullanıcı: "Bunun kaydı yok, bunu şu kayıt etti gibi gereksiz yere odaklanıyoruz; mevzu doğru bilgileri harmanlayıp bütün Osmanlı tarihini bir hikâye olarak sunabilmek." Sezon teması "Bildiklerimiz ve sandıklarımız" bırakıldı; §0, §2, §4, §9 ve puan kartının 7. maddesi buna göre değişti.
 - **21 Ekim 2026 · Anlatım bozukluğu kırmızı çizgi.** Fragman taslağı kopuk bulundu; §3.6 eklendi.
+- **21 Ekim 2026 · Paragraf köprüsü.** Bölüm 3–5 taslakları olay listesi gibi bulundu ("kopukluklar hâlâ mevcut"); §3.6 kural 9 ve araçta bağsız paragraf taraması eklendi.
 
 ## 14. Açık kararlar (kullanıcıya)
 1. **Varsayılan süre:** 90 sn (öneri); muharebe ve iki taraflı bölümler 2 dk; sezon finali 3 dk.
