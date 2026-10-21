@@ -52,6 +52,81 @@ Bölüm 1–2'yi hikâye olarak yazmak için toplandı (`ANLATICI-DILI.md` §0: 
 | 17 | ~1301 Osman'ın kuvvetleri İznik'i çevreden sardı, Bursa çevresine akınlar; hasat kaldırılamadığı için **İzmit** kıtlıkla tehdit edildi | 🟡 | İnalcık 1993 ([Türkçe PDF](https://avys.omu.edu.tr/storage/app/public/tugba.kara/145429/iZNiK%20KUSATMASI%20VE%20BAFEUS%20SAVASI.pdf)); [EBSCO](https://www.ebsco.com/research-starters/military-history-and-science/battle-bapheus) |
 | 18 | II. Andronikos, Muzalon komutasında ~2.000 kişilik (yarısı Alan paralı askeri) bir kuvveti Boğaz'ın öte yakasına gönderdi; amaç Osman'ı durdurmak (İnalcık: İznik'i kurtarmak) | 🟢 olay / 🟡 rakam ve amaç; ⚪ Telemaia baskını | Pakhymeres; İnalcık 1993, 2007 |
 
+## 2c. Bafeus ve Bursa ablukası, ~1301–1324 (Bölüm 3; 21 Ekim 2026 doğrulaması)
+Erişim: WebFetch kapalıydı; arama özetlerinden okundu. Sayfa kontrolü: İnalcık 1993 (Türkçe PDF, OMÜ), *Belleten* 2007 s. 479–536, TDV "Osman I" tam metni, Âşıkpaşazâde'nin Bursa babı.
+
+| # | İddia | Rozet | Kaynak |
+|---|---|---|---|
+| 1 | Bizans ordusunun komutanı Muzalon (ön adı belirsiz: George mu Leon mu) | 🟢 ad / ⚪ ön ad | [TDV "Osman I"](https://islamansiklopedisi.org.tr/osman-i) (İnalcık); [TDV "Pachymeres"](https://islamansiklopedisi.org.tr/pachymeres-georgios) |
+| 2 | Bizans kuvveti ~2.000; içinde yeni tutulmuş Alan paralı askerleri | 🟡 | [İnalcık, *Belleten* 2007 özeti](https://belleten.gov.tr/ozet/2716/eng) |
+| 3 | Alanlar, Nogay'ın ölümünden sonra aileleriyle bozkırdan gelen atlılar (1301 sonu–1302 başı); sayıları ⚪ | 🟢 olay / 🟡 yıl | *Belleten* 2007; Korobeinikov 2014 |
+| 4 | Muzalon kendi askerlerinin atlarını Alanlara verdi, ordunun morali çöktü | 🟡 (Pakhymeres; ikincil özet) | [HistoryNet](https://historynet.com/becoming-ottoman/) |
+| 5 | Gün 27 Temmuz (Pakhymeres); yıl 1302 (TDV, İnalcık 2007) ya da 1301 (İnalcık 1993); 1299 önerisi zayıf (Treiyer 2017) | 🟢 gün / 🟡 yıl | TDV "Osman I"; [TDV "Gazâ"](https://islamansiklopedisi.org.tr/gaza); EBSCO |
+| 6 | Savaş İzmit'e yakın bir ovada; Osmanlı geleneği Yalakova der; Osman dağ geçidinden inip "birden Yalakova'da göründü" | 🟢 yakınlık / 🟡 yer | TDV "Osman I"; [TDV "Yalova"](https://islamansiklopedisi.org.tr/yalova) |
+| 7 | "Koyunhisar": İznik–Hersek yolundaki hisar; kroniklerde Dimbos'la karışmış olabilir | 🟡 | [TDV "Orhan"](https://islamansiklopedisi.org.tr/orhan) |
+| 8 | Osman'ın kuvveti sayıca çok üstündü (rakam ⚪) | 🟡 | Pakhymeres aktarımları |
+| 9 | Türk atlılarının hücumu, Bizans hattının kırılması | 🟢 | EBSCO; byzantium.gr |
+| 10 | Alanlar geri çekilenleri korudu (savaşa katılımları tartışmalı) | 🟡 | *Belleten* 2007 |
+| 11 | Kurtulanlar İzmit surlarına sığındı; meydan Türklerde kaldı | 🟢 | *Belleten* 2007 |
+| 12 | Pakhymeres: 1242'de İznik'te doğmuş, İstanbul'da din adamı (keşiş değil); eseri 1307–08'de kesilir | 🟢 | TDV "Pachymeres" |
+| 13 | Zaferden sonra Osman'ın ünü Paflagonya'ya kadar yayıldı, gaziler sancağına koştu; akıncılar Boğaz kıyısına indi | 🟢 (Pakhymeres, İnalcık aktarımı) | [*Belleten* 2007](https://belleten.gov.tr/tam-metin/2716/tur) |
+| 14 | Bitinya köylüleri surlu şehirlere ve İstanbul'a kaçtı (adalara kaçış ⚪) | 🟡 | EBSCO; Pakhymeres temaları |
+| 15 | Katalan Kumpanyası 1303'te geldi; Osman'la doğrudan çarpıştığı ⚪ | 🟢 geliş / ⚪ çarpışma | byzantium.gr |
+| 16 | Dimbos (~1303): Bursa ve çevre tekfurları Yenişehir yolundaki geçitte yenildi | 🟡 olay / ⚪ ayrıntı | TDV "Osman I"; [İnalcık, *Belleten* "Orhan"](https://belleten.gov.tr/tam-metin/80/tur) |
+| 17 | Bursa doğrudan alınamadı; Aktimur (kardeşinin oğlu) ve Balabancık hisarları yapıldı; yılı belirsiz (1303–1317) | 🟡 | TDV "Osman I", [TDV "Bursa"](https://islamansiklopedisi.org.tr/bursa); Âşıkpaşazâde |
+| 18 | Bursa on yılı aşkın süre yardım alamadı, sıkıntıya düştü | 🟡 | TDV "Bursa" |
+| 19 | Osman yaşlanıp hastalandı, seferlere Orhan çıktı ("nikris" adı ⚪) | 🟡 | TDV "Osman I" |
+| 20 | Mudanya düştü, Bursa'nın denizle bağı kesildi (~1321; kimin aldığı tartışmalı) | 🟡 | [Küre – Mudanya](https://kureansiklopedi.com/tr/detay/mudanya-ilce-721b8) |
+| 21 | Osman'ın ölümü 1323 Eylül–1324 Mart arası (vakfiyeler); gelenek 1326 der | 🟡 | TDV "Osman I", TDV "Orhan"; Britannica |
+| 22 | Rivayet: Osman kuşatılmış Bursa'da gümüş gibi parlayan kubbeyi görüp oraya gömülmeyi diledi | 🔴 | [TDV "Osman Gazi Türbesi"](https://islamansiklopedisi.org.tr/osman-gazi-turbesi) |
+
+## 3a. Bursa'dan İzmit'e, 1326–1340 (Bölüm 4; 21 Ekim 2026 doğrulaması)
+Ana kaynak: İnalcık, "Osmanlı Sultanı Orhan", *Belleten* 73/266 (2009), s. 77–108 ([tam metin](https://belleten.gov.tr/tam-metin/80/tur)). Erişim: arama özetleri.
+
+| # | İddia | Rozet | Kaynak |
+|---|---|---|---|
+| 1 | Bursa 726 baharında teslim oldu (Âşıkpaşazâde: 6 Nisan 1326) | 🟢 yıl / 🟡 gün | İnalcık 2009; TDV "Orhan" |
+| 2 | Teslim koşulları: halka dokunulmayacak, gitmek isteyen malıyla çıkacak; 30.000 altın ödeme (ekrana yazılmaz) | 🟡 | İnalcık 2009; TDV "Orhan" |
+| 3 | Tekfurun adı "Saroz", fidye, Evrenos'un babası; Köse Mihal'in müzakeresi | ⚪ / 🔴 | — (kullanılmaz) |
+| 4 | Osman Bursa'da eski bir manastırın kubbesi altına (Gümüşlü Kümbet) gömüldü | 🟢 | [Küre/TDV "Osman Gazi Türbesi"](https://kureansiklopedi.com/tr/detay/osman-gazi-turbesi) |
+| 5 | Orhan ~1324'te başa geçti (Mekece vakfiyesi) | 🟡 | İnalcık 2009 |
+| 6 | Alaeddin'in mirası reddedip bir köyle yetinmesi | 🔴 | [TDV "Alâeddin Bey"](https://islamansiklopedisi.org.tr/alaeddin-bey--osman-gazi) |
+| 7 | Orhan adına 727 tarihli, darp yeri Bursa olan akçe ("ilk" denmez) | 🟢 | TDV "Akçe" (Sahillioğlu) |
+| 8 | Merkez Bursa'ya taşındı ("başkent" yorumu) | 🟡 | Afyoncu 2025 |
+| 9 | Pelekanon 1329: III. Andronikos ve Kantakuzenos İznik'i kurtarmaya geldi; imparator bacağından yaralandı, "imparator ölüyor" söylentisiyle ordu dağıldı; Bizans'ın son kurtarma seferi | 🟢 / 🟡 ayrıntı | İnalcık 2009; Kantakuzenos, Gregoras |
+| 10 | İznik 1331'de teslim oldu; büyük kilise camiye çevrildi | 🟢 yıl / 🟡 kilise | İnalcık 2009; Âşıkpaşazâde (Atsız s. 119) |
+| 11 | İznik Medresesi "ilk Osmanlı medresesi" olarak hatırlanır; tarih 1331–1336; Davud-i Kayserî kuşkulu | 🟡 | [TDV "Dâvûd-i Kayserî"](https://islamansiklopedisi.org.tr/davud-i-kayseri) |
+| 12 | İbn Battûta (1331–34): Orhan Türkmen beylerinin en zengini, yüz kadar kalesi var, onları dolaşır, bir şehirde bir ay kalmaz | 🟢 (yazdığı) / 🟡 içerik | [Gibb çevirisi](https://depts.washington.edu/silkroad/cities/turkey/bursa/bursa_old.html) |
+| 13 | İzmit 1337'de, erzakı tükenince teslim oldu (1333'te haraçla kurtarıldığı da yazılır) | 🟢 yıl / 🟡 ayrıntı | [TDV "İzmit"](https://islamansiklopedisi.org.tr/izmit) |
+| 14 | Bursa Orhan Camii külliyesi 1339–40: cami, imaret, han; çarşı hanın çevresinde büyüdü | 🟢 | [TDV "Orhan Gazi Külliyesi"](https://islamansiklopedisi.org.tr/orhan-gazi-kulliyesi); TDV "Emir Hanı" |
+| 15 | Karesi'nin katılması ~1345 (Bölüm 5–6'ya) | 🟡 | TDV "Karesioğulları" |
+
+## 3b. İmparatorun kızı, 1341–1353 (Bölüm 5; 21 Ekim 2026 doğrulaması)
+Ana kaynaklar: İnalcık 2009; Siren Çelik, *Belleten* 88/312 (2024) ([metin](https://belleten.gov.tr/tam-metin/3769/eng)); Setton, *History of the Crusades* III ve VI (İnalcık bölümü). SK: sayfa kontrolü gerekli.
+
+| # | İddia | Rozet | Kaynak |
+|---|---|---|---|
+| 1 | III. Andronikos Haziran 1341'de öldü; varis V. Ioannes küçüktü | 🟢 | DOAKS |
+| 2 | Kantakuzenos Trakya'dayken naiplik (Anna, Patrik Kalekas, Apokaukos) yönetimi aldı, mallarına el koydu | 🟢 | Pegasos/FHW |
+| 3 | 26 Ekim 1341'de Dimetoka'da imparator ilan edildi; iç savaş 1341–1347 | 🟢 | Pegasos; Britannica |
+| 4 | Aydınoğlu Umur ile yakın dostluk; Umur'un filosu Meriç'ten Dimetoka'ya çıkıp kuşatmayı kaldırdı (1342 sonu–1343) | 🟢 olay / 🟡 tarih | [TDV "Dimetoka"](https://islamansiklopedisi.org.tr/dimetoka); Çelik 2024 |
+| 5 | 1344'te Haçlılar İzmir'i aldı, Umur döndü | 🟢 | Pegasos |
+| 6 | Umur'un onayıyla, Pelekanon'daki eski düşmanı Orhan'la ittifak (1344–45) | 🟢 SK | Setton III; İnalcık 2009 |
+| 7 | Osmanlı askerleri müttefik olarak ilk kez Avrupa'ya geçti (1345–46); "Türkler ilk kez" denmez (Umur'unkiler önce geçti) | 🟢 / 🟡 yıl | Setton III |
+| 8 | Theodora 1346 yazında Silivri'de Orhan'la evlendirildi; platform ve perdelerin açılması sahnesi Kantakuzenos'un kendi anlatımı; Orhan törene gelmedi; iki tarafa şölen | 🟢 SK | Çelik 2024 |
+| 9 | Theodora Hristiyan kalma şartıyla evlendi | 🟢 | Başkan, *Tarih Dergisi* 66 (2017); Çelik 2024 |
+| 10 | Osmanlı heyeti gemilerle geldi, gelin Anadolu yakasına götürüldü; "otuz gemi", ipek/altın perdeler ⚪ | 🟡 / ⚪ | Başkan 2017 |
+| 11 | Şubat 1347'de İstanbul'a girdi; 8 Şubat anlaşmasıyla kıdemli imparator | 🟢 | Britannica; civil war maddesi |
+| 12 | 1347'de Theodora, Orhan'la babasını Üsküdar'da buluşturdu; ortak sofra | 🟢 SK | İnalcık 2009; Çelik 2024 |
+| 13 | 1352: V. Ioannes Sırp desteğiyle saldırdı; Kantakuzenos Orhan'dan yardım istedi, Süleyman geldi; Ekim 1352'de Dimetoka yakınında Sırp kuvveti yenildi | 🟢 olay / 🟡 yer | Setton VI s. 232 |
+| 14 | Savaştan sonra küçük bir kuvvet kışlamak için Çimpe'de kaldı; aileler geldi; Gregoras'a göre kaleyi Kantakuzenos verdi, kendi anlatımında Türkler aldı | 🟢 SK / 🟡 | Setton VI (İnalcık) |
+| 15 | Rivayet: Süleyman Paşa'nın sallarla gece baskını (39/40/70 kişi) | 🔴 | Setton VI; Çimpe maddesi |
+| 16 | Kantakuzenos kalenin geri verilmesini istedi, Süleyman çıkmadı (Bölüm 6) | 🟡 | İnalcık (TTK 2022) |
+| 17 | 1354 sonunda tahttan çekildi, Ioasaph adıyla keşiş oldu, *Tarihler*'ini yazdı | 🟢 | Britannica |
+| 18 | Gelibolu depremi 1–2 Mart 1354 gecesi (Bölüm 6 açılışı) | 🟢 | İnalcık |
+
+⚪ (kullanılmaz): Umur'un filo ve asker sayıları, donma anlatısı, düğünün ipek-altın-mor ayrıntıları, "Orhan bizzat geldi / üç gün düğün", asker sayıları, "İstanbul'a Osmanlı askerleriyle girdi", Üsküdar'da günlerce av, 1352 savaş rakamları.
+
 ## 3. Orhan (hükm. ~1324–1362)
 - 🟡 **Bursa ~1326:** Uzun bir abluka sonunda, müzakereyle teslim alındı. Mudanya limanının 1321'de alındığı belirtiliyor. [Orhan – Wikipedia], [Islamic Chronicles]
 - 🟢 **Palekanon 1329:** İmparator III. Andronikos'un İznik kuşatmasını kırma girişimi geri püskürtüldü. **İznik 1331**'de, **İzmit 1337**'de teslim oldu. [Siege of Nicaea – Wikipedia], [Siege of Nicomedia – Wikipedia]
