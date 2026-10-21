@@ -68,7 +68,7 @@ python3 shared/tools/ses_olc.py <bölüm>
 - −14 ±1 LUFS
 - tepe ≤ −1 dBFS
 - 4 kHz üstü ≤ %6
-- bas → tiz sıçrama yok
+- bas → tiz sıçrama yok (müzik + efekt izinde, `audio/_arka.wav`; anlatıcının ş/s/z geçişleri ölçüt değildir, bilgi olarak yazılır)
 - anlatıcı müziğin ≥ 10 dB üstünde (en kötü %10'luk dilimde)
 
 ✗ çıkan madde varsa düzelt: efekti değiştir ya da kıs, `duckDb`'yi artır, müziğin `gain` değerini düşür. Sonra yeniden ölç. Kullanıcıya ölçüm özetini ver ve "dinleyip onaylayın" de; ses dinlenemediğini saklama.
