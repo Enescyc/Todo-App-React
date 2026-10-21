@@ -8,8 +8,8 @@
 | # | Bölüm | Kelime | Tahmini anlatım |
 |---|---|---|---|
 | 0 | Fragman: Uçtaki Beylik (✅ v5) | 87 | ~47 sn |
-| 1 | Kimsenin Yazmadığı Başlangıç | 115 | ~57 sn |
-| 2 | Bir Rüya, Bir Düğün: Efsaneler | 112 | ~55 sn |
+| 1 | Sınırın İki Yakası (✅ v6) | 171 | ~86 sn |
+| 2 | Bir Rüya, Bir Düğün (✅ v6) | 178 | ~89 sn |
 | 3 | Koyunhisar: Tarihe Girilen Gün | 120 | ~59 sn |
 | 4 | Bursa: Akıncılardan Devlete | 108 | ~53 sn |
 | 5 | İmparatorun Kızı | 111 | ~55 sn |
@@ -28,10 +28,15 @@
 
 **Anlatım metni** (paragraflar zaman birimidir)
 > **p1** Bin üç yüzlerin başında, Söğüt çevresinde küçük bir sınır beyliği var. Onu Osman adında bir bey yönetiyor.
+>
 > **p2** Önümüzdeki yüz yılda bu beylik Bizans'ın ordusunu yenecek ve kuşattığı bir şehri kılıç çekmeden teslim alacak.
+>
 > **p3** Bir Bizans imparatoru kızını Osmanlı hükümdarıyla evlendirecek. Bir deprem Gelibolu'nun surlarını yıkacak ve Osmanlılar Avrupa'ya yerleşecek.
+>
 > **p4** Bir sultan savaş meydanında hayatını kaybedecek. Avrupa'nın şövalyeleri Tuna kıyısında bozguna uğrayacak ve devletin toprakları Balkanlar'dan Fırat'a kadar uzanacak.
+>
 > **p5** Ama bin dört yüz iki yazında, Ankara'da her şey tek bir günde değişecek. *(pause 2.5: harita çatlar)*
+>
 > **p6** Bu, Söğüt'ten Ankara'ya uzanan yüz yılın hikâyesi. *(sezon kartı)*
 
 **Cümle → olay → dayanak**
@@ -51,46 +56,74 @@
 
 ---
 
-## Bölüm 1 · Kimsenin Yazmadığı Başlangıç
-**Rozetler:** 🟢🟡 · **Anlatım:** 115 kelime (~57 sn) · **Araştırma:** ARASTIRMA §0, §1
-**Görsel kimlik:** Anadolu haritası (modern il sınırları + 13. yy bölge adları), uç bölgeleri ısı haritası gibi parlıyor
+## Bölüm 1 · Sınırın İki Yakası
+**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v6); ElevenLabs metni `SESLENDIRME.md`'de. Görüntü ve zaman çizelgesi eski metne göre; yeni storyboard gerekiyor. Klasör adı şimdilik `b01-kimsenin-yazmadigi-baslangic`.
+**Rozetler:** 🟢🟡🔴 · **Anlatım:** 171 kelime (~86 sn + 1,5 sn sessizlik) · **Araştırma:** ARASTIRMA §1, §2b · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada)
+**Hikâye:** Kösedağ'dan sonra Anadolu dağılır, Türkmen obaları batıdaki uçlara akar; Bizans'ın gözü batıdadır ve sınır bekçileri dağılır. Söğüt'te Ertuğrul'un obası, ardından Osman; Bilecik tekfuruyla komşuluk (Bölüm 2'de karşılığı gelir); Karacahisar; Edebali'ye köprü.
 
-**Anlatım metni**
-> Altı yüz yılı aşkın süre ayakta kalan bir imparatorluğun nasıl kurulduğunu, aslında kimse yazmadı. Hikâye, bin iki yüz kırk üçte, Sivas ile Erzincan arasındaki Kösedağ'da başlar. Moğollar Selçuklu ordusunu yener ve Anadolu Selçuklu Devleti vergi ödeyen bir tabi devlete dönüşür. Merkez zayıfladıkça, batıdaki sınır bölgelerinde, yani uçlarda, küçük beylikler ortaya çıkar. Bunlardan biri, Bizans sınırında, Söğüt çevresindeki küçük bir topluluktur. Liderinin adı Osman'dır. Ama Osman döneminden kalma tek bir Osmanlı belgesi yoktur. İlk Osmanlı tarihleri ancak yüz yıl ve daha sonra yazılacaktır. Bugün elimizdeki en somut iz, küçük bir sikkedir. Üzerinde, okunabildiği kadarıyla, Ertuğrul oğlu Osman yazar. Peki Osman'ı o yıllarda görüp kaydeden biri var mıydı? Vardı. Ama o kişi bir Türk değil, bir Bizanslıydı.
+**Anlatım metni** (paragraflar zaman birimidir)
+> **p1** Bin iki yüz kırk üç yazında, Kösedağ'da Selçuklu ordusu Moğollar karşısında dağıldı. Bu yenilginin bedelini bütün Anadolu ödedi.
+>
+> **p2** Moğol tahsildarları ağır vergiler topluyordu. Bu yükten kaçan Türkmen obaları batıya, Bizans topraklarına doğru çekildi. Sınır boyları, yani uçlar, her yıl biraz daha kalabalıklaşıyordu.
+>
+> **p3** Peki sınırın öbür yanında kim vardı? Bizans. Bin iki yüz altmış birde İstanbul'u geri alan imparatorluğun gözü artık batıdaydı. Anadolu'da sınırı kuşaklardır bekleyen dağ köylüleri vergiye bağlandı ve bu bekçiler dağılmaya başladı.
+>
+> **p4** Bir an kendinizi bu iki dünyanın arasında, Söğüt'te düşünün. Ertuğrul adında bir beyin obası kışı burada geçiriyor. Yaz gelince de sürüleriyle Domaniç yaylasına çıkıyor.
+>
+> **p5** Bin iki yüz seksenlerin başında Ertuğrul öldü ve obanın başına oğlu Osman geçti. Osman ilk yıllarında komşu Bizans tekfurlarıyla, yani hisar beyleriyle iyi geçindi.
+>
+> **p6** Anlatılır ki oba yaylaya çıkarken ağır yüklerini Bilecik tekfuruna emanet bırakırmış. Dönüşte de ona yayladan armağanlar götürürmüş. Ama bu komşuluk yıllar sonra bambaşka bir hikâyeye dönüşecekti.
+>
+> **p7** Sınırda dengeler çabuk değişiyordu. On yıl dolmadan Karacahisar kalesi Osman'ın eline geçti. *(pause 1.5: harita sessizliği)*
+>
+> **p8** Aynı yıllarda Bilecik yakınlarında, adı Osman'ınkiyle birlikte anılacak bir şeyh yaşıyordu: Edebali.
 
-**Sahne akışı**
-| Cümle / an | Görsel | Ekran yazısı | Rozet |
-|---|---|---|---|
-| "Hikâye, 1243'te Kösedağ'da başlar…" | Haritada Kösedağ'a iğne; Moğol okları doğudan geliyor | KÖSEDAĞ · 1243 | 🟢 |
-| "vergi ödeyen bir tabi devlete dönüşür…" | Selçuklu alanı soluklaşıyor, batı uçlarında küçük beylik lekeleri beliriyor | UÇ BEYLİKLERİ | 🟢 |
-| "Söğüt çevresindeki küçük bir topluluktur…" | Kamera Bizans sınırındaki Söğüt'e iniyor; tek bir çadır ve sancak | SÖĞÜT | 🟢 |
-| "tek bir Osmanlı belgesi yoktur…" | Boş arşiv rafları; zaman çizgisi: Osman ~1324 ölüm → ilk kronikler 1400'ler (araya 100+ yıl boşluğu) | 100+ YIL BOŞLUK | 🟢 |
-| "küçük bir sikkedir…" | Yakın plan çizilmiş sikke (gerçek yazıyı taklit etmeden süsleme), Türkçe çeviri katmanı | "Ertuğrul oğlu Osman" | 🟡 |
-| "bir Bizanslıydı…" | Mum ışığında yazı yazan bir Bizans keşişi siluet; elinde tüy kalem | → BÖLÜM 3 | — |
+| Paragraf | Dayanak (ARASTIRMA) | Rozet |
+|---|---|---|
+| p1 | §1 Kösedağ | 🟢 |
+| p2 | §2b-3 Moğol vergisi, Türkmen göçü | 🟢 |
+| p3 | §2b-1, 2b-2 (1261, Khadenos) | 🟢 olay / 🟡 yorum |
+| p4 | §2b-4 Ertuğrul, Söğüt–Domaniç | 🟡 |
+| p5 | §2b-5 (~1281), §2b-6 (iyi geçinme) | 🟡 |
+| p6 | §2b-6 emanet | 🔴 |
+| p7 | §2b-7 Karacahisar ~1288 | 🟡 |
+| p8 | §2b-13 Edebali, Bilecik | 🟡 |
 
-**Ses planı (kütüphane kimlikleri):** doga/ortam_1 rüzgâr zemini · vurus/timpani_alcak (Kösedağ) · muzik/kontrbas_D1 · doku/kadeh_D#4 (sikke) · can/kilise_cani_D3 (Bizanslı)
+**Eski metin (v1; kaynak odaklı bulundu):** Altı yüz yılı aşkın süre ayakta kalan bir imparatorluğun nasıl kurulduğunu, aslında kimse yazmadı. Hikâye, bin iki yüz kırk üçte, Sivas ile Erzincan arasındaki Kösedağ'da başlar. Moğollar Selçuklu ordusunu yener ve Anadolu Selçuklu Devleti vergi ödeyen bir tabi devlete dönüşür. Merkez zayıfladıkça, batıdaki sınır bölgelerinde, yani uçlarda, küçük beylikler ortaya çıkar. Bunlardan biri, Bizans sınırında, Söğüt çevresindeki küçük bir topluluktur. Liderinin adı Osman'dır. Ama Osman döneminden kalma tek bir Osmanlı belgesi yoktur. İlk Osmanlı tarihleri ancak yüz yıl ve daha sonra yazılacaktır. Bugün elimizdeki en somut iz, küçük bir sikkedir. Üzerinde, okunabildiği kadarıyla, Ertuğrul oğlu Osman yazar. Peki Osman'ı o yıllarda görüp kaydeden biri var mıydı? Vardı. Ama o kişi bir Türk değil, bir Bizanslıydı.
 
 ---
 
-## Bölüm 2 · Bir Rüya, Bir Düğün: Efsaneler
-**Rozetler:** 🔴 · **Anlatım:** 112 kelime (~55 sn) · **Araştırma:** ARASTIRMA §2 (rüya, Nilüfer Hatun)
-**Görsel kimlik:** Rüya sahnesi: koyu lacivert gökyüzü, altın çizgiler; her rivayet anında köşede kırmızı RİVAYET rozeti
+## Bölüm 2 · Bir Rüya, Bir Düğün
+**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v6); ElevenLabs metni `SESLENDIRME.md`'de. Görüntü ve zaman çizelgesi eski metne göre; yeni storyboard gerekiyor. `FACTS.md` yeni metne göre güncellenecek.
+**Rozetler:** 🔴🟡🟢 · **Anlatım:** 178 kelime (~89 sn + 2 sn sessizlik) · **Araştırma:** ARASTIRMA §2, §2b · **Yazım:** `ANLATICI-DILI.md`
+**Hikâye:** Rüya (rivayet), Bilecik düğünü ve hisarın düşüşü (rivayet; Bölüm 1'deki emanet yüklerinin karşılığı), Nilüfer, 1300'e doğru Bilecik–Yarhisar–İnegöl, Yenişehir üssü, İznik'in sarılması, imparatorun ordu göndermesi (Bölüm 3'e köprü).
 
 **Anlatım metni**
-> Osman Bey'in rüyasını belki duymuşsunuzdur. Şeyh Edebali'nin göğsünden bir ay doğar ve Osman'ın göğsüne girer. Osman'ın göbeğinden bir ağaç yükselir, gölgesi bütün dünyayı kaplar. Edebali rüyayı yorumlar: Bu soy cihana hükmedecektir. Ve kızını Osman'a verir. Güzel bir hikâye. Ama bu rüya ilk kez, Osman'ın ölümünden yüz yılı aşkın süre sonra yazılan kroniklerde karşımıza çıkar. Pek çok tarihçi onu, büyüyen bir hanedana kutsal bir başlangıç kazandıran bir kuruluş efsanesi olarak görür. Bilecik'teki düğün baskını da öyle. Rivayete göre Osman, Bilecik tekfurunun düğününe baskın yapar, gelini esir alır ve oğlu Orhan'la evlendirir. Gelinin adı Nilüfer'dir. Ancak bu olay, Bizans kaynaklarında doğrulanmaz. Efsaneler, güçlenen hanedanlara meşruiyet kazandırır. Peki o hâlde, belgelere geçen ilk an neydi?
+> **p1** Osman Bey'in ünlü rüyasını duymuşsunuzdur. Anlatılır ki Osman bir gece Şeyh Edebali'nin evinde misafir kalmış.
+>
+> **p2** O gece rüyasında, şeyhin göğsünden bir ay doğduğunu ve gelip kendi göğsüne girdiğini görmüş. Sonra göbeğinden bir ağaç yükselmiş ve gölgesi bütün dünyayı kaplamış.
+>
+> **p3** Sabah olunca Edebali rüyayı bu soyun cihana hükmedeceğine yormuş ve kızını Osman'a vermiş.
+>
+> **p4** Peki Osman, Bilecik hisarını nasıl aldı? Bu da bir düğünle anlatılır. Bilecik tekfuru Yarhisar tekfurunun kızıyla evlenecekmiş. Ama düğün aslında Osman'a kurulmuş bir tuzakmış ve haber ona sızmış.
+>
+> **p5** Osman da her yaz olduğu gibi yüklerini Bilecik hisarına göndermiş. Bu kez aralarında silahlı adamlar varmış. Garnizon düğündeyken hisar kısa sürede düşmüş, düğün alayı baskına uğramış ve gelin esir alınmış. *(pause 2: harita sessizliği)*
+>
+> **p6** Gelin, Osman'ın oğlu Orhan'la evlendirilmiş ve adı Nilüfer olmuş. Nilüfer Hatun ileride, Orhan'dan sonra tahta çıkan Birinci Murad'ın annesi olacaktı.
+>
+> **p7** Bin üç yüze doğru Bilecik, Yarhisar ve İnegöl Osman'ın elindeydi. Osman İznik'e bakan Yenişehir'i kendine üs yaptı. Akıncıları İznik'in çevresini sardı ve şehir surlarının içine sıkıştı.
+>
+> **p8** Sonunda imparator, bu küçük beyliği durdurmak için Boğaz'ın öte yakasına bir ordu gönderdi. Bizans ile Osman ilk kez savaş meydanında karşı karşıya gelecekti.
 
-**Sahne akışı**
-| Cümle / an | Görsel | Ekran yazısı | Rozet |
-|---|---|---|---|
-| "Şeyh Edebali'nin göğsünden bir ay doğar…" | Altın çizgilerle ay, göğüs silüetinden diğerine süzülüyor | RİVAYET | 🔴 |
-| "gölgesi bütün dünyayı kaplar…" | Ağaç büyüyor, dalları haritaya yayılıyor (sezonun ağaç motifi) | — | 🔴 |
-| "yüz yılı aşkın süre sonra yazılan…" | Zaman çizgisi: 1324 → 1480'ler; boşluk kırmızıyla vurgulanıyor | 100+ YIL SONRA | 🟢 |
-| "kuruluş efsanesi…" | Ağaç yavaşça mürekkep çizimine dönüşüp kitabın sayfasına giriyor | — | 🟡 |
-| "Bilecik tekfurunun düğününe baskın…" | Gece, düğün alayının silüetleri; atlılar (minimal) | RİVAYET | 🔴 |
-| "Bizans kaynaklarında doğrulanmaz…" | Bizans el yazması açılıyor, sayfa boş kalıyor | DOĞRULANMIYOR | 🔴 |
-| "belgelere geçen ilk an neydi?…" | Kılıç kınından çekiliyor (siluet), kararma | → BÖLÜM 3 | — |
+| Paragraf | Dayanak (ARASTIRMA, b02 FACTS) | Rozet |
+|---|---|---|
+| p1–p3 | §2b-12 rüya sahnesi; FACTS #1–#3 | 🔴 |
+| p4–p5 | §2b-11 düğün anlatısı ("kırk yiğit", kılık, "Holofira" ⚪, kullanılmadı) | 🔴 |
+| p6 | §2b-11 gelin ve Nilüfer (🔴); FACTS #12 Nilüfer, I. Murad'ın annesi (🟢) | 🔴 / 🟢 |
+| p7 | §2b-8 Bilecik, Yarhisar, İnegöl ~1300; §2b-9 Yenişehir; §2b-17 İznik ~1301 | 🟡 |
+| p8 | §2b-18 Muzalon'un ordusu | 🟢 olay |
 
-**Ses planı (kütüphane kimlikleri):** doku/fx_uzun_1 (Nepal çanları, rüya) · doku/kadeh_D#4 · muzik/keman_D5 çok kısık · ritim/def_boguk (atlılar) · gecis/zil_yay (rivayet → gerçek geçişi)
+**Eski metin (v1; kaynak odaklı bulundu):** Osman Bey'in rüyasını belki duymuşsunuzdur. Şeyh Edebali'nin göğsünden bir ay doğar ve Osman'ın göğsüne girer. Osman'ın göbeğinden bir ağaç yükselir, gölgesi bütün dünyayı kaplar. Edebali rüyayı yorumlar: Bu soy cihana hükmedecektir. Ve kızını Osman'a verir. Güzel bir hikâye. Ama bu rüya ilk kez, Osman'ın ölümünden yüz yılı aşkın süre sonra yazılan kroniklerde karşımıza çıkar. Pek çok tarihçi onu, büyüyen bir hanedana kutsal bir başlangıç kazandıran bir kuruluş efsanesi olarak görür. Bilecik'teki düğün baskını da öyle. Rivayete göre Osman, Bilecik tekfurunun düğününe baskın yapar, gelini esir alır ve oğlu Orhan'la evlendirir. Gelinin adı Nilüfer'dir. Ancak bu olay, Bizans kaynaklarında doğrulanmaz. Efsaneler, güçlenen hanedanlara meşruiyet kazandırır. Peki o hâlde, belgelere geçen ilk an neydi?
 
 ---
 
