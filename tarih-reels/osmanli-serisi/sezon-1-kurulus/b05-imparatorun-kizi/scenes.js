@@ -412,7 +412,7 @@ window.SCENE_FNS = {
   silivri(t, s) {
     const Y = 1346.4, cam = camAt([[s.t0, -36, -50, 4.4], [C("p5:Silivri'de"), -58, -60, 7.6], [s.t1 + .35, -62, -63, 10.5]], t, .004);
     drawTimeMap(t, cam, Y, { focus: 'BIZ', dim: .2 });
-    ownCity(cam, 'Konstantinopolis', Y, { size: 28, a: 1 - seg(t, C("p5:Silivri'de") - .2, C("p5:Silivri'de") + .3) });
+    ownCity(cam, 'Konstantinopolis', Y, { size: 28, align: 'right', a: 1 - seg(t, C("p5:Silivri'de") - .2, C("p5:Silivri'de") + .3) });   // sağa yaslı: etiket kenarda kesilmesin
     mapPin(cam, ...SIL, t, s.t0 + .2, 'SİLİVRİ', { date: 'YAZ 1346', size: 34, col: BIZC });
   },
   /* "...perdeler açıldı ve Kantakuzenos'un kızı Theodora kalabalığın karşısına çıktı. Damat törende yoktu;" — KAHRAMAN AN (nötr perde, ahşap sahne) */
