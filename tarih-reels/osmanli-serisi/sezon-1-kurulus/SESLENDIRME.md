@@ -196,6 +196,7 @@ Kip: geçmişte açılır ("vardı", "yönetiyordu"), sonraki yüz yıla "-ecekt
 | 8 | Masal gibi → umutlu kapanış | "açılacakları gün… yaklaşıyordu" |
 
 **Kontrol:** Kayıt ~105–120 sn olmalı. "Bin üç yüzlerin hemen başında" ile başlayıp "yaklaşıyordu" ile bitmeli. 8 paragraf.
+**Kayıt (22 Ekim 2026):** ✅ 115,5 sn, 8 paragraf; kesimler 8,97 · 21,37 · 30,19 · 43,55 · 62,66 · 83,10 · 100,05 sn; hız oranları 0,96–1,06.
 
 ---
 
@@ -248,6 +249,7 @@ Kip: geçmişte açılır ("vardı", "yönetiyordu"), sonraki yüz yıla "-ecekt
 | 9 | Alçak, uğursuz | "içeriden açılacaktı" |
 
 **Kontrol:** Kayıt ~102–118 sn olmalı. "Bin üç yüz yirmi altı baharında" ile başlayıp "içeriden açılacaktı" ile bitmeli. 9 paragraf.
+**Kayıt (22 Ekim 2026):** ✅ 106,5 sn, 9 paragraf; kesimler 13,58 · 24,78 · 34,05 · 51,56 · 63,25 · 76,96 · 88,31 · 101,05 sn; hız oranları 0,93–1,12 (p9 köprü cümlesi bilerek yavaş).
 
 ---
 
@@ -295,6 +297,7 @@ Kip: geçmişte açılır ("vardı", "yönetiyordu"), sonraki yüz yıla "-ecekt
 | 8 | Sakin → uğursuz kapanış | "bu soruyu bir daha kimse sormayacaktı" |
 
 **Kontrol:** Kayıt ~118–135 sn olmalı. "Bin üç yüz kırk bir yazında" ile başlayıp "sormayacaktı" ile bitmeli. 8 paragraf.
+**Kayıt (22 Ekim 2026):** ✅ 126,3 sn, 8 paragraf; kesimler 16,12 · 26,76 · 39,22 · 57,61 · 73,64 · 88,76 · 105,44 sn; hız oranları 0,96–1,05.
 
 ---
 

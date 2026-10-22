@@ -10,9 +10,9 @@
 | 0 | Fragman: Uçtaki Beylik (✅ v6) | 87 | ~47 sn |
 | 1 | Sınırın İki Yakası (✅ v6) | 171 | ~86 sn |
 | 2 | Bir Rüya, Bir Düğün (✅ v6) | 178 | ~89 sn |
-| 3 | Koyunhisar (✅) | 219 | ~110 sn |
-| 4 | Bursa: Akıncılardan Devlete (✅) | 216 | ~108 sn |
-| 5 | İmparatorun Kızı (✅) | 250 | ~125 sn |
+| 3 | Koyunhisar (✅, kayıt) | 218 | 115,5 sn kayıt · 123,1 sn bölüm |
+| 4 | Bursa: Akıncılardan Devlete (✅, kayıt) | 212 | 106,5 sn kayıt · 114,5 sn bölüm |
+| 5 | İmparatorun Kızı (✅, kayıt) | 247 | 126,3 sn kayıt · 134,5 sn bölüm |
 | 6 | Yer Sarsıldığında: Gelibolu | 113 | ~56 sn |
 | 7 | Edirne: Ne Zaman Alındı? | 140 | ~69 sn |
 | 8 | Kosova: Meydanda Ölen Tek Sultan | 130 | ~64 sn |
@@ -128,7 +128,7 @@
 ---
 
 ## Bölüm 3 · Koyunhisar
-**Durum:** ✅ Metin onaylandı (22 Ekim 2026); ElevenLabs metni `SESLENDIRME.md`'de. Seslendirme bekleniyor; görüntü tahmini zamanlamayla kuruluyor.
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026). ✅ Seslendirme geldi (Emrullah Uzun, 115,5 sn kayıt) ve hizalandı; bölüm **123,1 sn**. Önizleme hazır (`b03-koyunhisar/`).
 **Anlatım:** 219 kelime (~110 sn + sessizlik) · **Araştırma:** ARASTIRMA §2c · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada; §3.1 kip sistemi; §3.6 paragraf köprüsü)
 **Hikâye:** Bafeus'ta Muzalon'un huzursuz ordusu ve Alan paralı askerleri; Osman'ın atlılarının zaferi; haberin yayılması, uç savaşçılarının gelişi, köylülerin kaçışı; Bursa'nın iki kuleyle kuşatılması; yaşlanan Osman ve Orhan; Mudanya; gümüş kubbe rivayeti (Bölüm 4'te karşılığı gelir).
 
@@ -163,7 +163,7 @@
 ---
 
 ## Bölüm 4 · Bursa: Akıncılardan Devlete
-**Durum:** ✅ Metin onaylandı (22 Ekim 2026); ElevenLabs metni `SESLENDIRME.md`'de. Seslendirme bekleniyor; görüntü tahmini zamanlamayla kuruluyor.
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026). ✅ Seslendirme geldi (Emrullah Uzun, 106,5 sn kayıt) ve hizalandı; bölüm **114,5 sn**. Önizleme hazır (`b04-bursa/`).
 **Anlatım:** 216 kelime (~108 sn + sessizlik) · **Araştırma:** ARASTIRMA §3a · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada; §3.1 kip sistemi; §3.6 paragraf köprüsü)
 **Hikâye:** Bursa'nın anlaşmayla teslimi; Osman'ın gümüş kubbe altına gömülmesi; Orhan'ın akçesi; Pelekanon'da imparatorun yenilgisi; İznik ve ilk medrese; İbn Battûta'nın gözünden Orhan; İzmit; Bursa'da cami, aşevi, han; Bizans'ın içeriden açılacak yarasına köprü.
 
@@ -203,7 +203,7 @@
 ---
 
 ## Bölüm 5 · İmparatorun Kızı
-**Durum:** ✅ Metin onaylandı (22 Ekim 2026); ElevenLabs metni `SESLENDIRME.md`'de. Seslendirme bekleniyor; görüntü tahmini zamanlamayla kuruluyor.
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026). ✅ Seslendirme geldi (Emrullah Uzun, 126,3 sn kayıt) ve hizalandı; bölüm **134,5 sn**. Önizleme hazır (`b05-imparatorun-kizi/`).
 **Anlatım:** 250 kelime (~125 sn + sessizlik) · **Araştırma:** ARASTIRMA §3b · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada; §3.1 kip sistemi; §3.6 paragraf köprüsü)
 **Hikâye:** Bizans iç savaşı ve Kantakuzenos; Aydınoğlu Umur'un yardımı; eski düşman Orhan'la ittifak ve Osmanlıların Avrupa'ya ilk geçişi; Theodora'nın Silivri'deki düğünü; İstanbul ve Üsküdar sofrası; 1352 Dimetoka; Çimpe'de kalan askerler; Gelibolu depremine köprü.
 
