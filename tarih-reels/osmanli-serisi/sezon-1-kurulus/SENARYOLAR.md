@@ -7,12 +7,12 @@
 
 | # | Bölüm | Kelime | Tahmini anlatım |
 |---|---|---|---|
-| 0 | Fragman: Uçtaki Beylik (✅ v5) | 87 | ~47 sn |
+| 0 | Fragman: Uçtaki Beylik (✅ v6) | 87 | ~47 sn |
 | 1 | Sınırın İki Yakası (✅ v6) | 171 | ~86 sn |
 | 2 | Bir Rüya, Bir Düğün (✅ v6) | 178 | ~89 sn |
-| 3 | Koyunhisar: Tarihe Girilen Gün | 120 | ~59 sn |
-| 4 | Bursa: Akıncılardan Devlete | 108 | ~53 sn |
-| 5 | İmparatorun Kızı | 111 | ~55 sn |
+| 3 | Koyunhisar (✅) | 219 | ~110 sn |
+| 4 | Bursa: Akıncılardan Devlete (✅) | 216 | ~108 sn |
+| 5 | İmparatorun Kızı (✅) | 250 | ~125 sn |
 | 6 | Yer Sarsıldığında: Gelibolu | 113 | ~56 sn |
 | 7 | Edirne: Ne Zaman Alındı? | 140 | ~69 sn |
 | 8 | Kosova: Meydanda Ölen Tek Sultan | 130 | ~64 sn |
@@ -22,20 +22,20 @@
 ---
 
 ## Fragman · Uçtaki Beylik: Sezon tanıtımı
-**Durum:** ✅ Metin onaylandı (21 Ekim 2026, v5). Görüntü ve zaman çizelgesi henüz eski metne göre; yeni storyboard gerekiyor.
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026, v6; v5'in kip düzeltmesi). ElevenLabs metni `SESLENDIRME.md`'de. Görüntü yeni montaja göre kuruluyor.
 **Rozetler:** 🟢🟡 · **Anlatım:** 87 kelime (~47 sn) · **Araştırma:** ARASTIRMA §2–§5 · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada)
 **Biçim:** Sezonun montajı. Her cümle sezondan bir an; harita her cümlede biraz daha genişler, Ankara'da çatlar.
 
-**Anlatım metni** (paragraflar zaman birimidir)
-> **p1** Bin üç yüzlerin başında, Söğüt çevresinde küçük bir sınır beyliği var. Onu Osman adında bir bey yönetiyor.
+**Anlatım metni** (paragraflar zaman birimidir; v6: kip sistemine uyduruldu, geçmişte açılır ve "-ecekti" ile ileri bakar)
+> **p1** Bin üç yüzlerin başında, Söğüt çevresinde küçük bir sınır beyliği vardı. Onu Osman adında bir bey yönetiyordu.
 >
-> **p2** Önümüzdeki yüz yılda bu beylik Bizans'ın ordusunu yenecek ve kuşattığı bir şehri kılıç çekmeden teslim alacak.
+> **p2** Sonraki yüz yılda bu beylik Bizans'ın ordusunu yenecek ve kuşattığı bir şehri kılıç çekmeden teslim alacaktı.
 >
-> **p3** Bir Bizans imparatoru kızını Osmanlı hükümdarıyla evlendirecek. Bir deprem Gelibolu'nun surlarını yıkacak ve Osmanlılar Avrupa'ya yerleşecek.
+> **p3** Bir Bizans imparatoru kızını Osmanlı hükümdarıyla evlendirecekti. Bir deprem Gelibolu'nun surlarını yıkacak ve Osmanlılar Avrupa'ya yerleşecekti.
 >
-> **p4** Bir sultan savaş meydanında hayatını kaybedecek. Avrupa'nın şövalyeleri Tuna kıyısında bozguna uğrayacak ve devletin toprakları Balkanlar'dan Fırat'a kadar uzanacak.
+> **p4** Bir sultan savaş meydanında hayatını kaybedecekti. Avrupa'nın şövalyeleri Tuna kıyısında bozguna uğrayacak ve devletin toprakları Balkanlar'dan Fırat'a kadar uzanacaktı.
 >
-> **p5** Ama bin dört yüz iki yazında, Ankara'da her şey tek bir günde değişecek. *(pause 2.5: harita çatlar)*
+> **p5** Ama bin dört yüz iki yazında, Ankara'da her şey tek bir günde değişecekti. *(pause 2.5: harita çatlar)*
 >
 > **p6** Bu, Söğüt'ten Ankara'ya uzanan yüz yılın hikâyesi. *(sezon kartı)*
 
@@ -127,70 +127,114 @@
 
 ---
 
-## Bölüm 3 · Koyunhisar: Tarihe Girilen Gün
-**Rozetler:** 🟢🟡 · **Anlatım:** 120 kelime (~59 sn) · **Araştırma:** ARASTIRMA §2 (Bafeus, İnalcık)
-**Görsel kimlik:** Bafeus haritası: İzmit Körfezi, Bizans ordusu (mavi) ve Osman'ın atlıları (kırmızı) oklarla
+## Bölüm 3 · Koyunhisar
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026); ElevenLabs metni `SESLENDIRME.md`'de. Seslendirme bekleniyor; görüntü tahmini zamanlamayla kuruluyor.
+**Anlatım:** 219 kelime (~110 sn + sessizlik) · **Araştırma:** ARASTIRMA §2c · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada; §3.1 kip sistemi; §3.6 paragraf köprüsü)
+**Hikâye:** Bafeus'ta Muzalon'un huzursuz ordusu ve Alan paralı askerleri; Osman'ın atlılarının zaferi; haberin yayılması, uç savaşçılarının gelişi, köylülerin kaçışı; Bursa'nın iki kuleyle kuşatılması; yaşlanan Osman ve Orhan; Mudanya; gümüş kubbe rivayeti (Bölüm 4'te karşılığı gelir).
 
-**Anlatım metni**
-> Yirmi yedi Temmuz, bin üç yüz iki. İzmit yakınlarında, Bafeus denen bir yerde, bir Bizans ordusu Osman'ın kuvvetlerine karşı yürür. Komutanı Muzalon'dur. Sonuç Bizans için bir hezimettir. Muzalon'un birlikleri dağılır ve İzmit surlarının ardına çekilir. Bu savaşı bize anlatan kişi, Bizanslı tarihçi Pakhymeres'tir. Osman'ı, olaylar yaşanırken kaydeden ilk tanıktır. Türk kaynaklarındaki adıyla Koyunhisar Savaşı'ndan sonra, Batı Anadolu'nun farklı bölgelerinden savaşçılar Osman'ın yanında toplanmaya başlar. Küçük beylik artık bir çekim merkezidir. Savaşın yılı bile tartışmalıdır. Geleneksel tarih bin üç yüz ikidir, bin üç yüz biri ve bin iki yüz doksan dokuzu önerenler de vardır. Halil İnalcık, Osmanlı devletinin doğuşunu işte bu savaşa bağlar. Ama ilk büyük şehri almak, bir kuşatma ve sabır meselesi olacaktı. Ve o şehir, kılıçla değil, müzakereyle alınacaktı.
+**Anlatım metni** (paragraflar zaman birimidir)
+> **p1** Bin üç yüzlerin hemen başında, bir temmuz günü, imparatorun gönderdiği ordu İzmit Körfezi'ne bakan bir ovada Osman'ı bekliyordu.
+>
+> **p2** Ama bu ordu daha savaş başlamadan huzursuzdu. Komutanı Muzalon, kendi askerlerinin atlarını alıp bozkırdan gelen Alan paralı askerlerine vermişti ve saflarda öfke büyüyordu.
+>
+> **p3** Tam bu sırada Osman'ın atlıları dağ geçidinden indi ve birden ovada belirdi. Sayıca Bizanslılardan çok daha fazlaydılar.
+>
+> **p4** Türk atlıları hücuma kalkınca Bizans hattı dağıldı. Yalnızca Alan atlıları geride kalıp kaçanları korudu ve kurtulanlar İzmit surlarının ardına sığındı. Meydan Osman'ın atlılarına kaldı. *(pause 2: harita sessizliği)*
+>
+> **p5** Bu zaferi Türkler Koyunhisar diye andı. Zaferin haberi kısa sürede Karadeniz kıyısındaki Paflagonya'ya kadar ulaştı ve uç savaşçıları Osman'ın sancağı altına koştu. Bitinya'nın köylüleri ise tarlalarını bırakıp İstanbul'a kaçtı ve Bizans'ın elinde yalnızca surlu şehirler kaldı.
+>
+> **p6** Bu surlu şehirlerden biri de Uludağ'ın eteğindeki Bursa'ydı. Ama Bursa'nın surları sarp kayalara yaslanıyordu ve şehir kılıçla alınacak gibi değildi. Bu yüzden Osman saldırmak yerine şehrin iki yanına iki kule diktirdi. Birinin başına yeğeni Aktimur'u, ötekinin başına Balabancık'ı koydu.
+>
+> **p7** Düşünün: bu kuleler yıllarca şehri gözledi ve Bursa'ya ne yiyecek ne yardım ulaşabildi. Bu arada Osman yaşlanıp hastalandı; seferlere artık oğlu Orhan çıkıyordu. Şehrin denize açılan kapısı Mudanya da düşünce Bursa büsbütün yalnız kaldı.
+>
+> **p8** Anlatılır ki Osman kuşatılmış şehri uzaktan seyrederken güneşte gümüş gibi parlayan bir kubbe görmüş ve o kubbenin altına gömülmeyi dilemiş. Bursa'nın kapıları hâlâ kapalıydı, ama açılacakları gün yaklaşıyordu.
 
-**Sahne akışı**
-| Cümle / an | Görsel | Ekran yazısı | Rozet |
-|---|---|---|---|
-| "27 Temmuz 1302…" | Takvim yaprağı + İzmit Körfezi haritası | 27 TEMMUZ 1302 | 🟡 |
-| "Komutanı Muzalon'dur…" | Bizans birlik blokları ilerliyor | MUZALON | 🟢 |
-| "İzmit surlarının ardına çekilir…" | Mavi bloklar dağılıp surların içine kaçıyor | — | 🟢 |
-| "Bizanslı tarihçi Pakhymeres…" | Keşiş silüeti yazıyor; yazdığı satır haritaya dönüşüyor | PAKHYMERES · ÇAĞDAŞ TANIK | 🟢 |
-| "savaşçılar Osman'ın yanında toplanmaya…" | Batı Anadolu'dan Söğüt'e akan küçük oklar | — | 🟢 |
-| "Savaşın yılı bile tartışmalıdır…" | Üç tarih kartı yan yana: 1299 · 1301 · 1302 | TARTIŞMALI | 🟡 |
-| "Halil İnalcık…" | Kitap silüeti üstünde isim kartı | H. İNALCIK | 🟡 |
-| "müzakereyle alınacaktı…" | Bursa surları uzakta, sis | → BÖLÜM 4 | — |
+| Paragraf | Dayanak | Rozet |
+|---|---|---|
+| p1–p2 | §2c-1…5 (Muzalon, Alanlar, atlar, 27 Temmuz; yıl yuvarlak) | 🟢/🟡 |
+| p3–p4 | §2c-6, 8–11 (dağ geçidi, sayı üstünlüğü, hücum, Alanların koruması, İzmit surları) | 🟡/🟢 |
+| p5 | §2c-7, 13, 14 (Koyunhisar adı, Paflagonya, köylülerin kaçışı) | 🟡/🟢 |
+| p6 | §2c-17 (Aktimur ve Balabancık kuleleri) | 🟡 |
+| p7 | §2c-18–20 (abluka, hasta Osman, Mudanya) | 🟡 |
+| p8 | §2c-22 (gümüş kubbe) | 🔴 |
 
-**Ses planı (kütüphane kimlikleri):** vurus/timpani_rulo (yürüyüş) · metal/ors_1, metal/ors_2 (çatışma) · vurus/buyuk_davul_ff (hezimet) · ritim/def_rulo (toplanma) · muzik/korno_D2 kısık
+**Eski metin (v1, taslak):** Yirmi yedi Temmuz, bin üç yüz iki. İzmit yakınlarında, Bafeus denen bir yerde, bir Bizans ordusu Osman'ın kuvvetlerine karşı yürür. Komutanı Muzalon'dur. Sonuç Bizans için bir hezimettir. Muzalon'un birlikleri dağılır ve İzmit surlarının ardına çekilir. Bu savaşı bize anlatan kişi, Bizanslı tarihçi Pakhymeres'tir. Osman'ı, olaylar yaşanırken kaydeden ilk tanıktır. Türk kaynaklarındaki adıyla Koyunhisar Savaşı'ndan sonra, Batı Anadolu'nun farklı bölgelerinden savaşçılar Osman'ın yanında toplanmaya başlar. Küçük beylik artık bir çekim merkezidir. Savaşın yılı bile tartışmalıdır. Geleneksel tarih bin üç yüz ikidir, bin üç yüz biri ve bin iki yüz doksan dokuzu önerenler de vardır. Halil İnalcık, Osmanlı devletinin doğuşunu işte bu savaşa bağlar. Ama ilk büyük şehri almak, bir kuşatma ve sabır meselesi olacaktı. Ve o şehir, kılıçla değil, müzakereyle alınacaktı.
 
 ---
 
 ## Bölüm 4 · Bursa: Akıncılardan Devlete
-**Rozetler:** 🟢🟡 · **Anlatım:** 108 kelime (~53 sn) · **Araştırma:** ARASTIRMA §3
-**Görsel kimlik:** Bitinya haritası: Bursa, İznik, İzmit; kuşatma halkaları; sonra şehir içi çizimi (medrese)
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026); ElevenLabs metni `SESLENDIRME.md`'de. Seslendirme bekleniyor; görüntü tahmini zamanlamayla kuruluyor.
+**Anlatım:** 216 kelime (~108 sn + sessizlik) · **Araştırma:** ARASTIRMA §3a · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada; §3.1 kip sistemi; §3.6 paragraf köprüsü)
+**Hikâye:** Bursa'nın anlaşmayla teslimi; Osman'ın gümüş kubbe altına gömülmesi; Orhan'ın akçesi; Pelekanon'da imparatorun yenilgisi; İznik ve ilk medrese; İbn Battûta'nın gözünden Orhan; İzmit; Bursa'da cami, aşevi, han; Bizans'ın içeriden açılacak yarasına köprü.
 
-**Anlatım metni**
-> Bursa'yı almak yıllar sürdü. Osmanlılar şehrin çevresini sardı, limanını ele geçirdi ve şehri dış dünyadan kopardı. Sonunda bin üç yüz yirmi altıda Bursa teslim oldu. Kılıçla değil, müzakereyle. Orhan şehri başkent yaptı. Bizans harekete geçti. İmparator Üçüncü Andronikos, kuşatma altındaki İznik'i kurtarmak için bizzat sefere çıktı ama bin üç yüz yirmi dokuzda Palekanon'da geri püskürtüldü. İznik bin üç yüz otuz birde, İzmit bin üç yüz otuz yedide teslim oldu. Ve bir şey değişmeye başladı. Orhan İznik'te ilk Osmanlı medresesini kurdu ve başına dönemin ünlü âlimi Davud-i Kayserî'yi getirdi. Akıncılarla büyüyen bir beylik, artık şehirleri yöneten, okullar açan bir devlete dönüşüyordu. Ama Bizans'ın asıl yarası dışarıdan değil, içeriden açılacaktı.
+**Anlatım metni** (paragraflar zaman birimidir)
+> **p1** Bin üç yüz yirmi altı baharında, yıllarca süren kuşatmanın sonunda Bursa'nın kapıları açıldı. Şehir kılıçla değil bir anlaşmayla teslim oldu: kimseye dokunulmayacak, gitmek isteyen malını alıp gidecekti.
+>
+> **p2** Ama Osman bu günü göremedi; beyliğin başında artık oğlu Orhan vardı. Orhan babasını Bursa'da, eski bir manastırın gümüş kubbesinin altına gömdü.
+>
+> **p3** Bursa, Orhan'ın elinde beyliğin yeni merkezine dönüştü. Burada basılan akçelerin üzerinde artık Orhan'ın adıyla birlikte şehrin adı yazıyordu.
+>
+> **p4** Bizans bu yükselişe seyirci kalmadı. Bin üç yüz yirmi dokuz yazında imparator Üçüncü Andronikos, kuşatma altındaki İznik'i kurtarmak için ordusuyla Boğaz'ı geçti. Ama Pelekanon'da bacağından yaralanınca "İmparator ölüyor" sözü bir anda yayıldı ve ordu dağıldı. *(pause 2: harita sessizliği)*
+>
+> **p5** Kurtarılamayan İznik, iki yıl sonra kapılarını Orhan'a açtı. Şehrin büyük kilisesi camiye çevrildi ve Orhan burada, Osmanlıların ilk medresesi olarak hatırlanan okulu kurdu.
+>
+> **p6** Bu yıllarda Fas'tan gelen gezgin İbn Battûta da Orhan'ın topraklarından geçti. Ona göre Orhan, Türkmen beylerinin en zenginiydi: yüz kadar kalesi vardı ve vaktinin çoğu onları tek tek dolaşmakla geçiyordu.
+>
+> **p7** Geriye Bizans'ın bölgedeki son büyük şehri İzmit kalmıştı. Bin üç yüz otuz yedide erzakı tükenince o da teslim oldu ve Bitinya'nın üç büyük şehri Orhan'ın eline geçti.
+>
+> **p8** Fetihlerin ardından Orhan Bursa'yı imar etti. Surların dışında bir cami, bir aşevi ve bir han yaptırdı. Çarşı bu hanın çevresinde büyüdü ve uçtaki beylik bir devlete dönüştü.
+>
+> **p9** Ama Bizans'ın asıl yarası dışarıdan değil, içeriden açılacaktı.
 
-**Sahne akışı**
-| Cümle / an | Görsel | Ekran yazısı | Rozet |
-|---|---|---|---|
-| "Bursa'yı almak yıllar sürdü…" | Bursa çevresinde daralan kuşatma halkası, Mudanya limanı kesiliyor | BURSA | 🟡 |
-| "Kılıçla değil, müzakereyle…" | Surların kapısı açılıyor, iki silüet el sıkışıyor | 1326 | 🟡 |
-| "Palekanon'da geri püskürtüldü…" | İmparatorun ordusu oku geri dönüyor | PALEKANON · 1329 | 🟢 |
-| "İznik 1331, İzmit 1337…" | İki şehir sırayla kırmızıya dönüyor | İZNİK 1331 · İZMİT 1337 | 🟢 |
-| "ilk Osmanlı medresesini kurdu…" | İznik'te kubbeli bir yapı çizgiyle beliriyor, içinde kitap simgesi | İLK MEDRESE · DAVUD-İ KAYSERÎ | 🟢 |
-| "devlete dönüşüyordu…" | Harita üstünde yol, köprü, cami ikonları beliriyor | — | — |
-| "içeriden açılacaktı…" | Bizans sarayında çatlayan taht silüeti | → BÖLÜM 5 | — |
+| Paragraf | Dayanak | Rozet |
+|---|---|---|
+| p1 | §3a-1, 2 (1326; teslim koşulları) | 🟢/🟡 |
+| p2 | §3a-4, 5; §2c-21 (Osman'ın ölümü, gömülmesi) | 🟢/🟡 |
+| p3 | §3a-7, 8 (akçe, merkez) | 🟢/🟡 |
+| p4 | §3a-9 (Pelekanon 1329) | 🟢 |
+| p5 | §3a-10, 11 (İznik 1331, medrese) | 🟢/🟡 |
+| p6 | §3a-12 (İbn Battûta) | 🟢 |
+| p7 | §3a-13 (İzmit 1337) | 🟢/🟡 |
+| p8 | §3a-14 (külliye 1339–40) | 🟢 |
+| p9 | köprü | — |
 
-**Ses planı (kütüphane kimlikleri):** metal/tas_surtunme (surlar) · ritim/darbuka_dum (kuşatma nabzı) · gecis/zil_kresendo_2s → vurus/zil_timpani (teslim) · muzik/cello_A2 + korno_A2 (devlet) · can/kilise_cani_C3 (Bizans)
+**Eski metin (v1, taslak):** Bursa'yı almak yıllar sürdü. Osmanlılar şehrin çevresini sardı, limanını ele geçirdi ve şehri dış dünyadan kopardı. Sonunda bin üç yüz yirmi altıda Bursa teslim oldu. Kılıçla değil, müzakereyle. Orhan şehri başkent yaptı. Bizans harekete geçti. İmparator Üçüncü Andronikos, kuşatma altındaki İznik'i kurtarmak için bizzat sefere çıktı ama bin üç yüz yirmi dokuzda Palekanon'da geri püskürtüldü. İznik bin üç yüz otuz birde, İzmit bin üç yüz otuz yedide teslim oldu. Ve bir şey değişmeye başladı. Orhan İznik'te ilk Osmanlı medresesini kurdu ve başına dönemin ünlü âlimi Davud-i Kayserî'yi getirdi. Akıncılarla büyüyen bir beylik, artık şehirleri yöneten, okullar açan bir devlete dönüşüyordu. Ama Bizans'ın asıl yarası dışarıdan değil, içeriden açılacaktı.
 
 ---
 
 ## Bölüm 5 · İmparatorun Kızı
-**Rozetler:** 🟢 · **Anlatım:** 111 kelime (~55 sn) · **Araştırma:** ARASTIRMA §3 (Kantakuzenos, Theodora, Dimetoka)
-**Görsel kimlik:** Bizans sarayı (koyu mor, altın), saray entrikası; sonra Trakya haritası
+**Durum:** ✅ Metin onaylandı (22 Ekim 2026); ElevenLabs metni `SESLENDIRME.md`'de. Seslendirme bekleniyor; görüntü tahmini zamanlamayla kuruluyor.
+**Anlatım:** 250 kelime (~125 sn + sessizlik) · **Araştırma:** ARASTIRMA §3b · **Yazım:** `ANLATICI-DILI.md` (hikâye önde, kaynak arkada; §3.1 kip sistemi; §3.6 paragraf köprüsü)
+**Hikâye:** Bizans iç savaşı ve Kantakuzenos; Aydınoğlu Umur'un yardımı; eski düşman Orhan'la ittifak ve Osmanlıların Avrupa'ya ilk geçişi; Theodora'nın Silivri'deki düğünü; İstanbul ve Üsküdar sofrası; 1352 Dimetoka; Çimpe'de kalan askerler; Gelibolu depremine köprü.
 
-**Anlatım metni**
-> Bin üç yüz kırk bir. Bizans'ta imparator ölür ve tahtın varisi henüz küçük bir çocuktur. Naiplik kavgası, altı yıl sürecek bir iç savaşa dönüşür. Taraflardan biri, güçlü devlet adamı Yuannis Kantakuzenos'tur. Rakiplerine karşı müttefik arar ve onu Bizans'ın sınırında bulur: Orhan Bey. Bin üç yüz kırk altıda Kantakuzenos, kızı Theodora'yı Orhan'la evlendirir. Osmanlı askerleri Trakya'ya müttefik olarak geçer ve onun saflarında savaşır. Bin üç yüz kırk yedide Kantakuzenos İstanbul'a girer ve imparator olur. İttifak sürer. Bin üç yüz elli ikide, Dimetoka'da Osmanlı askerleri yine onun yanında savaşır. Bu, Osmanlıların Avrupa topraklarındaki ilk büyük savaşıdır. Yani Osmanlılar Avrupa'ya, bir Bizans imparatorunun müttefiki olarak ayak bastı. Kalıcı olmaları içinse bir deprem gerekecekti.
+**Anlatım metni** (paragraflar zaman birimidir)
+> **p1** Bin üç yüz kırk bir yazında Bizans imparatoru Üçüncü Andronikos öldü ve tahtı küçük oğluna kaldı. Ölen imparatorun en yakın adamı Kantakuzenos'tu, ama o seferdeyken imparatoriçe ve saraydaki rakipleri yönetimi ele geçirip mallarına el koydu.
+>
+> **p2** Bunun üzerine Kantakuzenos Dimetoka'da kendini imparator ilan etti. Artık iki imparator vardı ve Bizans altı yıl sürecek bir iç savaşa sürüklendi.
+>
+> **p3** Bu savaşta Kantakuzenos'a denizin öte yakasından eski bir dostu yardım etti: Aydınoğlu Umur Bey. Dimetoka kuşatıldığında Umur'un gemileri Meriç'ten yukarı, surların dibine kadar çıktı.
+>
+> **p4** Ama Umur kendi topraklarına dönmek zorunda kalınca Kantakuzenos yeni bir müttefik aradı. Peki kimdi bu müttefik? Yıllar önce Pelekanon'da karşısında savaştığı adam, Orhan. Böylece Osmanlı askerleri ilk kez Avrupa'ya geçti ve Trakya'da Kantakuzenos için savaştı.
+>
+> **p5** Bu ittifakı bir evlilik mühürledi. Bin üç yüz kırk altı yazında Silivri'de perdeler açıldı ve Kantakuzenos'un kızı Theodora kalabalığın karşısına çıktı. Damat törende yoktu; gemiler gelini Boğaz'ın öte yakasına, Orhan'a götürdü. *(pause 2: harita sessizliği)*
+>
+> **p6** Ertesi yıl İstanbul'un kapıları Kantakuzenos'a açıldı ve iç savaş onun zaferiyle bitti. Kısa süre sonra Theodora, kocasını babasıyla Üsküdar'da buluşturdu; Pelekanon'da karşı karşıya gelen iki adam şimdi aynı sofradaydı.
+>
+> **p7** Ama barış uzun sürmedi. Bin üç yüz elli ikide genç imparator Sırpların desteğiyle yeniden silaha sarılınca Kantakuzenos yine damadından yardım istedi. Bu kez Orhan'ın oğlu Süleyman geldi ve Osmanlı süvarileri Dimetoka yakınlarında Sırp ordusunu dağıttı.
+>
+> **p8** Savaştan sonra Süleyman'ın askerlerinden bir kısmı kışı geçirmek için Gelibolu'nun kuzeyindeki küçük Çimpe kalesinde kaldı. Kısa sürede kaleye aileleri de geldi. Kantakuzenos onları kendisi çağırmıştı; şimdi gitmelerini istiyordu. Ama bir gece yer sarsılacak ve bu soruyu bir daha kimse sormayacaktı.
 
-**Sahne akışı**
-| Cümle / an | Görsel | Ekran yazısı | Rozet |
-|---|---|---|---|
-| "varisi henüz küçük bir çocuktur…" | Küçük bir taç, büyük bir taht | 1341 | 🟢 |
-| "altı yıl sürecek bir iç savaşa…" | Bizans haritası ikiye bölünüyor (iki renk) | İÇ SAVAŞ 1341–1347 | 🟢 |
-| "Yuannis Kantakuzenos…" | Mühür ve imza silüeti | VI. İOANNES KANTAKUZENOS | 🟢 |
-| "kızı Theodora'yı Orhan'la evlendirir…" | İki sancak yan yana; düğün alayı silüeti (tören) | 1346 | 🟢 |
-| "Trakya'ya müttefik olarak geçer…" | Kırmızı oklar Çanakkale Boğazı'nı geçip Trakya'ya; yanında mavi oklar (müttefik) | MÜTTEFİK | 🟢 |
-| "Dimetoka'da…" | Dimetoka'da savaş işareti | DİMETOKA · 1352 | 🟢 |
-| "bir deprem gerekecekti…" | Harita titriyor | → BÖLÜM 6 | — |
+| Paragraf | Dayanak | Rozet |
+|---|---|---|
+| p1–p2 | §3b-1–3 | 🟢 |
+| p3 | §3b-4 (Umur, Meriç) | 🟢/🟡 |
+| p4 | §3b-5–7 (Orhan ittifakı, ilk geçiş) | 🟢 |
+| p5 | §3b-8–10 (Silivri düğünü, perdeler, Orhan'ın yokluğu) | 🟢 |
+| p6 | §3b-11, 12 (İstanbul, Üsküdar sofrası) | 🟢 |
+| p7 | §3b-13 (Dimetoka 1352, Süleyman) | 🟢/🟡 |
+| p8 | §3b-14, 16 (Çimpe, aileler; geri verme isteği) | 🟢/🟡 |
 
-**Ses planı (kütüphane kimlikleri):** can/kilise_cani_D3 (saray) · muzik/keman_A3 (entrika) · gecis/zil_yay · ritim/def_buyuk (düğün) · muzik/korno_D2 (ittifak) · sonda vurus/buyuk_davul_kresendo (deprem habercisi)
+**Eski metin (v1, taslak):** Bin üç yüz kırk bir. Bizans'ta imparator ölür ve tahtın varisi henüz küçük bir çocuktur. Naiplik kavgası, altı yıl sürecek bir iç savaşa dönüşür. Taraflardan biri, güçlü devlet adamı Yuannis Kantakuzenos'tur. Rakiplerine karşı müttefik arar ve onu Bizans'ın sınırında bulur: Orhan Bey. Bin üç yüz kırk altıda Kantakuzenos, kızı Theodora'yı Orhan'la evlendirir. Osmanlı askerleri Trakya'ya müttefik olarak geçer ve onun saflarında savaşır. Bin üç yüz kırk yedide Kantakuzenos İstanbul'a girer ve imparator olur. İttifak sürer. Bin üç yüz elli ikide, Dimetoka'da Osmanlı askerleri yine onun yanında savaşır. Bu, Osmanlıların Avrupa topraklarındaki ilk büyük savaşıdır. Yani Osmanlılar Avrupa'ya, bir Bizans imparatorunun müttefiki olarak ayak bastı. Kalıcı olmaları içinse bir deprem gerekecekti.
 
 ---
 
