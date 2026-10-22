@@ -25,6 +25,13 @@ def load_audio(path):
     return np.frombuffer(raw, dtype=np.float32).astype(np.float64)
 
 
+def movavg(x, k):
+    """np.convolve(x, np.ones(k) / k, "same") ile aynı sonuç; birikimli toplamla O(N) (doğrudan konvolüsyon dakikalar sürüyordu).
+    Girdi negatif olmayan bir sinyaldir (enerji, genlik); yuvarlama eksisi sıfıra kırpılır (sqrt/log için)."""
+    h, n = (k - 1) // 2, len(x); c = np.concatenate([[0.0], np.cumsum(x)]); i = np.arange(n)
+    return np.maximum((c[np.clip(i + h + 1, 0, n)] - c[np.clip(i + h + 1 - k, 0, n)]) / k, 0.0)
+
+
 def read_ep():
     src = open(os.path.join(EPD, "timeline.js"), encoding="utf-8").read()
     out = subprocess.run(["node", "-e", "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(JSON.stringify(window.EP))", os.path.join(EPD, "timeline.js")], capture_output=True, text=True, check=True).stdout
@@ -40,7 +47,7 @@ def split_full(path, n, texts):
     """Tek parça seslendirmeyi n paragrafa böler: en uzun n-1 sessizlik (paragraf arası [long pause]) kesim noktasıdır.
     Kontrol: her parçanın süresi hece oranıyla kabaca uyuşmalı; uymazsa uyarır."""
     v = load_audio(path); hop = int(.01 * SR)
-    db = 20 * np.log10(np.sqrt(np.convolve(v ** 2, np.ones(hop) / hop, "same")[::hop]) + 1e-9)
+    db = 20 * np.log10(np.sqrt(movavg(v ** 2, hop)[::hop]) + 1e-9)
     sil = db < max(-45, db.max() - 38); gaps, i = [], 0
     while i < len(sil):
         if sil[i]:
@@ -91,7 +98,7 @@ if all(os.path.exists(f) for f in vo_files):
     t = lead
     for P, f in zip(EP["paras"], vo_files):
         v = load_audio(f); hop = int(.01 * SR)
-        db = 20 * np.log10(np.sqrt(np.convolve(v ** 2, np.ones(hop) / hop, "same")[::hop]) + 1e-9)
+        db = 20 * np.log10(np.sqrt(movavg(v ** 2, hop)[::hop]) + 1e-9)
         voiced = db > max(-40, db.max() - 32)
         idx = np.where(voiced)[0]; a, b = idx[0], idx[-1] + 1          # baştaki/sondaki sessizliği kırp
         v = v[max(0, (a - 3) * hop): (b + 5) * hop]; voiced = voiced[max(0, a - 3): b + 5]
@@ -305,8 +312,8 @@ vo = np.zeros(N)
 if VO_CLIPS:
     for t0, v in VO_CLIPS: j = int(t0 * SR); vo[j: j + len(v)] += v[: N - j]
     vo = vo / np.abs(vo).max() * .85
-    env = np.convolve(np.abs(vo), np.ones(int(.05 * SR)) / int(.05 * SR), "same")
-    env = np.convolve((env > .02).astype(float), np.ones(int(.3 * SR)) / int(.3 * SR), "same")
+    env = movavg(np.abs(vo), int(.05 * SR))
+    env = movavg((env > .02).astype(float), int(.3 * SR))
     # konuşma altında müzik: kütüphane modunda EP.duckDb (varsayılan 15 dB; anlatıcı müziğin 10–15 dB üstünde), eski bölümlerde ~7 dB
     depth = 1 - 10 ** (-EP.get("duckDb", 15) / 20) if LIBMODE else .55
     duck = 1 - depth * np.clip(env, 0, 1); music *= duck[:, None]; amb *= duck[:, None]; sfx *= (1 - .3 * np.clip(env, 0, 1))[:, None]
